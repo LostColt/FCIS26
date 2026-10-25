@@ -89,7 +89,6 @@ Clickable mockups, each with one line on what it does and why I built it. They r
 - **The dashboard:** so I could track things. → Open the mockup (`demos/dashboard/`)
 - **The screenplay tool:** it turns my natural writing into screenplay format. → Open the mockup (`demos/screenplay/`)
 - **The slide and website.** `[DAVID: screenshot]`
-- **The college essay presentation,** turned into a password-protected website so the information stays within our ecosystem. `[DAVID: screenshot of the login screen only]`
 
 **Photo:** none. The mockups carry this chapter.
 

@@ -1,17 +1,16 @@
 # Build phases
 
-The site is built in six phases, one prompt each. Each phase is small enough to finish completely in one run. **Run one phase at a time.** After each phase, Claude and ChatGPT review it and David merges it before the next one starts.
+The site is built in seven phases, one prompt each. Each phase is small enough to finish completely in one run. **Run one phase at a time.** After each phase, Claude and ChatGPT review it and David merges it before the next one starts.
 
 | Phase | Prompt | What gets built | Branch |
 |---|---|---|---|
-| 1 | `001-first-build.md` | The main site: all 13 chapters, reading and present modes, doors, stub pages for every mockup | `build/001` |
-| 2 | `002-counseling-tracker.md` | Shared mock data and styles, then the counseling tracker mockup | `build/002` |
-| 3 | `003-dashboard.md` | The dashboard mockup | `build/003` |
-| 4 | `004-audio-reader.md` | The audio reader mockup | `build/004` |
-| 5 | `005-locked-browser.md` | The note tool → test → locked browser mockup | `build/005` |
-| 6 | `006-screenplay.md` | The screenplay tool mockup | `build/006` |
-
-The essay site login is not mocked up. It stays a screenshot.
+| 1 | `001-spine.md` | **The spine:** every chapter's on-screen beats, reading and present modes, and labeled holding spots for everything else | `build/001` |
+| 2 | `002-say-doors-photos.md` | Say text, doors, photos, the screenshot frame, and holding pages for the mockups | `build/002` |
+| 3 | `003-counseling-tracker.md` | Shared mock data and styles, then the counseling tracker mockup | `build/003` |
+| 4 | `004-dashboard.md` | The dashboard mockup | `build/004` |
+| 5 | `005-audio-reader.md` | The audio reader mockup | `build/005` |
+| 6 | `006-locked-browser.md` | The note tool → test → locked browser mockup | `build/006` |
+| 7 | `007-screenplay.md` | The screenplay tool mockup | `build/007` |
 
 ## Rules for every phase (so nothing gets cut off)
 

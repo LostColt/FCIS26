@@ -23,7 +23,7 @@ Both reviewers use the full rubric in `BRIEF.md` section 9, but each leads on di
 
 - Date:
 - Reviewed: branch / commit
-- Read: BRIEF.md, content/story.md, prompts/001-first-build.md, BUILDLOG.md
+- Read: BRIEF.md, content/story.md, prompts/001-spine.md, BUILDLOG.md
 
 ## Verdict
 One or two sentences.

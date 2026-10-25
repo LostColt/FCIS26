@@ -6,6 +6,8 @@ Format: date · who · what happened · what's next
 
 ---
 
+**2026-10-25 · David, with Claude** · Removed the essay login entirely. Build the presentation spine first: phase 1 is now only the on-screen beats and present mode, with labeled holding spots for everything else. Say, doors and photos moved to phase 2; mockups are now phases 3–7. · Next: Antigravity runs `prompts/001-spine.md` on branch `build/001`.
+
 **2026-10-25 · David, with Claude** · Decided David's tools become clickable mockups (coded, no APIs, mock data) instead of screenshots: counseling tracker, dashboard, audio reader, locked browser, screenplay tool. The essay login stays a screenshot. Split the build into six phases, one prompt each, so nothing gets cut off (`prompts/PHASES.md`). · Next: Antigravity runs prompt 001 (phase 1) on branch `build/001`.
 
 **2026-10-25 · David, with Claude** · Decided all student information is mock data: every screenshot and example uses invented students, never real or blurred data. Updated the brief (section 8), the story and the assets list. · Next: unchanged.

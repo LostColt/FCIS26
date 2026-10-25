@@ -1,16 +1,16 @@
-# Prompt 004: Audio reader (phase 4 of 6)
+# Prompt 005: Audio reader (phase 5 of 7)
 
 - **Date:** 2026-10-25
 - **Written by:** David (drafted with Claude)
 - **For:** Antigravity
-- **Runs after:** phase 3 is reviewed and merged into `main`.
+- **Runs after:** phase 4 is reviewed and merged into `main`.
 - **Goal:** the audio reader mockup. This one genuinely works.
 
 ---
 
 Read first, in full: `BRIEF.md` (sections 7, 8 and 8a), `prompts/PHASES.md`, chapter 6 of `content/story.md`, `BUILDLOG.md`, and the shared files in `site/demos/shared/`.
 
-This is **phase 4 only.**
+This is **phase 5 only.**
 
 ## Why this tool exists (from David)
 
@@ -18,7 +18,7 @@ I built a PDF reader. You could upload a document or paste text and it would rea
 
 ## Steps (finish and save each one before the next)
 
-1. **Layout.** Replace the stub at `site/demos/audio-reader/index.html`, using the shared styles, banner and reset button.
+1. **Layout.** Replace the holding spot at `site/demos/audio-reader/index.html`, using the shared styles, banner and reset button.
 2. **Text in.** A large text box to paste into, a button to load a plain `.txt` file, and two short sample texts to try (invented: a paragraph of a mock student essay from `mock-data.js` and a short invented reading passage).
 3. **Read aloud** with the browser's built-in speech (`speechSynthesis`). No network, no API, no key.
    - Play, pause, resume, stop
@@ -36,4 +36,4 @@ Everything in `prompts/PHASES.md` applies. No PDF library, no external scripts.
 
 ## Before you commit
 
-Log it in `BUILDLOG.md` with every file and its line count. Commit with `build: phase 4, audio reader` and push to branch `build/004`.
+Log it in `BUILDLOG.md` with every file and its line count. Commit with `build: phase 5, audio reader` and push to branch `build/005`.

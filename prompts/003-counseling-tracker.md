@@ -1,16 +1,16 @@
-# Prompt 002: Shared mock data + counseling tracker (phase 2 of 6)
+# Prompt 003: Shared mock data + counseling tracker (phase 3 of 7)
 
 - **Date:** 2026-10-25
 - **Written by:** David (drafted with Claude)
 - **For:** Antigravity
-- **Runs after:** phase 1 is reviewed and merged into `main`.
+- **Runs after:** phase 2 is reviewed and merged into `main`.
 - **Goal:** the shared mock data and styles every mockup uses, and the first mockup: the counseling tracker.
 
 ---
 
 Read first, in full: `BRIEF.md` (especially sections 7, 8 and 8a), `prompts/PHASES.md`, chapter 2 and chapter 4 of `content/story.md`, and `BUILDLOG.md`.
 
-This is **phase 2 only.**
+This is **phase 3 only.**
 
 ## Why this tool exists (from David)
 
@@ -48,7 +48,7 @@ Only small, shared pieces: drawing the banner, a reset button that reloads the c
 
 ### 4. The tracker: `site/demos/counseling-tracker/`
 
-Replace the phase 1 stub. Three views, switched with tabs:
+Replace the holding spot from phase 1. Three views, switched with tabs:
 
 - **Today:** Monday's meetings in time order, back to back. Each meeting is a prep card: student, status, draft number, the latest note, and the last revision summary, so the coach can walk in prepared.
 - **Students:** all 12, searchable by name, filterable by status. Selecting one opens their detail: topic, status, deadline, every note, revision history and next meeting.
@@ -66,4 +66,4 @@ Everything in `prompts/PHASES.md` applies, especially: write every file in full,
 
 ## Before you commit
 
-Log it in `BUILDLOG.md` with every file and its line count. Commit with `build: phase 2, mock data and counseling tracker` and push to branch `build/002`.
+Log it in `BUILDLOG.md` with every file and its line count. Commit with `build: phase 3, mock data and counseling tracker` and push to branch `build/003`.

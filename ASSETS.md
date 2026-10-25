@@ -2,7 +2,7 @@
 
 ## Mockups (built by Antigravity)
 
-Most of David's tools appear as clickable mockups, not screenshots. They're built in phases 2–6; see `prompts/PHASES.md` and `BRIEF.md` section 8a. Nothing is needed from David for these, except optionally a paragraph of his own writing for the screenplay mockup.
+Most of David's tools appear as clickable mockups, not screenshots. They’re built in phases 3–7; see `prompts/PHASES.md` and `BRIEF.md` section 8a. Nothing is needed from David for these, except optionally a paragraph of his own writing for the screenplay mockup.
 
 ## Screenshots (from David)
 
@@ -11,7 +11,6 @@ Save to `site/assets/screenshots/`. Every screenshot uses **mock student data on
 | File | Chapter | What it shows | Status |
 |---|---|---|---|
 | `slide-and-site.png` | 4 | The embedded slide and the website | needed |
-| `essay-site-login.png` | 4 | The password-protected essay site (login screen only) | needed |
 
 ## Demo videos (from David)
 

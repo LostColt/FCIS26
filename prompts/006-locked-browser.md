@@ -1,16 +1,16 @@
-# Prompt 005: Note tool → test → locked browser (phase 5 of 6)
+# Prompt 006: Note tool → test → locked browser (phase 6 of 7)
 
 - **Date:** 2026-10-25
 - **Written by:** David (drafted with Claude)
 - **For:** Antigravity
-- **Runs after:** phase 4 is reviewed and merged into `main`.
+- **Runs after:** phase 5 is reviewed and merged into `main`.
 - **Goal:** one mockup that shows how the tool grew in three stages.
 
 ---
 
 Read first, in full: `BRIEF.md` (sections 7, 8 and 8a), `prompts/PHASES.md`, chapter 7 of `content/story.md`, `BUILDLOG.md`, and the shared files in `site/demos/shared/`.
 
-This is **phase 5 only.**
+This is **phase 6 only.**
 
 ## Why this tool exists (from David)
 
@@ -20,7 +20,7 @@ The mockup shows the growth, so an attendee can feel how one small tool kept get
 
 ## Steps (finish and save each one before the next)
 
-1. **Layout.** Replace the stub at `site/demos/locked-browser/index.html`, using the shared styles, banner and reset button. Three stages as tabs, in order: **1 · Classroom**, **2 · Test**, **3 · Locked**. Each tab has one line explaining what changed from the stage before.
+1. **Layout.** Replace the holding spot at `site/demos/locked-browser/index.html`, using the shared styles, banner and reset button. Three stages as tabs, in order: **1 · Classroom**, **2 · Test**, **3 · Locked**. Each tab has one line explaining what changed from the stage before.
 2. **Stage 1, Classroom:** a short invented reading passage and a notes area where a student types notes under headings. Notes stay while switching tabs, and clear on reload.
 3. **Stage 2, Test:** the same passage with five invented questions (mix of multiple choice and short answer), a visible timer, and a submit button that shows a simple summary of answers. No grading of short answers.
 4. **Stage 3, Locked:** the test from stage 2, plus:
@@ -37,4 +37,4 @@ Everything in `prompts/PHASES.md` applies. Blocking copy and paste must never tr
 
 ## Before you commit
 
-Log it in `BUILDLOG.md` with every file and its line count. Commit with `build: phase 5, locked browser` and push to branch `build/005`.
+Log it in `BUILDLOG.md` with every file and its line count. Commit with `build: phase 6, locked browser` and push to branch `build/006`.

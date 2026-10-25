@@ -138,13 +138,11 @@ David's tools are recreated as coded mockups that attendees can click around in.
 
 | Mockup | Folder | Chapter | Phase |
 |---|---|---|---|
-| Counseling tracker | `demos/counseling-tracker/` | 4 | 2 |
-| Dashboard | `demos/dashboard/` | 4 | 3 |
-| Audio reader | `demos/audio-reader/` | 6 | 4 |
-| Note tool → test → locked browser | `demos/locked-browser/` | 7 | 5 |
-| Screenplay tool | `demos/screenplay/` | 4 | 6 |
-
-The essay site login is not mocked up. It stays a screenshot.
+| Counseling tracker | `demos/counseling-tracker/` | 4 | 3 |
+| Dashboard | `demos/dashboard/` | 4 | 4 |
+| Audio reader | `demos/audio-reader/` | 6 | 5 |
+| Note tool → test → locked browser | `demos/locked-browser/` | 7 | 6 |
+| Screenplay tool | `demos/screenplay/` | 4 | 7 |
 
 ## 9. Review rubric
 
