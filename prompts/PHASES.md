@@ -1,6 +1,6 @@
 # Build phases
 
-> **Update, 2026-10-25:** after phase 1, David changed direction. Claude rebuilt the presentation as a swipeable deck on branch `build/claude`, which replaces phases 1 and 2. The mockups (phases 3–7) are now one open brief, `prompts/008-mockups.md`, run one mockup at a time. The table below is kept as history; the rules for every phase still apply.
+> **Update, 2026-10-25:** after phase 1, David changed direction. Claude rebuilt the presentation as a swipeable deck, now on `main`, which replaces phases 1 and 2. The mockups (phases 3–7) are now one open brief, `prompts/008-mockups.md`, run one mockup at a time. The table below is kept as history; the rules for every phase still apply.
 
 The site is built in seven phases, one prompt each. Each phase is small enough to finish completely in one run. **Run one phase at a time.** After each phase, Claude and ChatGPT review it and David merges it before the next one starts.
 

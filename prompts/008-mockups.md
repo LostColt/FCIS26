@@ -3,13 +3,13 @@
 - **Date:** 2026-10-25
 - **Written by:** David (drafted with Claude)
 - **For:** Antigravity
-- **Replaces:** prompts 003–007. The main site is now the deck on branch `build/claude`; don't change it.
+- **Replaces:** prompts 003–007. The main site is now the deck on `main`; don’t change it.
 
 ---
 
 ## What this is
 
-David is giving a talk at FCIS called *Stop Subscribing, Start Building*. It's about how he stopped paying for classroom tools and started building his own with AI. The talk is a swipeable deck (on branch `build/claude`). At a few points in it, people can open a clickable mockup of a tool David actually built.
+David is giving a talk at FCIS called *Stop Subscribing, Start Building*. It's about how he stopped paying for classroom tools and started building his own with AI. The talk is a swipeable deck (on `main`). At a few points in it, people can open a clickable mockup of a tool David actually built.
 
 You're building those mockups. **David is deliberately not giving you a design.** His best tools came from describing the problem and letting the builder decide. So: the problems are below, in his words. How each tool looks, feels and works is up to you. Make choices. Surprise him.
 
@@ -49,7 +49,7 @@ Build them **one per run, in this order**, so each one gets your full attention 
 
 ## Each run
 
-1. Branch from `build/claude` (first run), then keep working on branch `mockups`.
+1. Branch from `main` (first run), then keep working on branch `mockups`.
 2. Build the one mockup completely: no `...`, no "rest of code here", no TODOs. If you can't finish something, stop and say so in the log instead.
 3. Click through all of it at laptop and phone width, and with the keyboard only. Take the `thumb.png`.
 4. Add an entry to the top of `BUILDLOG.md`: date, which mockup, what you decided and why (a sentence or two on your design choices), and every file with its line count.
