@@ -2,17 +2,108 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Screenplay tool (mockup coming)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prose to Screenplay Studio · Mockup</title>
   <link rel="stylesheet" href="../../css/fonts.css">
-  <link rel="stylesheet" href="../../css/base.css">
-  <style>main{max-width:36rem;margin:0 auto;padding:6rem 1.5rem;font-family:var(--sans);line-height:1.6}h1{font-family:var(--serif);font-size:2.4rem;margin:0 0 1rem}</style>
+  <link rel="stylesheet" href="screenplay.css">
 </head>
 <body>
-  <main>
-    <h1>Screenplay tool</h1>
-    <p>This clickable mockup is on its way. It will run in your browser with mock data only, and nothing will be saved.</p>
-    <p><a href="../../index.html#so-i-had-it-build-it">Back to chapter 4</a></p>
+  <a href="#studio-workspace" class="skip-link">Skip to screenplay workspace</a>
+
+  <div class="honest-bar" role="region" aria-label="Mockup notice">
+    <div class="honest-bar-inner">
+      <div class="honest-left">
+        <a href="../../index.html#14" class="back-link">← Back to talk</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <span class="honest-badge">Mockup · mock data · nothing is saved</span>
+      </div>
+      <div class="honest-right">
+        <span class="fake-note">The real tool used an AI model to adapt David's prose; this offline mockup uses pre-written scene adaptations plus a local rule-based formatter for custom text.</span>
+        <button type="button" class="btn-reset" id="reset-btn">Reset studio</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="studio-header">
+    <div class="header-copy">
+      <p class="eyebrow">Personal workflow tool · Chapter 4</p>
+      <h1>Natural Prose → Screenplay Table</h1>
+      <p class="subtitle">“I built a tool that turned my natural writing into screenplay writing.” Write the way you think first; let the tool handle sluglines, parentheticals, and margins.</p>
+    </div>
+
+    <div class="scene-picker" role="group" aria-label="Choose a sample passage or write your own">
+      <button type="button" class="scene-btn is-active" data-scene="counseling">Scene 1: The 2:15 PM Essay Conference</button>
+      <button type="button" class="scene-btn" data-scene="faculty">Scene 2: The Faculty Lounge Printer</button>
+      <button type="button" class="scene-btn" data-scene="diner">Scene 3: Late-Night Grading at the Diner</button>
+      <button type="button" class="scene-btn" data-scene="custom">+ Write Your Own Paragraph</button>
+    </div>
+  </header>
+
+  <main id="studio-workspace" class="studio-main" tabindex="-1">
+    <section class="control-strip" aria-label="Adaptation controls">
+      <div class="control-left">
+        <span class="style-label">Adaptation Lens:</span>
+        <div class="lens-group" role="group" aria-label="Screenplay pacing style">
+          <button type="button" class="lens-btn is-active" data-lens="faithful">Faithful Scene</button>
+          <button type="button" class="lens-btn" data-lens="subtext">Lean Action &amp; Subtext</button>
+          <button type="button" class="lens-btn" data-lens="shooting">Director's Camera Cuts</button>
+        </div>
+      </div>
+
+      <div class="control-right">
+        <label class="toggle-notes">
+          <input type="checkbox" id="show-craft-notes" checked>
+          <span>Show adaptation craft notes</span>
+        </label>
+        <button type="button" class="btn-copy-script" id="copy-script-btn">Copy Fountain / Script</button>
+      </div>
+    </section>
+
+    <div class="studio-columns">
+      <section class="prose-pane" aria-labelledby="prose-heading">
+        <div class="pane-head">
+          <div>
+            <span class="pane-tag">1 · Natural Writing (Eat the chocolate first)</span>
+            <h2 id="prose-heading">Notebook Prose Beats</h2>
+          </div>
+          <span class="mock-tag">Mock data</span>
+        </div>
+
+        <p class="pane-Instruction" id="prose-instruction">
+          Hover or click any paragraph beat below to see how an internal thought or narrative sentence becomes visual action and dialogue on the script page.
+        </p>
+
+        <div class="prose-beats" id="prose-beats" role="region" aria-label="Source prose beats"></div>
+
+        <div class="custom-prose-box" id="custom-prose-box" hidden>
+          <label for="custom-prose-input"><strong>Type or paste a paragraph of narrative prose</strong> (include a setting, a character name, and a line in quotes):</label>
+          <textarea id="custom-prose-input" rows="6" placeholder='e.g. In the quiet library at dusk, Ms. Alvarez closed her laptop and slid the yellow legal pad across the oak table to Sam. "Tell me the story without looking at your outline," she said softly.'></textarea>
+          <button type="button" class="btn-convert" id="convert-custom-btn">Format as Screenplay Page →</button>
+        </div>
+      </section>
+
+      <section class="script-pane" aria-labelledby="script-heading">
+        <div class="pane-head">
+          <div>
+            <span class="pane-tag">2 · Formatted Screenplay (Then brush)</span>
+            <h2 id="script-heading">Standard Courier Manuscript</h2>
+          </div>
+          <span class="page-runtime" id="page-runtime">EST. RUNTIME: 0:55 · PAGE 1</span>
+        </div>
+
+        <article class="script-sheet" id="script-sheet" aria-label="Formatted screenplay page">
+          <div class="brass-brads" aria-hidden="true">
+            <span class="brad"></span>
+            <span class="brad"></span>
+            <span class="brad"></span>
+          </div>
+          <div class="script-page-num">1.</div>
+          <div class="script-blocks" id="script-blocks"></div>
+        </article>
+      </section>
+    </div>
   </main>
+
+  <script src="screenplay.js"></script>
 </body>
 </html>
