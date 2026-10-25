@@ -2,7 +2,7 @@
 
 ## Screenshots (from David)
 
-Save to `site/assets/screenshots/`. Before adding any screenshot, remove or blur every student name, essay, grade or other identifying detail.
+Save to `site/assets/screenshots/`. Every screenshot uses **mock student data only**: invented names, notes, appointments, essays and grades. Don't blur real data; replace it with mock data before taking the screenshot. See `BRIEF.md` section 8.
 
 | File | Chapter | What it shows | Status |
 |---|---|---|---|

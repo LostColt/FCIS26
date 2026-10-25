@@ -85,7 +85,7 @@ I started asking it to build the tools I was already using. And the information 
 
 **Door: What I built**
 Screenshots, each with one line on what it does and why I built it. No working apps; these are pictures.
-- The counseling tracker: notes, appointments, revisions. `[DAVID: screenshot, student info removed]`
+- The counseling tracker: notes, appointments, revisions. `[DAVID: screenshot with mock student data]`
 - The dashboard. `[DAVID: screenshot]`
 - The slide and website. `[DAVID: screenshot]`
 - The screenplay tool: it turns my natural writing into screenplay format. `[DAVID: screenshot]`

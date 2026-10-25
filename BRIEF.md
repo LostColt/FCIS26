@@ -118,7 +118,9 @@ Free-license photos from Pexels or Unsplash are welcome, used with the same rest
 
 ## 8. Privacy
 
-- No student names, grades, essays or identifying information anywhere in the site, including screenshots. Screenshots must be cleaned before they are added.
+- **All student information is mock data.** Every screenshot, example and walkthrough uses invented students: made-up names, appointments, notes, essays and grades. Never real student data, and never real data that's been blurred or cropped. If a tool only exists with real data in it, load it with mock data before taking the screenshot.
+- Mock names should be clearly fictional and varied (for example "Student A," or plain invented first names). Never use a real student's name, initials or essay topic.
+- Any screenshot showing mock student data carries a small caption: "Mock data."
 - David's own tools are shown as screenshots, never as working apps.
 
 ## 9. Review rubric
