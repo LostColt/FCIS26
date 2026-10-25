@@ -14,15 +14,15 @@ David writes a prompt  →  Antigravity builds  →  Claude and ChatGPT review  
 |---|---|
 | `BRIEF.md` | The source of truth: thesis, story structure, design rules, review rubric |
 | `content/story.md` | The site's text, chapter by chapter, in David's words |
-| `prompts/PHASES.md` | The six build phases, and the rules every phase follows |
+| `prompts/PHASES.md` | How the build was split up (history), and the rules every round follows |
 | `prompts/` | Every instruction given to the builder, numbered and dated |
 | `reviews/` | Every review, numbered to match its prompt |
 | `BUILDLOG.md` | One line per round, in plain language |
-| `ASSETS.md` | Screenshots and photos still needed |
-| `site/` | The website itself |
+| `ASSETS.md` | Screenshots, demo videos and placeholders still needed |
+| `site/` | The deck (`index.html`, `css/`, `js/`) and the five mockups (`demos/`) |
 
 ## Rules of the road
 
-- The builder works on a branch (`build/001`, `build/002`, ...). Nothing lands on `main` until David says so.
+- `main` is the live site. Builders work on a separate branch, and nothing lands on `main` until it's been reviewed.
 - Reviews suggest. David decides.
-- Private for now. Vercel later.
+- Private for now. Hosted on Vercel, with Root Directory set to `site`.

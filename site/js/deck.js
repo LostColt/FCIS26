@@ -40,9 +40,8 @@
     var img = new Image();
     img.alt = "";
     img.className = "thumb";
-    img.loading = "lazy";
     img.onload = function () { a.classList.add("has-thumb"); a.insertBefore(img, a.firstChild); };
-    img.src = a.getAttribute("href") + "thumb.png";
+    img.src = a.getAttribute("href").replace(/index\.html$/, "") + "thumb.png";
   });
 
   /* Progress: one segment per chapter */

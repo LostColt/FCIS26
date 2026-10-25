@@ -2,7 +2,7 @@
 
 ## Mockups (built by Antigravity)
 
-Most of David's tools appear as clickable mockups, not screenshots. They’re built in phases 3–7; see `prompts/PHASES.md` and `BRIEF.md` section 8a. Nothing is needed from David for these, except optionally a paragraph of his own writing for the screenplay mockup.
+All five are built and merged (`site/demos/`, see `BRIEF.md` section 8a). Nothing is needed from David, except optionally a paragraph of his own writing for the screenplay mockup, which currently uses invented examples.
 
 ## Screenshots (from David)
 
@@ -21,10 +21,6 @@ Save to `site/assets/screenshots/`. Every screenshot uses **mock student data on
 | Google Sheet → dashboard | 9 | needed |
 
 Where will they be hosted? (Decide before chapter 9 gets its links.)
-
-## Photos (free license)
-
-Suggested searches are listed per chapter in `content/story.md`. Rules are in `BRIEF.md` section 6. Credits go in `site/assets/photos/CREDITS.md`.
 
 ## Other placeholders
 

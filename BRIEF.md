@@ -8,7 +8,7 @@ If anything in a prompt or a review contradicts this brief, the brief wins until
 
 ## 1. What this is
 
-A single website that scrolls vertically and does two jobs:
+A website built as a swipeable slide deck (typography only, no photos) that does two jobs:
 
 1. **David presents from it** at an FCIS professional development session (55 minutes).
 2. **Attendees keep it.** They open it from a QR code during the session and come back to it afterward.
@@ -42,7 +42,7 @@ Supporting ideas, in David's own words where possible:
 
 The full text is in `content/story.md`. Use that text; do not rewrite David's voice.
 
-| # | Chapter | Minutes | Has a door? |
+| # | Chapter | Minutes | Practical or interactive slides |
 |---|---|---|---|
 | 0 | Stop Subscribing, Start Building | 1 | No |
 | 1 | The pile | 3 | No |
@@ -59,13 +59,15 @@ The full text is in `content/story.md`. Use that text; do not rewrite David's vo
 | 12 | Keep building | 3 | Yes: every link in one place |
 | | **Total** | **55** | |
 
-## 5. The two layers
+## 5. How the deck works
 
-- **The spine** is what David scrolls through while presenting: one idea per screen, large type, few words.
-- **Say** is David's talking points for each chapter. In reading mode it appears as a short paragraph under the spine, so attendees get the story later. In present mode it's hidden.
-- **Doors** sit inside a chapter: walkthroughs, links, copyable prompts, clickable mockups and screenshots that attendees open on their own device. A door is closed by default in present mode and can be opened by anyone.
+- **Slides, not scrolling.** Each chapter is a short run of slides: the big line, then the story in David's words, then any interactive or practical slide. 38 slides in all.
+- **Moving through it:** swipe on a phone; arrow keys, space or a clicker on a laptop; a "Slides" menu jumps to any chapter; F is full screen. Every slide has its own link (`#15` is slide 15).
+- **Lines arrive one press at a time** where the pause matters ("People loved it." … "I stopped anyway.").
+- **A second layer moves underneath:** a red-pen strike and highlighter draw themselves, the pile drops in, 150 counts up, and a huge faint chapter word drifts behind every slide at its own pace.
+- **Practical slides** (the tally, walkthroughs, prompt, workshop timer, links) scroll inside the slide on a phone, so nothing is crammed.
 
-An attendee should be able to follow every door without David in the room.
+An attendee should be able to follow every practical slide without David in the room.
 
 ## 6. Design principles: restraint
 
@@ -86,34 +88,19 @@ Do not:
 
 The test: if David read the page aloud, would it sound like him?
 
-### Photos
+### Type and color
 
-Free-license photos from Pexels or Unsplash are welcome, used with the same restraint.
-
-- **Few and chosen.** A photo appears only where it helps the story land: a moment, a place, an object. Not every chapter needs one. Suggested searches are listed per chapter in `content/story.md`.
-- **Real and ordinary.** Desks, notebooks, hallways, a laptop at the end of a long day, a teacher and student at a table, a phone full of apps. Natural light. Nothing staged to look "innovative."
-- **Never:** robots, glowing brains, circuit boards, holograms, floating code, handshakes with machines, or AI-generated images.
-- **No identifiable children.** Prefer hands, backs, objects and empty rooms over students' faces.
-- **Stored locally,** never hot-linked: download each photo into `site/assets/photos/` and resize it to no more than 1600px wide (target under 300 KB).
-- **Credit every photo** in `site/assets/photos/CREDITS.md` (file name, photographer, source URL, license) and in a small credits line in the final chapter. Pexels and Unsplash don't require attribution, but we credit anyway.
-- Every photo gets real alt text describing what it shows.
-- Mockups and screenshots of David's tools always take priority over stock photos.
+No images. Typography carries the deck: Literata (a book serif) for the story, IBM Plex Sans for practical text. The colors come from a teacher's desk: slate ink, blue-pen links, red pen only for crossing out, highlighter only for what matters. Both fonts are stored in the repo (`site/assets/fonts/`, SIL Open Font License), so the deck works offline.
 
 ## 7. Technical rules
 
-- Plain HTML, CSS and JavaScript. No framework, no build step. It must open by double-clicking `site/index.html`.
-- Everything the site needs lives in `/site`. Screenshots go in `site/assets/screenshots/`, photos in `site/assets/photos/`.
-- **Content is kept separate from layout.** All text lives in one file the page reads: `site/content.js`. Revising the talk should mean editing text, not code.
-- **`content/story.md` is the source.** `site/content.js` is built from it. When the story changes, it changes in `story.md` first, and the builder updates `content.js` to match in the same round. The two must never disagree.
-- Vertical scroll. Each chapter is at least one screen tall on a laptop.
-- **Present mode:** opened with `?present` in the URL or by pressing `P`. Larger type, doors closed, "Say" hidden. Arrow keys and space move to the next beat (each quote block in a spine), then the next chapter. Pressing `P` again returns to reading mode.
-- **Reading mode** is the default: phone first, since attendees arrive from a QR code.
-- Doors are native `<details>`/`<summary>` elements or equivalent, keyboard accessible.
-- Every prompt in a door has a working copy button.
-- A small chapter index (table of contents) is reachable from anywhere.
-- Accessible: text contrast at least 4.5:1, visible focus states, alt text on every image, works with a keyboard alone, respects `prefers-reduced-motion`.
-- **No network API calls, no API keys, no analytics, no trackers.** David's real tools are never connected. His tools appear as clickable mockups (section 8a) or screenshots. Built-in browser features that need no network or key, such as speech synthesis, are fine.
-- No external scripts, embeds or requests except, optionally, one web font. The site should still read well if the font fails. Ordinary links to other sites are fine.
+- Plain HTML, CSS and JavaScript. No framework, no build step. It opens by double-clicking `site/index.html` and is hosted on Vercel with Root Directory set to `site`.
+- Everything the site needs lives in `/site`: `index.html`, `css/`, `js/`, `assets/fonts/`, and `demos/` for the mockups.
+- **The words live in two files:** `site/js/slides-a.js` (chapters 0–6) and `site/js/slides-b.js` (7–12). `content/story.md` is the record of David's words; when the story changes, change it there and in the slide files in the same round.
+- `site/js/deck.js` runs the deck; `tally.js` and `timer.js` run the chapter 1 tally and the workshop timer.
+- Every prompt has a working copy button.
+- Accessible: text contrast at least 4.5:1, visible focus states, works with a keyboard alone, slides off screen can't be tabbed into, and everything holds still under `prefers-reduced-motion`.
+- **No network API calls, no API keys, no analytics, no trackers, no external scripts or fonts.** David's real tools are never connected; they appear as clickable mockups (section 8a). Built-in browser features that need no network or key, such as speech synthesis, are fine. Ordinary links to other sites are fine.
 - Demo videos are linked, not embedded, until David decides where they're hosted.
 
 ## 8. Privacy
@@ -125,24 +112,23 @@ Free-license photos from Pexels or Unsplash are welcome, used with the same rest
 
 ## 8a. Clickable mockups
 
-David's tools are recreated as coded mockups that attendees can click around in. They look and behave like the real tools, but run entirely in the browser.
+David's tools are recreated as coded mockups that attendees can click around in. Antigravity designed each one its own way from David's description (`prompts/008-mockups.md`); they don't have to match the deck.
 
-- **Where:** each mockup is its own page in `site/demos/<name>/index.html`, opened from its chapter's door. Each links back to its chapter.
-- **No network:** no API calls, no keys, no external scripts or libraries. Everything a mockup needs is in its own folder or in `site/demos/shared/`.
-- **Mock data only:** all students, notes, appointments and essays come from one shared file, `site/demos/shared/mock-data.js`, so every mockup tells the same consistent story.
-- **Nothing is saved.** Changes last until the page reloads. Every visitor starts from the same clean state. A "Reset" button returns it to that state.
-- **Honest labels.** Every mockup shows a small, persistent banner: "Mockup · mock data · nothing is saved." Where a mockup fakes something the real tool does differently (for example AI output or a real browser lockdown), it says so plainly in one line.
-- **Same restraint as the site,** but it should look like a working tool, not a slide: plain, functional, readable. Shared styles go in `site/demos/shared/demo.css`.
-- **Works on a phone and with a keyboard**, with the accessibility rules in section 7.
-- Charts are drawn with plain SVG or canvas. No chart libraries.
+- **Where:** each mockup is self-contained in `site/demos/<name>/`, linked from its slide, with a link back to that slide.
+- **No network:** no API calls, keys, external scripts, libraries, fonts or images.
+- **Mock data only,** clearly invented. Never real people, and never words or facts attributed to David that he didn't say.
+- **Nothing is saved.** A reload starts fresh, and a reset button returns it to that state.
+- **Honest labels:** "Mockup · mock data · nothing is saved," plus one line on anything the mockup fakes, describing only the mockup, not how David's real tool worked.
+- **A picture for the deck:** each folder has a `thumb.png` (1600×1000); the deck shows it on the link card automatically.
+- Works on a phone and with a keyboard.
 
-| Mockup | Folder | Chapter | Phase |
-|---|---|---|---|
-| Counseling tracker | `demos/counseling-tracker/` | 4 | 3 |
-| Dashboard | `demos/dashboard/` | 4 | 4 |
-| Audio reader | `demos/audio-reader/` | 6 | 5 |
-| Note tool → test → locked browser | `demos/locked-browser/` | 7 | 6 |
-| Screenplay tool | `demos/screenplay/` | 4 | 7 |
+| Mockup | Folder | Slide |
+|---|---|---|
+| Counseling tracker | `demos/counseling-tracker/` | 15 |
+| Dashboard | `demos/dashboard/` | 15 |
+| Screenplay tool | `demos/screenplay/` | 15 |
+| Audio reader | `demos/audio-reader/` | 19 |
+| Note tool → test → locked browser | `demos/locked-browser/` | 22 |
 
 ## 9. Review rubric
 
@@ -150,16 +136,15 @@ Every review in `/reviews` answers these:
 
 1. **Thesis:** does this serve the thesis in section 3?
 2. **Voice:** does it sound like David, not like marketing or an AI?
-3. **Doors and mockups:** can an attendee follow every door, and click through every mockup, without David?
+3. **Practical slides and mockups:** can an attendee follow every practical slide, and click through every mockup, without David?
 4. **Restraint:** is anything decorative, performative or "AI slop"?
 5. **Phone:** does it work at phone width?
-6. **Present mode:** can David present from it with only the keyboard?
+6. **Presenting:** can David present from it with only a keyboard or clicker?
 7. **Accuracy:** are the tool steps correct today?
 8. **Privacy and accessibility:** anything that breaks section 7 or 8?
 
 ## 10. Out of scope (for now)
 
-- Hosting. David will connect the repo to Vercel later.
 - Any login, database or form.
 - Making the repo public. It stays private until David decides.
 

@@ -1,5 +1,7 @@
 # Story: Stop Subscribing, Start Building
 
+This is the record of David's words, chapter by chapter. The deck shows them in `site/js/slides-a.js` and `slides-b.js`; when the words change, change them here and there together. (The Spine/Say/Door labels and photo suggestions below come from the earlier scrolling version; the deck uses no photos.)
+
 This is the site's text, chapter by chapter. It's drafted from what David has said, in his words where possible. Builders use it as written.
 
 - `[DAVID: ...]` marks something only David can fill in. Leave it visible as a placeholder; never invent it.

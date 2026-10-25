@@ -31,7 +31,7 @@
     "<p>I wasn’t trying to ship a product. I was trying to build smaller things.</p>" +
     "<p>What it would mean to build something like that, to support it and maintain it, was too much at the time. Knowing when to stop is part of the skill.</p>" +
     '</div><div><p class="big" data-step="1">Build tools, not <span class="strike" data-at="1">products</span>.</p>' +
-    '<div class="practical" data-step="1" style="margin-top:2rem"><div class="mockups"><a class="mockup-link" href="demos/locked-browser/"><strong>Notes, test, locked browser</strong><span>Three stages of one tool.</span></a></div></div>' +
+    '<div class="practical" data-step="1" style="margin-top:2rem"><div class="mockups"><a class="mockup-link" href="demos/locked-browser/index.html"><strong>Notes, test, locked browser</strong><span>Three stages of one tool.</span></a></div></div>' +
     "</div></div>");
 
   /* 8 · Update your software */

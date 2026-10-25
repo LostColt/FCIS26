@@ -103,9 +103,9 @@
     '<div class="practical"><h2>What I built</h2>' +
     '<p class="sub">Click around in mockups of my tools. They run in your browser with mock data; nothing connects to the real ones.</p>' +
     '<div class="mockups">' +
-    '<a class="mockup-link" href="demos/counseling-tracker/"><strong>Counseling tracker</strong><span>Notes, appointments, revisions.</span></a>' +
-    '<a class="mockup-link" href="demos/dashboard/"><strong>Dashboard</strong><span>So I could track things.</span></a>' +
-    '<a class="mockup-link" href="demos/screenplay/"><strong>Screenplay tool</strong><span>Turns my natural writing into screenplay format.</span></a>' +
+    '<a class="mockup-link" href="demos/counseling-tracker/index.html"><strong>Counseling tracker</strong><span>Notes, appointments, revisions.</span></a>' +
+    '<a class="mockup-link" href="demos/dashboard/index.html"><strong>Dashboard</strong><span>So I could track things.</span></a>' +
+    '<a class="mockup-link" href="demos/screenplay/index.html"><strong>Screenplay tool</strong><span>Turns my natural writing into screenplay format.</span></a>' +
     '</div><p class="note">The slide and the website: [DAVID: screenshot]</p></div>', { scroll: true });
 
   /* 5 · Why I kept building */
@@ -127,5 +127,5 @@
     "<p>It wasn’t for me. It was for a student who was better with audio than with reading. Not even my student; a friend’s student.</p>" +
     '<p data-step="1">That’s when I learned building isn’t only for me.</p>' +
     '</div><div class="practical"><p class="sub">Start from what one learner does well, and build around it.</p>' +
-    '<div class="mockups"><a class="mockup-link" href="demos/audio-reader/"><strong>Audio reader</strong><span>Paste text and hear it read aloud.</span></a></div></div></div>');
+    '<div class="mockups"><a class="mockup-link" href="demos/audio-reader/index.html"><strong>Audio reader</strong><span>Paste text and hear it read aloud.</span></a></div></div></div>');
 })();
