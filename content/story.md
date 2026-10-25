@@ -84,14 +84,14 @@ I started asking it to build the tools I was already using. And the information 
 [DAVID: decide whether to add: "I still pay for one AI tool. But instead of paying for a dozen tools that each do one thing, I pay for one that builds the specific ones I need."]
 
 **Door: What I built**
-Screenshots, each with one line on what it does and why I built it. No working apps; these are pictures.
-- The counseling tracker: notes, appointments, revisions. `[DAVID: screenshot with mock student data]`
-- The dashboard. `[DAVID: screenshot]`
-- The slide and website. `[DAVID: screenshot]`
-- The screenplay tool: it turns my natural writing into screenplay format. `[DAVID: screenshot]`
-- The college essay presentation, turned into a password-protected website so the information stays within our ecosystem. `[DAVID: screenshot of the login screen only]`
+Clickable mockups, each with one line on what it does and why I built it. They run in the browser with mock data; nothing connects to my real tools.
+- **The counseling tracker:** notes, appointments, revisions. → Open the mockup (`demos/counseling-tracker/`)
+- **The dashboard:** so I could track things. → Open the mockup (`demos/dashboard/`)
+- **The screenplay tool:** it turns my natural writing into screenplay format. → Open the mockup (`demos/screenplay/`)
+- **The slide and website.** `[DAVID: screenshot]`
+- **The college essay presentation,** turned into a password-protected website so the information stays within our ecosystem. `[DAVID: screenshot of the login screen only]`
 
-**Photo:** none. Screenshots carry this chapter.
+**Photo:** none. The mockups carry this chapter.
 
 ---
 
@@ -124,7 +124,7 @@ Building apps is really about building a workflow: creating repetition, not just
 I built a PDF reader. You could upload a document or paste text and it would read it aloud. It wasn't for me. It was for a student I was working with who was better with audio than with reading. Not even my student; a friend's student. That's when I learned building isn't only for me.
 
 **Door: The reader**
-- Screenshot `[DAVID: screenshot]`
+- → Open the mockup (`demos/audio-reader/`): paste text and hear it read aloud.
 - What it does, in one sentence.
 - The idea in one line: start from what one learner does well, and build around it.
 
@@ -147,7 +147,7 @@ I built a tool where students could put in notes. I built it as a classroom firs
 But I wasn't trying to ship a product. I was trying to build smaller things. What it would mean to build something like that, to support it and maintain it, was too much at the time. Knowing when to stop is part of the skill.
 
 **Door: The locked browser**
-- Screenshots: the classroom version, the test version, the locked browser. `[DAVID: screenshots]`
+- → Open the mockup (`demos/locked-browser/`): switch between the classroom version, the test version and the locked browser.
 - One line on what it would have taken to turn it into a product. `[DAVID: optional]`
 
 **Photo:** none.

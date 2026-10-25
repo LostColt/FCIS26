@@ -14,6 +14,7 @@ David writes a prompt  →  Antigravity builds  →  Claude and ChatGPT review  
 |---|---|
 | `BRIEF.md` | The source of truth: thesis, story structure, design rules, review rubric |
 | `content/story.md` | The site's text, chapter by chapter, in David's words |
+| `prompts/PHASES.md` | The six build phases, and the rules every phase follows |
 | `prompts/` | Every instruction given to the builder, numbered and dated |
 | `reviews/` | Every review, numbered to match its prompt |
 | `BUILDLOG.md` | One line per round, in plain language |

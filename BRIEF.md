@@ -48,10 +48,10 @@ The full text is in `content/story.md`. Use that text; do not rewrite David's vo
 | 1 | The pile | 3 | No |
 | 2 | 150 students | 3 | No |
 | 3 | The real cost | 3 | No |
-| 4 | So I had it build it | 5 | Yes: screenshots |
+| 4 | So I had it build it | 5 | Yes: mockups, one screenshot |
 | 5 | Why I kept building | 3 | No |
-| 6 | Building for someone else | 2 | Yes: screenshot |
-| 7 | Build small | 3 | Yes: screenshots |
+| 6 | Building for someone else | 2 | Yes: mockup |
+| 7 | Build small | 3 | Yes: mockup |
 | 8 | Update your software | 3 | No |
 | 9 | Three ways in | 8 | Yes: three walkthroughs |
 | 10 | Before you build | 3 | Yes: checklist |
@@ -63,7 +63,7 @@ The full text is in `content/story.md`. Use that text; do not rewrite David's vo
 
 - **The spine** is what David scrolls through while presenting: one idea per screen, large type, few words.
 - **Say** is David's talking points for each chapter. In reading mode it appears as a short paragraph under the spine, so attendees get the story later. In present mode it's hidden.
-- **Doors** sit inside a chapter: walkthroughs, links, copyable prompts and screenshots that attendees open on their own device. A door is closed by default in present mode and can be opened by anyone.
+- **Doors** sit inside a chapter: walkthroughs, links, copyable prompts, clickable mockups and screenshots that attendees open on their own device. A door is closed by default in present mode and can be opened by anyone.
 
 An attendee should be able to follow every door without David in the room.
 
@@ -74,7 +74,7 @@ David's words: personal, not performative. No fancy themes.
 Do:
 - Clean, readable type with generous space. One typeface for reading is enough; a second only for code and prompts.
 - A light, quiet page. One accent color at most, used for links and doors.
-- Real screenshots of real tools, shown plainly.
+- Real tools, shown plainly: clickable mockups and screenshots.
 - Write like a teacher talking to colleagues.
 
 Do not:
@@ -97,7 +97,7 @@ Free-license photos from Pexels or Unsplash are welcome, used with the same rest
 - **Stored locally,** never hot-linked: download each photo into `site/assets/photos/` and resize it to no more than 1600px wide (target under 300 KB).
 - **Credit every photo** in `site/assets/photos/CREDITS.md` (file name, photographer, source URL, license) and in a small credits line in the final chapter. Pexels and Unsplash don't require attribution, but we credit anyway.
 - Every photo gets real alt text describing what it shows.
-- Screenshots of David's tools always take priority over stock photos.
+- Mockups and screenshots of David's tools always take priority over stock photos.
 
 ## 7. Technical rules
 
@@ -112,7 +112,7 @@ Free-license photos from Pexels or Unsplash are welcome, used with the same rest
 - Every prompt in a door has a working copy button.
 - A small chapter index (table of contents) is reachable from anywhere.
 - Accessible: text contrast at least 4.5:1, visible focus states, alt text on every image, works with a keyboard alone, respects `prefers-reduced-motion`.
-- **No live apps, no API calls, no API keys, no analytics, no trackers.** Screenshots only.
+- **No network API calls, no API keys, no analytics, no trackers.** David's real tools are never connected. His tools appear as clickable mockups (section 8a) or screenshots. Built-in browser features that need no network or key, such as speech synthesis, are fine.
 - No external scripts, embeds or requests except, optionally, one web font. The site should still read well if the font fails. Ordinary links to other sites are fine.
 - Demo videos are linked, not embedded, until David decides where they're hosted.
 
@@ -120,8 +120,31 @@ Free-license photos from Pexels or Unsplash are welcome, used with the same rest
 
 - **All student information is mock data.** Every screenshot, example and walkthrough uses invented students: made-up names, appointments, notes, essays and grades. Never real student data, and never real data that's been blurred or cropped. If a tool only exists with real data in it, load it with mock data before taking the screenshot.
 - Mock names should be clearly fictional and varied (for example "Student A," or plain invented first names). Never use a real student's name, initials or essay topic.
-- Any screenshot showing mock student data carries a small caption: "Mock data."
-- David's own tools are shown as screenshots, never as working apps.
+- Any screenshot or mockup showing mock student data carries a small label: "Mock data."
+- David's real tools are never connected to the site. They appear as clickable mockups or screenshots.
+
+## 8a. Clickable mockups
+
+David's tools are recreated as coded mockups that attendees can click around in. They look and behave like the real tools, but run entirely in the browser.
+
+- **Where:** each mockup is its own page in `site/demos/<name>/index.html`, opened from its chapter's door. Each links back to its chapter.
+- **No network:** no API calls, no keys, no external scripts or libraries. Everything a mockup needs is in its own folder or in `site/demos/shared/`.
+- **Mock data only:** all students, notes, appointments and essays come from one shared file, `site/demos/shared/mock-data.js`, so every mockup tells the same consistent story.
+- **Nothing is saved.** Changes last until the page reloads. Every visitor starts from the same clean state. A "Reset" button returns it to that state.
+- **Honest labels.** Every mockup shows a small, persistent banner: "Mockup · mock data · nothing is saved." Where a mockup fakes something the real tool does differently (for example AI output or a real browser lockdown), it says so plainly in one line.
+- **Same restraint as the site,** but it should look like a working tool, not a slide: plain, functional, readable. Shared styles go in `site/demos/shared/demo.css`.
+- **Works on a phone and with a keyboard**, with the accessibility rules in section 7.
+- Charts are drawn with plain SVG or canvas. No chart libraries.
+
+| Mockup | Folder | Chapter | Phase |
+|---|---|---|---|
+| Counseling tracker | `demos/counseling-tracker/` | 4 | 2 |
+| Dashboard | `demos/dashboard/` | 4 | 3 |
+| Audio reader | `demos/audio-reader/` | 6 | 4 |
+| Note tool → test → locked browser | `demos/locked-browser/` | 7 | 5 |
+| Screenplay tool | `demos/screenplay/` | 4 | 6 |
+
+The essay site login is not mocked up. It stays a screenshot.
 
 ## 9. Review rubric
 
@@ -129,7 +152,7 @@ Every review in `/reviews` answers these:
 
 1. **Thesis:** does this serve the thesis in section 3?
 2. **Voice:** does it sound like David, not like marketing or an AI?
-3. **Doors:** can an attendee follow every door without David?
+3. **Doors and mockups:** can an attendee follow every door, and click through every mockup, without David?
 4. **Restraint:** is anything decorative, performative or "AI slop"?
 5. **Phone:** does it work at phone width?
 6. **Present mode:** can David present from it with only the keyboard?

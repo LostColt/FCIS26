@@ -1,44 +1,42 @@
-# Prompt 001: First build
+# Prompt 001: The main site (phase 1 of 6)
 
 - **Date:** 2026-10-25
 - **Written by:** David (drafted with Claude)
 - **For:** Antigravity
-- **Goal:** a complete, rough first pass of the whole site, every chapter present, so it can be reviewed.
+- **Goal:** the complete main site, every chapter present, with stub pages where the mockups will go.
 
 ---
 
 You are building a website from this repository. Before writing any code, read these files in full:
 
 1. `BRIEF.md`: the rules. If anything here conflicts with it, the brief wins.
-2. `content/story.md`: the text. Use it as written.
-3. `BUILDLOG.md`: what has happened so far.
+2. `prompts/PHASES.md`: how the build is split up, and the rules for every phase. Follow them exactly.
+3. `content/story.md`: the text. Use it as written.
+4. `BUILDLOG.md`: what has happened so far.
 
-## Build
+This is **phase 1 only.** Don't build any mockups yet; phases 2–6 do that.
 
-Build the site in `/site`, following `BRIEF.md` sections 5 to 8.
+## Steps (finish and save each one before the next)
 
-1. **All 13 chapters (0–12)** from `content/story.md`, in order, with their spine, "Say" text and doors.
-2. **Content separate from layout.** Put all text in one file, `site/content.js`, that the page reads. Someone should be able to revise the talk by editing only that file.
-3. **Reading mode** (the default) and **present mode** (`?present` or the `P` key), as described in section 7.
-4. **Doors** as `<details>`/`<summary>`. A copy button on every prompt.
-5. **A chapter index** reachable from anywhere on the page.
-6. **Placeholders stay visible.** Show every `[DAVID: ...]` exactly as written, styled so it's obviously unfinished. Do not fill them in.
-7. **Screenshots:** none exist yet. Use clearly labeled empty frames (for example "Screenshot: counseling tracker") with the right aspect ratio.
-8. **Photos:** follow the "Photos" rules in `BRIEF.md` section 6. Use only the chapters that suggest one. If you can download from Pexels or Unsplash, save each photo to `site/assets/photos/`, resize it, and record it in `site/assets/photos/CREDITS.md`. If you can't download, leave a labeled empty frame and list your suggested photo URLs in `CREDITS.md` for David to approve.
+1. **Content file.** Create `site/content.js` holding every chapter from `content/story.md` (spine beats, "Say" text, doors, photo notes). Nothing else.
+2. **Page structure.** Create `site/index.html` and `site/styles.css`: all 13 chapters (0–12) in order, read from `content.js`, plus the chapter index.
+3. **Doors.** `<details>`/`<summary>` doors, with a working copy button on every prompt.
+4. **Modes.** Reading mode (the default) and present mode (`?present` or `P`), as described in `BRIEF.md` section 7. Put this script in its own file, `site/present.js`.
+5. **Mockup stubs.** For each mockup in `BRIEF.md` section 8a, create `site/demos/<name>/index.html` as a short, plain page: the mockup's name, "This mockup is built in phase N," and a link back to its chapter. Link each door to its stub. Later phases replace these stubs.
+6. **Screenshots.** Only two remain (see `ASSETS.md`): use clearly labeled empty frames with the right aspect ratio.
+7. **Photos.** Follow the "Photos" rules in `BRIEF.md` section 6. If you can download from Pexels or Unsplash, save each photo to `site/assets/photos/`, resize it, and record it in `site/assets/photos/CREDITS.md`. If you can't, leave a labeled empty frame and list suggested photo URLs in `CREDITS.md` for David to approve.
 
-## Design
+## Rules
 
-Restraint. Read `BRIEF.md` section 6 twice. No theme, no decoration, no marketing language. It should feel like a thoughtful teacher sharing what they learned. When in doubt, take it out.
+- **Placeholders stay visible.** Show every `[DAVID: ...]` exactly as written, styled so it's obviously unfinished. Don't fill them in.
+- **Design is restraint.** Read `BRIEF.md` section 6 twice. No theme, no decoration, no marketing language. When in doubt, take it out.
+- Don't rewrite David's text or add text beyond labels and navigation.
+- Don't add frameworks, build steps, analytics, network API calls or keys.
+- Don't change `BRIEF.md`, `content/story.md`, or anything in `/prompts` or `/reviews`.
 
-## Don't
+## Before you commit
 
-- Rewrite David's text, or add text that isn't in `content/story.md` beyond labels and navigation.
-- Add frameworks, build steps, analytics, live apps, API calls or API keys.
-- Change `BRIEF.md`, `content/story.md`, or anything in `/prompts` or `/reviews`.
-
-## When you're done
-
-1. Check that `site/index.html` opens directly in a browser, and that it works at phone width and in present mode.
-2. Add an entry to the top of `BUILDLOG.md`: the date, "Prompt 001: first build," what you built, and anything you couldn't do or weren't sure about.
-3. Commit with the message: `build: prompt 001, first pass of all chapters`.
-4. Push to a branch named `build/001` (not `main`), so it can be reviewed first.
+Follow `prompts/PHASES.md` rules 5–7:
+- Open `site/index.html` directly in a browser. Check reading mode, present mode, every door, every copy button, the chapter index and every stub link, at laptop and phone width, and with the keyboard only.
+- Log it in `BUILDLOG.md`, with every file and its line count.
+- Commit with `build: phase 1, main site` and push to branch `build/001`.
