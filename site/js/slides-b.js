@@ -132,5 +132,6 @@
     '<li><a href="https://aistudio.google.com">Google AI Studio</a></li><li><a href="https://chatgpt.com/features/sites/">ChatGPT Sites</a></li>' +
     '<li><a href="https://script.google.com">Google Apps Script</a></li><li><a href="https://vercel.com">Vercel</a></li><li><a href="https://github.com">GitHub</a></li></ul>' +
     "<h3>The prompt</h3>" + promptBox +
-    '<p class="note">[DAVID: link to recorded demos]</p><p class="note">[DAVID: contact]</p></div>', { scroll: true });
+    '<p class="note">[DAVID: link to recorded demos]</p>' +
+    '<h3>Keep in touch</h3><p>David Tran, AI Learning and Teaching Specialist, Gulliver Prep, Miami, FL<br><a href="https://www.linkedin.com/in/david-t-04864734">Connect with me on LinkedIn</a></p></div>', { scroll: true });
 })();

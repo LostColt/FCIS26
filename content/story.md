@@ -301,7 +301,7 @@ One annoyance. One prompt. One colleague to test it. Then revise it next month, 
 - GitHub: https://github.com
 - The prompt template (repeated, with a copy button)
 - `[DAVID: link to recorded demos]`
-- `[DAVID: contact]`
+- David Tran on LinkedIn: https://www.linkedin.com/in/david-t-04864734
 - Photo credits
 
 **Photo:** an open door, or a desk by a window in morning light.
