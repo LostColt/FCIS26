@@ -182,3 +182,35 @@ details.door > summary .hint { display: block; font-weight: 400; color: var(--in
 
 /* Mockup links show a small picture once the mockup provides one */
 .mockup-link .thumb { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; border-radius: 4px; border: 1px solid var(--rule); margin-bottom: 0.7rem; background: var(--paper-deep); }
+
+/* Chapter 1, one tap per tool */
+.app-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr)); gap: 0.6rem; margin: 0 0 1.4rem; }
+.app {
+  appearance: none;
+  text-align: left;
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 0.75rem 0.85rem;
+  cursor: pointer;
+  display: grid;
+  gap: 0.1rem;
+}
+.app:hover { border-color: var(--ink); }
+.app-name { font-weight: 600; font-size: 1.05rem; }
+.app-plan { font-size: 0.85rem; color: var(--ink-soft); }
+.app-price { font-size: 0.95rem; margin-top: 0.3rem; font-variant-numeric: tabular-nums; }
+.app[aria-pressed="true"] { background: var(--highlight); border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.app[aria-pressed="true"] .app-plan { color: var(--ink); }
+.staff { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; color: var(--ink-soft); }
+.staff-opts { display: flex; gap: 0.35rem; }
+.staff-btn { appearance: none; font: 500 0.95rem var(--sans); min-width: 2.8rem; padding: 0.45rem 0.6rem; border: 1px solid var(--rule); border-radius: 999px; background: var(--white); color: var(--ink); cursor: pointer; }
+.staff-btn[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+@media (prefers-reduced-motion: no-preference) { .app, .staff-btn { transition: background 0.15s ease, box-shadow 0.15s ease; } }
+@media (max-width: 560px) {
+  .app-grid { grid-template-columns: 1fr 1fr; gap: 0.45rem; }
+  .app { padding: 0.6rem 0.65rem; }
+  .app-name { font-size: 0.98rem; }
+}

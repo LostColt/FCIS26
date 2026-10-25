@@ -1,73 +1,82 @@
-/* Chapter 1: tick what you pay for, type what it costs, see the year.
-   Every number comes from the person using it. Nothing is saved or sent. */
+/* Chapter 1: tap the tools you pay for and watch the year add up.
+   Prices are list prices for one teacher, billed yearly, checked October 2026.
+   Nothing is saved or sent. */
 
 (function () {
   "use strict";
   var host = document.querySelector('[data-figure="tally"]');
   if (!host) return;
 
-  var items = [
-    "Quiz or game maker",
-    "Slides or presentation tool",
-    "Video or screen recorder",
-    "Worksheet or activity builder",
-    "Rubric or feedback tool",
-    "Comment bank or report writer",
-    "Flashcards or study tool",
-    "Forms or polling",
-    "Plagiarism or AI checker",
-    "An AI tool",
-    "Something else"
+  var apps = [
+    { name: "ChatGPT Plus", plan: "Plus", year: 240 },
+    { name: "Nearpod", plan: "Gold", year: 159 },
+    { name: "Notion", plan: "Plus", year: 144 },
+    { name: "MagicSchool", plan: "Plus", year: 99.96 },
+    { name: "Kahoot!", plan: "Plus Silver", year: 84 },
+    { name: "Screencastify", plan: "Starter", year: 84 },
+    { name: "Padlet", plan: "Gold", year: 83.88 },
+    { name: "Trello", plan: "Standard", year: 60 },
+    { name: "Gimkit", plan: "Pro", year: 59.88 },
+    { name: "Blooket", plan: "Plus", year: 59.88 },
+    { name: "Quizlet", plan: "Plus", year: 35.99 }
   ];
+  var staffOptions = [1, 10, 25, 50, 100];
+  var staff = 1;
 
-  var rows = items.map(function (name, i) {
-    return (
-      '<li class="tally-row" data-i="' + i + '">' +
-      '<label><input type="checkbox" data-check><span class="name">' + name + "</span></label>" +
-      '<span class="money">$<input type="number" inputmode="decimal" min="0" step="0.01" placeholder="0" aria-label="' + name + ', cost per month in dollars" data-price></span>' +
-      "</li>"
-    );
-  }).join("");
+  var money = function (n, whole) {
+    return "$" + n.toLocaleString("en-US", { minimumFractionDigits: whole ? 0 : 0, maximumFractionDigits: whole ? 0 : 2 });
+  };
 
   host.innerHTML =
     '<div class="tally">' +
-    "<h3>What\u2019s in your pile?</h3>" +
-    "<p>Tick what you or your school pays for. Type what each one costs a month. Nothing here is saved or sent anywhere.</p>" +
-    '<ul class="tally-list">' + rows + "</ul>" +
-    '<p class="tally-staff"><label for="staff">Teachers at your school paying the same</label><input id="staff" type="number" inputmode="numeric" min="1" step="1" value="1"></p>' +
+    "<h3>What’s in your pile?</h3>" +
+    "<p>Tap everything you or your school pays for.</p>" +
+    '<div class="app-grid">' +
+    apps.map(function (a, i) {
+      return '<button type="button" class="app" aria-pressed="false" data-i="' + i + '">' +
+        '<span class="app-name">' + a.name + '</span>' +
+        '<span class="app-plan">' + a.plan + '</span>' +
+        '<span class="app-price">' + money(Math.round(a.year), true) + " a year</span>" +
+        "</button>";
+    }).join("") +
+    "</div>" +
+    '<div class="staff"><span id="staff-label">Teachers at your school paying the same</span>' +
+    '<div class="staff-opts" role="group" aria-labelledby="staff-label">' +
+    staffOptions.map(function (n) {
+      return '<button type="button" class="staff-btn" aria-pressed="' + (n === 1) + '" data-n="' + n + '">' + n + "</button>";
+    }).join("") +
+    "</div></div>" +
     '<div class="tally-total" aria-live="polite">' +
     '<div><span class="label">Per month</span><span class="num" data-month>$0</span></div>' +
     '<div><span class="label">Per year, for you</span><span class="num" data-year>$0</span></div>' +
     '<div><span class="label">Per year, across your school</span><span class="num" data-school>$0</span></div>' +
     "</div>" +
-    '<p class="tally-foot">Hand up if you only use one feature of something on this list.</p>' +
+    '<p class="tally-foot">List prices for one teacher’s plan, billed yearly, checked October 2026. Your school may pay differently. Nothing here is saved or sent.</p>' +
     "</div>";
 
-  var fmt = function (n) {
-    return "$" + n.toLocaleString("en-US", { maximumFractionDigits: n < 100 ? 2 : 0 });
-  };
-
   function update() {
-    var month = 0;
-    host.querySelectorAll(".tally-row").forEach(function (row) {
-      var on = row.querySelector("[data-check]").checked;
-      var price = parseFloat(row.querySelector("[data-price]").value) || 0;
-      row.classList.toggle("on", on);
-      if (on) month += Math.max(0, price);
+    var year = 0;
+    host.querySelectorAll(".app").forEach(function (b) {
+      if (b.getAttribute("aria-pressed") === "true") year += apps[+b.dataset.i].year;
     });
-    var staff = Math.max(1, parseInt(host.querySelector("#staff").value, 10) || 1);
-    host.querySelector("[data-month]").textContent = fmt(month);
-    host.querySelector("[data-year]").textContent = fmt(month * 12);
-    host.querySelector("[data-school]").textContent = fmt(month * 12 * staff);
+    host.querySelector("[data-month]").textContent = money(year / 12);
+    host.querySelector("[data-year]").textContent = money(Math.round(year), true);
+    host.querySelector("[data-school]").textContent = money(Math.round(year * staff), true);
   }
 
-  /* Typing a price ticks the box, because that's what people mean */
-  host.addEventListener("input", function (e) {
-    if (e.target.matches("[data-price]") && e.target.value !== "") {
-      e.target.closest(".tally-row").querySelector("[data-check]").checked = true;
+  host.addEventListener("click", function (e) {
+    var app = e.target.closest(".app");
+    if (app) {
+      app.setAttribute("aria-pressed", app.getAttribute("aria-pressed") === "true" ? "false" : "true");
+      update();
+      return;
     }
-    update();
+    var s = e.target.closest(".staff-btn");
+    if (s) {
+      staff = +s.dataset.n;
+      host.querySelectorAll(".staff-btn").forEach(function (b) { b.setAttribute("aria-pressed", String(b === s)); });
+      update();
+    }
   });
-  host.addEventListener("change", update);
   update();
 })();

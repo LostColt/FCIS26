@@ -162,3 +162,7 @@ body { overflow: hidden; overscroll-behavior: none; }
 @media (max-height: 560px) {
   .slide { justify-content: flex-start; overflow-y: auto; }
 }
+@media (max-width: 760px) {
+  .chrome-bottom { background: color-mix(in srgb, var(--paper) 94%, transparent); border-top: 1px solid var(--rule); }
+  .chrome-top { background: color-mix(in srgb, var(--paper) 94%, transparent); }
+}
