@@ -2,17 +2,150 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Notes, test, locked browser (mockup coming)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes → Test → Locked Browser · Evolution Mockup</title>
   <link rel="stylesheet" href="../../css/fonts.css">
-  <link rel="stylesheet" href="../../css/base.css">
-  <style>main{max-width:36rem;margin:0 auto;padding:6rem 1.5rem;font-family:var(--sans);line-height:1.6}h1{font-family:var(--serif);font-size:2.4rem;margin:0 0 1rem}</style>
+  <link rel="stylesheet" href="locked.css">
 </head>
-<body>
-  <main>
-    <h1>Notes, test, locked browser</h1>
-    <p>This clickable mockup is on its way. It will run in your browser with mock data only, and nothing will be saved.</p>
-    <p><a href="../../index.html#build-small">Back to chapter 7</a></p>
+<body data-stage="locked">
+  <a href="#stage-workspace" class="skip-link">Skip to tool workspace</a>
+
+  <div class="honest-bar" role="region" aria-label="Mockup notice">
+    <div class="honest-bar-inner">
+      <div class="honest-left">
+        <a href="../../index.html#22" class="back-link">← Back to talk</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <span class="honest-badge">Mockup · mock data · nothing is saved</span>
+      </div>
+      <div class="honest-right">
+        <span class="fake-note">A web page cannot truly lock an OS browser—Stage 3 simulates clipboard/AI interception inside this page only.</span>
+        <button type="button" class="btn-reset" id="reset-btn">Reset demo</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="evolution-header">
+    <div class="header-copy">
+      <p class="eyebrow">Chapter 7 · Build tools, not products</p>
+      <h1>How One Small Tool Kept Growing (Until I Stopped)</h1>
+      <p class="subtitle">Switch between the three stages to feel how a simple classroom notebook turned into a high-stakes kiosk—and why maintaining it became a second job.</p>
+    </div>
+
+    <div class="stage-switcher" role="tablist" aria-label="Three stages of the tool">
+      <button type="button" class="stage-tab" role="tab" aria-selected="false" data-stage="notes">
+        <span class="tab-step">Stage 1 · Sept</span>
+        <strong>Classroom Notes</strong>
+        <span class="tab-desc">Open notebook &amp; quotation bank</span>
+      </button>
+      <button type="button" class="stage-tab" role="tab" aria-selected="false" data-stage="test">
+        <span class="tab-step">Stage 2 · Nov</span>
+        <strong>Timed Test Mode</strong>
+        <span class="tab-desc">Countdown, word target &amp; read-only notes</span>
+      </button>
+      <button type="button" class="stage-tab is-active" role="tab" aria-selected="true" data-stage="locked">
+        <span class="tab-step">Stage 3 · Jan</span>
+        <strong>Locked Browser</strong>
+        <span class="tab-desc">No copy/paste, no AI, focus telemetry</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="stage-workspace" class="workspace-shell" tabindex="-1">
+    <div class="kiosk-banner" id="kiosk-banner">
+      <div class="kiosk-left">
+        <span class="lock-pill">🔒 KIOSK SHIELD ACTIVE</span>
+        <span class="kiosk-rule">Clipboard paste blocked · Context menu blocked · Tab-switch detection armed</span>
+      </div>
+      <div class="kiosk-right" aria-label="Simulate student actions in locked mode">
+        <span class="sim-label">Try breaking it:</span>
+        <button type="button" class="sim-btn" id="sim-paste-btn">Simulate Paste (Ctrl+V)</button>
+        <button type="button" class="sim-btn" id="sim-ai-btn">Simulate AI Helper Prompt</button>
+        <button type="button" class="sim-btn" id="sim-tab-btn">Simulate Tab Switch</button>
+      </div>
+    </div>
+
+    <div class="app-grid">
+      <aside class="source-column" aria-labelledby="source-heading">
+        <div class="panel-head">
+          <div>
+            <span class="panel-tag" id="source-mode-tag">Read-Only Approved Quotes</span>
+            <h2 id="source-heading">Student Reading Notes · <em>The Great Gatsby</em></h2>
+          </div>
+          <span class="mock-tag">Mock data</span>
+        </div>
+
+        <p class="source-helper" id="source-helper">
+          In Stage 3, students can view the page citations they prepared in class, but cannot paste external text from the clipboard.
+        </p>
+
+        <ul class="quote-cards" id="quote-cards" aria-label="Student saved notes"></ul>
+
+        <form class="add-note-form" id="add-note-form" hidden>
+          <label for="new-note-input">Add a classroom reading note (Stage 1 only):</label>
+          <div class="add-note-row">
+            <input type="text" id="new-note-input" placeholder="e.g. Ch. 5: Gatsby knocks over the mantle clock…">
+            <button type="submit" class="btn-add-note">+ Add</button>
+          </div>
+        </form>
+      </aside>
+
+      <section class="editor-column" aria-labelledby="editor-heading">
+        <div class="editor-topbar">
+          <div>
+            <span class="student-badge">Student: Jordan Alvarez (Period 3 · Mock data)</span>
+            <h2 id="editor-heading">In-Class Analytical Response · Prompt #2</h2>
+          </div>
+
+          <div class="editor-metrics">
+            <div class="metric-box" id="timer-box">
+              <span class="metric-label">Time Left</span>
+              <strong class="metric-val" id="timer-val">34:18</strong>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Word Count</span>
+              <strong class="metric-val" id="word-count-val">96 / 250</strong>
+            </div>
+          </div>
+        </div>
+
+        <p class="prompt-banner">
+          <strong>Prompt:</strong> Using two moments from chapters 1–5, explain how Fitzgerald uses physical objects (clocks, shirts, green dock lights) to measure the gap between Gatsby's memory and the present.
+        </p>
+
+        <div class="intercept-toast" id="intercept-toast" role="status" aria-live="polite" hidden></div>
+
+        <label for="essay-editor" class="sr-only">Student essay response</label>
+        <textarea id="essay-editor" rows="10" spellcheck="false"></textarea>
+
+        <div class="editor-footer">
+          <span class="autosave-status" id="editor-status-line">Locked Kiosk · Keystrokes verified locally</span>
+          <button type="button" class="btn-submit-test" id="submit-btn">Submit Response</button>
+        </div>
+      </section>
+
+      <aside class="telemetry-column" aria-labelledby="telemetry-heading">
+        <div class="telemetry-card" id="telemetry-card">
+          <div class="panel-head">
+            <h2 id="telemetry-heading">Proctor Integrity Log</h2>
+            <span class="flag-counter" id="flag-counter">2 flags</span>
+          </div>
+          <p class="telemetry-sub" id="telemetry-sub">
+            Live event stream recorded while Stage 3 Locked Browser is active.
+          </p>
+          <ul class="event-log" id="event-log" aria-label="Security and proctoring events"></ul>
+        </div>
+
+        <div class="why-stopped-card">
+          <span class="stop-eyebrow">Why David Stopped Here</span>
+          <h3 id="cost-title">Maintenance Cost: High</h3>
+          <p id="cost-body">
+            “People loved it. But I wasn’t trying to ship a product. Supporting 30 Chromebooks, OS updates, edge-case lockouts, and proctor logs during finals week meant becoming an IT vendor instead of a teacher.”
+          </p>
+        </div>
+      </aside>
+    </div>
   </main>
+
+  <script src="locked.js"></script>
 </body>
 </html>
