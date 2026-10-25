@@ -29,7 +29,7 @@
     },
     essay: {
       title: "Student Draft: The Sunday Clock Table",
-      source: "Pasted Draft · Maya Lin (Student A) · Mock data",
+      source: "Pasted Draft · Mina Chen (Student A) · Mock data",
       sentences: [
         "Every Sunday my grandfather spread a green felt cloth over the kitchen table and handed me the bent brass tweezers.",
         "At twelve, I thought fixing a clock meant tightening every screw until nothing moved.",

@@ -7,7 +7,7 @@
       beats: [
         {
           prose:
-            "It was 2:15 PM on a Tuesday in the college counseling office, and Maya had five minutes before the bell rang for seventh period. She stared at the blinking cursor on her laptop, convinced her essay about her grandfather's broken cuckoo clock sounded too small for engineering schools.",
+            "It was 2:15 PM on a Tuesday in the college counseling office, and Mina had five minutes before the bell rang for seventh period. She stared at the blinking cursor on her laptop, convinced her essay about her grandfather's broken cuckoo clock sounded too small for engineering schools.",
           craft:
             "Screenplays can't film 'convinced her essay sounded too small'—so the adaptation turns her doubt into the physical business of highlighting Paragraph 1 and hovering a finger over the DELETE key.",
           lenses: {
@@ -15,37 +15,37 @@
               { type: "slugline", text: "INT. COLLEGE COUNSELING OFFICE - DAY (2:15 PM)" },
               {
                 type: "action",
-                text: "A cramped office lined with college pennants and a wall clock ticking toward the 2:20 bell. MAYA (17) sits across from DAVID (30s). On her open Chromebook, Paragraph 1 is highlighted in blue. Her right index finger hovers over the DELETE key."
+                text: "A cramped office lined with college pennants and a wall clock ticking toward the 2:20 bell. MINA CHEN (17) sits across from MR. RIVERA (30s, fictional writing coach). On her open Chromebook, Paragraph 1 is highlighted in blue. Her right index finger hovers over the DELETE key."
               }
             ],
             subtext: [
               { type: "slugline", text: "INT. COUNSELING OFFICE - CONTINUOUS" },
               {
                 type: "action",
-                text: "2:15 PM. Five minutes to the bell. Maya's thumb taps the edge of her trackpad—the whole first paragraph selected, ready to wipe."
+                text: "2:15 PM. Five minutes to the bell. Mina's thumb taps the edge of her trackpad—the whole first paragraph selected, ready to wipe."
               }
             ],
             shooting: [
               { type: "slugline", text: "INT. COLLEGE COUNSELING OFFICE - DAY" },
               {
                 type: "action",
-                text: "INSERT - CHROMEBOOK SCREEN: 'Every Sunday my grandfather spread a green felt cloth...' highlighted in cold blue.\n\nBACK TO SCENE: Maya's finger rests on BACKSPACE. The hallway bell clock clicks to 2:15."
+                text: "INSERT - CHROMEBOOK SCREEN: 'Every Sunday my grandfather spread a green felt cloth...' highlighted in cold blue.\n\nBACK TO SCENE: Mina's finger rests on BACKSPACE. The hallway bell clock clicks to 2:15."
               }
             ]
           }
         },
         {
           prose:
-            "I reached across the desk and gently tilted her screen down by an inch so she'd stop reading the stiff academic version she wrote last night. I asked her to tell me—just tell me out loud—what the kitchen table sounded like when the brass gear slipped.",
+            "Mr. Rivera reached across the desk and gently tilted her screen down by an inch so she'd stop reading the stiff academic version she wrote last night. He asked her to tell him—just tell him out loud—what the kitchen table sounded like when the brass gear slipped.",
           craft:
             "Tilting the laptop screen down by an inch breaks the spell of 'admissions-speak' and gives the actors a clear physical turn.",
           lenses: {
             faithful: [
               {
                 type: "action",
-                text: "David reaches across the desk and lowers her laptop lid an inch—just enough to break her stare."
+                text: "Rivera reaches across the desk and lowers her laptop lid an inch—just enough to break her stare."
               },
-              { type: "character", text: "DAVID" },
+              { type: "character", text: "MR. RIVERA" },
               { type: "parenthetical", text: "(quietly)" },
               {
                 type: "dialogue",
@@ -55,9 +55,9 @@
             subtext: [
               {
                 type: "action",
-                text: "David nudges the laptop screen down an inch."
+                text: "Rivera nudges the laptop screen down an inch."
               },
-              { type: "character", text: "DAVID" },
+              { type: "character", text: "MR. RIVERA" },
               {
                 type: "dialogue",
                 text: "Don't read the screen. Tell me what the kitchen table sounded like."
@@ -66,9 +66,9 @@
             shooting: [
               {
                 type: "action",
-                text: "CLOSE ON THE HINGE as David's hand tilts the Chromebook screen down 15 degrees. Maya blinks, looking up."
+                text: "CLOSE ON THE HINGE as Rivera's hand tilts the Chromebook screen down 15 degrees. Mina blinks, looking up."
               },
-              { type: "character", text: "DAVID" },
+              { type: "character", text: "MR. RIVERA" },
               {
                 type: "dialogue",
                 text: "Tell me out loud. The Sunday table. The bent tweezers. What happened when you wound it too tight?"
@@ -78,45 +78,45 @@
         },
         {
           prose:
-            "Maya looked up at the ceiling and smiled despite herself. She said it made a tiny metallic ping, like a guitar string snapping in a quiet room, and her grandfather didn't even blink. I slid a yellow legal pad toward her and told her: write that sentence before the bell rings.",
+            "Mina looked up at the ceiling and smiled despite herself. She said it made a tiny metallic ping, like a guitar string snapping in a quiet room, and her grandfather didn't even blink. Mr. Rivera slid a yellow legal pad toward her and told her: write that sentence before the bell rings.",
           craft:
             "Ends on a prop handoff (the yellow legal pad) and a ticking-clock button before the period bell.",
           lenses: {
             faithful: [
               {
                 type: "action",
-                text: "Maya glances up at the acoustic ceiling tiles. A small, involuntary smile."
+                text: "Mina glances up at the acoustic ceiling tiles. A small, involuntary smile."
               },
-              { type: "character", text: "MAYA" },
+              { type: "character", text: "MINA" },
               {
                 type: "dialogue",
                 text: "Like a high E string snapping in an empty room. Ping. And my grandpa didn't even blink—he just handed me the magnifying glass."
               },
               {
                 type: "action",
-                text: "David slides a yellow legal pad and a felt-tip pen across the blotter."
+                text: "Rivera slides a yellow legal pad and a felt-tip pen across the blotter."
               },
-              { type: "character", text: "DAVID" },
+              { type: "character", text: "MR. RIVERA" },
               {
                 type: "dialogue",
-                text: "Write that sentence down before the bell rings. Then we brush."
+                text: "Write that sentence down before the bell rings. Eat first, then brush."
               }
             ],
             subtext: [
-              { type: "character", text: "MAYA" },
+              { type: "character", text: "MINA" },
               {
                 type: "dialogue",
                 text: "A tiny metallic ping. Like a guitar string in a quiet room."
               },
               {
                 type: "action",
-                text: "David pushes a yellow legal pad across the wood."
+                text: "Rivera pushes a yellow legal pad across the wood."
               },
-              { type: "character", text: "DAVID" },
+              { type: "character", text: "MR. RIVERA" },
               { type: "dialogue", text: "That's line one. Go." }
             ],
             shooting: [
-              { type: "character", text: "MAYA" },
+              { type: "character", text: "MINA" },
               { type: "parenthetical", text: "(smiling, off memory)" },
               {
                 type: "dialogue",
@@ -124,9 +124,9 @@
               },
               {
                 type: "action",
-                text: "ON THE DESK: David's hand slides a yellow pad into frame."
+                text: "ON THE DESK: Rivera's hand slides a yellow pad into frame."
               },
-              { type: "character", text: "DAVID" },
+              { type: "character", text: "MR. RIVERA" },
               {
                 type: "dialogue",
                 text: "Write that before the 2:20 bell."
@@ -142,7 +142,7 @@
       beats: [
         {
           prose:
-            "At 7:42 AM, the faculty workroom copier jammed on page fourteen of a forty-page packet while six teachers waited in a polite, caffeinated line. Coach Miller muttered that we spend half our lives feeding paper into machines that hate us.",
+            "At 7:42 AM, the faculty workroom copier jammed on page fourteen of a forty-page packet while six teachers waited in a polite, caffeinated line. Coach Miller muttered that teachers spend half their lives feeding paper into machines that hate them.",
           craft:
             "Turns collective teacher frustration into a visual comedy staging around the blinking red 'TRAY 2 JAM' light.",
           lenses: {
@@ -186,16 +186,16 @@
         },
         {
           prose:
-            "Instead of clearing Tray Two again, I opened my laptop on the laminator counter and typed three sentences describing the vocabulary warmup I actually needed for first period. Ninety seconds later, the link was live on the board.",
+            "Instead of clearing Tray Two again, Mr. Rivera opened his laptop on the laminator counter and typed three sentences describing the vocabulary warmup he actually needed for first period. Ninety seconds later, the link was live on the board.",
           craft:
             "Contrasts the jammed mechanical copier with building a tiny, working tool on the spot.",
           lenses: {
             faithful: [
               {
                 type: "action",
-                text: "David steps out of line, sets his laptop on the cold laminator table, and types three plain sentences into a prompt box."
+                text: "Rivera steps out of line, sets his laptop on the cold laminator table, and types three plain sentences into a prompt box."
               },
-              { type: "character", text: "DAVID" },
+              { type: "character", text: "MR. RIVERA" },
               { type: "parenthetical", text: "(to Coach Miller)" },
               {
                 type: "dialogue",
@@ -209,13 +209,13 @@
             subtext: [
               {
                 type: "action",
-                text: "David opens his laptop beside the dead paper cutter. Three sentences typed. A live preview appears before Miller gets Door A open."
+                text: "Rivera opens his laptop beside the dead paper cutter. Three sentences typed. A live preview appears before Miller gets Door A open."
               }
             ],
             shooting: [
               {
                 type: "action",
-                text: "SPLIT FOCUS: In the foreground, David's screen renders a clean classroom app in 90 seconds. In the background, Miller pulls an accordion-folded sheet from the rollers."
+                text: "SPLIT FOCUS: In the foreground, Rivera's screen renders a clean classroom app in 90 seconds. In the background, Miller pulls an accordion-folded sheet from the rollers."
               },
               { type: "transition", text: "SMASH CUT TO:" }
             ]
@@ -228,7 +228,7 @@
       beats: [
         {
           prose:
-            "Rain streaked the front window of the 24-hour diner at 9:30 PM. Between a half-empty mug of decaf and a stack of AP essays, I realized I was writing the exact same margin note—'start where the action starts'—for the nineteenth time.",
+            "Rain streaked the front window of the 24-hour diner at 9:30 PM. Between a half-empty mug of decaf and a stack of AP essays, Mr. Rivera realized he was writing the exact same margin note—'start where the action starts'—for the nineteenth time.",
           craft:
             "Externalizes an internal realization ('nineteenth time') through a close-up of red-ink repetition and a waitress refilling decaf.",
           lenses: {
@@ -236,9 +236,9 @@
               { type: "slugline", text: "INT. SKYLINE DINER - NIGHT (9:30 PM)" },
               {
                 type: "action",
-                text: "Rain streaks the neon reflection on the booth window. David sits fenced in by forty student drafts and a mug of decaf. He writes in the margin: 'Start in the middle of the scene.' He flips to the next paper. Writes the exact same words."
+                text: "Rain streaks the neon reflection on the booth window. Mr. Rivera sits fenced in by forty student drafts and a mug of decaf. He writes in the margin: 'Start in the middle of the scene.' He flips to the next paper. Writes the exact same words."
               },
-              { type: "character", text: "DAVID" },
+              { type: "character", text: "MR. RIVERA" },
               { type: "parenthetical", text: "(muttering to the mug)" },
               {
                 type: "dialogue",
@@ -249,7 +249,7 @@
               { type: "slugline", text: "INT. DINER BOOTH - NIGHT" },
               {
                 type: "action",
-                text: "9:30 PM. Paper #19. David's pen stalls halfway through writing the same comment he wrote at 8:00 PM."
+                text: "9:30 PM. Paper #19. Rivera's pen stalls halfway through writing the same comment he wrote at 8:00 PM."
               }
             ],
             shooting: [
@@ -375,7 +375,8 @@
 
       var num = document.createElement("span");
       num.className = "beat-num";
-      num.textContent = "Prose Beat " + (idx + 1) + " of " + scene.beats.length;
+      num.textContent =
+        "Invented Example Beat " + (idx + 1) + " of " + scene.beats.length;
 
       var p = document.createElement("p");
       p.className = "beat-prose-text";

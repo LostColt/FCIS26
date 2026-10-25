@@ -46,7 +46,7 @@
       statusLine: "Stage 1 · Copy, paste, and note-adding enabled",
       costTitle: "Stage 1 Maintenance: Almost Zero",
       costBody:
-        "A 120-line single-page notebook. If a student wanted a new button, David could add it in two minutes between periods."
+        "A single-page classroom notebook for collecting reading quotes and notes during discussion."
     },
     test: {
       sourceTag: "Pinned Reference Notes",
@@ -66,7 +66,7 @@
       statusLine: "Stage 3 · Clipboard & AI blocked · Proctor telemetry armed",
       costTitle: "Stage 3 Maintenance: Why I Stopped",
       costBody:
-        "“People loved it. But I wasn’t trying to ship a product. Supporting 30 Chromebooks, OS updates, edge-case lockouts, and proctor logs meant becoming a software company instead of a teacher. Build tools, not products.”"
+        "“People loved it. But I wasn’t trying to ship a product. I was trying to build smaller things. What it would mean to build something like that, to support it and maintain it, was too much at the time.”"
     }
   };
 

@@ -1,7 +1,7 @@
 window.COUNSELING_MOCK_DATA = [
   {
-    id: "maya-l",
-    name: "Maya Lin (Student A)",
+    id: "mina-c",
+    name: "Mina Chen (Student A)",
     pronouns: "she/her",
     todaySlot: "1:00 PM",
     isToday: true,
@@ -43,7 +43,7 @@ window.COUNSELING_MOCK_DATA = [
     notes: [
       {
         date: "Oct 19 · 2:15 PM",
-        text: "Maya was worried Draft 1 sounded 'too small' for engineering schools, so she rewrote it in stiff academic prose. Showed her side-by-side how the green tablecloth makes the reader trust her immediately."
+        text: "Mina was worried Draft 1 sounded 'too small' for engineering schools, so she rewrote it in stiff academic prose. Showed her side-by-side how the green tablecloth makes the reader trust her immediately."
       },
       {
         date: "Oct 9 · 1:30 PM",

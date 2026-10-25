@@ -10,7 +10,7 @@
   ];
 
   var FIRST_NAMES = [
-    "Maya", "Devon", "Priya", "Lucas", "Hannah", "Marcus", "Elena", "Samir",
+    "Mina", "Devon", "Priya", "Lucas", "Hannah", "Marcus", "Elena", "Samir",
     "Zoe", "Caleb", "Nadia", "Julian", "Tessa", "Omar", "Clara", "Xavier",
     "Sienna", "Leo", "Amara", "Jonah", "Iris", "Mateo", "Nora", "Isaac",
     "Lila", "Gavin", "Keira", "Elias", "ruby", "Miles", "Anya", "Dante",
@@ -109,7 +109,7 @@
 
       // Pin first 6 to match the counseling tracker's featured students
       if (i === 0) {
-        name = "Maya Lin (Student A)";
+        name = "Mina Chen (Student A)";
         cohort = "Nov 1 EA/ED";
         stageIdx = 2;
       } else if (i === 1) {
