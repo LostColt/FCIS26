@@ -1,0 +1,93 @@
+/* The second layer: chapter-specific movement that carries the story forward
+   as you swipe. Red pen crosses out, highlighter marks what matters. */
+
+/* Red pen strike that draws itself */
+.strike { position: relative; display: inline-block; }
+.strike::after {
+  content: "";
+  position: absolute;
+  left: -0.03em; right: -0.03em;
+  top: 54%;
+  height: 0.075em;
+  background: var(--red);
+  border-radius: 0.04em;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.strike.on::after, .is-active .strike.auto::after { transform: scaleX(1); }
+@media (prefers-reduced-motion: no-preference) {
+  .strike::after { transition: transform 0.55s cubic-bezier(0.6, 0, 0.3, 1) 0.15s; }
+}
+
+/* Highlighter sweep */
+.mark {
+  background-image: linear-gradient(var(--highlight), var(--highlight));
+  background-repeat: no-repeat;
+  background-position: 0 88%;
+  background-size: 0% 0.42em;
+  padding: 0 0.05em;
+}
+.mark.on, .on .mark, .is-active .mark.auto { background-size: 100% 0.42em; }
+@media (prefers-reduced-motion: no-preference) {
+  .mark { transition: background-size 0.6s ease 0.25s; }
+}
+
+/* Cover */
+.cover-title { font-family: var(--serif); font-weight: 600; font-size: clamp(3rem, 10vw, 9.5rem); line-height: 0.95; letter-spacing: -0.035em; margin: 0; }
+.cover-title .line { display: block; }
+.cover-lede { font-family: var(--serif); font-size: clamp(1.2rem, 2.2vw, 1.9rem); line-height: 1.4; color: var(--ink-soft); max-width: 30ch; margin: 2rem 0 0; }
+.cover-by { font-family: var(--sans); color: var(--ink-soft); margin: 1.5rem 0 0; font-size: 1rem; }
+.cover-hint { font-family: var(--sans); font-size: 0.95rem; color: var(--ink-soft); margin: 2.5rem 0 0; }
+
+/* Chapter 1: the pile of things we all linked together */
+.pile { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+.pile li {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: clamp(1rem, 1.8vw, 1.45rem);
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 0.55rem 0.9rem;
+  box-shadow: 0 1px 0 var(--rule);
+  transform: rotate(var(--r, 0deg));
+  margin-left: var(--x, 0);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .slide .pile li { opacity: 0; transform: translateY(-1.5rem) rotate(var(--r, 0deg)); transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.3, 1.4, 0.5, 1); transition-delay: calc(var(--i) * 110ms + 200ms); }
+  .slide.is-active .pile li, .slide.seen .pile li { opacity: 1; transform: rotate(var(--r, 0deg)); }
+}
+
+/* Chapter 1: the ledger, supplies out, subscriptions in */
+.ledger { font-family: var(--sans); font-size: clamp(1.05rem, 1.8vw, 1.5rem); list-style: none; margin: 2.5rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 0.6rem 2.5rem; }
+.ledger li { white-space: nowrap; }
+.ledger .old { color: var(--ink-soft); }
+
+/* Chapter 2: the count and what it means */
+.count-up { font-family: var(--serif); font-weight: 600; font-size: clamp(6rem, 22vw, 18rem); line-height: 0.85; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; margin: 0; }
+.count-sub { font-family: var(--serif); font-weight: 600; font-size: clamp(1.8rem, 4.4vw, 4rem); line-height: 1.1; margin: 1rem 0 0; max-width: 18ch; }
+.juggle { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+.juggle li { font-family: var(--sans); font-size: clamp(1.05rem, 1.8vw, 1.4rem); font-weight: 500; border-top: 3px solid var(--ink); padding-top: 0.6rem; }
+.juggle li small { display: block; font-weight: 400; color: var(--ink-soft); font-size: 0.8em; margin-top: 0.2rem; }
+
+/* Chapter 4 and 7: the build chain and the stages reuse .steps from figures.css */
+.slide .steps { margin-top: 2.5rem; }
+.slide .steps .sketch { background: var(--white); }
+
+/* Chapter 9: the three paths as cards that land one at a time */
+.slide .paths { margin-top: 2.5rem; }
+.slide .paths div { background: var(--white); }
+
+/* Chapter 12: links in one place */
+.linklist { list-style: none; padding: 0; margin: 0 0 1.5rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 0.5rem 1.5rem; }
+.linklist a { display: block; padding: 0.6rem 0; border-bottom: 1px solid var(--rule); }
+
+@media (max-width: 760px) {
+  .ledger { grid-template-columns: 1fr 1fr; gap: 0.5rem 1.5rem; }
+  .juggle { grid-template-columns: 1fr; }
+}
+
+.juggle.ideas { grid-template-columns: repeat(3, 1fr); padding-left: 0; }
+.juggle.ideas li { margin: 0; font-family: var(--serif); font-weight: 600; font-size: clamp(1.15rem, 2vw, 1.6rem); line-height: 1.25; }
+.slide .steps .sketch { aspect-ratio: 16 / 9; }
+@media (max-width: 760px) { .juggle.ideas { grid-template-columns: 1fr; } }

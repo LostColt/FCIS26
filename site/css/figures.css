@@ -179,3 +179,6 @@ details.door > summary .hint { display: block; font-weight: 400; color: var(--in
 @media (max-width: 720px) {
   .compare, .reasons, .paths { grid-template-columns: 1fr; }
 }
+
+/* Mockup links show a small picture once the mockup provides one */
+.mockup-link .thumb { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; border-radius: 4px; border: 1px solid var(--rule); margin-bottom: 0.7rem; background: var(--paper-deep); }
