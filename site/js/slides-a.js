@@ -29,7 +29,7 @@
   add(0, 1,
     '<h1 class="cover-title"><span class="line"><span class="strike" data-at="1">Stop subscribing.</span></span><span class="line">Start building.</span></h1>' +
     '<p class="cover-lede">How I started making the tools I needed, and what it taught me about teaching.</p>' +
-    '<p class="cover-by">David [DAVID: last name], [DAVID: title, school]. FCIS, [DAVID: date].</p>' +
+    '<p class="cover-by">David Tran, Gulliver Prep, Miami, FL. FCIS, [DAVID: date].</p>' +
     '<p class="cover-hint">Swipe, or use the arrow keys.</p>');
 
   /* 1 · The pile */

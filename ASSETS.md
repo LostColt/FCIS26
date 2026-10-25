@@ -24,6 +24,6 @@ Where will they be hosted? (Decide before chapter 9 gets its links.)
 
 ## Other placeholders
 
-- David's last name, title, date of the session, contact
+- Date of the session, and David's contact
 - QR code pointing to the site (once it has a URL)
 - Optional: a paragraph of David's own writing, with its screenplay version, for the screenplay mockup

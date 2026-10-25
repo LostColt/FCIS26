@@ -1,6 +1,6 @@
 # Stop Subscribing, Start Building
 
-A website for an FCIS professional development session by David [last name]. David presents from it; attendees keep it.
+A website for an FCIS professional development session by David Tran, Gulliver Prep, Miami, FL. David presents from it; attendees keep it.
 
 This repo also records how the site gets made: every prompt, every review, every revision.
 
