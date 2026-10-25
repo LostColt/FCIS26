@@ -19,7 +19,7 @@ This is the site's text, chapter by chapter. It's drafted from what David has sa
 >
 > How I started making the tools I needed, and what it taught me about teaching.
 
-David Tran · Gulliver Prep, Miami, FL · FCIS [DAVID: date]
+David Tran · AI Learning and Teaching Specialist, Gulliver Prep, Miami, FL · FCIS [DAVID: date]
 
 **Photo:** none. The cover is just words.
 
