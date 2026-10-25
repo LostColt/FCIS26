@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stop Subscribing, Start Building</title>
+  <meta name="description" content="A teacher's story about building the classroom tools he needed instead of subscribing to them, with a workshop and clickable mockups. FCIS.">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/story.css">
+  <link rel="stylesheet" href="css/figures.css">
+  <link rel="stylesheet" href="css/present.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the story</a>
+
+  <header class="topbar">
+    <a class="topbar-title" href="#start">Stop Subscribing, Start Building</a>
+    <div class="topbar-actions">
+      <button type="button" class="btn" id="contents-open" aria-expanded="false" aria-controls="contents">Contents</button>
+      <button type="button" class="btn" id="present-toggle" title="Present (P)">Present</button>
+    </div>
+    <span class="progress" id="progress" aria-hidden="true"></span>
+  </header>
+
+  <nav class="contents" id="contents" data-open="false" aria-label="Contents">
+    <h2>Contents</h2>
+    <ol id="contents-list"></ol>
+    <button type="button" class="btn close" id="contents-close">Close</button>
+  </nav>
+
+  <main id="main" tabindex="-1"></main>
+
+  <div class="present-hud" aria-label="Presenter controls">
+    <span id="hud-status" aria-live="polite"></span>
+    <button type="button" class="btn" id="hud-prev" aria-label="Previous">Back</button>
+    <button type="button" class="btn" id="hud-next" aria-label="Next">Next</button>
+    <button type="button" class="btn" id="hud-exit">Exit</button>
+  </div>
+
+  <noscript><p>This page needs JavaScript to show the story. The full text is also in the project's <code>content/story.md</code>.</p></noscript>
+
+  <script src="js/content-a.js"></script>
+  <script src="js/content-b.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/tally.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/present.js"></script>
+</body>
+</html>

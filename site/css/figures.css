@@ -1,0 +1,181 @@
+/* Interactive figures and doors. Everything practical is set in the sans. */
+
+/* ---------- Doors: the practical "open this" panels ---------- */
+.doors { margin-top: 3rem; display: grid; gap: 1rem; max-width: 52rem; }
+details.door {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--blue);
+  border-radius: 6px;
+  font-family: var(--sans);
+}
+.chapter:nth-of-type(even) details.door { background: var(--paper); }
+details.door > summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+details.door > summary::-webkit-details-marker { display: none; }
+details.door > summary::after { content: "Open"; font-weight: 500; color: var(--blue); flex: none; }
+details.door[open] > summary::after { content: "Close"; }
+details.door > summary .hint { display: block; font-weight: 400; color: var(--ink-soft); font-size: 0.95rem; margin-top: 0.2rem; }
+.door-body { padding: 0 1.25rem 1.25rem; font-size: 1rem; line-height: 1.6; }
+.door-body p { margin: 0 0 0.8rem; }
+.door-body ol, .door-body ul { margin: 0 0 1rem; padding-left: 1.3rem; }
+.door-body li { margin-bottom: 0.45rem; }
+.door-body h4 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+.door-body .note { color: var(--ink-soft); font-size: 0.95rem; }
+
+/* Copyable prompt */
+.prompt-box { position: relative; margin: 0.75rem 0 1rem; }
+.prompt-box pre {
+  margin: 0;
+  white-space: pre-wrap;
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.55;
+  background: var(--paper-deep);
+  border-radius: 6px;
+  padding: 1rem 1.1rem 3rem;
+}
+.prompt-box .copy { position: absolute; right: 0.6rem; bottom: 0.6rem; }
+
+/* Mockup links inside doors */
+.mockups { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 0.75rem; margin: 0.5rem 0 1rem; }
+.mockup-link {
+  display: block;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--white);
+  color: var(--ink);
+  text-decoration: none;
+}
+.mockup-link:hover { border-color: var(--blue); }
+.mockup-link strong { display: block; color: var(--blue); }
+.mockup-link span { font-size: 0.92rem; color: var(--ink-soft); }
+.shot-frame {
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  border: 2px dashed var(--rule);
+  border-radius: 6px;
+  color: var(--ink-soft);
+  padding: 1rem;
+  text-align: center;
+}
+
+/* ---------- Chapter 1: the subscription tally ---------- */
+.tally { background: var(--white); border: 1px solid var(--rule); border-radius: 8px; padding: clamp(1rem, 3vw, 2rem); max-width: 52rem; }
+.chapter:nth-of-type(even) .tally { background: var(--paper); }
+.tally h3 { font-size: 1.25rem; margin: 0 0 0.3rem; }
+.tally > p { margin: 0 0 1.25rem; color: var(--ink-soft); }
+.tally-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: 0.5rem 1.25rem; }
+.tally-row { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.35rem 0; border-bottom: 1px solid var(--rule); }
+.tally-row label { display: flex; align-items: center; gap: 0.6rem; cursor: pointer; flex: 1; }
+.tally-row input[type="checkbox"] { width: 1.15rem; height: 1.15rem; accent-color: var(--ink); }
+.tally-row.on .name { background: var(--highlight); }
+.money { display: flex; align-items: center; gap: 0.2rem; color: var(--ink-soft); }
+.money input, .tally-staff input {
+  width: 4.8rem;
+  font: 500 1rem var(--sans);
+  padding: 0.35rem 0.45rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--white);
+  color: var(--ink);
+}
+.tally-staff { margin: 1.25rem 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
+.tally-total { display: flex; flex-wrap: wrap; gap: 1rem 3rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 2px solid var(--ink); }
+.tally-total div { display: flex; flex-direction: column; }
+.tally-total .label { font-size: 0.95rem; color: var(--ink-soft); }
+.tally-total .num { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 600; font-variant-numeric: tabular-nums; }
+.tally-foot { font-size: 0.9rem; color: var(--ink-soft); margin: 1rem 0 0; }
+
+/* ---------- Chapter 3: two columns of adaptation ---------- */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 52rem; }
+.compare section { border-top: 2px solid var(--ink); padding-top: 0.9rem; }
+.compare h3 { font-size: 1.1rem; margin: 0 0 0.6rem; }
+.compare ul { margin: 0; padding: 0; list-style: none; }
+.compare li { padding: 0.45rem 0; border-bottom: 1px solid var(--rule); }
+
+/* ---------- Sequences: chapter 4 chain, chapter 7 stages ---------- */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1rem; counter-reset: step; }
+.steps li { counter-increment: step; display: flex; flex-direction: column; gap: 0.6rem; }
+.steps .sketch {
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--white);
+  padding: 0.7rem;
+  display: grid;
+  gap: 0.35rem;
+  align-content: start;
+}
+.chapter:nth-of-type(even) .steps .sketch { background: var(--paper); }
+.sketch i { display: block; height: 0.5rem; border-radius: 2px; background: var(--paper-deep); }
+.sketch i.dark { background: var(--ink); width: 55%; }
+.sketch i.blue { background: var(--blue); width: 35%; }
+.sketch i.short { width: 70%; }
+.sketch .bars { display: flex; align-items: flex-end; gap: 0.3rem; height: 3.2rem; }
+.sketch .bars b { flex: 1; background: var(--blue); border-radius: 2px 2px 0 0; }
+.sketch.off { opacity: 0.55; }
+.steps h3 { font-size: 1.02rem; margin: 0; }
+.steps h3::before { content: counter(step) ". "; color: var(--ink-soft); }
+.steps p { margin: 0; color: var(--ink-soft); font-size: 0.97rem; line-height: 1.5; }
+.sketch .lock { justify-self: center; margin-top: 0.4rem; font-weight: 600; font-size: 0.85rem; border: 2px solid var(--ink); border-radius: 4px; padding: 0.15rem 0.5rem; }
+
+/* ---------- Chapter 5: three reasons ---------- */
+.reasons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 60rem; }
+.reasons div { border-top: 2px solid var(--ink); padding-top: 0.9rem; }
+.reasons h3 { font-family: var(--serif); font-size: 1.6rem; margin: 0 0 0.4rem; }
+.reasons p { margin: 0; color: var(--ink-soft); line-height: 1.5; }
+
+/* ---------- Chapter 8: a resource that keeps changing ---------- */
+.revision { max-width: 46rem; background: var(--white); border: 1px solid var(--rule); border-radius: 8px; padding: 1.25rem 1.5rem; }
+.chapter:nth-of-type(even) .revision { background: var(--paper); }
+.revision h3 { margin: 0 0 0.2rem; font-size: 1.1rem; }
+.revision .kicker { margin: 0 0 1rem; color: var(--ink-soft); font-size: 0.95rem; }
+.revision ol { list-style: none; margin: 0; padding: 0; }
+.revision li { display: grid; grid-template-columns: 4.5rem 1fr; gap: 1rem; padding: 0.55rem 0; border-top: 1px solid var(--rule); }
+.revision .v { font-weight: 600; }
+.revision del { color: var(--red); text-decoration-thickness: 2px; }
+.revision ins { text-decoration: none; background: var(--highlight); }
+
+/* ---------- Chapter 9: three paths ---------- */
+.paths { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+.paths div { border: 1px solid var(--rule); border-radius: 8px; padding: 1.1rem; background: var(--white); }
+.chapter:nth-of-type(even) .paths div { background: var(--paper); }
+.paths h3 { margin: 0 0 0.2rem; font-size: 1.15rem; }
+.paths .tools { margin: 0 0 0.8rem; color: var(--blue); font-weight: 500; }
+.paths dl { margin: 0; display: grid; gap: 0.4rem; }
+.paths dt { font-size: 0.85rem; color: var(--ink-soft); }
+.paths dd { margin: 0; }
+
+/* ---------- Chapter 10: checklist ---------- */
+.checklist { list-style: none; padding: 0; margin: 0; max-width: 46rem; font-size: 1.05rem; }
+.checklist li { display: grid; grid-template-columns: 1.6rem 1fr; gap: 0.6rem; padding: 0.75rem 0; border-bottom: 1px solid var(--rule); line-height: 1.5; }
+.checklist li::before { content: ""; width: 1.1rem; height: 1.1rem; margin-top: 0.2rem; border: 2px solid var(--ink); border-radius: 3px; }
+
+/* ---------- Chapter 11: workshop timer ---------- */
+.timer { max-width: 52rem; background: var(--ink); color: var(--paper); border-radius: 10px; padding: clamp(1.25rem, 3vw, 2rem); }
+.timer h3 { margin: 0 0 1rem; font-size: 1.1rem; font-weight: 500; }
+.timer-phases { display: grid; grid-template-columns: 2fr 9fr 4fr; gap: 0.4rem; margin-bottom: 1.25rem; }
+.timer-phase { border-top: 4px solid #4a5568; padding-top: 0.5rem; font-size: 0.95rem; }
+.timer-phase.done { border-color: var(--paper); opacity: 0.7; }
+.timer-phase.now { border-color: var(--highlight); }
+.timer-clock { font-family: var(--serif); font-size: clamp(3rem, 9vw, 6rem); font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1; margin: 0 0 0.3rem; }
+.timer-label { margin: 0 0 1.25rem; font-size: 1.1rem; }
+.timer-controls { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.timer .btn { background: transparent; color: var(--paper); border-color: #5a6578; }
+.timer .btn:hover { border-color: var(--paper); }
+.timer .btn-primary { background: var(--highlight); color: var(--ink); border-color: var(--highlight); }
+
+@media (max-width: 720px) {
+  .compare, .reasons, .paths { grid-template-columns: 1fr; }
+}

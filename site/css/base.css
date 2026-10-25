@@ -1,0 +1,98 @@
+/* Stop Subscribing, Start Building: base tokens and type.
+   The palette comes from a teacher's desk: slate ink, blue pen for links,
+   red pen for crossing out and revising, highlighter for what you've selected. */
+
+:root {
+  --paper: #f6f7f4;
+  --paper-deep: #eceee8;
+  --ink: #1d2430;
+  --ink-soft: #4b5563;
+  --rule: #d6dad2;
+  --blue: #2847a8;
+  --red: #b8322a;
+  --highlight: #f5e663;
+  --white: #ffffff;
+
+  --serif: "Literata", Georgia, "Times New Roman", serif;
+  --sans: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+
+  --measure: 36rem;
+  --wide: 68rem;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body { margin: 0; }
+
+img { display: block; max-width: 100%; height: auto; }
+
+a {
+  color: var(--blue);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+}
+
+::selection { background: var(--highlight); color: var(--ink); }
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0.75rem;
+  z-index: 100;
+  background: var(--white);
+  color: var(--ink);
+  padding: 0.6rem 0.9rem;
+  font-family: var(--sans);
+  border: 2px solid var(--ink);
+}
+.skip-link:focus { left: 0.75rem; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Unfinished placeholders: [DAVID: ...] */
+.todo {
+  font-family: var(--sans);
+  font-size: 0.8em;
+  font-weight: 500;
+  background: var(--highlight);
+  color: var(--ink);
+  padding: 0.05em 0.35em;
+  border-radius: 2px;
+  white-space: normal;
+}
+
+noscript p {
+  max-width: var(--measure);
+  margin: 4rem auto;
+  padding: 0 var(--gutter);
+  font-size: 1.15rem;
+  line-height: 1.6;
+}

@@ -179,8 +179,8 @@ Build first. Then revise.
 
 **Spine**
 > Pick the path by the job.
->
-> **Own it** · **Ship it fast** · **Keep it protected**
+
+(The three paths appear as a figure under this line: own it, ship it fast, keep it protected.)
 
 **Say**
 There are three paths I use, and each one teaches something different.
@@ -250,8 +250,8 @@ Why this path: the data never leaves your school's Google account.
 
 **Spine**
 > One small tool. 15 minutes.
->
-> Pick · 2 min · Build · 9 min · Swap · 4 min
+
+(A workshop timer appears under this line: pick 2 minutes, build 9, swap 4.)
 
 **Door: Step 1, pick one small annoyance**
 - An exit-ticket randomizer
