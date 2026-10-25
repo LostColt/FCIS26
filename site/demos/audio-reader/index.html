@@ -2,17 +2,148 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Audio reader (mockup coming)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listen &amp; Follow · Audio Reader Mockup</title>
   <link rel="stylesheet" href="../../css/fonts.css">
-  <link rel="stylesheet" href="../../css/base.css">
-  <style>main{max-width:36rem;margin:0 auto;padding:6rem 1.5rem;font-family:var(--sans);line-height:1.6}h1{font-family:var(--serif);font-size:2.4rem;margin:0 0 1rem}</style>
+  <link rel="stylesheet" href="reader.css">
 </head>
-<body>
-  <main>
-    <h1>Audio reader</h1>
-    <p>This clickable mockup is on its way. It will run in your browser with mock data only, and nothing will be saved.</p>
-    <p><a href="../../index.html#building-for-someone-else">Back to chapter 6</a></p>
+<body data-paper="cream" data-size="large">
+  <a href="#reading-stage" class="skip-link">Skip to reading stage</a>
+
+  <div class="honest-bar" role="region" aria-label="Mockup notice">
+    <div class="honest-bar-inner">
+      <div class="honest-left">
+        <a href="../../index.html#19" class="back-link">← Back to talk</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <span class="honest-badge">Mockup · mock data · nothing is saved</span>
+      </div>
+      <div class="honest-right">
+        <span class="fake-note">Uses your browser's built-in SpeechSynthesis offline; the real tool also parsed multi-page PDF uploads directly.</span>
+        <button type="button" class="btn-reset" id="reset-btn">Reset reader</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="reader-header">
+    <div class="header-story">
+      <p class="eyebrow">Built for one learner · Chapter 6</p>
+      <h1>Listen &amp; Follow Reader</h1>
+      <p class="subtitle">“It wasn’t for me. It was for a student who was better with audio than with reading.”</p>
+    </div>
+
+    <div class="sample-picker" role="group" aria-label="Choose a reading passage or paste your own">
+      <button type="button" class="sample-btn is-active" data-sample="biology">AP Bio: Cellular Respiration (PDF extract)</button>
+      <button type="button" class="sample-btn" data-sample="history">US History: Federalist No. 10</button>
+      <button type="button" class="sample-btn" data-sample="essay">Student Draft: The Clock Table</button>
+      <button type="button" class="sample-btn" data-sample="custom">+ Paste or Upload Text</button>
+    </div>
+  </header>
+
+  <section class="paste-drawer" id="paste-drawer" hidden aria-label="Paste or upload custom text">
+    <div class="drawer-inner">
+      <div class="drawer-head">
+        <label for="custom-text-input"><strong>Paste any paragraph or upload a `.txt` file</strong> to hear it read sentence by sentence:</label>
+        <input type="file" id="file-upload" accept=".txt,.md" aria-label="Upload text file">
+      </div>
+      <textarea id="custom-text-input" rows="4" placeholder="Paste reading assignment, article, or student draft here…"></textarea>
+      <div class="drawer-actions">
+        <button type="button" class="btn-primary" id="load-custom-btn">Load into reader</button>
+        <button type="button" class="btn-secondary" id="close-drawer-btn">Cancel</button>
+      </div>
+    </div>
+  </section>
+
+  <main id="reading-stage" class="reader-workspace" tabindex="-1">
+    <section class="transport-bar" aria-label="Audio playback and reading controls">
+      <div class="transport-main">
+        <button type="button" class="btn-transport" id="prev-sent-btn" title="Previous sentence (Left arrow)">
+          ◀ Prev
+        </button>
+        <button type="button" class="btn-play" id="play-pause-btn" aria-pressed="false">
+          ▶ Read Aloud
+        </button>
+        <button type="button" class="btn-transport" id="next-sent-btn" title="Next sentence (Right arrow)">
+          Next ▶
+        </button>
+        <button type="button" class="btn-transport" id="stop-btn" title="Stop and rewind">
+          ■ Stop
+        </button>
+      </div>
+
+      <div class="transport-settings">
+        <div class="control-group">
+          <label for="speed-select">Pace</label>
+          <select id="speed-select">
+            <option value="0.8">0.8× (Measured)</option>
+            <option value="0.95">0.95× (Calm)</option>
+            <option value="1" selected>1.0× (Natural)</option>
+            <option value="1.15">1.15× (Brisk)</option>
+            <option value="1.3">1.3× (Review)</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="voice-select">Voice</label>
+          <select id="voice-select" aria-label="Speech synthesis voice">
+            <option value="">System Default Voice</option>
+          </select>
+        </div>
+
+        <div class="control-group" role="group" aria-label="Reading focus ruler">
+          <button type="button" class="btn-toggle" id="focus-toggle" aria-pressed="false">
+            Focus Dimming: Off
+          </button>
+        </div>
+
+        <div class="control-group" role="group" aria-label="Page tint">
+          <button type="button" class="swatch-btn is-active" data-tint="cream" title="Warm cream paper">Cream</button>
+          <button type="button" class="swatch-btn" data-tint="sage" title="Soft sage paper">Sage</button>
+          <button type="button" class="swatch-btn" data-tint="slate" title="Dark slate mode">Night</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="reader-columns">
+      <article class="book-page" id="book-page" aria-labelledby="doc-title">
+        <header class="doc-header">
+          <div class="doc-meta-row">
+            <span class="doc-source" id="doc-source"></span>
+            <span class="doc-progress" id="doc-progress">Sentence 1 of 7</span>
+          </div>
+          <h2 id="doc-title"></h2>
+          <p class="doc-hint">Click any sentence to jump straight to it · Press <kbd>Space</kbd> to play/pause · <kbd>←</kbd>/<kbd>→</kbd> step sentences · <kbd>B</kbd> bookmark</p>
+        </header>
+
+        <div class="sentences-flow" id="sentences-flow" role="region" aria-label="Interactive passage sentences"></div>
+      </article>
+
+      <aside class="listener-sidebar" aria-labelledby="sidebar-heading">
+        <div class="sidebar-card">
+          <div class="sidebar-head">
+            <h3 id="sidebar-heading">Active Sentence Focus</h3>
+            <span class="tts-status" id="tts-status">Ready to read</span>
+          </div>
+          <p class="Now-reading-box" id="now-reading-box"></p>
+          <div class="word-progress-wrap" aria-hidden="true">
+            <div class="word-progress-bar" id="word-progress-bar"></div>
+          </div>
+          <button type="button" class="btn-bookmark" id="bookmark-btn">
+            ★ Bookmark this sentence for study notes
+          </button>
+        </div>
+
+        <div class="sidebar-card">
+          <div class="sidebar-head">
+            <h3>Saved Audio Bookmarks</h3>
+            <span class="bookmark-count" id="bookmark-count">1 saved</span>
+          </div>
+          <p class="sidebar-sub">Sentences the student flagged while listening so they can replay or quote them later.</p>
+          <ul class="bookmark-list" id="bookmark-list" aria-label="Bookmarked sentences"></ul>
+        </div>
+      </aside>
+    </div>
   </main>
+
+  <script src="reader.js"></script>
 </body>
 </html>
