@@ -2,17 +2,136 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard (mockup coming)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caseload Radar · 152 Seniors Dashboard Mockup</title>
   <link rel="stylesheet" href="../../css/fonts.css">
-  <link rel="stylesheet" href="../../css/base.css">
-  <style>main{max-width:36rem;margin:0 auto;padding:6rem 1.5rem;font-family:var(--sans);line-height:1.6}h1{font-family:var(--serif);font-size:2.4rem;margin:0 0 1rem}</style>
+  <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
-  <main>
-    <h1>Dashboard</h1>
-    <p>This clickable mockup is on its way. It will run in your browser with mock data only, and nothing will be saved.</p>
-    <p><a href="../../index.html#so-i-had-it-build-it">Back to chapter 4</a></p>
+  <a href="#main-board" class="skip-link">Skip to caseload board</a>
+
+  <div class="honest-bar" role="region" aria-label="Mockup notice">
+    <div class="honest-bar-inner">
+      <div class="honest-left">
+        <a href="../../index.html#14" class="back-link">← Back to talk</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <span class="honest-badge">Mockup · mock data · nothing is saved</span>
+      </div>
+      <div class="honest-right">
+        <span class="fake-note">In the real tool, this dashboard read live rows from a local spreadsheet export; here it runs on 152 invented senior records in browser memory.</span>
+        <button type="button" class="btn-reset" id="reset-btn">Reset view</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="board-header">
+    <div class="header-left">
+      <p class="eyebrow">Senior Essay Caseload Radar · Week 9 of Fall Term</p>
+      <h1>152 Seniors · 5 Days to Nov 1 Early Action</h1>
+    </div>
+
+    <div class="cohort-Toggle" role="group" aria-label="Filter by deadline cohort">
+      <button type="button" class="cohort-btn is-active" data-cohort="all">All 152 Seniors</button>
+      <button type="button" class="cohort-btn" data-cohort="Nov 1 EA/ED">Nov 1 EA/ED (64)</button>
+      <button type="button" class="cohort-btn" data-cohort="Nov 15 Priority">Nov 15 Priority (38)</button>
+      <button type="button" class="cohort-btn" data-cohort="Jan 1 RD">Jan 1 RD (50)</button>
+    </div>
+  </header>
+
+  <main id="main-board" class="board-main" tabindex="-1">
+    <section class="kpi-strip" aria-label="Caseload summary metrics">
+      <div class="kpi-card">
+        <span class="kpi-label">Active Cohort</span>
+        <strong class="kpi-num" id="kpi-total">152</strong>
+        <span class="kpi-sub" id="kpi-total-sub">Across 6 advisory sections</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">Ready or Line Polish</span>
+        <strong class="kpi-num kpi-green" id="kpi-ready">73</strong>
+        <span class="kpi-sub" id="kpi-ready-sub">48% of cohort on track</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">Overdue Check-In (10+ days)</span>
+        <strong class="kpi-num kpi-amber" id="kpi-stalled">19</strong>
+        <span class="kpi-sub">Need a quick hallway nudge</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">Nov 1 EA/ED Still in Early Stage</span>
+        <strong class="kpi-num kpi-red" id="kpi-urgent">9</strong>
+        <span class="kpi-sub">Priority conference slots this week</span>
+      </div>
+    </section>
+
+    <section class="pipeline-section" aria-labelledby="pipeline-heading">
+      <div class="section-head">
+        <div>
+          <h2 id="pipeline-heading">Stage Pipeline (Click any stage bar to filter)</h2>
+          <p class="section-sub">Proportional SVG breakdown of where every student's personal statement sits today.</p>
+        </div>
+        <button type="button" class="clear-stage-btn" id="clear-stage-btn" hidden>Showing single stage · Show all stages</button>
+      </div>
+
+      <div class="svg-pipeline-wrap" id="svg-pipeline-wrap" role="region" aria-label="Interactive stage pipeline chart"></div>
+      <div class="stage-legend" id="stage-legend" role="group" aria-label="Filter by essay stage"></div>
+    </section>
+
+    <div class="board-grid">
+      <section class="waffle-panel" aria-labelledby="waffle-heading">
+        <div class="section-head">
+          <div>
+            <h2 id="waffle-heading">The 152-Student Caseload Map</h2>
+            <p class="section-sub">Each square is one senior (sorted by stage &amp; days since last check-in). Hover or arrow through; click to inspect or advance.</p>
+          </div>
+          <div class="waffle-legend-inline">
+            <span class="ring-key">Red ring = 10+ days since last conference</span>
+          </div>
+        </div>
+
+        <div class="waffle-grid" id="waffle-grid" role="grid" aria-label="152 student tiles"></div>
+
+        <div class="inspector-card" id="inspector-card" aria-live="polite">
+          <div class="inspector-main">
+            <div class="inspector-top">
+              <span class="inspector-id" id="insp-id"></span>
+              <span class="inspector-cohort" id="insp-cohort"></span>
+              <span class="mock-tag">Mock data</span>
+            </div>
+            <h3 id="insp-name">Select any tile above</h3>
+            <p class="insp-topic" id="insp-topic"></p>
+          </div>
+          <div class="inspector-actions">
+            <div class="insp-stat">
+              <span class="stat-label">Last conference</span>
+              <strong id="insp-days"></strong>
+            </div>
+            <div class="insp-stat">
+              <span class="stat-label">Current stage</span>
+              <strong id="insp-stage"></strong>
+            </div>
+            <button type="button" class="btn-bump" id="insp-advance-btn">Advance stage →</button>
+            <button type="button" class="btn-checkin" id="insp-checkin-btn">Log check-in today</button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="triage-panel" aria-labelledby="triage-heading">
+        <div class="section-head">
+          <div>
+            <h2 id="triage-heading">Who Needs a Nudge First</h2>
+            <p class="section-sub">Sorted by earliest deadline + longest gap since last check-in.</p>
+          </div>
+        </div>
+
+        <ul class="triage-list" id="triage-list" aria-label="Students needing check-in"></ul>
+
+        <div class="weekly-velocity">
+          <h3>Conferences Logged by Week (SVG)</h3>
+          <svg id="velocity-svg" viewBox="0 0 320 110" role="img" aria-label="Weekly conferences bar chart showing peak activity in late October"></svg>
+        </div>
+      </aside>
+    </div>
   </main>
+
+  <script src="dashboard.js"></script>
 </body>
 </html>
