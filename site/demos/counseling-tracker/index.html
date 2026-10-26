@@ -3,144 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Essay Studio Desk · Counseling Tracker Mockup</title>
+  <title>Afternoon conferences</title>
   <link rel="stylesheet" href="../../css/fonts.css">
   <link rel="stylesheet" href="tracker.css">
 </head>
 <body>
-  <a href="#workspace" class="skip-link">Skip to student workspace</a>
-
-  <div class="honest-bar" role="region" aria-label="Mockup notice">
-    <div class="honest-bar-inner">
-      <div class="honest-left">
-        <a href="../../index.html#15" class="back-link">← Back to talk</a>
-        <span class="sep" aria-hidden="true">·</span>
-        <span class="honest-badge">Mockup · mock data · nothing is saved</span>
-      </div>
-      <div class="honest-right">
-        <span class="fake-note">Runs on invented student records in your browser; reloading resets to a clean afternoon schedule.</span>
-        <button type="button" class="btn-reset" id="reset-btn">Reset session</button>
-      </div>
+  <header class="schedule-bar">
+    <div class="schedule-inner">
+      <span class="schedule-label">Tuesday afternoon</span>
+      <nav class="schedule-strip" id="schedule-strip" aria-label="Afternoon meetings"></nav>
+      <button type="button" class="next-btn" id="next-meeting-btn">Next student →</button>
     </div>
-  </div>
-
-  <header class="top-rail">
-    <div class="rail-brand">
-      <div class="brand-title-row">
-        <h1>Counseling Essay Bench</h1>
-        <span class="caseload-pill" title="Total active seniors in caseload">152 seniors · 8 showing</span>
-      </div>
-      <p class="brand-sub">Tuesday, Oct 27 · Back-to-back afternoon block (1:00 – 3:40 PM)</p>
-    </div>
-
-    <nav class="schedule-strip" id="schedule-strip" aria-label="Today's back-to-back appointments"></nav>
   </header>
 
-  <div class="bench-layout" id="workspace" tabindex="-1">
-    <aside class="roster-pane" aria-label="Student roster and filters">
-      <div class="roster-controls">
-        <div class="search-wrap">
-          <label for="student-search" class="sr-only">Find student or essay topic</label>
-          <input type="search" id="student-search" placeholder="Search 152 students or topics… (/)" autocomplete="off">
-        </div>
-        <div class="filter-pills" role="group" aria-label="Filter roster">
-          <button type="button" class="filter-chip is-active" data-filter="all">All (8)</button>
-          <button type="button" class="filter-chip" data-filter="today">Today's block (6)</button>
-          <button type="button" class="filter-chip" data-filter="needs-eyes">Needs eyes</button>
-          <button type="button" class="filter-chip" data-filter="ready">Ready to send</button>
-        </div>
-      </div>
+  <main class="workspace" id="workspace">
+    <div class="student-header">
+      <h1 class="student-name" id="detail-name"></h1>
+      <p class="student-meta" id="detail-schools"></p>
+    </div>
 
-      <ul class="student-list" id="student-list" role="listbox" aria-label="Students"></ul>
+    <section class="prep-card" aria-labelledby="prep-heading">
+      <h2 class="section-heading" id="prep-heading">Before the meeting</h2>
+      <p class="prep-focus" id="detail-prep-focus"></p>
+      <div class="prep-checklist" id="detail-checklist" role="group" aria-label="Meeting checklist"></div>
+    </section>
 
-      <div class="roster-footer">
-        <span>Keyboard: <kbd>J</kbd>/<kbd>K</kbd> next/prev student · <kbd>1</kbd>–<kbd>3</kbd> switch drafts</span>
-      </div>
-    </aside>
-
-    <main class="student-dossier" id="student-dossier" aria-live="polite">
-      <div class="dossier-header">
-        <div class="student-identity">
-          <div class="identity-top">
-            <span class="appt-badge" id="detail-appt"></span>
-            <span class="pronouns" id="detail-pronouns"></span>
-            <span class="mock-tag">Mock data</span>
-          </div>
-          <h2 id="detail-name"></h2>
-          <p class="schools-line" id="detail-schools"></p>
+    <div class="columns">
+      <section class="draft-column" aria-labelledby="draft-heading">
+        <div class="column-header">
+          <h2 class="section-heading" id="draft-heading">Essay draft</h2>
+          <div class="draft-tabs" id="draft-tabs" role="tablist" aria-label="Draft versions"></div>
         </div>
-
-        <div class="stage-controls">
-          <label for="stage-select" class="stage-label">Essay status</label>
-          <select id="stage-select" class="stage-select">
-            <option value="Brainstorming">Brainstorming</option>
-            <option value="First Draft">First Draft</option>
-            <option value="Structural Revision">Structural Revision</option>
-            <option value="Line Polish">Line Polish</option>
-            <option value="Ready to Send">Ready to Send</option>
-          </select>
-          <button type="button" class="btn-advance" id="next-meeting-btn" title="Jump to next back-to-back appointment">
-            Next meeting →
-          </button>
-        </div>
-      </div>
-
-      <section class="prep-brief" aria-labelledby="prep-heading">
-        <div class="prep-header">
-          <h3 id="prep-heading">30-Second Pre-Meeting Prep</h3>
-          <span class="prep-deadline" id="detail-deadline"></span>
-        </div>
-        <p class="prep-focus" id="detail-prep-focus"></p>
-        <div class="prep-checklist" id="detail-checklist" role="group" aria-label="Meeting agenda items"></div>
+        <blockquote class="draft-excerpt" id="draft-excerpt"></blockquote>
+        <p class="draft-note" id="draft-takeaway"></p>
       </section>
 
-      <div class="dossier-columns">
-        <section class="draft-panel" aria-labelledby="draft-heading">
-          <div class="panel-bar">
-            <div>
-              <h3 id="draft-heading">Revision History &amp; Excerpt</h3>
-              <p class="prompt-caption" id="detail-prompt"></p>
-            </div>
-            <div class="draft-tabs" id="draft-tabs" role="tablist" aria-label="Essay drafts"></div>
-          </div>
+      <section class="notes-column" aria-labelledby="notes-heading">
+        <h2 class="section-heading" id="notes-heading">Meeting notes</h2>
+        <form class="note-form" id="note-form">
+          <label for="note-input" class="sr-only">Add a note</label>
+          <textarea id="note-input" rows="2" placeholder="Write a quick note before the next student knocks..."></textarea>
+          <button type="submit" class="save-note-btn">Add note</button>
+        </form>
+        <ul class="notes-list" id="notes-timeline" aria-label="Past notes"></ul>
+      </section>
+    </div>
+  </main>
 
-          <article class="draft-sheet" id="draft-sheet" role="tabpanel">
-            <div class="draft-meta">
-              <span class="draft-date" id="draft-date"></span>
-              <span class="draft-words" id="draft-words"></span>
-            </div>
-            <blockquote class="draft-excerpt" id="draft-excerpt"></blockquote>
-            <div class="coach-margin-note">
-              <span class="margin-label">Coach's margin note on this draft</span>
-              <p id="draft-takeaway"></p>
-            </div>
-          </article>
-        </section>
-
-        <section class="notes-panel" aria-labelledby="notes-heading">
-          <div class="panel-bar">
-            <h3 id="notes-heading">Conference Notes</h3>
-            <span class="notes-count" id="notes-count"></span>
-          </div>
-
-          <form class="note-composer" id="note-form">
-            <label for="note-input" class="sr-only">Add conference note</label>
-            <textarea id="note-input" rows="3" placeholder="Jot a quick note before the next student knocks…"></textarea>
-            <div class="composer-actions">
-              <div class="quick-stamps" aria-label="Quick note stamps">
-                <button type="button" class="stamp-btn" data-stamp="Read aloud together — found the real opening.">+ Read aloud</button>
-                <button type="button" class="stamp-btn" data-stamp="Cut the throat-clearing first paragraph.">+ Cut intro</button>
-                <button type="button" class="stamp-btn" data-stamp="Next draft due Friday before 3 PM.">+ Due Friday</button>
-              </div>
-              <button type="submit" class="btn-save-note">Log note</button>
-            </div>
-          </form>
-
-          <ul class="notes-timeline" id="notes-timeline" aria-label="Past session notes"></ul>
-        </section>
-      </div>
-    </main>
-  </div>
+  <footer class="quiet-footer">
+    <span>Mockup with invented data. Nothing is saved.</span>
+    <div class="footer-actions">
+      <button type="button" class="text-btn" id="reset-btn">Reset</button>
+      <a href="../../index.html#15" class="back-link">Back to the talk</a>
+    </div>
+  </footer>
 
   <script src="data.js"></script>
   <script src="tracker.js"></script>
