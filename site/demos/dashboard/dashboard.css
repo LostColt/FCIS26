@@ -319,3 +319,23 @@ body { min-height: 100vh; display: flex; flex-direction: column; }
   .nudge-column { border-left: none; padding-left: 0; }
   .quiet-footer { flex-direction: column; align-items: flex-start; padding: 0.75rem 1rem; }
 }
+
+/* Personality: a field map. Clean gray-green ground, tiles that deepen from seedling to
+   forest as students move toward "ready," confident sans numbers, red only for the overdue. */
+:root {
+  --bg: #f4f7f3;
+  --surface: #e7eee5;
+  --surface-strong: #d9e3d6;
+  --line: #d2dccf;
+  --ink: #13221a;
+  --ink-muted: #44574a;
+  --ink-faint: #5a6d60;
+  --accent: #1d6b45;
+  --alert: #c0262d;
+  --stage-0: #e3ede4;
+  --stage-1: #bcd7c2;
+  --stage-2: #8bbd98;
+  --stage-3: #4c9966;
+  --stage-4: #1d6b45;
+}
+.page-title { font-family: var(--font-sans); font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }

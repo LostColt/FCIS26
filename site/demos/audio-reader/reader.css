@@ -345,3 +345,26 @@ body { min-height: 100vh; display: flex; flex-direction: column; }
   .reading-stage { align-items: flex-start; padding: 1.5rem 1rem; }
   .quiet-footer { flex-direction: column; align-items: flex-start; padding: 0.75rem 1rem; }
 }
+
+/* Personality: a reading room. Warm paper, generous serif, a real highlighter on the line
+   being read, a deep plum accent, and controls that sit with the text, not off in a corner. */
+:root {
+  --bg: #fbf8f1;
+  --surface: #f2ecdf;
+  --surface-strong: #e7dec9;
+  --line: #e3d9c5;
+  --sentence-bg: #fbe7a1;
+  --ink: #23201b;
+  --ink-muted: #5a5246;
+  --ink-faint: #6b6255;
+  --accent: #6d2b57;
+}
+body[data-paper="sage"] { --sentence-bg: #f6e39a; }
+body[data-paper="warm"] { --sentence-bg: #f8df8f; }
+.bar-inner { max-width: 728px; padding: 1.1rem 1.5rem 0.9rem; }
+.transport-left { width: 100%; }
+.play-btn { background: var(--accent); color: #ffffff; font-size: 1.05rem; padding: 0.8rem 1.6rem; border-radius: 999px; min-width: 9.5rem; }
+.play-btn:hover { background: #5a2347; }
+.play-btn.is-playing { background: var(--ink); color: #ffffff; }
+.bar-right { width: 100%; justify-content: space-between; }
+.sentences-flow { font-size: 1.32rem; line-height: 1.85; }

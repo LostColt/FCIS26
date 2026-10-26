@@ -365,3 +365,24 @@ body {
   .notes-column { border-left: none; border-top: 1px solid var(--line); padding-left: 0; padding-top: 1.5rem; }
   .quiet-footer { flex-direction: column; align-items: flex-start; padding: 0.75rem 1rem; }
 }
+
+/* Personality: a coach's planner. Cool paper, navy ink, one steel-blue accent,
+   crisp sans headings, the current meeting filled in like a highlighted calendar slot. */
+:root {
+  --bg: #f7f9fb;
+  --surface: #eaf0f5;
+  --surface-strong: #dbe5ee;
+  --line: #d4dde7;
+  --ink: #0f1c2e;
+  --ink-muted: #42526a;
+  --ink-faint: #5b6a80;
+  --accent: #0b5c86;
+}
+.student-name { font-family: var(--font-sans); font-weight: 600; letter-spacing: -0.015em; }
+.schedule-inner { max-width: 1240px; }
+.schedule-strip { flex-wrap: wrap; overflow: visible; gap: 0.25rem; }
+.slot-pill { padding: 0.4rem 0.6rem; border-radius: 999px; }
+.slot-pill.is-selected { background: var(--accent); color: #ffffff; }
+.slot-pill.is-selected .slot-time { color: #d6e7f2; }
+.next-btn, .save-note-btn { background: var(--accent); color: #ffffff; }
+.next-btn:hover, .save-note-btn:hover { background: #094a6c; }

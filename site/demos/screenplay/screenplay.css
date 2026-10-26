@@ -248,3 +248,21 @@ body { min-height: 100vh; display: flex; flex-direction: column; }
   .sp-dialogue { margin-left: 10%; margin-right: 8%; }
   .quiet-footer { flex-direction: column; align-items: flex-start; padding: 0.75rem 1rem; }
 }
+
+/* Personality: a script studio. Cool desk gray, a white page with a little lift,
+   Courier on the page and a yellow highlighter marking the passage you're looking at.
+   Screenplay format puts scene headings and character names in capitals. */
+:root {
+  --bg: #e9ebee;
+  --surface: #dee2e7;
+  --highlight: #fff1a8;
+  --line: #ccd2d9;
+  --paper: #ffffff;
+  --ink: #15171a;
+  --ink-muted: #474c54;
+  --ink-faint: #5b616a;
+  --accent: #15171a;
+}
+.sp-slugline, .sp-character { text-transform: uppercase; }
+.prose-beat.is-active { background: var(--highlight); }
+.script-sheet { box-shadow: 0 1px 2px rgba(21,23,26,0.08), 0 8px 24px rgba(21,23,26,0.07); border-color: transparent; }
