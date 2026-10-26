@@ -65,7 +65,8 @@ The full text is in `content/story.md`. Use that text; do not rewrite David's vo
 - **Moving through it:** swipe on a phone; arrow keys, space or a clicker on a laptop; a "Slides" menu jumps to any chapter; F is full screen. Every slide has its own link (`#15` is slide 15).
 - **Lines arrive one press at a time** where the pause matters ("People loved it." … "I stopped anyway.").
 - **A second layer moves underneath:** a red-pen strike and highlighter draw themselves, the pile drops in, 150 counts up, and a huge faint chapter word drifts behind every slide at its own pace.
-- **Practical slides** (the tally, walkthroughs, prompt, workshop timer, links) scroll inside the slide on a phone, so nothing is crammed.
+- **Practical slides** (the tally, the step-by-step build slides, the prompt, the workshop timer, the links) scroll inside the slide on a phone, so nothing is crammed.
+- **Chapter 9 teaches the build, one step per slide,** for three paths: Google AI Studio → GitHub → Vercel (8 steps), ChatGPT Sites (5), and Google Sheets canvas (5, with Apps Script as the fallback). The steps live in `site/js/steps.js`.
 
 An attendee should be able to follow every practical slide without David in the room.
 
@@ -122,13 +123,15 @@ David's tools are recreated as coded mockups that attendees can click around in.
 - **A picture for the deck:** each folder has a `thumb.png` (1600×1000); the deck shows it on the link card automatically.
 - Works on a phone and with a keyboard.
 
-| Mockup | Folder | Slide |
+| Mockup | Folder | Slide name (`index.html#name`) |
 |---|---|---|
-| Counseling tracker | `demos/counseling-tracker/` | 15 |
-| Dashboard | `demos/dashboard/` | 15 |
-| Screenplay tool | `demos/screenplay/` | 15 |
-| Audio reader | `demos/audio-reader/` | 19 |
-| Note tool → test → locked browser | `demos/locked-browser/` | 22 |
+| Counseling tracker | `demos/counseling-tracker/` | `#tracker` |
+| Dashboard | `demos/dashboard/` | `#dashboard` |
+| Screenplay tool | `demos/screenplay/` | `#screenplay` |
+| Audio reader | `demos/audio-reader/` | `#reader` |
+| Note tool → test → locked browser | `demos/locked-browser/` | `#locked` |
+
+Each mockup runs live inside its slide (loaded when the slide opens, scaled to fit), so David never leaves the deck. On phones the slide shows the mockup's picture, which opens it full screen. Each mockup has its own look: a coach's planner, a field map, a reading room, an exam room, a script studio.
 
 ## 9. Review rubric
 

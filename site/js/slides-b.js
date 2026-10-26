@@ -3,7 +3,7 @@
 (function () {
   var D = window.DECK;
   function add(ch, steps, html, opts) {
-    D.slides.push({ ch: ch, steps: steps, html: html, scroll: !!(opts && opts.scroll) });
+    D.slides.push({ ch: ch, steps: steps, html: html, scroll: !!(opts && opts.scroll), id: opts && opts.id });
   }
 
   var PROMPT =
@@ -23,6 +23,7 @@
     '<li data-step="2"><div class="sketch" aria-hidden="true"><i class="dark"></i><i class="blue"></i><i class="blue"></i><i class="blue"></i></div><h3>Ready for tests</h3><p>Then it became ready for taking tests.</p></li>' +
     '<li data-step="3"><div class="sketch" aria-hidden="true"><i class="dark"></i><i></i><i></i><span class="lock">Locked</span></div><h3>A locked browser</h3><p>No copy and paste, no AI.</p></li>' +
     "</ol>");
+  add(7, 0, D.live("locked-browser", "Notes, then a test, then a locked browser", "Switch between the three stages. In Locked, try to paste."), { id: "locked" });
   add(7, 1,
     '<p class="big huge">People loved it.</p>' +
     '<p class="big huge" data-step="1">I stopped anyway.</p>');
@@ -31,7 +32,6 @@
     "<p>I wasn’t trying to ship a product. I was trying to build smaller things.</p>" +
     "<p>What it would mean to build something like that, to support it and maintain it, was too much at the time. Knowing when to stop is part of the skill.</p>" +
     '</div><div><p class="big" data-step="1">Build tools, not <span class="strike" data-at="1">products</span>.</p>' +
-    '<div class="practical" data-step="1" style="margin-top:2rem"><div class="mockups"><a class="mockup-link" href="demos/locked-browser/index.html"><strong>Notes, test, locked browser</strong><span>Three stages of one tool.</span></a></div></div>' +
     "</div></div>");
 
   /* 8 · Update your software */
@@ -61,35 +61,7 @@
     '<div data-step="2"><h3>Ship it fast</h3><p class="tools">ChatGPT Sites</p><dl><dt>Best for</dt><dd>A page or small app with a link today</dd><dt>Cost</dt><dd>Paid ChatGPT plan</dd></dl></div>' +
     '<div data-step="3"><h3>Keep it protected</h3><p class="tools">Google Sheets and Apps Script</p><dl><dt>Best for</dt><dd>Data your school already keeps in Google</dd><dt>Cost</dt><dd>Included in Workspace</dd></dl></div>' +
     "</div>");
-  add(9, 0,
-    '<div class="practical"><h2>Own it</h2><p class="sub">Google AI Studio, then GitHub, then Vercel. For lessons and tools you want to keep and revise. Free to start.</p><ol>' +
-    '<li>Go to <a href="https://aistudio.google.com">aistudio.google.com</a>, sign in with a Google account, and open <b>Build</b>.</li>' +
-    "<li>Describe the tool (use the prompt in “Your turn”). Add: <i>“Make it work without any AI or API calls.”</i> That keeps your first tool simple to host.</li>" +
-    "<li>Test it in the preview. Ask for changes in plain language.</li>" +
-    "<li>In AI Studio, open <b>Settings → GitHub</b> and create a new repository for your app. (Or download it as a ZIP.)</li>" +
-    '<li>Go to <a href="https://vercel.com">vercel.com</a>, sign in with GitHub, choose <b>Add New → Project</b>, import that repository, and click <b>Deploy</b>.</li>' +
-    "<li>You get a link. Every time you push a change to GitHub, the site updates.</li></ol>" +
-    "<p><b>Why this path:</b> the code is yours. It lives in your GitHub, with a history of every change.</p>" +
-    '<p class="note">Watch out: if your app uses AI features, it needs an API key set on the host, and usage can cost money. Apps in AI Studio are private until you share them.</p>' +
-    '<p class="note">[DAVID: recorded demo video link]</p></div>', { scroll: true });
-  add(9, 0,
-    '<div class="practical"><h2>Ship it fast</h2><p class="sub">ChatGPT Sites. For a page, dashboard or small app you want to share with a link today. Needs a paid ChatGPT plan.</p><ol>' +
-    "<li>In ChatGPT, switch to <b>Work</b> and type <b>@Sites</b>, or simply ask it to build a website.</li>" +
-    "<li>Describe what you want and who it’s for. You can attach files or reference images.</li>" +
-    "<li>Review the preview and ask for changes.</li>" +
-    "<li>Publish. A new site starts private; share it with specific people or with a link.</li></ol>" +
-    "<p><b>Why this path:</b> it’s the fastest way from an idea to a live link.</p>" +
-    '<p class="note">Watch out: the site and anything you put in it live on OpenAI’s servers. Keep student information out.</p>' +
-    '<p class="note">[DAVID: recorded demo video link]</p></div>', { scroll: true });
-  add(9, 0,
-    '<div class="practical"><h2>Keep it protected</h2><p class="sub">Google Sheets, then a dashboard. For data your school already keeps in Google: hours, schedules, duties, rosters.</p><ol>' +
-    "<li>Start with a Google Sheet in your school account.</li>" +
-    "<li><b>Option A, Gemini in Sheets</b> (if your school’s Workspace includes it and it’s approved for this data): open the Gemini panel and ask it to summarize the sheet and build charts.</li>" +
-    "<li><b>Option B, Apps Script:</b> in the sheet, open <b>Extensions → Apps Script</b>. Ask any AI to write a script that reads this sheet and shows a dashboard. Describe your column names; don’t paste the data itself. Paste the code it gives you.</li>" +
-    "<li>Choose <b>Deploy → New deployment → Web app</b>. Set <i>Execute as</i> to <b>Me</b> and <i>Who has access</i> to <b>Only myself</b> or <b>anyone in your school</b>.</li>" +
-    "<li>Open the link. Only people signed in with access can see it.</li></ol>" +
-    "<p><b>Why this path:</b> the data never leaves your school’s Google account.</p>" +
-    '<p class="note">[DAVID: recorded demo video link]</p></div>', { scroll: true });
+  D.insertSteps && D.insertSteps(add);
 
   /* 10 · Before you build */
   add(10, 0,
@@ -132,6 +104,5 @@
     '<li><a href="https://aistudio.google.com">Google AI Studio</a></li><li><a href="https://chatgpt.com/features/sites/">ChatGPT Sites</a></li>' +
     '<li><a href="https://script.google.com">Google Apps Script</a></li><li><a href="https://vercel.com">Vercel</a></li><li><a href="https://github.com">GitHub</a></li></ul>' +
     "<h3>The prompt</h3>" + promptBox +
-    '<p class="note">[DAVID: link to recorded demos]</p>' +
     '<h3>Keep in touch</h3><p>David Tran, AI Learning and Teaching Specialist, Gulliver Prep, Miami, FL<br><a href="https://www.linkedin.com/in/david-t-04864734">Connect with me on LinkedIn</a></p></div>', { scroll: true });
 })();

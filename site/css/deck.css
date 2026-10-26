@@ -46,7 +46,8 @@ body { overflow: hidden; overscroll-behavior: none; }
 @media (prefers-reduced-motion: no-preference) {
   .track, .backdrop-track { transition: transform 0.6s cubic-bezier(0.22, 0.7, 0.2, 1); }
   .backdrop-track { transition-duration: 0.9s; }
-  .deck.dragging .track, .deck.dragging .backdrop-track { transition: none; }
+  .deck.dragging .track, .deck.dragging .backdrop-track,
+  .deck.jumping .track, .deck.jumping .backdrop-track { transition: none; }
 }
 
 /* ---------- Type on slides ---------- */

@@ -91,3 +91,50 @@
 .juggle.ideas li { margin: 0; font-family: var(--serif); font-weight: 600; font-size: clamp(1.15rem, 2vw, 1.6rem); line-height: 1.25; }
 .slide .steps .sketch { aspect-ratio: 16 / 9; }
 @media (max-width: 760px) { .juggle.ideas { grid-template-columns: 1fr; } }
+
+/* Live mockups inside slides */
+.live { display: flex; flex-direction: column; gap: 1rem; width: 100%; }
+.live-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1.5rem; }
+.live-head h2 { font-family: var(--serif); font-size: clamp(1.6rem, 2.8vw, 2.5rem); line-height: 1.1; letter-spacing: -0.015em; margin: 0 0 0.3rem; }
+.live-head .sub { font-family: var(--sans); color: var(--ink-soft); margin: 0; font-size: clamp(1rem, 1.2vw, 1.15rem); max-width: 48ch; }
+.live-open { font-family: var(--sans); font-size: 0.95rem; white-space: nowrap; }
+.live-frame {
+  position: relative;
+  width: min(100%, calc((100vh - 15rem) * 1.6));
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--paper-deep);
+  box-shadow: 0 1px 2px rgba(29, 36, 48, 0.06), 0 12px 32px rgba(29, 36, 48, 0.08);
+}
+.live-thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.live-frame iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: 0 0; background: #fff; opacity: 0; }
+.live-frame.loaded iframe { opacity: 1; }
+@media (max-width: 760px) {
+  .live-head { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .live-frame { width: 100%; cursor: pointer; }
+}
+
+/* How to build: one step per slide */
+.howto { max-width: 52rem; }
+.howto-path { font-family: var(--sans); color: var(--ink-soft); font-size: 1rem; margin: 0 0 1.4rem; display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; }
+.howto-count { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 500; }
+.howto-title { font-family: var(--serif); font-weight: 600; font-size: clamp(2.2rem, 5vw, 4.4rem); line-height: 1.05; letter-spacing: -0.025em; margin: 0 0 1.3rem; max-width: 18ch; }
+.howto-body { font-family: var(--sans); font-size: clamp(1.15rem, 1.7vw, 1.5rem); line-height: 1.55; max-width: 40ch; margin: 0 0 1.2rem; }
+.howto-note { font-family: var(--sans); font-size: 1rem; color: var(--ink-soft); line-height: 1.5; max-width: 52ch; margin: 1rem 0 0; }
+.howto .prompt-box { max-width: 46rem; }
+.howto-intro .howto-note { margin-top: 1.5rem; }
+.ui {
+  display: inline-block;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.92em;
+  line-height: 1.2;
+  padding: 0.12em 0.5em;
+  border: 1px solid var(--ink);
+  border-radius: 6px;
+  background: var(--white);
+  white-space: nowrap;
+}
+.ui-arrow { color: var(--ink-soft); }

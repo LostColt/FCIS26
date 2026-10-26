@@ -30,6 +30,7 @@
     el.setAttribute("aria-roledescription", "slide");
     el.setAttribute("aria-label", (i + 1) + " of " + D.slides.length + ": " + D.chapters[s.ch].title);
     el.tabIndex = -1;
+    if (s.id) el.dataset.name = s.id;
     el.innerHTML = '<div class="slide-inner">' + todo(s.html) + "</div>";
     track.appendChild(el);
     slides.push(el);
@@ -54,6 +55,41 @@
     var first = D.slides.findIndex(function (s) { return s.ch === ci; });
     return '<li><a href="#' + (first + 1) + '" data-go="' + first + '"><span>' + ci + "</span>" + c.title + "</a></li>";
   }).join("");
+
+  /* ---------- Live mockups: load when their slide is shown, scaled to fit ---------- */
+  var LIVE_W = 1440, LIVE_H = 900;
+  function fitLive(frame) {
+    var f = frame.querySelector("iframe");
+    if (f) f.style.transform = "scale(" + (frame.clientWidth / LIVE_W) + ")";
+  }
+  function wakeLive(slide) {
+    if (window.matchMedia("(max-width: 760px)").matches) return;
+    slide.querySelectorAll(".live-frame").forEach(function (frame) {
+      if (!frame.querySelector("iframe")) {
+        var f = document.createElement("iframe");
+        f.src = frame.dataset.src;
+        f.title = frame.dataset.title + " (live mockup)";
+        f.width = LIVE_W; f.height = LIVE_H;
+        f.addEventListener("load", function () { frame.classList.add("loaded"); });
+        frame.appendChild(f);
+      }
+      fitLive(frame);
+    });
+  }
+  /* On phones the picture opens the mockup full screen */
+  track.addEventListener("click", function (e) {
+    var frame = e.target.closest(".live-frame");
+    if (frame && !frame.querySelector("iframe")) window.open(frame.dataset.src, "_blank", "noopener");
+  });
+
+  function indexFromHash() {
+    var h = (location.hash || "").replace("#", "");
+    if (!h) return 0;
+    var n = parseInt(h, 10);
+    if (!isNaN(n) && String(n) === h) return n - 1;
+    var k = D.slides.findIndex(function (s) { return s.id === h; });
+    return k < 0 ? 0 : k;
+  }
 
   /* ---------- Show ---------- */
   function apply(el, n) {
@@ -81,6 +117,11 @@
 
   function show(i, s, fromNav) {
     var changed = i !== cur;
+    /* Jumping (start-up, the slide list, a link back from a mockup) lands instantly instead of sliding past every slide */
+    if (fromNav === "jump") {
+      deck.classList.add("jumping");
+      requestAnimationFrame(function () { requestAnimationFrame(function () { deck.classList.remove("jumping"); }); });
+    }
     cur = Math.max(0, Math.min(slides.length - 1, i));
     var max = D.slides[cur].steps;
     step = s === "all" ? max : Math.max(0, Math.min(max, s));
@@ -99,6 +140,7 @@
     });
 
     if (changed || fromNav === "jump") {
+      wakeLive(slides[cur]);
       countUp(slides[cur]);
       slides[cur].scrollTop = 0;
       if (!slides[cur].contains(document.activeElement)) slides[cur].focus({ preventScroll: true });
@@ -193,11 +235,13 @@
     var b = e.target.closest("[data-copy]");
     if (!b) return;
     var done = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = "Copy prompt"; }, 1800); };
-    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(D.prompt).then(done, fallback);
+    var box = b.closest(".prompt-box");
+    var text = box && box.querySelector("pre") ? box.querySelector("pre").textContent : D.prompt;
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(done, fallback);
     else fallback();
     function fallback() {
       var ta = document.createElement("textarea");
-      ta.value = D.prompt; ta.style.position = "fixed"; ta.style.opacity = "0";
+      ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
       document.body.appendChild(ta); ta.select();
       try { document.execCommand("copy"); done(); } catch (err) { b.textContent = "Select the text to copy"; }
       document.body.removeChild(ta);
@@ -205,11 +249,13 @@
   });
 
   /* ---------- Start ---------- */
-  var startAt = parseInt((location.hash || "").replace("#", ""), 10);
-  show(isNaN(startAt) ? 0 : startAt - 1, 0, "jump");
-  window.addEventListener("resize", function () { show(cur, step); });
+  show(indexFromHash(), 0, "jump");
+  window.addEventListener("resize", function () {
+    show(cur, step);
+    document.querySelectorAll(".live-frame").forEach(fitLive);
+  });
   window.addEventListener("hashchange", function () {
-    var n = parseInt((location.hash || "").replace("#", ""), 10);
-    if (!isNaN(n) && n - 1 !== cur) show(n - 1, 0, "jump");
+    var n = indexFromHash();
+    if (n !== cur) show(n, 0, "jump");
   });
 })();
