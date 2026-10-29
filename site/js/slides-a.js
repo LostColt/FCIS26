@@ -120,7 +120,7 @@
   /* "Could I build it?": the apps I could copy spread out when the slide opens;
      one press and the tools any teacher could build pan out below */
   var apps = ["Notion", "Padlet", "Trello", "Kahoot!", "Quizlet", "Nearpod", "Gimkit", "Blooket", "Screencastify", "MagicSchool"];
-  var tools = ["A dashboard", "A PDF reader", "A locked browser", "A screenplay writer", "Flashcards", "A rubric checker", "A group maker", "A seating chart", "An exit-ticket randomizer", "A class timer"];
+  var tools = ["A dashboard", "A PDF reader", "A locked browser", "A screenplay writer", "A class website", "A mini LMS", "An automated newsletter", "Flashcards", "An exit-ticket randomizer", "A class timer"];
   var rot = [-2, 1.5, -1, 2, -1.5, 1, -2, 1.5, -1, 2], drop = [0, 0.6, 0.2, 0.9, 0.1, 0.7, 0.3, 0.8, 0, 0.5];
   function cards(list, step) {
     return list.map(function (t, k) {

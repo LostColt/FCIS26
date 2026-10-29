@@ -83,7 +83,7 @@ And students pay that cost too. It's hard having students log into yet another a
 
 > Could I build it? (Notion, Padlet, Trello, Kahoot!, Quizlet, Nearpod, Gimkit, Blooket, Screencastify, MagicSchool spread out when the slide opens.)
 >
-> Could I build other tools, too? (On a press: a dashboard, a PDF reader, a locked browser, a screenplay writer, flashcards, a rubric checker, a group maker, a seating chart, an exit-ticket randomizer, a class timer.)
+> Could I build other tools, too? (On a press: a dashboard, a PDF reader, a locked browser, a screenplay writer, a class website, a mini LMS, an automated newsletter, flashcards, an exit-ticket randomizer, a class timer.)
 
 > Do I have to pay anymore?
 

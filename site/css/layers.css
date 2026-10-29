@@ -358,7 +358,6 @@
   box-shadow: 0 1px 0 var(--rule);
   transform: translateY(var(--y)) rotate(var(--r));
 }
-.pile-row.tools li { border-color: var(--ink); box-shadow: 0 2px 0 var(--ink); }
 .pile-row li.on { transform: translateY(var(--y)) rotate(var(--r)); }
 @media (prefers-reduced-motion: no-preference) {
   /* Top row: spreads out by itself when the slide opens */
