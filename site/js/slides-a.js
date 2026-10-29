@@ -117,17 +117,21 @@
     '<li data-step="1" style="--i:2"><div class="sketch" aria-hidden="true"><i class="dark"></i><i></i><i></i><i class="short"></i><i class="blue"></i></div><h3>A website</h3><p>Then I had it build a website.</p></li>' +
     '<li data-step="1" style="--i:3"><div class="sketch" aria-hidden="true"><i class="dark"></i><div class="bars"><b style="height:40%"></b><b style="height:75%"></b><b style="height:55%"></b><b style="height:90%"></b></div></div><h3>A dashboard</h3><p>Then a dashboard, so I could track things.</p></li>' +
     "</ol>");
-  /* "Could you build:" and the apps arrive like texts */
-  var asks = [
-    ["Notion?", 4, 6, -2, 0], ["Padlet?", 52, 2, 1.5, 1], ["Trello?", 30, 30, -1, 0],
-    ["Kahoot?", 70, 26, 2, 1], ["Quizlet?", 8, 52, 1, 1], ["Nearpod?", 46, 56, -1.5, 0],
-    ["Gimkit?", 76, 62, 1, 0], ["Blooket?", 22, 78, -2, 1], ["Screencastify?", 56, 84, 1.5, 0]
-  ];
-  add(4, 0,
-    '<div class="texts"><p class="big">Could you build:</p><ul class="bubbles" aria-label="Tools I asked it to build">' +
-    asks.map(function (a, k) {
-      return '<li class="' + (a[4] ? "me" : "") + '" style="--i:' + k + ";--x:" + a[1] + "%;--y:" + a[2] + "%;--r:" + a[3] + 'deg">' + a[0] + "</li>";
-    }).join("") + "</ul></div>");
+  /* "Could I build it?": the apps I could copy spread out when the slide opens;
+     one press and the tools any teacher could build pan out below */
+  var apps = ["Notion", "Padlet", "Trello", "Kahoot!", "Quizlet", "Nearpod", "Gimkit", "Blooket", "Screencastify", "MagicSchool"];
+  var tools = ["A dashboard", "A PDF reader", "A locked browser", "A screenplay writer", "Flashcards", "A rubric checker", "A group maker", "A seating chart", "An exit-ticket randomizer", "A class timer"];
+  var rot = [-2, 1.5, -1, 2, -1.5, 1, -2, 1.5, -1, 2], drop = [0, 0.6, 0.2, 0.9, 0.1, 0.7, 0.3, 0.8, 0, 0.5];
+  function cards(list, step) {
+    return list.map(function (t, k) {
+      return "<li" + (step ? ' data-step="1"' : "") + ' style="--i:' + k + ";--r:" + rot[k] + "deg;--y:" + drop[k] + 'rem">' + t + "</li>";
+    }).join("");
+  }
+  add(4, 1,
+    '<div class="could">' +
+    '<section><h2>Could I build it?</h2><ul class="pile-row spread" aria-label="Apps I could copy">' + cards(apps) + "</ul></section>" +
+    '<section><h2 data-step="1">Could I build other tools, too?</h2><ul class="pile-row tools" aria-label="Tools any teacher could build">' + cards(tools, true) + "</ul></section>" +
+    "</div>");
   add(4, 1,
     '<p class="big huge">Do I have to pay <span class="mark" data-at="1">anymore?</span></p>' +
     '<p class="kicker-line" data-step="1">I started asking it to build the tools I was already using. And the information was stored locally.</p>');

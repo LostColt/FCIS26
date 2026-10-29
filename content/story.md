@@ -81,7 +81,9 @@ And students pay that cost too. It's hard having students log into yet another a
 **Spine**
 > So I had it build it.
 
-> Could you build: Notion? Padlet? Trello? Kahoot? Quizlet? Nearpod? Gimkit? Blooket? Screencastify?
+> Could I build it? (Notion, Padlet, Trello, Kahoot!, Quizlet, Nearpod, Gimkit, Blooket, Screencastify, MagicSchool spread out when the slide opens.)
+>
+> Could I build other tools, too? (On a press: a dashboard, a PDF reader, a locked browser, a screenplay writer, flashcards, a rubric checker, a group maker, a seating chart, an exit-ticket randomizer, a class timer.)
 
 > Do I have to pay anymore?
 
