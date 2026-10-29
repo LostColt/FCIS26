@@ -44,29 +44,28 @@ The full text is in `content/story.md`. Use that text; do not rewrite David's vo
 
 | # | Chapter | Minutes | Practical or interactive slides |
 |---|---|---|---|
-| 0 | Stop Subscribing, Start Building | 1 | No |
+| 0 | Stop Subscribing, Start Building | 1 | QR code to the site |
 | 1 | The pile | 3 | No |
 | 2 | 150 students | 3 | No |
 | 3 | The real cost | 3 | No |
-| 4 | So I had it build it | 5 | Yes: mockups, one screenshot |
+| 4 | So I had it build it | 6 | Yes: two mockups |
 | 5 | Why I kept building | 3 | No |
-| 6 | Building for someone else | 2 | Yes: mockup |
-| 7 | Build small | 3 | Yes: mockup |
-| 8 | Update your software | 3 | No |
-| 9 | Three ways in | 8 | Yes: three walkthroughs |
-| 10 | Before you build | 3 | Yes: checklist |
-| 11 | Your turn | 15 | Yes: prompt template, steps |
-| 12 | Keep building | 3 | Yes: every link in one place |
+| 6 | Building for someone else | 3 | Yes: mockup |
+| 7 | Update your software | 3 | No |
+| 8 | Three ways in | 8 | Yes: three walkthroughs |
+| 9 | Before you build | 3 | Yes: checklist |
+| 10 | Your turn | 16 | Yes: prompt template, steps |
+| 11 | Keep building | 3 | Yes: every link in one place |
 | | **Total** | **55** | |
 
 ## 5. How the deck works
 
-- **Slides, not scrolling.** Each chapter is a short run of slides: the big line, then the story in David's words, then any interactive or practical slide. 38 slides in all.
+- **Slides, not scrolling.** Each chapter is a short run of slides: the big line, then the story in David's words, then any interactive or practical slide. 53 slides as of 2026-10-29; phases in `prompts/PHASES.md` will trim it further.
 - **Moving through it:** swipe on a phone; arrow keys, space or a clicker on a laptop; a "Slides" menu jumps to any chapter; F is full screen. Every slide has its own link (`#15` is slide 15).
 - **Lines arrive one press at a time** where the pause matters ("People loved it." … "I stopped anyway.").
 - **A second layer moves underneath:** a red-pen strike and highlighter draw themselves, the pile drops in, 150 counts up, and a huge faint chapter word drifts behind every slide at its own pace.
 - **Practical slides** (the tally, the step-by-step build slides, the prompt, the workshop timer, the links) scroll inside the slide on a phone, so nothing is crammed.
-- **Chapter 9 teaches the build, one step per slide,** for three paths: Google AI Studio → GitHub → Vercel (8 steps), ChatGPT Sites (5), and Google Sheets canvas (5, with Apps Script as the fallback). The steps live in `site/js/steps.js`.
+- **Chapter 8 teaches the build, one step per slide,** for three paths: Google AI Studio → GitHub → Vercel (8 steps), ChatGPT Sites (5), and Google Sheets canvas (5, with Apps Script as the fallback). The steps live in `site/js/steps.js`.
 
 An attendee should be able to follow every practical slide without David in the room.
 
@@ -97,8 +96,8 @@ No images. Typography carries the deck: Literata (a book serif) for the story, I
 
 - Plain HTML, CSS and JavaScript. No framework, no build step. It opens by double-clicking `site/index.html` and is hosted on Vercel with Root Directory set to `site`.
 - Everything the site needs lives in `/site`: `index.html`, `css/`, `js/`, `assets/fonts/`, and `demos/` for the mockups.
-- **The words live in two files:** `site/js/slides-a.js` (chapters 0–6) and `site/js/slides-b.js` (7–12). `content/story.md` is the record of David's words; when the story changes, change it there and in the slide files in the same round.
-- `site/js/deck.js` runs the deck; `tally.js` and `timer.js` run the chapter 1 tally and the workshop timer.
+- **The words live in two files:** `site/js/slides-a.js` (chapters 0–6) and `site/js/slides-b.js` (7–11). `content/story.md` is the record of David's words; when the story changes, change it there and in the slide files in the same round.
+- `site/js/deck.js` runs the deck; `qr.js` draws the cover's QR code from the deck's own address, using `js/vendor/qrcode.js` (MIT, stored in the repo, no network); `tally.js` and `timer.js` run the chapter 1 tally and the workshop timer.
 - Every prompt has a working copy button.
 - Accessible: text contrast at least 4.5:1, visible focus states, works with a keyboard alone, slides off screen can't be tabbed into, and everything holds still under `prefers-reduced-motion`.
 - **No network API calls, no API keys, no analytics, no trackers, no external scripts or fonts.** David's real tools are never connected; they appear as clickable mockups (section 8a). Built-in browser features that need no network or key, such as speech synthesis, are fine. Ordinary links to other sites are fine.
@@ -126,10 +125,10 @@ David's tools are recreated as coded mockups that attendees can click around in.
 | Mockup | Folder | Slide name (`index.html#name`) |
 |---|---|---|
 | Counseling tracker | `demos/counseling-tracker/` | `#tracker` |
-| Dashboard | `demos/dashboard/` | `#dashboard` |
+| Dashboard (not in the deck since 2026-10-29) | `demos/dashboard/` | — |
 | Screenplay tool | `demos/screenplay/` | `#screenplay` |
 | Audio reader | `demos/audio-reader/` | `#reader` |
-| Note tool → test → locked browser | `demos/locked-browser/` | `#locked` |
+| Note tool → test → locked browser (not in the deck since 2026-10-29) | `demos/locked-browser/` | — |
 
 Each mockup runs live inside its slide (loaded when the slide opens, scaled to fit), so David never leaves the deck. On phones the slide shows the mockup's picture, which opens it full screen. Each mockup has its own look: a coach's planner, a field map, a reading room, an exam room, a script studio.
 
@@ -159,4 +158,4 @@ These are not decided. Builders should leave placeholders, not guess.
 - Will the final chapter show this repo (the prompts, reviews and build log) as a door? That would require making it public or sharing a copy.
 - Which demo videos exist, and where are they hosted?
 - Vercel's free plan is meant for personal, non-commercial use. Check whether that fits a school presentation, or whether the school has its own account.
-- The tool steps in chapter 9 were checked on 2026-10-25. Recheck them the week before the session; these interfaces change often.
+- The tool steps in chapter 8 were checked on 2026-10-25. Recheck them the week before the session; these interfaces change often.

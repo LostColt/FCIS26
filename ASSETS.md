@@ -25,5 +25,5 @@ Where will they be hosted? (Decide before chapter 9 gets its links.)
 ## Other placeholders
 
 - Date of the session
-- QR code pointing to the site (once it has a URL)
+- ~~QR code~~ done: the cover draws it from the site's own address
 - Optional: a paragraph of David's own writing, with its screenplay version, for the screenplay mockup

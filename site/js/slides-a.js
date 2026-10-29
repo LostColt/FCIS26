@@ -13,7 +13,6 @@
     { title: "So I had it build it", word: "build it" },
     { title: "Why I kept building", word: "present" },
     { title: "Building for someone else", word: "others" },
-    { title: "Build small", word: "small" },
     { title: "Update your software", word: "revise" },
     { title: "Three ways in", word: "paths" },
     { title: "Before you build", word: "care" },
@@ -22,8 +21,9 @@
   ];
 
   function add(ch, steps, html, opts) {
-    D.slides.push({ ch: ch, steps: steps, html: html, scroll: !!(opts && opts.scroll), id: opts && opts.id });
+    D.slides.push({ ch: ch, steps: steps, html: html, scroll: !!(opts && opts.scroll), center: !!(opts && opts.center), id: opts && opts.id });
   }
+  D.add = add;
 
   /* A slide with a live, clickable mockup inside it. On phones it shows a picture that opens the mockup. */
   D.live = function (slug, title, line) {
@@ -35,10 +35,12 @@
 
   /* 0 · Cover */
   add(0, 1,
+    '<div class="cover"><div>' +
     '<h1 class="cover-title"><span class="line"><span class="strike" data-at="1">Stop subscribing.</span></span><span class="line">Start building.</span></h1>' +
     '<p class="cover-lede">How I started making the tools I needed, and what it taught me about teaching.</p>' +
     '<p class="cover-by">David Tran, AI Learning and Teaching Specialist, Gulliver Prep, Miami, FL. FCIS.</p>' +
-    '<p class="cover-hint">Swipe, or use the arrow keys.</p>');
+    '<p class="cover-hint">Swipe, or use the arrow keys.</p>' +
+    '</div><figure class="cover-qr"><div data-qr></div><figcaption>Scan to follow along, and keep it.</figcaption></figure></div>');
 
   /* 1 · The pile */
   add(1, 0, '<p class="big">After COVID, the classroom didn’t snap back like a rubber band.</p>');
@@ -56,30 +58,33 @@
     '<ul class="ledger" data-step="1" aria-label="What we pay for now">' +
     '<li class="old"><span class="strike on">Paper</span></li><li class="old"><span class="strike on">Pencils</span></li><li class="old"><span class="strike on">Markers</span></li>' +
     '<li><span class="mark on">Per month</span></li><li><span class="mark on">Per seat</span></li><li><span class="mark on">Per year</span></li>' +
-    "</ul>");
+    "</ul>", { center: true });
   add(1, 0, '<div class="practical"><div data-figure="tally"></div></div>', { scroll: true });
 
   /* 2 · 150 students */
+  /* The story first; what I had to track lands on its own */
   add(2, 0,
-    '<p class="count-up" data-count="150">150</p>' +
-    '<p class="count-sub">students. Back-to-back meetings.</p>');
-  add(2, 4,
     '<div class="two"><div class="story">' +
-    "<p>I was working in college counseling as a college essay writing coach. I had over 150 students.</p>" +
+    "<p>I was working in college counseling as a college essay writing coach.</p>" +
     "<p>I needed to track my notes, track appointments, track revisions, and prepare for back-to-back meetings.</p>" +
-    '<p data-step="4">So I looked into apps.</p>' +
-    '</div><ul class="juggle" aria-label="What I had to keep track of">' +
-    '<li data-step="1">Notes<small>for every student</small></li>' +
-    '<li data-step="2">Appointments<small>back to back</small></li>' +
-    '<li data-step="3">Revisions<small>draft after draft</small></li>' +
-    '<li data-step="4">Meeting prep<small>before each one</small></li>' +
+    '</div><ul class="juggle arrive" aria-label="What I had to keep track of">' +
+    '<li style="--i:0">Notes<small>for every student</small></li>' +
+    '<li style="--i:1">Appointments<small>back to back</small></li>' +
+    '<li style="--i:2">Revisions<small>draft after draft</small></li>' +
+    '<li style="--i:3">Meeting prep<small>before each one</small></li>' +
     "</ul></div>");
+  /* Then the numbers */
+  add(2, 1,
+    '<div class="stats">' +
+    '<p><span class="stat-num"><span data-count="150">150</span></span><span class="stat-label">students</span></p>' +
+    '<p><span class="stat-num"><span data-count="800">800</span>+</span><span class="stat-label">essays</span></p>' +
+    '<p><span class="stat-num">10–12</span><span class="stat-label">meetings a day</span></p>' +
+    '</div><p class="kicker-line" data-step="1">So I looked into apps.</p>');
 
   /* 3 · The real cost */
-  add(3, 0, '<p class="big">Another subscription meant another system to learn.</p>');
   add(3, 1,
-    '<p class="big">The real cost isn’t only the money.</p>' +
-    '<p class="big" data-step="1">It’s <span class="mark">adaptation</span>.</p>');
+    '<p class="big mid">Another subscription meant another system to learn.</p>' +
+    '<p class="big mid" data-step="1">The real cost isn’t only the money. It’s <span class="mark" data-at="1">adaptation</span>.</p>');
   add(3, 1,
     '<div class="two"><div class="story">' +
     "<p>Every app meant another subscription. But more than that, it meant I had to learn how to use it, and adapt to another system. I’d be working the way the tool wanted, not the way I work.</p>" +
@@ -91,23 +96,30 @@
 
   /* 4 · So I had it build it */
   add(4, 0, '<p class="big huge">So I had it build&nbsp;it.</p>');
-  add(4, 4,
+  /* One press and the whole chain fans out */
+  add(4, 1,
     '<p class="big" style="font-size:clamp(1.9rem,3.6vw,3.2rem)">One thing led to the next.</p>' +
-    '<ol class="steps" aria-label="How one build led to the next">' +
-    '<li data-step="1"><div class="sketch off" aria-hidden="true"><i class="dark"></i><i></i><i class="short"></i></div><h3>A slide deck</h3><p>I wanted to embed it in a website. It didn’t look right.</p></li>' +
-    '<li data-step="2"><div class="sketch" aria-hidden="true"><i class="dark"></i><i class="blue"></i><i></i></div><h3>A slide I could embed</h3><p>So I had it build one.</p></li>' +
-    '<li data-step="3"><div class="sketch" aria-hidden="true"><i class="dark"></i><i></i><i></i><i class="short"></i><i class="blue"></i></div><h3>A website</h3><p>Then I had it build a website.</p></li>' +
-    '<li data-step="4"><div class="sketch" aria-hidden="true"><i class="dark"></i><div class="bars"><b style="height:40%"></b><b style="height:75%"></b><b style="height:55%"></b><b style="height:90%"></b></div></div><h3>A dashboard</h3><p>Then a dashboard, so I could track things.</p></li>' +
+    '<ol class="steps fan" aria-label="How one build led to the next">' +
+    '<li data-step="1" style="--i:0"><div class="sketch off" aria-hidden="true"><i class="dark"></i><i></i><i class="short"></i></div><h3>A slide deck</h3><p>I wanted to embed it in a website. It didn’t look right.</p></li>' +
+    '<li data-step="1" style="--i:1"><div class="sketch" aria-hidden="true"><i class="dark"></i><i class="blue"></i><i></i></div><h3>A slide I could embed</h3><p>So I had it build one.</p></li>' +
+    '<li data-step="1" style="--i:2"><div class="sketch" aria-hidden="true"><i class="dark"></i><i></i><i></i><i class="short"></i><i class="blue"></i></div><h3>A website</h3><p>Then I had it build a website.</p></li>' +
+    '<li data-step="1" style="--i:3"><div class="sketch" aria-hidden="true"><i class="dark"></i><div class="bars"><b style="height:40%"></b><b style="height:75%"></b><b style="height:55%"></b><b style="height:90%"></b></div></div><h3>A dashboard</h3><p>Then a dashboard, so I could track things.</p></li>' +
     "</ol>");
-  add(4, 2,
-    '<p class="big">Could you build Notion?</p>' +
-    '<p class="big" data-step="1">Could you build Padlet?</p>' +
-    '<p class="big" data-step="2">Could you build Trello?</p>');
+  /* "Could you build:" and the apps arrive like texts */
+  var asks = [
+    ["Notion?", 4, 6, -2, 0], ["Padlet?", 52, 2, 1.5, 1], ["Trello?", 30, 30, -1, 0],
+    ["Kahoot?", 70, 26, 2, 1], ["Quizlet?", 8, 52, 1, 1], ["Nearpod?", 46, 56, -1.5, 0],
+    ["Gimkit?", 76, 62, 1, 0], ["Blooket?", 22, 78, -2, 1], ["Screencastify?", 56, 84, 1.5, 0]
+  ];
+  add(4, 0,
+    '<div class="texts"><p class="big">Could you build:</p><ul class="bubbles" aria-label="Tools I asked it to build">' +
+    asks.map(function (a, k) {
+      return '<li class="' + (a[4] ? "me" : "") + '" style="--i:' + k + ";--x:" + a[1] + "%;--y:" + a[2] + "%;--r:" + a[3] + 'deg">' + a[0] + "</li>";
+    }).join("") + "</ul></div>");
   add(4, 1,
     '<p class="big huge">Do I have to pay <span class="mark" data-at="1">anymore?</span></p>' +
     '<p class="kicker-line" data-step="1">I started asking it to build the tools I was already using. And the information was stored locally.</p>');
   add(4, 0, D.live("counseling-tracker", "What I built: a counseling tracker", "Notes, appointments, revisions, and a prep card for the next meeting. Click around; it’s live."), { id: "tracker" });
-  add(4, 0, D.live("dashboard", "A dashboard", "So I could track things: every student on one screen, and who needs a nudge."), { id: "dashboard" });
   add(4, 0, D.live("screenplay", "A screenplay tool", "It turns natural writing into screenplay format."), { id: "screenplay" });
 
   /* 5 · Why I kept building */

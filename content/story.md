@@ -43,11 +43,12 @@ We all became edtech. Zoom, Teams, Google Classroom, several apps linked togethe
 
 ## 2. 150 students
 
-**Spine**
-> 150 students. Back-to-back meetings.
+**Spine** (story first, then the numbers)
+> I was working in college counseling as a college essay writing coach. I needed to track my notes, track appointments, track revisions, and prepare for back-to-back meetings.
 
-**Say**
-I was working in college counseling as a college essay writing coach. I had over 150 students. I needed to track my notes, track appointments, track revisions, and prepare for back-to-back meetings. So I looked into apps.
+> 150 students. 800+ essays. 10–12 meetings a day.
+>
+> So I looked into apps.
 
 **Photo:** a stack of papers or folders on a desk; a planner with crossed-out times.
 
@@ -74,7 +75,7 @@ And students pay that cost too. It's hard having students log into yet another a
 **Spine**
 > So I had it build it.
 
-> Could you build Notion? Could you build Padlet? Could you build Trello?
+> Could you build: Notion? Padlet? Trello? Kahoot? Quizlet? Nearpod? Gimkit? Blooket? Screencastify?
 
 > Do I have to pay anymore?
 
@@ -88,7 +89,6 @@ I started asking it to build the tools I was already using. And the information 
 **Door: What I built**
 Clickable mockups, each with one line on what it does and why I built it. They run in the browser with mock data; nothing connects to my real tools.
 - **The counseling tracker:** notes, appointments, revisions. → Open the mockup (`demos/counseling-tracker/`)
-- **The dashboard:** so I could track things. → Open the mockup (`demos/dashboard/`)
 - **The screenplay tool:** it turns my natural writing into screenplay format. → Open the mockup (`demos/screenplay/`)
 - **The slide and website.** `[DAVID: screenshot]`
 
@@ -133,7 +133,10 @@ I built a PDF reader. You could upload a document or paste text and it would rea
 
 ---
 
-## 7. Build small
+## (Removed 2026-10-29) Build small
+
+David cut this chapter from the deck. Kept here as a record.
+
 
 **Spine**
 > People loved it.
@@ -160,9 +163,7 @@ But I wasn't trying to ship a product. I was trying to build smaller things. Wha
 **Spine**
 > If we are edtech, we need to update our software too.
 
-> Do you brush your teeth while you eat chocolate?
->
-> No. You eat. Then you brush.
+(The "brush your teeth" slide was cut on 2026-10-29. Where "Eat, then brush" lands now is part of phase 5 in `prompts/PHASES.md`.)
 
 **Say**
 I've seen teachers who aren't willing to change, because the resources they built took so long to make. So the resources go stagnant.

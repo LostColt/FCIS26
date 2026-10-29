@@ -25,7 +25,7 @@
 
   D.slides.forEach(function (s, i) {
     var el = document.createElement("section");
-    el.className = "slide" + (s.scroll ? " scrolls" : "");
+    el.className = "slide" + (s.scroll ? " scrolls" : "") + (s.center ? " centered" : "");
     el.setAttribute("role", "group");
     el.setAttribute("aria-roledescription", "slide");
     el.setAttribute("aria-label", (i + 1) + " of " + D.slides.length + ": " + D.chapters[s.ch].title);
