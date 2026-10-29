@@ -286,3 +286,22 @@
 @media (prefers-reduced-motion: no-preference) {
   .strike-lines { transition: background-size 0.55s cubic-bezier(0.6, 0, 0.3, 1) 0.15s; }
 }
+
+/* Chapter 3: what it costs students, dropped in like the pile */
+.costs { list-style: none; margin: 2rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.8rem 1rem; align-items: flex-start; }
+.costs li {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: clamp(1.05rem, 1.9vw, 1.6rem);
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  box-shadow: 0 1px 0 var(--rule);
+  transform: rotate(var(--r, 0deg));
+}
+.costs li.on { transform: rotate(var(--r, 0deg)); }
+@media (prefers-reduced-motion: no-preference) {
+  .costs li[data-step] { transform: translateY(-1.2rem) rotate(var(--r, 0deg)); transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.3, 1.4, 0.5, 1); transition-delay: calc(var(--i) * 140ms + 250ms); }
+  .costs li[data-step].on { transform: rotate(var(--r, 0deg)); }
+}

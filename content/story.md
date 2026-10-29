@@ -61,6 +61,12 @@ We all became edtech. Zoom, Teams, Google Classroom, several apps linked togethe
 
 > The real cost isn't only the money. It's adaptation.
 
+> I'd be working the way the tool wanted, not the way I work.
+
+> And students pay that cost too. (Another login. Another interface. Another set of rules before the learning starts.)
+
+(Since 2026-10-29 the slide shows only these lines; the Say below is for David to speak.)
+
 **Say**
 Every app meant another subscription. But more than that, it meant I had to learn how to use it, and adapt to another system. I'd be working the way the tool wanted, not the way I work.
 
