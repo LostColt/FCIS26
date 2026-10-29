@@ -369,3 +369,10 @@
   .pile-row.tools li[data-step] { transform: translateX(-2rem) rotate(0deg); transition: opacity 0.35s ease, transform 0.55s cubic-bezier(0.3, 1.4, 0.5, 1); transition-delay: calc(var(--i) * 110ms + 250ms); }
   .pile-row.tools li[data-step].on { transform: translateY(var(--y)) rotate(var(--r)); }
 }
+
+/* Chapter 4: the chain fans out by itself, starting half a second after the slide opens */
+@media (prefers-reduced-motion: no-preference) {
+  .slide .auto-fan li { opacity: 0; transform: translateX(-1.5rem); transition: opacity 0.45s ease, transform 0.5s ease; }
+  .slide.is-active .auto-fan li { opacity: 1; transform: none; transition-delay: calc(var(--i) * 220ms + 500ms); }
+  .slide.seen .auto-fan li { opacity: 1; transform: none; }
+}
