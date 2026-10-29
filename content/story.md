@@ -48,7 +48,7 @@ We all became edtech. Zoom, Teams, Google Classroom, several apps linked togethe
 
 > 150 students. 800+ essays. 10–12 meetings a day.
 
-> So I looked into apps. (On a press the numbers fade back and this line lands over them, larger.)
+> So I looked into apps. (No press: the numbers count up, hold two seconds, then fade back as this line lands over them, larger.)
 
 **Photo:** a stack of papers or folders on a desk; a planner with crossed-out times.
 

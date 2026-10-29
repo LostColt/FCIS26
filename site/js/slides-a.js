@@ -84,12 +84,13 @@
     '<li style="--i:3">Meeting prep<small>before each one</small></li>' +
     "</ul></div>");
   /* Then the numbers */
-  add(2, 1,
-    '<div class="stats-stage"><div class="stats" data-at="1">' +
+  /* The numbers count up, hold for two seconds, then fade back as the line lands over them. No press needed. */
+  add(2, 0,
+    '<div class="stats-stage auto-over"><div class="stats">' +
     '<p><span class="stat-num"><span data-count="150">150</span></span><span class="stat-label">students</span></p>' +
     '<p><span class="stat-num"><span data-count="800">800</span>+</span><span class="stat-label">essays</span></p>' +
     '<p><span class="stat-num">10–12</span><span class="stat-label">meetings a day</span></p>' +
-    '</div><p class="over" data-step="1">So I looked into apps.</p></div>');
+    '</div><p class="over">So I looked into apps.</p></div>');
 
   /* 3 · The real cost: one slide. When it opens, the lines slide in by themselves;
      the turn to students lands centered, with their three costs in one row. */
