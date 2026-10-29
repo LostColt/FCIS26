@@ -86,10 +86,9 @@ I started asking it to build the tools I was already using. And the information 
 
 [DAVID: decide whether to add: "I still pay for one AI tool. But instead of paying for a dozen tools that each do one thing, I pay for one that builds the specific ones I need."]
 
-**Door: What I built**
-Clickable mockups, each with one line on what it does and why I built it. They run in the browser with mock data; nothing connects to my real tools.
-- **The counseling tracker:** notes, appointments, revisions. → Open the mockup (`demos/counseling-tracker/`)
-- **The screenplay tool:** it turns my natural writing into screenplay format. → Open the mockup (`demos/screenplay/`)
+**Door: What I built** (links to versions David builds in ChatGPT Sites; holding spots until then)
+- **The counseling tracker:** notes, appointments, revisions, and a prep card for the next meeting.
+- **The screenplay tool:** type a slash for scene, action, character or dialogue, and it formats the page. No AI.
 - **The slide and website.** `[DAVID: screenshot]`
 
 **Photo:** none. The mockups carry this chapter.
@@ -105,31 +104,30 @@ Clickable mockups, each with one line on what it does and why I built it. They r
 >
 > So I could be more present.
 
-**Say**
-The aim was to work faster and build presentations faster. But more than that, it was about being more present. If I built things faster, and in my own system, I'd have more time to work with students. And if I needed to change something, or create another version, that would be faster too.
-
-I'm creating things that help me move faster so I can give more one-on-one time.
-
-Building apps is really about building a workflow: creating repetition, not just in how I do things, but in how students receive the information.
-
-**Photo:** a teacher and student sitting at a table together, seen from behind or with faces not visible; two chairs pulled up to one desk.
+(Cut on 2026-10-29 to move faster: "Building apps is really about building a workflow: creating repetition, not just in how I do things, but in how students receive the information.")
 
 ---
 
-## 6. Building for someone else
+## 6. Building for others
 
 **Spine**
-> Building can also mean building for others.
+> I was building tools for myself.
+>
+> But more than that, I wanted to build for others.
 
-**Say**
-I built a PDF reader. You could upload a document or paste text and it would read it aloud. It wasn't for me. It was for a student I was working with who was better with audio than with reading. Not even my student; a friend's student. That's when I learned building isn't only for me.
+> I built a PDF reader. You could upload a document or paste text and it would read it aloud. It wasn't for me. It was for a friend's student, who was better with audio than with reading.
 
-**Door: The reader**
-- → Open the mockup (`demos/audio-reader/`): paste text and hear it read aloud.
-- What it does, in one sentence.
-- The idea in one line: start from what one learner does well, and build around it.
+> I've worked with students with learning differences for a long time. `[DAVID: check this line; your words were "I have background with working with students with learning differences"]`
+>
+> Truth be told, it was working with these students where I began to lean on technology.
 
-**Photo:** headphones resting on an open book.
+> When I'm building, it's easy to look at myself.
+>
+> But as an educator, I'm always looking to the students.
+>
+> What can I build that helps them?
+
+**Door: The reader** (a link to David's ChatGPT Sites version; a holding spot until then)
 
 ---
 
@@ -158,12 +156,14 @@ But I wasn't trying to ship a product. I was trying to build smaller things. Wha
 
 ---
 
-## 8. Update your software
+## 7. Update your software
 
 **Spine**
 > If we are edtech, we need to update our software too.
 
-(The "brush your teeth" slide was cut on 2026-10-29. Where "Eat, then brush" lands now is part of phase 5 in `prompts/PHASES.md`.)
+(The "brush your teeth" slide was cut on 2026-10-29. The workshop now ends on "Build first. Then revise.")
+
+The revision example leads in with: "Here's what revising looks like. One resource. Each change took a sentence, not a summer." One press and the versions play by themselves.
 
 **Say**
 I've seen teachers who aren't willing to change, because the resources they built took so long to make. So the resources go stagnant.
@@ -178,64 +178,18 @@ Build first. Then revise.
 
 ---
 
-## 9. Three ways in
+## 8. Three ways in
 
 **Spine**
 > Pick the path by the job.
 
-(The three paths appear as a figure under this line: own it, ship it fast, keep it protected.)
+The practical slides live in `site/js/steps.js`: a "Before you start" slide (accounts, and the words teachers will see: prompt, preview, HTML, repository, deploy, canvas, Apps Script), then a flowchart and a "How to do it" slide for each path: Own it (Google AI Studio → GitHub → Vercel), Ship it fast (ChatGPT Sites) and Keep it protected (Sheets canvas, with Apps Script and its deploy steps as the fallback).
 
-**Say**
-There are three paths I use, and each one teaches something different.
-
-### Door: Own it (Google AI Studio → GitHub → Vercel)
-Best for: interactive lessons, practice tools, small apps you want to keep and revise. Cost: free to start.
-
-1. Go to aistudio.google.com, sign in with a Google account, and open **Build**.
-2. Describe the tool (use the prompt template in "Your turn"). Add: *"Make it work without any AI or API calls."* That keeps your first tool simple to host.
-3. Test it in the preview. Ask for changes in plain language.
-4. In AI Studio, open **Settings → GitHub** and create a new repository for your app. (Or download it as a ZIP.)
-5. Go to vercel.com, sign in with GitHub, choose **Add New → Project**, import that repository, and click **Deploy**.
-6. You get a link. Every time you push a change to GitHub, the site updates.
-
-Why this path: the code is yours. It lives in your GitHub, with a history of every change.
-
-Watch out: if your app does use AI features, it needs an API key set on the host, and usage can cost money. Apps in AI Studio are private until you share them.
-
-`[DAVID: recorded demo video link]`
-
-### Door: Ship it fast (ChatGPT Sites)
-Best for: polished pages, dashboards and small apps you want to share with a link today. Cost: needs a paid ChatGPT plan.
-
-1. In ChatGPT, switch to **Work** and type **@Sites**, or simply ask it to build a website.
-2. Describe what you want and who it's for. You can attach files or reference images.
-3. Review the preview and ask for changes.
-4. Publish. A new site starts private; share it with specific people or with a link.
-
-Why this path: it's the fastest way from an idea to a live link.
-
-Watch out: the site and anything you put in it live on OpenAI's servers. Keep student information out.
-
-`[DAVID: recorded demo video link]`
-
-### Door: Keep it protected (Google Sheets → dashboard)
-Best for: tracking data your school already keeps in Google: hours, schedules, duties, rosters. Cost: included in Google Workspace.
-
-1. Start with a Google Sheet in your school account.
-2. **Option A, Gemini in Sheets** (if your school's Workspace includes it and it's approved for this data): open the Gemini panel and ask it to summarize the sheet and build charts.
-3. **Option B, Apps Script:** in the sheet, open **Extensions → Apps Script**. Ask any AI to write a script that reads this sheet and shows a dashboard. Describe your column names; don't paste the data itself. Paste the code it gives you.
-4. Choose **Deploy → New deployment → Web app**. Set *Execute as* to **Me** and *Who has access* to **Only myself** or **anyone in your school**.
-5. Open the link. Only people signed in with access can see it.
-
-Why this path: the data never leaves your school's Google account.
-
-`[DAVID: recorded demo video link]`
-
-**Photo:** none; the doors carry this chapter.
+`[DAVID: recorded demo video links, if any]`
 
 ---
 
-## 10. Before you build
+## 9. Before you build
 
 **Spine**
 > Build boldly. Not carelessly.
@@ -249,44 +203,32 @@ Why this path: the data never leaves your school's Google account.
 
 ---
 
-## 11. Your turn
+## 10. Your turn
 
 **Spine**
-> One small tool. 15 minutes.
+> One small tool. Built in Gemini.
+>
+> Everyone builds at once. You'll leave with a link that works on your phone.
 
-(A workshop timer appears under this line: pick 2 minutes, build 9, swap 4.)
+**Five steps**
+1. Go to gemini.google.com and sign in.
+2. In the prompt bar, choose Canvas.
+3. Pick a prompt, fill in the brackets, and send it.
+4. Try it in the preview. Ask for one change.
+5. Share, copy the link, and open it on your phone.
 
-**Door: Step 1, pick one small annoyance**
-- An exit-ticket randomizer
-- Flashcards for this unit's vocabulary
-- A rubric students check their draft against
-- A simulation with sliders that shows cause and effect
-- A tracker for your team's dates, hours or duties
-- The thing you complained about this week
+**Pick a prompt** (seven, each with a copy button; the text is in `site/js/slides-b.js`): flashcards, an exit-ticket randomizer, a rubric check, a slider simulation, your own idea (the fill-in template), a sheet you keep (Apps Script), and changing an HTML file.
 
-**Door: Step 2, the prompt** (with a copy button)
-```
-I teach [grade and subject]. My students struggle with [the problem].
-Build a one-page app where they [what they do].
-It must work on a Chromebook, need no login, and use large, readable text.
-Make it work without any AI or API calls.
-Don't collect names or any student data.
-```
-Then refine it: "Make it…" "Add…" "When a student…"
+**Swap:** send your link to a neighbor, use theirs like a student, suggest one fix, and they make it and share again.
 
-No paid plan? Use Google AI Studio. It's free.
-
-**Door: Step 3, swap**
-1. Trade with a neighbor. Use their tool like a student. Try to break it.
-2. Tell them one thing that would make it work in a real class.
-3. They type that fix in, in one sentence, and watch it change.
-
-**Say (after the swap)**
-You just did what we ask students to do: try something, get feedback, revise. Eat, then brush.
+**Spine (after the swap)**
+> You just did what we ask students to do: try something, get feedback, revise.
+>
+> Build first. Then revise.
 
 ---
 
-## 12. Keep building
+## 11. Keep building
 
 **Spine**
 > Start small. It lives with you.
@@ -296,13 +238,15 @@ One annoyance. One prompt. One colleague to test it. Then revise it next month, 
 
 **Door: Everything in one place**
 - Google AI Studio: https://aistudio.google.com
+- Google Gemini (Canvas): https://gemini.google.com
 - ChatGPT Sites: https://chatgpt.com/features/sites/
 - Google Apps Script: https://script.google.com
+- Apps Script web apps, Google's guide: https://developers.google.com/apps-script/guides/web
+- In the deck: the workshop prompts, Before you start, and each path
+- Links to David's tools (once he shares them)
 - Vercel: https://vercel.com
 - GitHub: https://github.com
 - The prompt template (repeated, with a copy button)
-- `[DAVID: link to recorded demos]`
 - David Tran on LinkedIn: https://www.linkedin.com/in/david-t-04864734
-- Photo credits
 
 **Photo:** an open door, or a desk by a window in morning light.

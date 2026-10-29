@@ -12,7 +12,7 @@
     { title: "The real cost", word: "cost" },
     { title: "So I had it build it", word: "build it" },
     { title: "Why I kept building", word: "present" },
-    { title: "Building for someone else", word: "others" },
+    { title: "Building for others", word: "others" },
     { title: "Update your software", word: "revise" },
     { title: "Three ways in", word: "paths" },
     { title: "Before you build", word: "care" },
@@ -25,12 +25,22 @@
   }
   D.add = add;
 
-  /* A slide with a live, clickable mockup inside it. On phones it shows a picture that opens the mockup. */
-  D.live = function (slug, title, line) {
-    return '<div class="live"><div class="live-head"><div><h2>' + title + '</h2><p class="sub">' + line + '</p></div>' +
-      '<a class="live-open" href="demos/' + slug + '/index.html" target="_blank" rel="noopener">Open full screen</a></div>' +
-      '<div class="live-frame" data-src="demos/' + slug + '/index.html" data-title="' + title + '">' +
-      '<img class="live-thumb" src="demos/' + slug + '/thumb.png" alt="' + title + ' mockup"></div></div>';
+  /* David's tools, built in ChatGPT Sites. Paste each link between the quotes when it's ready;
+     until then the slide shows a holding spot. */
+  D.SITES = {
+    tracker: "",
+    screenplay: "",
+    reader: ""
+  };
+
+  /* A slide (or half of one) for one of David's tools: a link when there is one, a holding spot until then */
+  D.site = function (key, title, line) {
+    var url = D.SITES[key];
+    return '<div class="site-card' + (url ? "" : " holding") + '"><h2>' + title + '</h2><p class="sub">' + line + "</p>" +
+      (url
+        ? '<a class="site-open" href="' + url + '" target="_blank" rel="noopener">Open it</a><p class="site-url">' + url.replace(/^https?:\/\//, "") + "</p>"
+        : '<p class="site-hold">Holding spot. The link goes here once it’s built in ChatGPT Sites.</p>') +
+      "</div>";
   };
 
   /* 0 · Cover */
@@ -119,27 +129,31 @@
   add(4, 1,
     '<p class="big huge">Do I have to pay <span class="mark" data-at="1">anymore?</span></p>' +
     '<p class="kicker-line" data-step="1">I started asking it to build the tools I was already using. And the information was stored locally.</p>');
-  add(4, 0, D.live("counseling-tracker", "What I built: a counseling tracker", "Notes, appointments, revisions, and a prep card for the next meeting. Click around; it’s live."), { id: "tracker" });
-  add(4, 0, D.live("screenplay", "A screenplay tool", "It turns natural writing into screenplay format."), { id: "screenplay" });
+  add(4, 0, '<div class="two sites">' +
+    D.site("tracker", "What I built: a counseling tracker", "Notes, appointments, revisions, and a prep card for the next meeting.") +
+    D.site("screenplay", "A screenplay tool", "Type a slash for scene, action, character or dialogue, and it formats the page.") +
+    "</div>", { id: "tracker" });
 
   /* 5 · Why I kept building */
   add(5, 2,
     '<p class="big huge">Faster.</p>' +
     '<p class="big huge" data-step="1">In my system.</p>' +
     '<p class="big huge" data-step="2">So I could be more <span class="mark" data-at="2">present</span>.</p>');
-  add(5, 1,
-    '<div class="story" style="max-width:40rem">' +
-    "<p>The aim was to work faster and build presentations faster. But more than that, it was about being more present. If I built things faster, and in my own system, I’d have more time to work with students.</p>" +
-    '<p data-step="1">Building apps is really about building a workflow: creating repetition, not just in how I do things, but in how students receive the information.</p>' +
-    "</div>");
 
-  /* 6 · Building for someone else */
-  add(6, 0, '<p class="big">Building can also mean building <span class="mark auto">for others</span>.</p>');
+  /* 6 · Building for others */
   add(6, 1,
+    '<p class="big mid">I was building tools for myself.</p>' +
+    '<p class="big mid" data-step="1">But more than that, I wanted to build <span class="mark" data-at="1">for others</span>.</p>');
+  add(6, 0,
     '<div class="two"><div class="story">' +
     "<p>I built a PDF reader. You could upload a document or paste text and it would read it aloud.</p>" +
-    "<p>It wasn’t for me. It was for a student who was better with audio than with reading. Not even my student; a friend’s student.</p>" +
-    '<p data-step="1">That’s when I learned building isn’t only for me.</p>' +
-    '</div><p class="big" data-step="1" style="font-size:clamp(1.8rem,3.4vw,3rem)">Start from what one learner does well, and build around it.</p></div>');
-  add(6, 0, D.live("audio-reader", "The reader", "Paste text and hear it read aloud, line by line. This one really works."), { id: "reader" });
+    "<p>It wasn’t for me. It was for a friend’s student, who was better with audio than with reading.</p>" +
+    "</div>" + D.site("reader", "The reader", "Paste text and hear it read aloud, line by line.") + "</div>", { id: "reader" });
+  add(6, 1,
+    '<div class="story" style="max-width:44rem"><p>I’ve worked with students with learning differences for a long time.</p></div>' +
+    '<p class="big mid" data-step="1">Truth be told, it was working with these students where I began to lean on <span class="mark" data-at="1">technology</span>.</p>');
+  add(6, 2,
+    '<p class="big mid">When I’m building, it’s easy to look at myself.</p>' +
+    '<p class="big mid" data-step="1">But as an educator, I’m always looking to the students.</p>' +
+    '<p class="big mid" data-step="2"><span class="mark" data-at="2">What can I build that helps them?</span></p>');
 })();

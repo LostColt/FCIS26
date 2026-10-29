@@ -18,15 +18,17 @@ David went through the 60-slide deck and wrote a long list of changes. Claude so
 
 The deck went from 60 slides to 53.
 
-**The harder work is split into the five phases below.** Slide numbers are the new ones (53-slide deck). Run one phase at a time, on its own branch. The rules at the bottom of this file still apply.
+**The harder work was split into five phases.** Later the same day David took the coded mockups down (he's building his tools in ChatGPT Sites) and asked for the rest to be done. Status:
 
-| Phase | Prompt | What changes | Slides now | Needs from David first |
-|---|---|---|---|---|
-| A | `009-screenplay-and-download.md` | The screenplay mockup gets slash commands, with no AI. Mockups get a "Download the HTML" button. | 14–15 | Which slash commands; whether the tracker gets the button too |
-| B | `010-narrative.md` | A faster "why I kept building / building for others" stretch, with his background with students with learning differences | 16–20 | Approve the draft in his words |
-| C | `011-revision-slide.md` | The revision example: a lead-in, and it plays itself on one press. Or it gets cut. | 21–23 | Keep or cut |
-| D | `012-three-ways-in.md` | 22 step slides become about 7: a getting-started slide, then a flowchart and a links-and-instructions slide per path | 24–45 | Nothing; steps rechecked against current docs |
-| E | `013-workshop.md` | The timer goes. The room builds in Gemini from preloaded prompts and publishes. The wrap-up gets rethought. | 47–53 | Which prompts; whether ChatGPT Sites mockups get shared |
+| Phase | What changed | Status |
+|---|---|---|
+| A | Screenplay mockup with slash commands, plus "Download the HTML" | **Replaced.** Mockups taken down; David builds them in ChatGPT Sites. Holding spots wait for the links (`D.SITES` in `site/js/slides-a.js`). The slash-command spec below is his brief for the screenplay site. |
+| B | Faster "building for others" stretch, with his background with students with learning differences | **Done.** Chapter 5 is one slide; chapter 6 is four. David to check the line "I've worked with students with learning differences for a long time." It stays general (no school named). |
+| C | Revision example | **Kept.** The story leads into it; one press and the versions play by themselves. Easy to cut later. |
+| D | Three ways in | **Done.** 22 slides became 8: Before you start, then a flowchart and a "How to do it" for each path. |
+| E | Workshop | **Done.** The timer is gone; the room builds in Gemini Canvas from seven ready prompts (including Apps Script and "change an HTML file") and shares a link. The ending is now "Build first. Then revise." |
+
+The deck is now 38 slides and 63 presses. The plans below are kept as the record of what was asked for.
 
 ### A · Screenplay mockup and "take it home"
 

@@ -19,7 +19,7 @@ David writes a prompt  →  Antigravity builds  →  Claude and ChatGPT review  
 | `reviews/` | Every review, numbered to match its prompt |
 | `BUILDLOG.md` | One line per round, in plain language |
 | `ASSETS.md` | Screenshots, demo videos and placeholders still needed |
-| `site/` | The deck (`index.html`, `css/`, `js/`) and the five mockups (`demos/`) |
+| `site/` | The deck (`index.html`, `css/`, `js/`). David's tools are links to ChatGPT Sites, set in `js/slides-a.js` |
 
 ## Rules of the road
 

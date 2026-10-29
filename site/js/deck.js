@@ -36,15 +36,6 @@
     slides.push(el);
   });
 
-  /* Mockup links get a small picture once the mockup provides demos/<name>/thumb.png */
-  document.querySelectorAll(".mockup-link").forEach(function (a) {
-    var img = new Image();
-    img.alt = "";
-    img.className = "thumb";
-    img.onload = function () { a.classList.add("has-thumb"); a.insertBefore(img, a.firstChild); };
-    img.src = a.getAttribute("href").replace(/index\.html$/, "") + "thumb.png";
-  });
-
   /* Progress: one segment per chapter */
   var prog = document.getElementById("progress");
   prog.innerHTML = D.chapters.map(function () { return "<span></span>"; }).join("");
@@ -55,32 +46,6 @@
     var first = D.slides.findIndex(function (s) { return s.ch === ci; });
     return '<li><a href="#' + (first + 1) + '" data-go="' + first + '"><span>' + ci + "</span>" + c.title + "</a></li>";
   }).join("");
-
-  /* ---------- Live mockups: load when their slide is shown, scaled to fit ---------- */
-  var LIVE_W = 1440, LIVE_H = 900;
-  function fitLive(frame) {
-    var f = frame.querySelector("iframe");
-    if (f) f.style.transform = "scale(" + (frame.clientWidth / LIVE_W) + ")";
-  }
-  function wakeLive(slide) {
-    if (window.matchMedia("(max-width: 760px)").matches) return;
-    slide.querySelectorAll(".live-frame").forEach(function (frame) {
-      if (!frame.querySelector("iframe")) {
-        var f = document.createElement("iframe");
-        f.src = frame.dataset.src;
-        f.title = frame.dataset.title + " (live mockup)";
-        f.width = LIVE_W; f.height = LIVE_H;
-        f.addEventListener("load", function () { frame.classList.add("loaded"); });
-        frame.appendChild(f);
-      }
-      fitLive(frame);
-    });
-  }
-  /* On phones the picture opens the mockup full screen */
-  track.addEventListener("click", function (e) {
-    var frame = e.target.closest(".live-frame");
-    if (frame && !frame.querySelector("iframe")) window.open(frame.dataset.src, "_blank", "noopener");
-  });
 
   function indexFromHash() {
     var h = (location.hash || "").replace("#", "");
@@ -140,7 +105,6 @@
     });
 
     if (changed || fromNav === "jump") {
-      wakeLive(slides[cur]);
       countUp(slides[cur]);
       slides[cur].scrollTop = 0;
       if (!slides[cur].contains(document.activeElement)) slides[cur].focus({ preventScroll: true });
@@ -250,10 +214,7 @@
 
   /* ---------- Start ---------- */
   show(indexFromHash(), 0, "jump");
-  window.addEventListener("resize", function () {
-    show(cur, step);
-    document.querySelectorAll(".live-frame").forEach(fitLive);
-  });
+  window.addEventListener("resize", function () { show(cur, step); });
   window.addEventListener("hashchange", function () {
     var n = indexFromHash();
     if (n !== cur) show(n, 0, "jump");

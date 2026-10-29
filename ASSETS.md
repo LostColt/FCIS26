@@ -1,8 +1,14 @@
 # Assets still needed
 
-## Mockups (built by Antigravity)
+## Links to David's tools (from David, built in ChatGPT Sites)
 
-All five are built and merged (`site/demos/`, see `BRIEF.md` section 8a). Nothing is needed from David, except optionally a paragraph of his own writing for the screenplay mockup, which currently uses invented examples.
+Paste each one into `D.SITES` at the top of `site/js/slides-a.js`. Until then the slide shows a holding spot.
+
+| Tool | Key | Status |
+|---|---|---|
+| Counseling tracker | `tracker` | needed |
+| Screenplay tool (slash commands, no AI) | `screenplay` | needed |
+| Reader | `reader` | needed |
 
 ## Screenshots (from David)
 
@@ -26,4 +32,3 @@ Where will they be hosted? (Decide before chapter 9 gets its links.)
 
 - Date of the session
 - ~~QR code~~ done: the cover draws it from the site's own address
-- Optional: a paragraph of David's own writing, with its screenplay version, for the screenplay mockup

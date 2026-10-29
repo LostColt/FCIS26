@@ -205,3 +205,70 @@
   .bubbles { height: auto; display: flex; flex-wrap: wrap; gap: 0.6rem; }
   .bubbles li { position: static; }
 }
+
+/* ---------- Round 2026-10-29, part 2 ---------- */
+
+/* David's tools: a link card, or a holding spot until the ChatGPT Sites link is ready */
+.sites { align-items: stretch; }
+.site-card { font-family: var(--sans); border: 1px solid var(--rule); border-radius: 10px; background: var(--white); padding: clamp(1.25rem, 2.5vw, 2rem); display: flex; flex-direction: column; gap: 0.6rem; }
+.site-card h2 { font-family: var(--serif); font-size: clamp(1.5rem, 2.6vw, 2.3rem); line-height: 1.1; letter-spacing: -0.015em; margin: 0; }
+.site-card .sub { color: var(--ink-soft); margin: 0; font-size: clamp(1rem, 1.3vw, 1.2rem); }
+.site-card.holding { background: transparent; border-style: dashed; border-width: 2px; min-height: 14rem; }
+.site-hold { margin: auto 0 0; color: var(--ink-soft); font-size: 0.95rem; }
+.site-open { align-self: flex-start; margin-top: auto; font-weight: 600; font-size: 1.1rem; padding: 0.6rem 1.1rem; border: 1px solid var(--blue); border-radius: 999px; text-decoration: none; }
+.site-url { margin: 0; color: var(--ink-soft); font-size: 0.9rem; word-break: break-all; }
+
+/* Chapter 7: the revisions play by themselves on one press */
+@media (prefers-reduced-motion: no-preference) {
+  .revision.play li[data-step] { transition-delay: calc(var(--i) * 1100ms); }
+  .revision.play ins { background-size: 0% 100%; background-image: linear-gradient(var(--highlight), var(--highlight)); background-repeat: no-repeat; background-color: transparent; transition: background-size 0.7s ease; transition-delay: calc(var(--i) * 1100ms + 450ms); }
+  .revision.play li.on ins { background-size: 100% 100%; }
+  .revision.play del { text-decoration-color: transparent; transition: text-decoration-color 0.3s ease; transition-delay: calc(var(--i) * 1100ms + 250ms); }
+  .revision.play li.on del { text-decoration-color: var(--red); }
+}
+
+/* Chapter 8: wider practical slides, getting started */
+.practical.wide { max-width: 72rem; }
+.start-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: clamp(1.5rem, 4vw, 3.5rem); }
+.start-grid h3, .sheet h3, .prompt-menu h3 { font-family: var(--sans); font-size: 1.05rem; margin: 0 0 0.6rem; }
+.practical ul.plain { list-style: none; padding: 0; }
+.plain li { padding: 0.5rem 0; border-bottom: 1px solid var(--rule); }
+.glossary { margin: 0; display: grid; grid-template-columns: 9.5rem 1fr; gap: 0; }
+.glossary dd { padding-left: 0.5rem; }
+.glossary dt, .glossary dd { padding: 0.45rem 0; border-bottom: 1px solid var(--rule); margin: 0; }
+.glossary dt { font-weight: 600; }
+
+/* Chapter 8: flowcharts */
+.flow-slide .howto-title { font-size: clamp(2rem, 4.2vw, 3.6rem); max-width: 24ch; }
+.flow { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 2.2rem; }
+.flow li { position: relative; font-family: var(--sans); background: var(--white); border: 1.5px solid var(--ink); border-radius: 10px; padding: 0.9rem 1rem 1rem; display: flex; flex-direction: column; gap: 0.25rem; }
+.flow li b { font-size: clamp(1.05rem, 1.5vw, 1.3rem); }
+.flow li span:last-child { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.35; }
+.flow-n { font-variant-numeric: tabular-nums; color: var(--blue); font-weight: 600; font-size: 0.9rem; }
+.flow li + li::before { content: "→"; position: absolute; left: -1.75rem; top: 50%; transform: translateY(-50%); color: var(--ink-soft); font-size: 1.4rem; }
+.flow-loop { font-family: var(--sans); font-size: clamp(1rem, 1.4vw, 1.2rem); margin: 1.6rem 0 0; padding: 0.8rem 1rem; border: 1.5px dashed var(--ink-soft); border-radius: 10px; max-width: 52rem; }
+.flow-loop span { color: var(--blue); font-weight: 600; }
+@media (prefers-reduced-motion: no-preference) {
+  .flow-slide [data-step] { transition-delay: calc(var(--i) * 180ms); }
+}
+
+/* Chapter 8: instructions */
+.sheet ol { padding-left: 1.4rem; }
+.sheet li { margin-bottom: 0.8rem; }
+.sheet .prompt-box { margin: 0.7rem 0 0.3rem; }
+.sheet h3 { margin-top: 1.4rem; }
+
+/* Chapter 10: the workshop */
+.practical ol.big-steps { font-size: clamp(1.1rem, 1.6vw, 1.45rem); line-height: 1.5; }
+.big-steps li { margin-bottom: 0.8rem; }
+.prompt-menu { display: grid; grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)); gap: 1.25rem 1.5rem; margin-bottom: 1.2rem; }
+.prompt-menu .prompt-box pre { font-size: 0.85rem; padding-bottom: 3rem; white-space: pre-wrap; }
+
+@media (max-width: 760px) {
+  .start-grid { grid-template-columns: 1fr; }
+  .glossary { grid-template-columns: 1fr; }
+  .glossary dt { border-bottom: 0; padding-bottom: 0; }
+  .flow { grid-template-columns: 1fr; gap: 1.6rem; }
+  .flow li + li::before { content: "↓"; left: 1rem; top: -1.45rem; transform: none; }
+  .prompt-menu { grid-template-columns: 1fr; }
+}

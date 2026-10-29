@@ -48,24 +48,24 @@ The full text is in `content/story.md`. Use that text; do not rewrite David's vo
 | 1 | The pile | 3 | No |
 | 2 | 150 students | 3 | No |
 | 3 | The real cost | 3 | No |
-| 4 | So I had it build it | 6 | Yes: two mockups |
+| 4 | So I had it build it | 6 | Yes: links to two of David's tools |
 | 5 | Why I kept building | 3 | No |
-| 6 | Building for someone else | 3 | Yes: mockup |
+| 6 | Building for others | 3 | Yes: link to the reader |
 | 7 | Update your software | 3 | No |
 | 8 | Three ways in | 8 | Yes: three walkthroughs |
 | 9 | Before you build | 3 | Yes: checklist |
-| 10 | Your turn | 16 | Yes: prompt template, steps |
+| 10 | Your turn | 16 | Yes: build in Gemini Canvas from seven ready prompts, share a link |
 | 11 | Keep building | 3 | Yes: every link in one place |
 | | **Total** | **55** | |
 
 ## 5. How the deck works
 
-- **Slides, not scrolling.** Each chapter is a short run of slides: the big line, then the story in David's words, then any interactive or practical slide. 53 slides as of 2026-10-29; phases in `prompts/PHASES.md` will trim it further.
+- **Slides, not scrolling.** Each chapter is a short run of slides: the big line, then the story in David's words, then any interactive or practical slide. 38 slides and 63 presses as of 2026-10-29.
 - **Moving through it:** swipe on a phone; arrow keys, space or a clicker on a laptop; a "Slides" menu jumps to any chapter; F is full screen. Every slide has its own link (`#15` is slide 15).
 - **Lines arrive one press at a time** where the pause matters ("People loved it." … "I stopped anyway.").
 - **A second layer moves underneath:** a red-pen strike and highlighter draw themselves, the pile drops in, 150 counts up, and a huge faint chapter word drifts behind every slide at its own pace.
-- **Practical slides** (the tally, the step-by-step build slides, the prompt, the workshop timer, the links) scroll inside the slide on a phone, so nothing is crammed.
-- **Chapter 8 teaches the build, one step per slide,** for three paths: Google AI Studio → GitHub → Vercel (8 steps), ChatGPT Sites (5), and Google Sheets canvas (5, with Apps Script as the fallback). The steps live in `site/js/steps.js`.
+- **Practical slides** (the tally, the instructions, the prompts, the links) scroll inside the slide on a phone, so nothing is crammed.
+- **Chapter 8 teaches the build** with a getting-started slide (accounts and words), then a flowchart and an instructions slide for each of the three paths: Google AI Studio → GitHub → Vercel, ChatGPT Sites, and Google Sheets canvas with Apps Script as the fallback. They live in `site/js/steps.js`.
 
 An attendee should be able to follow every practical slide without David in the room.
 
@@ -76,7 +76,7 @@ David's words: personal, not performative. No fancy themes.
 Do:
 - Clean, readable type with generous space. One typeface for reading is enough; a second only for code and prompts.
 - A light, quiet page. One accent color at most, used for links and doors.
-- Real tools, shown plainly: clickable mockups and screenshots.
+- Real tools, shown plainly: links to David's tools, flowcharts and step-by-step instructions.
 - Write like a teacher talking to colleagues.
 
 Do not:
@@ -95,9 +95,9 @@ No images. Typography carries the deck: Literata (a book serif) for the story, I
 ## 7. Technical rules
 
 - Plain HTML, CSS and JavaScript. No framework, no build step. It opens by double-clicking `site/index.html` and is hosted on Vercel with Root Directory set to `site`.
-- Everything the site needs lives in `/site`: `index.html`, `css/`, `js/`, `assets/fonts/`, and `demos/` for the mockups.
+- Everything the site needs lives in `/site`: `index.html`, `css/`, `js/`, and `assets/fonts/`.
 - **The words live in two files:** `site/js/slides-a.js` (chapters 0–6) and `site/js/slides-b.js` (7–11). `content/story.md` is the record of David's words; when the story changes, change it there and in the slide files in the same round.
-- `site/js/deck.js` runs the deck; `qr.js` draws the cover's QR code from the deck's own address, using `js/vendor/qrcode.js` (MIT, stored in the repo, no network); `tally.js` and `timer.js` run the chapter 1 tally and the workshop timer.
+- `site/js/deck.js` runs the deck; `qr.js` draws the cover's QR code from the deck's own address, using `js/vendor/qrcode.js` (MIT, stored in the repo, no network); `tally.js` runs the chapter 1 tally.
 - Every prompt has a working copy button.
 - Accessible: text contrast at least 4.5:1, visible focus states, works with a keyboard alone, slides off screen can't be tabbed into, and everything holds still under `prefers-reduced-motion`.
 - **No network API calls, no API keys, no analytics, no trackers, no external scripts or fonts.** David's real tools are never connected; they appear as clickable mockups (section 8a). Built-in browser features that need no network or key, such as speech synthesis, are fine. Ordinary links to other sites are fine.
@@ -108,29 +108,20 @@ No images. Typography carries the deck: Literata (a book serif) for the story, I
 - **All student information is mock data.** Every screenshot, example and walkthrough uses invented students: made-up names, appointments, notes, essays and grades. Never real student data, and never real data that's been blurred or cropped. If a tool only exists with real data in it, load it with mock data before taking the screenshot.
 - Mock names should be clearly fictional and varied (for example "Student A," or plain invented first names). Never use a real student's name, initials or essay topic.
 - Any screenshot or mockup showing mock student data carries a small label: "Mock data."
-- David's real tools are never connected to the site. They appear as clickable mockups or screenshots.
+- David's real tools are never connected to the site. They appear as links to versions built with mock data (section 8a).
 
-## 8a. Clickable mockups
+## 8a. David's tools: links to ChatGPT Sites
 
-David's tools are recreated as coded mockups that attendees can click around in. Antigravity designed each one its own way from David's description (`prompts/008-mockups.md`); they don't have to match the deck.
+The coded mockups were taken down on 2026-10-29 (they're in git history). David is building his tools in ChatGPT Sites and will share the links.
 
-- **Where:** each mockup is self-contained in `site/demos/<name>/`, linked from its slide, with a link back to that slide.
-- **No network:** no API calls, keys, external scripts, libraries, fonts or images.
-- **Mock data only,** clearly invented. Never real people, and never words or facts attributed to David that he didn't say.
-- **Nothing is saved.** A reload starts fresh, and a reset button returns it to that state.
-- **Honest labels:** "Mockup · mock data · nothing is saved," plus one line on anything the mockup fakes, describing only the mockup, not how David's real tool worked.
-- **A picture for the deck:** each folder has a `thumb.png` (1600×1000); the deck shows it on the link card automatically.
-- Works on a phone and with a keyboard.
+- **Where the links go:** `D.SITES` at the top of `site/js/slides-a.js`. Paste each link between the quotes. Until a link is there, its slide shows a dashed holding spot. Once it's there, the slide shows an "Open it" button and the link also appears on "Everything in one place."
+- **Mock data only** on anything shown in the talk. Invented students, clearly fictional.
 
-| Mockup | Folder | Slide name (`index.html#name`) |
+| Tool | Key in `D.SITES` | Slide name (`index.html#name`) |
 |---|---|---|
-| Counseling tracker | `demos/counseling-tracker/` | `#tracker` |
-| Dashboard (not in the deck since 2026-10-29) | `demos/dashboard/` | — |
-| Screenplay tool | `demos/screenplay/` | `#screenplay` |
-| Audio reader | `demos/audio-reader/` | `#reader` |
-| Note tool → test → locked browser (not in the deck since 2026-10-29) | `demos/locked-browser/` | — |
-
-Each mockup runs live inside its slide (loaded when the slide opens, scaled to fit), so David never leaves the deck. On phones the slide shows the mockup's picture, which opens it full screen. Each mockup has its own look: a coach's planner, a field map, a reading room, an exam room, a script studio.
+| Counseling tracker | `tracker` | `#tracker` |
+| Screenplay tool (slash commands for scene, action, character, dialogue; no AI) | `screenplay` | `#tracker` (same slide) |
+| Reader | `reader` | `#reader` |
 
 ## 9. Review rubric
 
@@ -138,7 +129,7 @@ Every review in `/reviews` answers these:
 
 1. **Thesis:** does this serve the thesis in section 3?
 2. **Voice:** does it sound like David, not like marketing or an AI?
-3. **Practical slides and mockups:** can an attendee follow every practical slide, and click through every mockup, without David?
+3. **Practical slides:** can an attendee follow every practical slide, and every set of instructions, without David?
 4. **Restraint:** is anything decorative, performative or "AI slop"?
 5. **Phone:** does it work at phone width?
 6. **Presenting:** can David present from it with only a keyboard or clicker?
