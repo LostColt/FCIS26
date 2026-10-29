@@ -91,19 +91,18 @@
     '<p><span class="stat-num">10–12</span><span class="stat-label">meetings a day</span></p>' +
     '</div><p class="kicker-line" data-step="1">So I looked into apps.</p>');
 
-  /* 3 · The real cost */
-  add(3, 1,
-    '<p class="big mid">Another subscription meant another system to learn.</p>' +
-    '<p class="big mid" data-step="1">The real cost isn’t only the money. It’s <span class="mark" data-at="1">adaptation</span>.</p>');
-  /* What it cost me, in one line; then, on a press, what it costs students */
-  add(3, 1,
-    '<p class="big mid">I’d be working the way the tool wanted, not the way I&nbsp;work.</p>' +
-    '<p class="big mid soft" data-step="1">And students pay that cost too.</p>' +
+  /* 3 · The real cost: one slide, three presses, sized like speech rather than headlines */
+  add(3, 3,
+    '<div class="said">' +
+    '<p>Another subscription meant another system to learn.</p>' +
+    '<p data-step="1">I’d be working the way the tool wanted, not the way I&nbsp;work.</p>' +
+    '<p data-step="2">The real cost isn’t only the money. It’s <span class="mark" data-at="2">adaptation</span>.</p>' +
+    '<p class="soft" data-step="3">And students pay that cost too.</p>' +
     '<ul class="costs" aria-label="What it costs students">' +
-    '<li data-step="1" style="--i:0;--r:-1.5deg">Another login</li>' +
-    '<li data-step="1" style="--i:1;--r:1deg">Another interface</li>' +
-    '<li data-step="1" style="--i:2;--r:-0.5deg">Another set of rules before the learning starts</li>' +
-    "</ul>");
+    '<li data-step="3" style="--i:0;--r:-1.5deg">Another login</li>' +
+    '<li data-step="3" style="--i:1;--r:1deg">Another interface</li>' +
+    '<li data-step="3" style="--i:2;--r:-0.5deg">Another set of rules before the learning starts</li>' +
+    "</ul></div>");
 
   /* 4 · So I had it build it */
   add(4, 0, '<p class="big huge">So I had it build&nbsp;it.</p>');

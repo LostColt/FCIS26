@@ -305,3 +305,10 @@
   .costs li[data-step] { transform: translateY(-1.2rem) rotate(var(--r, 0deg)); transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.3, 1.4, 0.5, 1); transition-delay: calc(var(--i) * 140ms + 250ms); }
   .costs li[data-step].on { transform: rotate(var(--r, 0deg)); }
 }
+
+/* Lines that build up on one slide, sized like speech, not headlines */
+.said { max-width: 46rem; }
+.said p { font-family: var(--serif); font-weight: 600; font-size: clamp(1.6rem, 3.1vw, 2.7rem); line-height: 1.18; letter-spacing: -0.015em; margin: 0 0 0.75em; }
+.said p.soft { color: var(--ink-soft); margin-top: 1.2em; }
+.said .costs { margin-top: 0; }
+.said .costs li { font-size: clamp(1rem, 1.5vw, 1.3rem); }
