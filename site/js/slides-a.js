@@ -91,17 +91,18 @@
     '<p><span class="stat-num">10–12</span><span class="stat-label">meetings a day</span></p>' +
     '</div><p class="kicker-line" data-step="1">So I looked into apps.</p>');
 
-  /* 3 · The real cost: one slide, three presses, sized like speech rather than headlines */
-  add(3, 3,
-    '<div class="said">' +
-    '<p>Another subscription meant another system to learn.</p>' +
-    '<p data-step="1">I’d be working the way the tool wanted, not the way I&nbsp;work.</p>' +
-    '<p data-step="2">The real cost isn’t only the money. It’s <span class="mark" data-at="2">adaptation</span>.</p>' +
-    '<p class="soft" data-step="3">And students pay that cost too.</p>' +
-    '<ul class="costs" aria-label="What it costs students">' +
-    '<li data-step="3" style="--i:0;--r:-1.5deg">Another login</li>' +
-    '<li data-step="3" style="--i:1;--r:1deg">Another interface</li>' +
-    '<li data-step="3" style="--i:2;--r:-0.5deg">Another set of rules before the learning starts</li>' +
+  /* 3 · The real cost: one slide. When it opens, the lines slide in by themselves;
+     the turn to students lands centered, with their three costs in one row. */
+  add(3, 0,
+    '<div class="said auto-run">' +
+    '<p style="--t:0.3s">Another subscription meant another system to learn.</p>' +
+    '<p style="--t:2.2s">I’d be working the way the tool wanted, not the way I&nbsp;work.</p>' +
+    '<p style="--t:4.4s">The real cost isn’t only the money. It’s <span class="mark auto" style="--t:5.2s">adaptation</span>.</p>' +
+    '<p class="turn" style="--t:7s">And students pay that cost too.</p>' +
+    '<ul class="costs centered-row" aria-label="What it costs students">' +
+    '<li style="--t:8s;--r:-1.5deg">Another login</li>' +
+    '<li style="--t:8.25s;--r:1deg">Another interface</li>' +
+    '<li style="--t:8.5s;--r:-0.5deg">Another set of rules before the learning starts</li>' +
     "</ul></div>");
 
   /* 4 · So I had it build it */

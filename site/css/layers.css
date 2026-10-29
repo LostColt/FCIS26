@@ -307,8 +307,19 @@
 }
 
 /* Lines that build up on one slide, sized like speech, not headlines */
-.said { max-width: 46rem; }
-.said p { font-family: var(--serif); font-weight: 600; font-size: clamp(1.6rem, 3.1vw, 2.7rem); line-height: 1.18; letter-spacing: -0.015em; margin: 0 0 0.75em; }
-.said p.soft { color: var(--ink-soft); margin-top: 1.2em; }
-.said .costs { margin-top: 0; }
-.said .costs li { font-size: clamp(1rem, 1.5vw, 1.3rem); }
+.said p { font-family: var(--serif); font-weight: 600; font-size: clamp(1.6rem, 3.1vw, 2.7rem); line-height: 1.18; letter-spacing: -0.015em; margin: 0 0 0.75em; max-width: 46rem; }
+.said p.turn { text-align: center; color: var(--ink-soft); max-width: none; margin: 1.6em 0 0.8em; }
+.said .costs.centered-row { margin: 0; justify-content: center; flex-wrap: nowrap; }
+.said .costs li { font-size: clamp(1rem, 1.5vw, 1.3rem); white-space: nowrap; }
+@media (max-width: 760px) { .said .costs.centered-row { flex-wrap: wrap; } .said .costs li { white-space: normal; } }
+
+/* Runs by itself when the slide opens: each line slides in at its own time (--t) */
+@media (prefers-reduced-motion: no-preference) {
+  .auto-run p, .auto-run .costs li { opacity: 0; transform: translateX(2.5rem); transition: opacity 0.6s ease, transform 0.7s cubic-bezier(0.22, 0.7, 0.2, 1); }
+  .auto-run .costs li { transform: translateY(-1.2rem) rotate(var(--r, 0deg)); transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.3, 1.4, 0.5, 1); }
+  .slide.is-active .auto-run p, .slide.is-active .auto-run .costs li { opacity: 1; transform: rotate(var(--r, 0deg)); transition-delay: var(--t); }
+  .slide.seen .auto-run p, .slide.seen .auto-run .costs li { opacity: 1; transform: rotate(var(--r, 0deg)); transition: none; }
+  .auto-run .mark.auto { transition-delay: 0s; }
+  .slide.is-active .auto-run .mark.auto { transition-delay: var(--t); }
+}
+.slide.seen .auto-run .mark.auto { background-size: 100% 0.42em; transition: none; }

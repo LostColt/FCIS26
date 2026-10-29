@@ -65,7 +65,7 @@ We all became edtech. Zoom, Teams, Google Classroom, several apps linked togethe
 
 > And students pay that cost too. (Another login. Another interface. Another set of rules before the learning starts.)
 
-(Since 2026-10-29 chapter 3 is one slide: these four lines arrive one press at a time, sized like speech rather than headlines, and the student costs drop in with the last one. The Say below is for David to speak.)
+(Since 2026-10-29 chapter 3 is one slide that runs by itself when it opens: the first three lines slide in about two seconds apart, then "And students pay that cost too." lands centered with the three student costs in one row under it. The Say below is for David to speak.)
 
 **Say**
 Every app meant another subscription. But more than that, it meant I had to learn how to use it, and adapt to another system. I'd be working the way the tool wanted, not the way I work.
