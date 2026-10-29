@@ -272,3 +272,17 @@
   .flow li + li::before { content: "↓"; left: 1rem; top: -1.45rem; transform: none; }
   .prompt-menu { grid-template-columns: 1fr; }
 }
+
+/* A red-pen strike that follows the words across line breaks (the cover's "Stop subscribing.") */
+.strike-lines {
+  background-image: linear-gradient(var(--red), var(--red));
+  background-repeat: no-repeat;
+  background-position: 0 58%;
+  background-size: 0% 0.075em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.strike-lines.on { background-size: 100% 0.075em; }
+@media (prefers-reduced-motion: no-preference) {
+  .strike-lines { transition: background-size 0.55s cubic-bezier(0.6, 0, 0.3, 1) 0.15s; }
+}

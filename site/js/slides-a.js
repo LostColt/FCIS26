@@ -46,7 +46,7 @@
   /* 0 · Cover */
   add(0, 1,
     '<div class="cover"><div>' +
-    '<h1 class="cover-title"><span class="line"><span class="strike" data-at="1">Stop subscribing.</span></span><span class="line">Start building.</span></h1>' +
+    '<h1 class="cover-title"><span class="line"><span class="strike-lines" data-at="1">Stop subscribing.</span></span><span class="line">Start building.</span></h1>' +
     '<p class="cover-lede">How I started making the tools I needed, and what it taught me about teaching.</p>' +
     '<p class="cover-by">David Tran, AI Learning and Teaching Specialist, Gulliver Prep, Miami, FL. FCIS.</p>' +
     '<p class="cover-hint">Swipe, or use the arrow keys.</p>' +
