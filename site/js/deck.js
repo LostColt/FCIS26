@@ -169,10 +169,12 @@
     else if (k === "f" || k === "F") { e.preventDefault(); toggleFull(); }
   });
 
-  /* ---------- Swipe, with the slide following your finger ---------- */
-  var sx = null, sy = null, dx = 0, horizontal = null;
+  /* ---------- Swipe, with the slide following your finger ----------
+     A swipe can start anywhere, buttons and links included (slide 5 is almost all buttons).
+     If the finger moved sideways, the tap that follows is swallowed, so a swipe never presses a button. */
+  var sx = null, sy = null, dx = 0, horizontal = null, swallowClick = false;
   deck.addEventListener("pointerdown", function (e) {
-    if (e.pointerType === "mouse" || e.target.closest("input,textarea,select,button,a,pre")) return;
+    if (e.pointerType === "mouse" || e.target.closest("input,textarea,select,pre")) return;
     sx = e.clientX; sy = e.clientY; dx = 0; horizontal = null;
   });
   deck.addEventListener("pointermove", function (e) {
@@ -188,11 +190,15 @@
     if (sx === null) return;
     deck.classList.remove("dragging");
     var moved = horizontal ? dx : 0;
+    if (horizontal && Math.abs(dx) > 8) { swallowClick = true; setTimeout(function () { swallowClick = false; }, 400); }
     sx = null;
     if (moved < -50) next(); else if (moved > 50) prev(); else show(cur, step);
   }
   deck.addEventListener("pointerup", endSwipe);
   deck.addEventListener("pointercancel", endSwipe);
+  deck.addEventListener("click", function (e) {
+    if (swallowClick) { e.preventDefault(); e.stopPropagation(); swallowClick = false; }
+  }, true);
 
   /* ---------- Copy buttons ---------- */
   document.addEventListener("click", function (e) {

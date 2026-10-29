@@ -167,3 +167,7 @@ body { overflow: hidden; overscroll-behavior: none; }
   .chrome-bottom { background: color-mix(in srgb, var(--paper) 94%, transparent); border-top: 1px solid var(--rule); }
   .chrome-top { background: color-mix(in srgb, var(--paper) 94%, transparent); }
 }
+
+/* Slides that scroll (and every slide on a phone) are their own scroll areas. Without this,
+   the browser claims sideways swipes on them and the deck never sees the swipe. */
+.slide { touch-action: pan-y; }

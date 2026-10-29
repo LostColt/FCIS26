@@ -331,10 +331,10 @@
   display: flex; align-items: center; justify-content: center; text-align: center;
   margin: 0;
   font-family: var(--serif); font-weight: 600;
-  font-size: clamp(2.8rem, 8vw, 7.5rem); line-height: 1; letter-spacing: -0.03em;
+  font-size: clamp(3.4rem, 11vw, 11rem); line-height: 0.95; letter-spacing: -0.035em;
   opacity: 0;
 }
-.slide.is-active .auto-over .stats, .slide.seen .auto-over .stats { opacity: 0.12; }
+.slide.is-active .auto-over .stats, .slide.seen .auto-over .stats { opacity: 0.05; }
 .slide.is-active .auto-over .over, .slide.seen .auto-over .over { opacity: 1; }
 @media (prefers-reduced-motion: no-preference) {
   .auto-over .over { transform: scale(0.96); }
