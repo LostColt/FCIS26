@@ -107,16 +107,10 @@
     "</ul></div>");
 
   /* 4 · So I had it build it */
-  add(4, 0, '<p class="big huge">So I had it build&nbsp;it.</p>');
-  /* Half a second after the slide opens, the whole chain fans out by itself */
-  add(4, 0,
-    '<p class="big" style="font-size:clamp(1.9rem,3.6vw,3.2rem)">One thing led to the next.</p>' +
-    '<ol class="steps fan auto-fan" aria-label="How one build led to the next">' +
-    '<li style="--i:0"><div class="sketch off" aria-hidden="true"><i class="dark"></i><i></i><i class="short"></i></div><h3>A slide deck</h3><p>I wanted to embed it in a website. It didn’t look right.</p></li>' +
-    '<li style="--i:1"><div class="sketch" aria-hidden="true"><i class="dark"></i><i class="blue"></i><i></i></div><h3>A slide I could embed</h3><p>So I had it build one.</p></li>' +
-    '<li style="--i:2"><div class="sketch" aria-hidden="true"><i class="dark"></i><i></i><i></i><i class="short"></i><i class="blue"></i></div><h3>A website</h3><p>Then I had it build a website.</p></li>' +
-    '<li style="--i:3"><div class="sketch" aria-hidden="true"><i class="dark"></i><div class="bars"><b style="height:40%"></b><b style="height:75%"></b><b style="height:55%"></b><b style="height:90%"></b></div></div><h3>A dashboard</h3><p>Then a dashboard, so I could track things.</p></li>' +
-    "</ol>");
+  /* The big line, then on a press where it started */
+  add(4, 1,
+    '<p class="big huge">So I had it build&nbsp;it.</p>' +
+    '<p class="kicker-line" data-step="1">It started with a slide that wouldn’t embed right.</p>');
   /* "Could I build it?": the apps I could copy spread out when the slide opens;
      one press and the tools any teacher could build pan out below */
   var apps = ["Notion", "Padlet", "Trello", "Kahoot!", "Quizlet", "Nearpod", "Gimkit", "Blooket", "Screencastify", "MagicSchool"];

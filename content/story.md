@@ -80,6 +80,10 @@ And students pay that cost too. It's hard having students log into yet another a
 
 **Spine**
 > So I had it build it.
+>
+> It started with a slide that wouldn't embed right.
+
+(The "One thing led to the next" chain slide was cut on 2026-10-29; the line above carries where it started.)
 
 > Could I build it? (Notion, Padlet, Trello, Kahoot!, Quizlet, Nearpod, Gimkit, Blooket, Screencastify, MagicSchool spread out when the slide opens.)
 >
