@@ -79,15 +79,15 @@ And students pay that cost too. It's hard having students log into yet another a
 ## 4. So I had it build it
 
 **Spine**
-> So I had it build it.
->
-> It started with a slide that wouldn't embed right.
+> Could I build it?
+
+(Since 2026-10-29 the deck asks the question instead of "So I had it build it." Say it aloud: it started with a slide that wouldn't embed right.)
 
 (The "One thing led to the next" chain slide was cut on 2026-10-29; the line above carries where it started.)
 
-> Could I build it? (Notion, Padlet, Trello, Kahoot!, Quizlet, Nearpod, Gimkit, Blooket, Screencastify, MagicSchool spread out when the slide opens.)
+> The apps I was already using (Notion, Padlet, Trello, Kahoot!, Quizlet, Nearpod, Gimkit, Blooket, Screencastify, MagicSchool spread out when the slide opens.)
 >
-> Could I build other tools, too? (On a press: a dashboard, a PDF reader, a locked browser, a screenplay writer, a class website, a mini LMS, an automated newsletter, flashcards, an exit-ticket randomizer, a class timer.)
+> What about my own apps? (On a press: a dashboard, a PDF reader, a locked browser, a screenplay writer, a class website, a mini LMS, an automated newsletter, flashcards, an exit-ticket randomizer, a class timer.)
 
 > Do I have to pay anymore?
 

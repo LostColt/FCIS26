@@ -107,12 +107,10 @@
     "</ul></div>");
 
   /* 4 · So I had it build it */
-  /* The big line, then on a press where it started */
-  add(4, 1,
-    '<p class="big huge">So I had it build&nbsp;it.</p>' +
-    '<p class="kicker-line" data-step="1">It started with a slide that wouldn’t embed right.</p>');
-  /* "Could I build it?": the apps I could copy spread out when the slide opens;
-     one press and the tools any teacher could build pan out below */
+  /* The question */
+  add(4, 0, '<p class="big huge">Could I build&nbsp;it?</p>');
+  /* The apps I was already using spread out when the slide opens;
+     one press and "What about my own apps?" brings the tools any teacher could build */
   var apps = ["Notion", "Padlet", "Trello", "Kahoot!", "Quizlet", "Nearpod", "Gimkit", "Blooket", "Screencastify", "MagicSchool"];
   var tools = ["A dashboard", "A PDF reader", "A locked browser", "A screenplay writer", "A class website", "A mini LMS", "An automated newsletter", "Flashcards", "An exit-ticket randomizer", "A class timer"];
   var rot = [-2, 1.5, -1, 2, -1.5, 1, -2, 1.5, -1, 2], drop = [0, 0.6, 0.2, 0.9, 0.1, 0.7, 0.3, 0.8, 0, 0.5];
@@ -123,8 +121,8 @@
   }
   add(4, 1,
     '<div class="could">' +
-    '<section><h2>Could I build it?</h2><ul class="pile-row spread" aria-label="Apps I could copy">' + cards(apps) + "</ul></section>" +
-    '<section><h2 data-step="1">Could I build other tools, too?</h2><ul class="pile-row tools" aria-label="Tools any teacher could build">' + cards(tools, true) + "</ul></section>" +
+    '<section><h2>The apps I was already using</h2><ul class="pile-row spread" aria-label="Apps I could copy">' + cards(apps) + "</ul></section>" +
+    '<section><h2 data-step="1">What about my own apps?</h2><ul class="pile-row tools" aria-label="Tools any teacher could build">' + cards(tools, true) + "</ul></section>" +
     "</div>");
   add(4, 1,
     '<p class="big huge">Do I have to pay <span class="mark" data-at="1">anymore?</span></p>' +
