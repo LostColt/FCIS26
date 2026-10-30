@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Script Room</title>
 <!--
-  Script Room: a screenplay writer for film and TV. One file, no internet needed, no accounts, no AI.
+  Script Room: a screenplay writer for film and TV, with a home page of all your scripts. One file, no internet needed, no accounts, no AI.
   Type / at the start of a line to choose scene, action, character, dialogue and more.
   Your script is saved in this browser. Export it as a PDF or as a file Google Docs can open.
   Change anything you like. Or paste this whole file into Gemini and ask for a change.
@@ -70,28 +70,66 @@
   dialog h3 { font: 600 1.3rem/1.2 Georgia, serif; margin: 0 0 0.6rem; }
   .row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
 
+  .hub { max-width: 64rem; margin: 0 auto; padding: 1.8rem 1.2rem 3rem; }
+  .hub-h { font: 600 0.8rem/1 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--soft); margin: 0 0 1rem; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 1.1rem; }
+  .card { position: relative; background: var(--white); border: 1px solid var(--rule); border-radius: 10px; box-shadow: 0 1px 2px rgba(0,0,0,.05); display: flex; flex-direction: column; }
+  .card:hover { border-color: var(--soft); }
+  .card .open { flex: 1; display: block; text-align: left; border: 0; background: none; padding: 1.1rem 1.1rem 0.8rem; border-radius: 10px 10px 0 0; }
+  .card .mini { font: 10px/1.25 var(--mono); color: var(--soft); background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; height: 7.5rem; overflow: hidden; padding: 0.6rem 0.7rem; margin-bottom: 0.9rem; white-space: pre-wrap; }
+  .card h3 { font: 600 1.15rem/1.2 Georgia, serif; margin: 0 0 0.25rem; text-transform: uppercase; letter-spacing: 0.01em; }
+  .card .meta { margin: 0; color: var(--soft); font-size: 0.85rem; }
+  .badge { display: inline-block; font: 600 0.7rem/1 var(--sans); letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--rule); border-radius: 999px; padding: 0.25rem 0.5rem; margin-right: 0.4rem; color: var(--ink); vertical-align: 1px; }
+  .card .acts { display: flex; gap: 0.3rem; padding: 0 0.8rem 0.8rem; }
+  .card .acts button { border: 0; background: none; color: var(--soft); font-size: 0.85rem; padding: 0.3rem 0.4rem; border-radius: 6px; }
+  .card .acts button:hover { color: var(--ink); background: var(--paper); }
+  .card.new { border: 2px dashed var(--rule); box-shadow: none; background: transparent; align-items: center; justify-content: center; min-height: 14rem; color: var(--soft); font-weight: 600; }
+  .hub-note { color: var(--soft); font-size: 0.88rem; margin-top: 1.6rem; }
+  .lbl { display: block; font-weight: 600; font-size: 0.85rem; margin: 0.8rem 0 0.35rem; }
+  .field { width: 100%; border: 1px solid var(--rule); border-radius: 8px; padding: 0.5rem 0.65rem; }
+  dialog .seg label { padding: 0.35rem 0.9rem; cursor: pointer; }
+  dialog .seg input { margin-right: 0.3rem; }
+  #editTitle { font-size: 1.05rem; max-width: 22rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
   @media (max-width: 700px) { .page { padding: 0.6in 0.45in 0.8in 0.6in; font-size: 11pt; } .tag { display: none !important; } }
 
   @media print {
     @page { size: letter; margin: 1in 1in 1in 1.5in; }
     html, body { background: #fff; }
-    .bar, .hint, .status, .menu, dialog, .tag { display: none !important; }
+    #home, .bar, .hint, .status, .menu, dialog, .tag { display: none !important; }
     .page { width: auto; margin: 0; padding: 0; box-shadow: none; font-size: 12pt; }
     .titlepage { border: 0; height: 9in; display: flex; flex-direction: column; justify-content: center; page-break-after: always; break-after: page; }
     .b.on { background: none; box-shadow: none; }
     .b:empty::before { content: ""; }
+    .titlepage input::placeholder { color: transparent; }
     .b[data-t="act"] { break-before: page; }
     .b[data-t="scene"], .b[data-t="character"] { break-after: avoid; }
   }
 </style>
 </head>
 <body>
+<div id="home">
 <header class="bar">
   <h1>Script Room</h1>
+  <button class="btn" id="exportAll">Export a backup</button>
+  <button class="btn" id="importAll">Import</button>
+  <input type="file" id="importFile" accept=".json,application/json" hidden>
+  <button class="btn primary" id="newBtn">+ New script</button>
+</header>
+<main class="hub">
+  <h2 class="hub-h">Your scripts</h2>
+  <div class="cards" id="cards"></div>
+  <p class="hub-note" id="homeStatus">Your scripts are saved in this browser, on this computer. Export a backup now and then.</p>
+</main>
+</div>
+
+<div id="editor" hidden>
+<header class="bar">
+  <button class="btn" id="homeBtn">← All scripts</button>
+  <h1 id="editTitle">Script Room</h1>
   <div class="seg" role="group" aria-label="Film or TV">
     <button id="fFilm" aria-pressed="true">Film</button><button id="fTV" aria-pressed="false">TV</button>
   </div>
-  <button class="btn" id="newBtn">New script</button>
   <button class="btn" id="pdfBtn">Save as PDF</button>
   <button class="btn primary" id="docBtn">Download for Google Docs</button>
 </header>
@@ -108,13 +146,24 @@
   <span class="tag" id="tag" aria-hidden="true" hidden></span>
 </article>
 <p class="status" id="status"></p>
+</div>
 
 <div class="menu" id="menu" role="listbox" aria-label="Line type" hidden></div>
 
 <dialog id="newDlg">
-  <h3>Start a new script?</h3>
-  <p>This clears the page. Save it as a PDF or download it for Google Docs first if you want to keep it.</p>
-  <div class="row"><button class="btn primary" id="newYes">Start fresh</button><button class="btn" id="newNo">Keep writing</button></div>
+  <form method="dialog" id="newForm">
+    <h3>New script</h3>
+    <label class="lbl" for="newTitle">Title</label><input type="text" id="newTitle" class="field" placeholder="Untitled">
+    <p class="lbl">Film or TV?</p>
+    <div class="seg" role="radiogroup"><label><input type="radio" name="fmt" value="film" checked> Film</label><label><input type="radio" name="fmt" value="tv"> TV</label></div>
+    <div class="row"><button class="btn primary" value="ok">Start writing</button><button class="btn" value="cancel" formnovalidate>Cancel</button></div>
+  </form>
+</dialog>
+
+<dialog id="delDlg">
+  <h3 id="delTitle">Delete this script?</h3>
+  <p>It's removed from this browser. This can't be undone, so save a PDF first if you want to keep it.</p>
+  <div class="row"><button class="btn primary" id="delYes">Delete it</button><button class="btn" id="delNo">Keep it</button></div>
 </dialog>
 
 <dialog id="docDlg">
@@ -130,7 +179,7 @@
 <script>
 (function () {
   "use strict";
-  var KEY = "script-room";
+  var KEY = "script-room-projects", OLD_KEY = "script-room";
   var TYPES = {
     scene: { name: "Scene heading", ph: "INT. KITCHEN - NIGHT", next: "action" },
     action: { name: "Action", ph: "What we see.", next: "action" },
@@ -143,9 +192,25 @@
   var ORDER = ["scene", "action", "character", "dialogue", "parenthetical", "transition", "act"];
   var $ = function (id) { return document.getElementById(id); };
   var script = $("script"), menu = $("menu");
-  var doc, current = null, menuItems = [], menuPick = 0, saveTimer;
+  var store, doc, current = null, menuItems = [], menuPick = 0, saveTimer;
 
-  function sample() {
+  function samples() {
+    return [film(), tv()];
+  }
+  function tv() {
+    return { format: "tv", title: "Office Hours", author: "A sample (invented)", blocks: [
+      ["act", "COLD OPEN"],
+      ["scene", "INT. HIGH SCHOOL - WRITING CENTER - DAY"],
+      ["action", "A sign-up sheet with thirty names. Six chairs. MS. REYES (40s) counts the chairs twice."],
+      ["character", "MS. REYES"],
+      ["dialogue", "Okay. Who's first?"],
+      ["action", "Every hand goes up."],
+      ["act", "ACT ONE"],
+      ["scene", "INT. WRITING CENTER - LATER"],
+      ["action", "One student left. JONAH (16) slides a draft across the table. It's one sentence long."]
+    ] };
+  }
+  function film() {
     return { format: "film", title: "The Late Bus", author: "A sample (invented)", blocks: [
       ["scene", "EXT. BUS STOP - NIGHT"],
       ["action", "Rain. One flickering streetlight. MAYA (17) sits on the bench with a backpack held like a shield."],
@@ -166,20 +231,78 @@
 
   /* ---------- Saving in this browser ---------- */
   function collect() {
+    if (!doc) return;
     doc.title = $("title").value; doc.author = $("author").value;
     doc.blocks = Array.prototype.map.call(script.children, function (el) { return [el.dataset.t, plain(el)]; });
   }
   function save() {
     clearTimeout(saveTimer);
     saveTimer = setTimeout(function () {
+      if (!doc) return;
       collect();
-      try { localStorage.setItem(KEY, JSON.stringify(doc)); $("status").textContent = "Saved in this browser."; }
+      doc.updated = Date.now();
+      $("editTitle").textContent = doc.title || "Untitled";
+      try { localStorage.setItem(KEY, JSON.stringify(store)); $("status").textContent = "Saved in this browser."; }
       catch (e) { $("status").textContent = "This browser won't save. Download for Google Docs to keep your script."; }
       counts();
     }, 300);
   }
+  function uid() { return Math.random().toString(36).slice(2, 10); }
+  function stamp(p) { p.id = p.id || uid(); p.updated = p.updated || Date.now(); return p; }
+  function loadStore() {
+    try { store = JSON.parse(localStorage.getItem(KEY)); } catch (e) { store = null; }
+    if (!store || !Array.isArray(store.projects)) {
+      store = { projects: [] };
+      try { var old = JSON.parse(localStorage.getItem(OLD_KEY)); if (old && old.blocks) store.projects.push(stamp(old)); } catch (e) {}
+      if (!store.projects.length) store.projects = samples().map(stamp);
+      persist();
+    }
+  }
+  function persist() { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) { $("homeStatus").textContent = "This browser won't save. Export a backup to keep your scripts."; } }
+
+  /* ---------- The hub ---------- */
+  function stats(d) {
+    var scenes = d.blocks.filter(function (b) { return b[0] === "scene" && b[1]; }).length;
+    var lines = d.blocks.reduce(function (n, b) { return n + Math.max(1, Math.ceil((b[1] || "").length / (b[0] === "dialogue" ? 35 : 60))) + (b[0] === "dialogue" || b[0] === "parenthetical" ? 0 : 1); }, 0);
+    var pages = Math.max(1, Math.round(lines / 55));
+    return scenes + " scene" + (scenes === 1 ? "" : "s") + " · about " + pages + " page" + (pages === 1 ? "" : "s");
+  }
+  function ago(t) {
+    var m = Math.round((Date.now() - t) / 60000);
+    if (m < 1) return "just now"; if (m < 60) return m + " min ago";
+    var h = Math.round(m / 60); if (h < 24) return h + " hr ago";
+    return new Date(t).toLocaleDateString(undefined, { month: "short", day: "numeric" });
+  }
+  function escH(s) { return String(s || "").replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function showHome() {
+    collect(); if (doc) { persist(); }
+    doc = null; closeMenu();
+    $("editor").hidden = true; $("home").hidden = false;
+    var list = store.projects.slice().sort(function (a, b) { return b.updated - a.updated; });
+    $("cards").innerHTML = list.map(function (p) {
+      var peek = p.blocks.filter(function (b) { return b[1]; }).slice(0, 7).map(function (b) {
+        var v = /^(scene|character|transition|act)$/.test(b[0]) ? b[1].toUpperCase() : b[1];
+        return (b[0] === "character" ? "          " : b[0] === "dialogue" ? "     " : "") + v;
+      }).join("\n");
+      return '<div class="card"><button class="open" data-open="' + p.id + '"><div class="mini" aria-hidden="true">' + escH(peek) + "</div>" +
+        "<h3>" + escH(p.title || "Untitled") + '</h3><p class="meta"><span class="badge">' + (p.format === "tv" ? "TV" : "Film") + "</span>" + stats(p) + "</p>" +
+        '<p class="meta">Edited ' + ago(p.updated) + "</p></button>" +
+        '<div class="acts"><button data-dup="' + p.id + '">Duplicate</button><button data-del="' + p.id + '">Delete</button></div></div>';
+    }).join("") + '<button class="card new" id="newCard">+ New script</button>';
+    document.title = "Script Room";
+  }
+  function open(id) {
+    doc = store.projects.find(function (p) { return p.id === id; });
+    if (!doc) return showHome();
+    $("home").hidden = true; $("editor").hidden = false;
+    $("editTitle").textContent = doc.title || "Untitled";
+    document.title = (doc.title || "Untitled") + " · Script Room";
+    load();
+    var last = script.querySelector(".b:last-child"); if (last) { showTag(last); caretToEnd(last); }
+    window.scrollTo(0, 0);
+  }
+
   function load() {
-    try { doc = JSON.parse(localStorage.getItem(KEY)) || sample(); } catch (e) { doc = sample(); }
     $("title").value = doc.title || ""; $("author").value = doc.author || "";
     script.innerHTML = "";
     (doc.blocks.length ? doc.blocks : [["scene", ""]]).forEach(function (b) { script.appendChild(block(b[0], b[1])); });
@@ -187,11 +310,7 @@
     counts();
     $("status").textContent = "Saved in this browser.";
   }
-  function counts() {
-    var scenes = doc.blocks.filter(function (b) { return b[0] === "scene" && b[1]; }).length;
-    var lines = doc.blocks.reduce(function (n, b) { return n + Math.max(1, Math.ceil((b[1] || "").length / (b[0] === "dialogue" ? 35 : 60))) + (b[0] === "dialogue" || b[0] === "parenthetical" ? 0 : 1); }, 0);
-    $("count").textContent = scenes + " scene" + (scenes === 1 ? "" : "s") + " · about " + Math.max(1, Math.round(lines / 55)) + " page" + (lines > 82 ? "s" : "");
-  }
+  function counts() { $("count").textContent = stats(doc); }
 
   /* ---------- Lines ---------- */
   function block(t, value) {
@@ -299,15 +418,52 @@
   $("fFilm").onclick = function () { setFormat("film"); };
   $("fTV").onclick = function () { setFormat("tv"); };
 
-  /* ---------- New, PDF, Google Docs ---------- */
-  $("newBtn").onclick = function () { $("newDlg").showModal(); };
-  $("newNo").onclick = function () { $("newDlg").close(); };
-  $("newYes").onclick = function () {
-    $("newDlg").close();
-    doc = { format: doc.format, title: "", author: "", blocks: [] };
-    $("title").value = ""; $("author").value = "";
-    script.innerHTML = ""; var el = block(doc.format === "tv" ? "act" : "scene", ""); if (doc.format === "tv") el.textContent = "COLD OPEN";
-    script.appendChild(el); showTag(el); caretToEnd(el); save();
+  /* ---------- The hub: new, open, duplicate, delete, backup ---------- */
+  function newScript() { $("newForm").reset(); $("newDlg").showModal(); $("newTitle").focus(); }
+  $("newBtn").onclick = newScript;
+  $("newDlg").addEventListener("close", function () {
+    if ($("newDlg").returnValue !== "ok") return;
+    var f = document.querySelector('input[name="fmt"]:checked').value;
+    var p = stamp({ format: f, title: $("newTitle").value.trim(), author: "", blocks: f === "tv" ? [["act", "COLD OPEN"], ["scene", ""]] : [["scene", ""]] });
+    store.projects.push(p); persist(); open(p.id);
+  });
+  var toDelete = null;
+  $("cards").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    if (b.id === "newCard") return newScript();
+    if (b.dataset.open) return open(b.dataset.open);
+    var p = store.projects.find(function (x) { return x.id === (b.dataset.dup || b.dataset.del); });
+    if (!p) return;
+    if (b.dataset.dup) {
+      var c = JSON.parse(JSON.stringify(p)); c.id = uid(); c.updated = Date.now(); c.title = (p.title || "Untitled") + " (copy)";
+      store.projects.push(c); persist(); showHome();
+    } else {
+      toDelete = p; $("delTitle").textContent = "Delete “" + (p.title || "Untitled") + "”?"; $("delDlg").showModal();
+    }
+  });
+  $("delNo").onclick = function () { $("delDlg").close(); };
+  $("delYes").onclick = function () {
+    store.projects = store.projects.filter(function (x) { return x !== toDelete; });
+    persist(); $("delDlg").close(); showHome();
+  };
+  $("homeBtn").onclick = showHome;
+  $("exportAll").onclick = function () {
+    var a = document.createElement("a"), d = new Date();
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(store, null, 2)], { type: "application/json" }));
+    a.download = "script-room-backup-" + d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate() + ".json";
+    document.body.appendChild(a); a.click(); a.remove();
+  };
+  $("importAll").onclick = function () { $("importFile").click(); };
+  $("importFile").onchange = function () {
+    var f = this.files[0]; if (!f) return;
+    f.text().then(function (t) {
+      var d = JSON.parse(t), list = Array.isArray(d.projects) ? d.projects : d.blocks ? [d] : null;
+      if (!list) throw new Error("not a backup");
+      var have = store.projects.map(function (p) { return p.id; });
+      list.forEach(function (p) { if (!p.id || have.indexOf(p.id) >= 0) p.id = uid(); store.projects.push(stamp(p)); });
+      persist(); showHome(); $("homeStatus").textContent = "Imported " + list.length + " script" + (list.length === 1 ? "" : "s") + ".";
+    }).catch(function () { $("homeStatus").textContent = "That file isn't a Script Room backup."; });
+    this.value = "";
   };
   $("title").addEventListener("input", save); $("author").addEventListener("input", save);
 
@@ -343,8 +499,8 @@
 
   document.addEventListener("click", function (e) { if (!menu.hidden && !e.target.closest(".menu") && !e.target.closest(".b")) closeMenu(); });
 
-  load();
-  var first = script.querySelector(".b:last-child"); if (first) showTag(first);
+  loadStore();
+  showHome();
 })();
 </script>
 </body>
