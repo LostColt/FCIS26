@@ -86,6 +86,10 @@
   .card.new { border: 2px dashed var(--rule); box-shadow: none; background: transparent; align-items: center; justify-content: center; min-height: 14rem; color: var(--soft); font-weight: 600; }
   .card .open { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; }
   .badge.sample { color: var(--blue); border-color: var(--blue); }
+  .ui { display: inline-block; font-weight: 600; font-size: 0.9em; padding: 0 0.4em; border: 1px solid var(--ink); border-radius: 5px; white-space: nowrap; }
+  .note { color: var(--soft); font-size: 0.88rem; }
+  .btn.small { padding: 0.2rem 0.6rem; font-size: 0.85rem; }
+  dialog ol { padding-left: 1.3rem; } dialog li { margin-bottom: 0.45rem; }
   .hub-note { color: var(--soft); font-size: 0.88rem; margin-top: 1.6rem; }
   .lbl { display: block; font-weight: 600; font-size: 0.85rem; margin: 0.8rem 0 0.35rem; }
   .field { width: 100%; border: 1px solid var(--rule); border-radius: 8px; padding: 0.5rem 0.65rem; }
@@ -112,6 +116,7 @@
 <div id="home">
 <header class="bar">
   <h1>Script Room</h1>
+  <button class="btn" id="driveBtn">Save to Google Drive</button>
   <button class="btn" id="exportAll">Export a backup</button>
   <button class="btn" id="importAll">Import</button>
   <input type="file" id="importFile" accept=".json,application/json" hidden>
@@ -121,7 +126,7 @@
   <h2 class="hub-h">Your scripts</h2>
   <div class="cards" id="cards"></div>
   <p class="hub-note"><button class="btn" id="addSamples" hidden>Add the sample scripts</button></p>
-  <p class="hub-note" id="homeStatus">Your scripts are saved in this browser, on this computer. Export a backup now and then.</p>
+  <p class="hub-note" id="homeStatus"></p>
 </main>
 </div>
 
@@ -162,6 +167,69 @@
   </form>
 </dialog>
 
+<dialog id="driveDlg">
+  <h3>Save your scripts to Google Drive</h3>
+  <p>Right now your scripts live only in this browser, on this computer. Set this up once and Script Room saves to a <b>Script Room</b> folder in your Google Drive: one file per script, any length. Open it on any computer you sign into and your scripts are there; changes go both ways.</p>
+  <ol>
+    <li>Go to <b>script.google.com</b>, signed in to your school account, and choose <span class="ui">New project</span>.</li>
+    <li>Delete what's in <b>Code.gs</b> and paste this in: <button class="btn small" data-copy="code">Copy Code.gs</button></li>
+    <li>Click <span class="ui">+</span> next to Files, choose <span class="ui">HTML</span>, name it <b>Index</b>, delete what's there, and paste in this whole tool: <button class="btn small" data-copy="page">Copy Script Room</button></li>
+    <li>Save. Then <span class="ui">Deploy</span> → <span class="ui">New deployment</span> → type <span class="ui">Web app</span>. Execute as: <b>Me</b>. Who has access: <b>Only myself</b>. Click <span class="ui">Deploy</span>.</li>
+    <li>Google asks for permission to use your Drive. That's normal: it's your own script, saving to your own Drive.</li>
+    <li>Open the web app link and bookmark it. That's your Script Room from now on.</li>
+  </ol>
+  <p class="note">Already have scripts here? Export a backup first, then Import it in the new link.</p>
+  <p class="note">Rather ask than paste? Give Gemini this prompt and attach this file: <button class="btn small" data-copy="prompt">Copy the prompt</button></p>
+  <p class="note">Can't deploy? Your school may limit Apps Script. Ask your tech lead.</p>
+  <div class="row"><button class="btn primary" id="driveClose">Done</button></div>
+</dialog>
+
+<script type="text/plain" id="codegs">/* Script Room: saves each script as a file in a "Script Room" folder in your Google Drive. */
+function doGet() {
+  return HtmlService.createHtmlOutputFromFile('Index')
+    .setTitle('Script Room')
+    .addMetaTag('viewport', 'width=device-width, initial-scale=1');
+}
+
+function folder_() {
+  var found = DriveApp.getFoldersByName('Script Room');
+  return found.hasNext() ? found.next() : DriveApp.createFolder('Script Room');
+}
+
+function find_(id) {
+  var files = folder_().getFiles();
+  while (files.hasNext()) {
+    var f = files.next();
+    if (f.getName().indexOf('[' + id + '].json') >= 0) return f;
+  }
+  return null;
+}
+
+function listScripts() {
+  var out = [], files = folder_().getFiles();
+  while (files.hasNext()) {
+    var f = files.next();
+    if (!/\.json$/.test(f.getName())) continue;
+    try { out.push(JSON.parse(f.getBlob().getDataAsString())); } catch (e) {}
+  }
+  return JSON.stringify(out);
+}
+
+function saveScript(json) {
+  var d = JSON.parse(json);
+  var name = (d.title || 'Untitled').replace(/[\\/:*?"<>|]/g, '') + ' [' + d.id + '].json';
+  var f = find_(d.id);
+  if (f) { f.setContent(json); if (f.getName() !== name) f.setName(name); }
+  else folder_().createFile(name, json, MimeType.PLAIN_TEXT);
+  return true;
+}
+
+function deleteScript(id) {
+  var f = find_(id);
+  if (f) f.setTrashed(true);
+  return true;
+}</script>
+
 <dialog id="delDlg">
   <h3 id="delTitle">Delete this script?</h3>
   <p>It's removed from this browser. This can't be undone, so save a PDF first if you want to keep it.</p>
@@ -194,6 +262,9 @@
   var ORDER = ["scene", "action", "character", "dialogue", "parenthetical", "transition", "act"];
   var $ = function (id) { return document.getElementById(id); };
   var script = $("script"), menu = $("menu");
+  var PAGE = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+  var inDrive = typeof google !== "undefined" && google.script && google.script.run;
+  var LOCAL_NOTE = "Your scripts are saved in this browser, on this computer. Export a backup now and then, or save them to Google Drive.";
   var store, doc, current = null, menuItems = [], menuPick = 0, saveTimer;
 
   function samples() {
@@ -237,17 +308,18 @@
     doc.title = $("title").value; doc.author = $("author").value;
     doc.blocks = Array.prototype.map.call(script.children, function (el) { return [el.dataset.t, plain(el)]; });
   }
+  var dirty = false;
   function save() {
+    dirty = true;
     clearTimeout(saveTimer);
     saveTimer = setTimeout(function () {
       if (!doc) return;
       collect();
-      doc.updated = Date.now();
+      doc.updated = Date.now(); dirty = false;
       $("editTitle").textContent = doc.title || "Untitled";
-      try { localStorage.setItem(KEY, JSON.stringify(store)); $("status").textContent = "Saved in this browser."; }
-      catch (e) { $("status").textContent = "This browser won't save. Download for Google Docs to keep your script."; }
+      persist([doc]);
       counts();
-    }, 300);
+    }, inDrive ? 1200 : 300);
   }
   function uid() { return Math.random().toString(36).slice(2, 10); }
   function stamp(p) { p.id = p.id || uid(); p.updated = p.updated || Date.now(); return p; }
@@ -256,11 +328,58 @@
     if (!store || !Array.isArray(store.projects)) {
       store = { projects: [] };
       try { var old = JSON.parse(localStorage.getItem(OLD_KEY)); if (old && old.blocks) store.projects.push(stamp(old)); } catch (e) {}
-      samples().forEach(function (d) { store.projects.push(stamp(d)); });
+      if (!inDrive) samples().forEach(function (d) { store.projects.push(stamp(d)); });
       persist();
     }
   }
-  function persist() { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) { $("homeStatus").textContent = "This browser won't save. Export a backup to keep your scripts."; } }
+
+  /* ---------- Saving: always a copy in this browser; with Google Drive set up, also to Drive ----------
+     persist(changed, removedId): changed is a list of scripts to send to Drive; removedId is a script to remove there. */
+  var pending = {}, removals = [], retryTimer = null;
+  function say(t) { $("status").textContent = t; $("homeStatus").textContent = t; }
+  function persist(changed, removedId) {
+    try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) { if (!inDrive) say("This browser won't save. Export a backup to keep your scripts."); }
+    if (!inDrive) { say(LOCAL_NOTE); return; }
+    (changed || []).forEach(function (p) { pending[p.id] = p; });
+    if (removedId) { delete pending[removedId]; removals.push(removedId); }
+    flush();
+  }
+  function flush() {
+    clearTimeout(retryTimer);
+    var ids = Object.keys(pending);
+    if (!ids.length && !removals.length) return;
+    say("Saving to Google Drive…");
+    var left = ids.length + removals.length, failed = false;
+    function done() { if (--left > 0) return; if (failed) { say("Couldn't reach Google Drive. Your work is kept in this browser; trying again…"); retryTimer = setTimeout(flush, 5000); } else say("Saved to your Google Drive."); }
+    ids.forEach(function (id) {
+      var p = pending[id]; delete pending[id];
+      p.synced = true;
+      google.script.run.withSuccessHandler(done).withFailureHandler(function () { pending[id] = pending[id] || p; failed = true; done(); }).saveScript(JSON.stringify(p));
+    });
+    removals.splice(0).forEach(function (id) {
+      google.script.run.withSuccessHandler(done).withFailureHandler(function () { removals.push(id); failed = true; done(); }).deleteScript(id);
+    });
+  }
+  /* Pull from Drive: newest copy of each script wins, so a script written on another computer shows up here */
+  function pull(after) {
+    if (!inDrive) { if (after) after(); return; }
+    google.script.run.withSuccessHandler(function (json) {
+      var remote = JSON.parse(json), byId = {}, push = [];
+      store.projects.forEach(function (p) { byId[p.id] = p; });
+      remote.forEach(function (r) { r.synced = true; var l = byId[r.id]; if (!l || (r.updated || 0) > (l.updated || 0)) byId[r.id] = r; });
+      store.projects.forEach(function (l) {
+        var r = remote.find(function (x) { return x.id === l.id; });
+        if (!r && l.synced) { delete byId[l.id]; return; }      /* deleted on another computer */
+        if (!r || (l.updated || 0) > (r.updated || 0)) push.push(l);  /* new here, or newer here */
+      });
+      store.projects = Object.keys(byId).map(function (k) { return byId[k]; });
+      if (!store.projects.length) { store.projects = samples().map(stamp); push = store.projects.slice(); }
+      if (doc) { var fresh = byId[doc.id]; if (fresh && fresh !== doc) { doc = fresh; load(); } }
+      try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {}
+      if (push.length) persist(push); else say("Saved to your Google Drive.");
+      if (after) after();
+    }).withFailureHandler(function () { say("Couldn't reach Google Drive. Showing the copy in this browser."); if (after) after(); }).listScripts();
+  }
 
   /* ---------- The hub ---------- */
   function stats(d) {
@@ -277,8 +396,14 @@
   }
   function escH(s) { return String(s || "").replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   function showHome() {
-    collect(); if (doc) { persist(); }
+    clearTimeout(saveTimer);
+    if (doc && dirty) { collect(); doc.updated = Date.now(); dirty = false; persist([doc]); }
     doc = null; closeMenu();
+    renderHub();
+    pull(renderHub);
+  }
+  function renderHub() {
+    if (doc) return;
     $("editor").hidden = true; $("home").hidden = false;
     var list = store.projects.slice().sort(function (a, b) { return b.updated - a.updated; });
     $("cards").innerHTML = list.map(function (p) {
@@ -295,6 +420,7 @@
     document.title = "Script Room";
   }
   function open(id) {
+    dirty = false;
     doc = store.projects.find(function (p) { return p.id === id; });
     if (!doc) return showHome();
     $("home").hidden = true; $("editor").hidden = false;
@@ -311,7 +437,7 @@
     (doc.blocks.length ? doc.blocks : [["scene", ""]]).forEach(function (b) { script.appendChild(block(b[0], b[1])); });
     setFormat(doc.format || "film", true);
     counts();
-    $("status").textContent = "Saved in this browser.";
+    say(inDrive ? "Saved to your Google Drive." : LOCAL_NOTE);
   }
   function counts() { $("count").textContent = stats(doc); }
 
@@ -441,7 +567,7 @@
     if ($("newDlg").returnValue !== "ok") return;
     var f = document.querySelector('input[name="fmt"]:checked').value;
     var p = stamp({ format: f, title: $("newTitle").value.trim(), author: "", blocks: f === "tv" ? [["act", "COLD OPEN"], ["scene", ""]] : [["scene", ""]] });
-    store.projects.push(p); persist(); open(p.id);
+    store.projects.push(p); persist([p]); open(p.id);
   });
   var toDelete = null;
   $("cards").addEventListener("click", function (e) {
@@ -452,7 +578,7 @@
     if (!p) return;
     if (b.dataset.dup) {
       var c = JSON.parse(JSON.stringify(p)); c.id = uid(); c.updated = Date.now(); c.title = (p.title || "Untitled") + " (copy)";
-      store.projects.push(c); persist(); showHome();
+      store.projects.push(c); persist([c]); renderHub();
     } else {
       toDelete = p; $("delTitle").textContent = "Delete “" + (p.title || "Untitled") + "”?"; $("delDlg").showModal();
     }
@@ -460,10 +586,22 @@
   $("delNo").onclick = function () { $("delDlg").close(); };
   $("delYes").onclick = function () {
     store.projects = store.projects.filter(function (x) { return x !== toDelete; });
-    persist(); $("delDlg").close(); showHome();
+    persist([], toDelete.id); $("delDlg").close(); renderHub();
   };
   $("homeBtn").onclick = showHome;
-  $("addSamples").onclick = function () { samples().forEach(function (d) { store.projects.push(stamp(d)); }); persist(); showHome(); };
+  $("driveBtn").onclick = function () { $("driveDlg").showModal(); };
+  $("driveClose").onclick = function () { $("driveDlg").close(); };
+  var GEMINI = "I'm attaching an HTML file: a screenplay writer that saves scripts in the browser's localStorage.\n" +
+    "Turn it into a Google Apps Script web app that saves each script as a file in a \"Script Room\" folder in my Google Drive, loads them all when it opens, and saves changes as I type.\n" +
+    "Give me Code.gs and Index.html, and step-by-step instructions for pasting them into a new project at script.google.com and deploying it as a web app only I can open.";
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-copy]"); if (!b) return;
+    var text = b.dataset.copy === "code" ? $("codegs").textContent : b.dataset.copy === "page" ? PAGE : GEMINI, label = b.textContent;
+    function ok() { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1600); }
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(ok, fb); else fb();
+    function fb() { var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); ok(); } catch (err) { b.textContent = "Couldn't copy"; } ta.remove(); }
+  });
+  $("addSamples").onclick = function () { var add = samples().map(stamp); store.projects = store.projects.concat(add); persist(add); renderHub(); };
   $("exportAll").onclick = function () {
     var a = document.createElement("a"), d = new Date();
     a.href = URL.createObjectURL(new Blob([JSON.stringify(store, null, 2)], { type: "application/json" }));
@@ -478,7 +616,7 @@
       if (!list) throw new Error("not a backup");
       var have = store.projects.map(function (p) { return p.id; });
       list.forEach(function (p) { if (!p.id || have.indexOf(p.id) >= 0) p.id = uid(); store.projects.push(stamp(p)); });
-      persist(); showHome(); $("homeStatus").textContent = "Imported " + list.length + " script" + (list.length === 1 ? "" : "s") + ".";
+      persist(list); renderHub(); $("homeStatus").textContent = "Imported " + list.length + " script" + (list.length === 1 ? "" : "s") + ".";
     }).catch(function () { $("homeStatus").textContent = "That file isn't a Script Room backup."; });
     this.value = "";
   };
@@ -517,6 +655,7 @@
   document.addEventListener("click", function (e) { if (!menu.hidden && !e.target.closest(".menu") && !e.target.closest(".b")) closeMenu(); });
 
   loadStore();
+  if (inDrive) { $("driveBtn").hidden = true; say("Loading your scripts from Google Drive…"); }
   showHome();
 })();
 </script>
