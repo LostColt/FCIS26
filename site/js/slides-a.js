@@ -83,7 +83,7 @@
     '<li style="--i:4"><b>Slide designer</b><span>Made every lesson a deck.</span></li>' +
     '<li style="--i:5"><b>Data analyst</b><span>Tracked how long each kid was on the screen, and who opened the assignment.</span></li>' +
     '<li style="--i:6"><b>Tech support</b><span>For every family, every evening.</span></li>' +
-    '</ul><h4>Software</h4><p class="resume-skills" style="--i:7">Zoom · Microsoft Teams · Google Classroom · Schoology · Blackbaud · Canva · Notion · Trello · Screencastify · Nearpod · Padlet · Kahoot! · Several apps, linked&nbsp;together</p>' +
+    '</ul><h4>Software</h4><p class="resume-skills" style="--i:7">Zoom · Microsoft Teams · Google Classroom · Schoology · Blackbaud · Veracross · Canva · Notion · Trello · Screencastify · Nearpod · Padlet · Kahoot! · Several apps, linked&nbsp;together</p>' +
     '<p class="resume-refs" style="--i:8">References available upon request.</p>' +
     "</div></div>");
   /* After: plays by itself; the red pen takes "band-aid", the highlighter takes "shift" */

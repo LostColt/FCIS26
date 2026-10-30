@@ -43,7 +43,7 @@ David Tran · AI Learning and Teaching Specialist, Gulliver Prep, Miami, FL · F
 > (A resume fills itself in, a joke kept to this one slide.)
 > Every Teacher. 2020–2021 · Your classroom, and everyone's kitchen table.
 > Experience: Website builder: built a class site overnight. Curriculum designer: rewrote every unit for a screen. Video producer: recorded every lesson. Twice. Podcaster: turned lessons into audio. Slide designer: made every lesson a deck. Data analyst: tracked how long each kid was on the screen, and who opened the assignment. Tech support: for every family, every evening.
-> Software: Zoom · Microsoft Teams · Google Classroom · Schoology · Blackbaud · Canva · Notion · Trello · Screencastify · Nearpod · Padlet · Kahoot! · Several apps, linked together.
+> Software: Zoom · Microsoft Teams · Google Classroom · Schoology · Blackbaud · Veracross · Canva · Notion · Trello · Screencastify · Nearpod · Padlet · Kahoot! · Several apps, linked together.
 > References available upon request.
 
 > Then COVID ended.
