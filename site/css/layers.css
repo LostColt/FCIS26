@@ -489,3 +489,35 @@
   .slide.is-active .looked-line { transform: none; transition: opacity 0.8s ease 10.2s, transform 0.9s cubic-bezier(0.22, 0.7, 0.2, 1) 10.2s; }
   .slide.seen .looked-line { transform: none; }
 }
+
+/* Slide 9 trial A (?v=tabs): browser tabs keep opening until they are slivers */
+.look-tabs .tabbar { margin: 0 0 2.2rem; border-bottom: 1px solid var(--rule); background: var(--paper-deep); border-radius: 10px 10px 0 0; padding: 0.5rem 0.6rem 0; }
+.look-tabs .tabs { display: flex; gap: 2px; align-items: flex-end; overflow: hidden; }
+.look-tabs .tab { flex: 1 1 11rem; min-width: 0; display: flex; align-items: center; gap: 0.4rem; font: 500 0.9rem/1 var(--sans); white-space: nowrap; overflow: hidden; text-overflow: clip; background: var(--white); border: 1px solid var(--rule); border-bottom: 0; border-radius: 8px 8px 0 0; padding: 0.55rem 0.6rem; color: var(--ink); max-width: 0; padding-left: 0; padding-right: 0; border-width: 0; }
+.look-tabs .tab i { flex: none; width: 0.8rem; height: 0.8rem; border-radius: 3px; background: var(--ink-soft); opacity: 0.5; }
+.look-tabs .tab-plus { flex: none; font: 400 1.2rem/1 var(--sans); color: var(--ink-soft); padding: 0.4rem 0.5rem; }
+.slide.is-active .look-tabs .tab, .slide.seen .look-tabs .tab { max-width: 11rem; padding: 0.55rem 0.6rem; border-width: 1px; }
+@media (prefers-reduced-motion: no-preference) {
+  .look-tabs .tab { transition: max-width 0.35s ease, padding 0.35s ease; }
+  .slide.is-active .look-tabs .tab { transition-delay: var(--t); }
+  .slide.seen .look-tabs .tab { transition: none; }
+}
+
+/* Slide 9 trial B (?v=sticky): a sticky note of passwords */
+.look-sticky { position: relative; }
+.look-sticky .sticky { position: absolute; right: 0; top: 0; width: clamp(15rem, 24vw, 21rem); background: #f7e36b; color: #2a2a1e; padding: 1.1rem 1.2rem 1.3rem; box-shadow: 0 2px 3px rgba(0,0,0,0.08), 0 14px 28px rgba(0,0,0,0.12); transform: rotate(3deg); font-family: var(--serif); font-style: italic; opacity: 0; }
+.look-sticky .sticky-head { margin: 0 0 0.6rem; font-weight: 700; font-size: 1.3rem; text-decoration: underline; text-decoration-thickness: 2px; }
+.look-sticky .sticky ul { list-style: none; margin: 0; padding: 0; }
+.look-sticky .sticky li { font-size: clamp(0.95rem, 1.2vw, 1.1rem); line-height: 1.35; padding: 0.22rem 0; border-bottom: 1px solid rgba(42,42,30,0.15); }
+.look-sticky .sticky b { font-style: normal; font-family: var(--sans); font-size: 0.85em; margin-right: 0.3rem; }
+.look-sticky .sticky s { text-decoration-color: var(--red); text-decoration-thickness: 2px; opacity: 0.75; }
+.slide.is-active .look-sticky .sticky, .slide.seen .look-sticky .sticky { opacity: 1; transform: rotate(3deg); }
+@media (prefers-reduced-motion: no-preference) {
+  .look-sticky .sticky { transform: translateY(-1.2rem) rotate(8deg); transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.3, 1.4, 0.5, 1); }
+  .slide.is-active .look-sticky .sticky { transition-delay: 8.9s; }
+  .slide.seen .look-sticky .sticky { transition: none; }
+}
+@media (max-width: 760px) {
+  .look-sticky .sticky { position: static; width: auto; margin: 1.5rem 0 0; transform: rotate(1.5deg); }
+  .slide.is-active .look-sticky .sticky { transform: rotate(1.5deg); }
+}
