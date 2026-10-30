@@ -71,12 +71,12 @@ We all became edtech. Zoom, Teams, Google Classroom, several apps linked togethe
 
 ## 2. 150 students
 
-**Spine** (story first, then the numbers)
-> I was working in college counseling as a college essay writing coach. I needed to track my notes, track appointments, track revisions, and prepare for back-to-back meetings.
-
+**Spine** (since 2026-10-30: the numbers first, then the story)
 > 150 students. 800+ essays. 10–12 meetings a day.
 
-> So I looked into apps. (No press: the numbers count up, hold two seconds, then fade back as this line lands over them, larger.)
+> I was working in college counseling as a college essay writing coach. I needed to track my notes, track appointments, track revisions, and prepare for back-to-back meetings.
+>
+> So I looked into apps. (After ten seconds the story fades back and this line comes up along the bottom.)
 
 **Photo:** a stack of papers or folders on a desk; a planner with crossed-out times.
 

@@ -105,9 +105,17 @@
   add(1, 0, '<div class="practical tally-stage"><div data-figure="tally"></div></div>', { scroll: true, center: true, id: "tally" });
 
   /* 2 · 150 students */
-  /* The story first; what I had to track lands on its own */
+  /* The numbers first, cold. They count up and stay. */
   add(2, 0,
-    '<div class="two"><div class="story">' +
+    '<div class="stats">' +
+    '<p><span class="stat-num"><span data-count="150">150</span></span><span class="stat-label">students</span></p>' +
+    '<p><span class="stat-num"><span data-count="800">800</span>+</span><span class="stat-label">essays</span></p>' +
+    '<p><span class="stat-num">10–12</span><span class="stat-label">meetings a day</span></p>' +
+    "</div>");
+  /* Then the story. What I had to track lands on its own; after ten seconds the top fades back
+     and "So I looked into apps." comes up along the bottom. */
+  add(2, 0,
+    '<div class="looked"><div class="looked-top"><div class="two"><div class="story">' +
     "<p>I was working in college counseling as a college essay writing coach.</p>" +
     "<p>I needed to track my notes, track appointments, track revisions, and prepare for back-to-back meetings.</p>" +
     '</div><ul class="juggle arrive" aria-label="What I had to keep track of">' +
@@ -115,15 +123,7 @@
     '<li style="--i:1">Appointments<small>back to back</small></li>' +
     '<li style="--i:2">Revisions<small>draft after draft</small></li>' +
     '<li style="--i:3">Meeting prep<small>before each one</small></li>' +
-    "</ul></div>");
-  /* Then the numbers */
-  /* The numbers count up, hold for two seconds, then fade back as the line lands over them. No press needed. */
-  add(2, 0,
-    '<div class="stats-stage auto-over"><div class="stats">' +
-    '<p><span class="stat-num"><span data-count="150">150</span></span><span class="stat-label">students</span></p>' +
-    '<p><span class="stat-num"><span data-count="800">800</span>+</span><span class="stat-label">essays</span></p>' +
-    '<p><span class="stat-num">10–12</span><span class="stat-label">meetings a day</span></p>' +
-    '</div><p class="over">So I looked into apps.</p></div>');
+    '</ul></div></div><p class="looked-line">So I looked into apps.</p></div>');
 
   /* 3 · The real cost: one slide. When it opens, the lines slide in by themselves;
      the turn to students lands centered, with their three costs in one row. */

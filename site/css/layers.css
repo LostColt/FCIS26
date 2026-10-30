@@ -478,3 +478,14 @@
 .tally-stage .tally h3, .tally-stage .tally > p, .tally-stage .tally-foot { text-align: center; }
 .tally-stage .staff { justify-content: center; }
 @media (max-width: 560px) { .tally-stage .app-grid { grid-template-columns: 1fr 1fr; } }
+
+/* Chapter 2: after ten seconds the story fades back and the turn comes up along the bottom */
+.looked-line { font-family: var(--serif); font-weight: 600; font-size: clamp(2.6rem, 6.5vw, 6rem); line-height: 1; letter-spacing: -0.03em; margin: clamp(2rem, 6vh, 4rem) 0 0; opacity: 0; }
+.slide.is-active .looked-line, .slide.seen .looked-line { opacity: 1; }
+.slide.is-active .looked-top, .slide.seen .looked-top { opacity: 0.45; }
+@media (prefers-reduced-motion: no-preference) {
+  .looked-line { transform: translateY(0.6rem); }
+  .slide.is-active .looked-top { transition: opacity 0.9s ease 10s; }
+  .slide.is-active .looked-line { transform: none; transition: opacity 0.8s ease 10.2s, transform 0.9s cubic-bezier(0.22, 0.7, 0.2, 1) 10.2s; }
+  .slide.seen .looked-line { transform: none; }
+}
