@@ -1,5 +1,6 @@
 /* Chapter 1: tap the tools you pay for and watch the year add up.
-   Prices are list prices for one teacher, billed yearly, checked October 2026.
+   Prices are list prices for one teacher, billed yearly where offered, checked October 2026.
+   Google AI Pro has no yearly plan in the US: $19.99 a month, so $239.88 a year.
    Nothing is saved or sent. */
 
 (function () {
@@ -9,6 +10,7 @@
 
   var apps = [
     { name: "ChatGPT Plus", plan: "Plus", year: 240 },
+    { name: "Gemini", plan: "Google AI Pro", year: 239.88 },
     { name: "Nearpod", plan: "Gold", year: 159 },
     { name: "Notion", plan: "Plus", year: 144 },
     { name: "MagicSchool", plan: "Plus", year: 99.96 },
@@ -51,7 +53,7 @@
     '<div><span class="label">Per year, for you</span><span class="num" data-year>$0</span></div>' +
     '<div><span class="label">Per year, across your school</span><span class="num" data-school>$0</span></div>' +
     "</div>" +
-    '<p class="tally-foot">List prices for one teacher’s plan, billed yearly, checked October 2026. Your school may pay differently. Nothing here is saved or sent.</p>' +
+    '<p class="tally-foot">List prices for one teacher’s plan, billed yearly where that’s offered (Google AI Pro is $19.99 a month), checked October 2026. Your school may pay differently. Nothing here is saved or sent.</p>' +
     "</div>";
 
   function update() {
