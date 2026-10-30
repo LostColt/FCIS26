@@ -232,14 +232,14 @@
      then the turn, highlighted */
   add(4, 0,
     '<div class="held">' +
-    '<p class="held-1">We’re used to being the experts. It’s hard to be a novice.</p>' +
+    '<p class="held-1">Teachers are used to being the experts in the room. It’s hard to sit with being a&nbsp;novice.</p>' +
     '<ul class="held-words" aria-label="What held me back">' +
     '<li style="--i:0"><span class="strike-lines">Fear.</span></li>' +
     '<li style="--i:1"><span class="strike-lines">Doubt.</span></li>' +
     '<li style="--i:2"><span class="strike-lines">Time.</span></li>' +
     '<li style="--i:3"><span class="strike-lines">Knowledge.</span></li>' +
     "</ul>" +
-    '<p class="held-2">But teachers are <span class="mark">quick studies</span>.</p>' +
+    '<p class="held-2">But remember, we’re <span class="mark">quick studies</span>.</p>' +
     "</div>");
   /* The proof: two small things, one for my students, one for me */
   add(4, 0,

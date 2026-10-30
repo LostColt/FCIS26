@@ -141,11 +141,11 @@ I started asking it to build the tools I was already using. And the information 
 
 > I didn't code. But I knew what I wanted. I could write. I could ask. I could imagine it.
 
-> We're used to being the experts. It's hard to be a novice.
+> Teachers are used to being the experts in the room. It's hard to sit with being a novice.
 >
 > Fear. Doubt. Time. Knowledge. (Struck one at a time.)
 >
-> But teachers are quick studies. (Highlighted.)
+> But remember, we're quick studies. (Highlighted.)
 
 > So I built two small things.
 > For my students: a meeting tracker. It tracks my student meetings, holds my notes, and preps the next one. Designed how I work. It molds to me, not the other way around.
