@@ -45,7 +45,7 @@ The full text is in `content/story.md`. Use that text; do not rewrite David's vo
 | # | Chapter | Minutes | Practical or interactive slides |
 |---|---|---|---|
 | 0 | Stop Subscribing, Start Building | 1 | QR code to the site |
-| 1 | The pile | 3 | No |
+| 1 | The shift | 3 | No |
 | 2 | 150 students | 3 | No |
 | 3 | The real cost | 3 | No |
 | 4 | So I had it build it | 6 | Yes: links to two of David's tools |

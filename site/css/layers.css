@@ -401,3 +401,24 @@
   .slide.seen .intro-first { opacity: 1; }
 }
 .intro-first { text-align: center; }
+
+/* Chapter 1: during COVID, the jobs we all took on */
+.said-line { font-family: var(--serif); font-weight: 600; font-size: clamp(1.9rem, 3.8vw, 3.3rem); line-height: 1.12; letter-spacing: -0.02em; margin: 0 0 1.6rem; max-width: 24ch; }
+.roles li small { display: block; font-weight: 400; font-size: 0.72em; color: var(--ink-soft); max-width: 17rem; margin-top: 0.2rem; line-height: 1.35; }
+.experts-tools { font-family: var(--serif); font-size: clamp(1.1rem, 1.8vw, 1.5rem); color: var(--ink-soft); margin: 2.2rem 0 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .slide .experts-tools { opacity: 0; transition: opacity 0.8s ease; }
+  .slide.is-active .experts-tools { opacity: 1; transition-delay: 1.6s; }
+  .slide.seen .experts-tools { opacity: 1; }
+}
+
+/* Chapter 1: the shift. The strike and highlight land after the line arrives */
+.said p.shift-line { color: var(--ink); font-size: clamp(2rem, 4.4vw, 3.9rem); margin-top: 1.2em; }
+.slide.is-active .strike-lines.late, .slide.seen .strike-lines.late { background-size: 100% 0.075em; }
+.slide.is-active .mark.late, .slide.seen .mark.late { background-size: 100% 0.42em; }
+@media (prefers-reduced-motion: no-preference) {
+  .slide.is-active .strike-lines.late { transition-delay: 5.2s; }
+  .slide.is-active .mark.late { transition-delay: 5.9s; }
+  .slide.seen .strike-lines.late, .slide.seen .mark.late { transition: none; }
+}
+.pile-row { align-items: flex-start; }

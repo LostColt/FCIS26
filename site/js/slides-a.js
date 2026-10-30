@@ -7,7 +7,7 @@
 
   D.chapters = [
     { title: "Stop subscribing, start building", word: "build" },
-    { title: "The pile", word: "pile" },
+    { title: "The shift", word: "shift" },
     { title: "150 students", word: "150" },
     { title: "The real cost", word: "cost" },
     { title: "So I had it build it", word: "build it" },
@@ -69,17 +69,26 @@
     "</ol>" +
     '<p class="intro-first">A writing teacher first.</p></div>', { id: "about" });
 
-  /* 1 · The pile */
-  add(1, 0, '<p class="big">After COVID, the classroom didn’t snap back like a rubber band.</p>');
+  /* 1 · The shift */
+  /* During COVID: the line, then the jobs we all took on drop in by themselves */
   add(1, 0,
-    '<div class="two"><div class="story">' +
-    "<p>We all became edtech. Zoom, Teams, Google Classroom, several apps linked together. eLearning days. Virtual school. We accommodated.</p>" +
-    "<p>And when we came back, we didn’t go back to pencil and paper. We stayed electronic.</p>" +
-    '</div><ul class="pile" aria-label="What we linked together">' +
-    '<li style="--i:0;--r:-2deg">Zoom</li><li style="--i:1;--r:1.5deg;--x:2rem">Teams</li>' +
-    '<li style="--i:2;--r:-1deg;--x:0.8rem">Google Classroom</li><li style="--i:3;--r:2deg;--x:3rem">Several apps, linked together</li>' +
-    '<li style="--i:4;--r:-1.5deg;--x:1.2rem">eLearning days</li><li style="--i:5;--r:1deg;--x:2.4rem">Virtual school</li>' +
-    "</ul></div>");
+    '<div class="experts"><p class="said-line">During COVID, we were all asked to be experts.</p>' +
+    '<ul class="pile-row spread roles" aria-label="The jobs we took on">' +
+    '<li style="--i:0;--r:-2deg;--y:0rem">Website builder</li>' +
+    '<li style="--i:1;--r:1.5deg;--y:0.6rem">Curriculum designer</li>' +
+    '<li style="--i:2;--r:-1deg;--y:0.2rem">Video producer</li>' +
+    '<li style="--i:3;--r:2deg;--y:0.9rem">Podcaster</li>' +
+    '<li style="--i:4;--r:-1.5deg;--y:0.1rem">Slide designer</li>' +
+    '<li style="--i:5;--r:1deg;--y:0.5rem">Data analyst<small>How long is the kid on the screen? Did they open the assignment?</small></li>' +
+    '<li style="--i:6;--r:-2deg;--y:0.3rem">Tech support</li>' +
+    '</ul><p class="experts-tools">On Zoom, Teams, Google Classroom, and several apps linked together.</p></div>');
+  /* After: plays by itself; the red pen takes "band-aid", the highlighter takes "shift" */
+  add(1, 0,
+    '<div class="said auto-run">' +
+    '<p style="--t:0.3s">Then COVID ended.</p>' +
+    '<p style="--t:1.8s">The classroom didn’t snap back like a rubber band. We still live in the era of tech.</p>' +
+    '<p class="turn shift-line" style="--t:4.2s">It wasn’t a <span class="strike-lines late">band-aid</span>. It was a <span class="mark late">shift</span>.</p>' +
+    "</div>");
   add(1, 1,
     '<p class="big"><span class="strike" data-at="1">Supply costs</span> became <span class="mark" data-at="1">subscription costs</span>.</p>' +
     '<ul class="ledger" data-step="1" aria-label="What we pay for now">' +

@@ -34,7 +34,24 @@ David Tran · AI Learning and Teaching Specialist, Gulliver Prep, Miami, FL · F
 
 ---
 
-## 1. The pile
+## 1. The shift
+
+**Since 2026-10-30 the chapter opens in order: during COVID, then after.**
+
+> During COVID, we were all asked to be experts.
+>
+> (The jobs drop in: website builder, curriculum designer, video producer, podcaster, slide designer, data analyst ("How long is the kid on the screen? Did they open the assignment?"), tech support.)
+>
+> On Zoom, Teams, Google Classroom, and several apps linked together.
+
+> Then COVID ended.
+>
+> The classroom didn't snap back like a rubber band. We still live in the era of tech.
+>
+> It wasn't a band-aid. It was a shift.
+
+(The older text below is kept as a record.)
+
 
 **Spine**
 > After COVID, the classroom didn't snap back like a rubber band.
