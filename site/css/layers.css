@@ -522,3 +522,44 @@
   .slide.is-active .look-sticky .sticky { transform: rotate(1.5deg); }
 }
 .option-tag { position: absolute; top: 4.6rem; left: 50%; transform: translateX(-50%); font: 600 0.85rem/1 var(--sans); color: var(--blue); border: 1px dashed var(--blue); border-radius: 999px; padding: 0.35rem 0.8rem; margin: 0; }
+
+/* Slide 9 option C: the tabs, then a pile of handwritten sticky notes */
+.look-tabs-notes { position: relative; }
+.look-tabs-notes .tabbar { margin: 0 0 2.2rem; border-bottom: 1px solid var(--rule); background: var(--paper-deep); border-radius: 10px 10px 0 0; padding: 0.5rem 0.6rem 0; }
+.look-tabs-notes .tabs { display: flex; gap: 2px; align-items: flex-end; overflow: hidden; }
+.look-tabs-notes .tab { flex: 1 1 11rem; min-width: 0; display: flex; align-items: center; gap: 0.4rem; font: 500 0.9rem/1 var(--sans); white-space: nowrap; overflow: hidden; background: var(--white); border: 0 solid var(--rule); border-bottom: 0; border-radius: 8px 8px 0 0; padding: 0.55rem 0; color: var(--ink); max-width: 0; }
+.look-tabs-notes .tab i { flex: none; width: 0.8rem; height: 0.8rem; border-radius: 3px; background: var(--ink-soft); opacity: 0.5; }
+.look-tabs-notes .tab-plus { flex: none; font: 400 1.2rem/1 var(--sans); color: var(--ink-soft); padding: 0.4rem 0.5rem; }
+.slide.is-active .look-tabs-notes .tab, .slide.seen .look-tabs-notes .tab { max-width: 11rem; padding: 0.55rem 0.6rem; border-width: 1px; }
+.notes { position: absolute; inset: 4rem 0 0 0; pointer-events: none; }
+.note {
+  position: absolute; left: var(--x); top: var(--y);
+  width: clamp(9.5rem, 13vw, 13rem); min-height: 7.5rem;
+  padding: 0.8rem 0.9rem;
+  font-family: "Caveat", "Segoe Print", "Bradley Hand", cursive; font-weight: 500;
+  font-size: clamp(1.15rem, 1.55vw, 1.55rem); line-height: 1.12; color: #2a2a1e;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.08), 0 12px 24px rgba(0,0,0,0.12);
+  transform: rotate(var(--r)); opacity: 0;
+}
+.note b { font-weight: 600; text-decoration: underline; }
+.note s { text-decoration-color: var(--red); text-decoration-thickness: 2px; }
+.note.y { background: #f7e36b; } .note.p { background: #f6c6cf; } .note.b { background: #bfe0f2; } .note.g { background: #c9e9b8; }
+.slide.is-active .note, .slide.seen .note { opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .look-tabs-notes .tab { transition: max-width 0.35s ease, padding 0.35s ease; }
+  .slide.is-active .look-tabs-notes .tab { transition-delay: var(--t); }
+  .note { transform: translateY(-1.5rem) scale(1.08) rotate(calc(var(--r) * 2)); transition: opacity 0.25s ease, transform 0.45s cubic-bezier(0.3, 1.5, 0.5, 1); }
+  .slide.is-active .note { transform: rotate(var(--r)); transition-delay: calc(9s + var(--i) * 380ms); }
+  .slide.seen .note, .slide.seen .look-tabs-notes .tab { transition: none; transform: rotate(var(--r)); }
+}
+@media (max-width: 760px) {
+  .notes { position: static; display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+  .note { position: static; width: 46%; min-height: 0; }
+}
+/* Option C: keep the spoken lines clear of the notes on any screen */
+.look-tabs-notes > p:not(.turn) { max-width: 58%; }
+@media (max-width: 760px) {
+  .look-tabs-notes { display: flex; flex-direction: column; }
+  .look-tabs-notes > p:not(.turn) { max-width: none; }
+  .look-tabs-notes .notes { order: 99; }
+}

@@ -90,7 +90,7 @@ The test: if David read the page aloud, would it sound like him?
 
 ### Type and color
 
-No images. Typography carries the deck: Literata (a book serif) for the story, IBM Plex Sans for practical text. The colors come from a teacher's desk: slate ink, blue-pen links, red pen only for crossing out, highlighter only for what matters. Both fonts are stored in the repo (`site/assets/fonts/`, SIL Open Font License), so the deck works offline.
+No images. Typography carries the deck: Literata (a book serif) for the story, IBM Plex Sans for practical text. The colors come from a teacher's desk: slate ink, blue-pen links, red pen only for crossing out, highlighter only for what matters. Both fonts are stored in the repo (`site/assets/fonts/`, SIL Open Font License), so the deck works offline. A third, Caveat (handwriting, same license, stored the same way), is used only for the sticky notes on the real-cost slide.
 
 ## 7. Technical rules
 

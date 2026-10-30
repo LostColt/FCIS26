@@ -130,6 +130,16 @@
   /* Trying out an image for the exhaustion: slide 9 as it was, then two temporary options
      (A: browser tabs, B: a sticky note of passwords). David picks one; the other two come out. */
   var tabNames = ["Google Classroom", "Schoology", "Canva", "Nearpod", "Padlet", "Kahoot!", "Turnitin", "Quizlet", "Blooket", "Gimkit", "Notion", "Trello", "Screencastify", "Brisk", "MagicSchool", "Veracross", "Blackbaud", "Microsoft Teams", "Zoom", "Gemini"];
+  /* Option C's sticky notes: color, left, top, tilt, words. Nobody has just one. */
+  var notes = [
+    ["y", "68%", "0%", 4, '<b>passwords!!</b><br>Classroom: <s>Summer2020</s> Summer2020!<br>Schoology: <s>Tran123</s> <s>Tran1234</s> Tran1234!'],
+    ["p", "86%", "3%", -6, "Nearpod<br>reset AGAIN"],
+    ["b", "74%", "30%", 7, "Canva =<br>same as<br>Classroom??"],
+    ["g", "92%", "27%", -3, "Turnitin<br>→ ask IT"],
+    ["y", "65%", "52%", -8, "Kahoot! code<br>is on my phone"],
+    ["p", "82%", "55%", 5, "which email<br>did I use<br>for Padlet?"],
+    ["b", "58%", "24%", -4, "2FA → phone<br>→ which phone?"]
+  ];
   function realCost(look, label) {
     var exhaust = look === "tabs"
     ? '<div class="tabbar" aria-hidden="true"><div class="tabs">' +
@@ -144,6 +154,13 @@
       '<li><b>Turnitin</b> <s>?????</s> ask IT</li>' +
       '<li><b>Kahoot!</b> it’s on my phone</li>' +
       "</ul></div>"
+    : look === "tabs-notes"
+    ? '<div class="tabbar" aria-hidden="true"><div class="tabs">' +
+      tabNames.map(function (t, k) { return '<span class="tab" style="--t:' + (0.5 + k * 0.32).toFixed(2) + 's"><i></i>' + t + "</span>"; }).join("") +
+      '<span class="tab-plus">+</span></div></div>' +
+      '<div class="notes" aria-hidden="true">' + notes.map(function (n, k) {
+        return '<div class="note ' + n[0] + '" style="--i:' + k + ";--x:" + n[1] + ";--y:" + n[2] + ";--r:" + n[3] + 'deg">' + n[4] + "</div>";
+      }).join("") + "</div>"
     : "";
     return (label ? '<p class="option-tag">' + label + "</p>" : "") +
       '<div class="said auto-run' + (look ? " look-" + look : "") + '">' + exhaust +
@@ -160,6 +177,7 @@
   add(3, 0, realCost(""));
   add(3, 0, realCost("tabs", "Option A: tabs"));
   add(3, 0, realCost("sticky", "Option B: sticky note"));
+  add(3, 0, realCost("tabs-notes", "Option C: tabs, then sticky notes"));
 
   /* 4 · So I had it build it */
   /* The question */
