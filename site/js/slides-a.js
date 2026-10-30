@@ -62,7 +62,7 @@
     '<li style="--i:1">Taught at Ole Miss. In FCIS schools since 2017.</li>' +
     '<li style="--i:2">Director of the Learning Lab at Country Day; college essay writing coach at Gulliver.</li>' +
     '<li style="--i:3">Now the AI Learning and Teaching Specialist at Gulliver Prep.</li>' +
-    '<li style="--i:4">A writer first: a BFA, and an MFA in Creative Writing from Ole Miss.</li>' +
+    '<li style="--i:4">A writing teacher first: a BFA from Bowling Green State University, and an MFA in Creative Writing from Ole Miss.</li>' +
     '</ul></div>' +
     '<ol class="trail" aria-label="Where I’ve lived">' +
     places.map(function (p, k) { return '<li style="--i:' + k + '"><span>' + p + "</span></li>"; }).join("") +
