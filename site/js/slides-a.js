@@ -102,7 +102,7 @@
     '<li class="old"><span class="strike t5">Paper</span></li><li class="old"><span class="strike t5">Pencils</span></li><li class="old"><span class="strike t5">Markers</span></li>' +
     '<li class="new" style="--d:0s"><span class="mark t5">Per month</span></li><li class="new" style="--d:0.2s"><span class="mark t5">Per seat</span></li><li class="new" style="--d:0.4s"><span class="mark t5">Per year</span></li>' +
     "</ul></div>", { center: true });
-  add(1, 0, '<div class="practical"><div data-figure="tally"></div></div>', { scroll: true });
+  add(1, 0, '<div class="practical tally-stage"><div data-figure="tally"></div></div>', { scroll: true, center: true, id: "tally" });
 
   /* 2 · 150 students */
   /* The story first; what I had to track lands on its own */

@@ -467,3 +467,14 @@
   .slide.is-active .supplies .ledger .old { transition-delay: 5.3s; }
   .slide.seen .supplies * , .slide.seen .supplies *::after { transition: none !important; }
 }
+
+/* Chapter 1: the tally is the centerpiece, centered both ways (it still scrolls if the screen is short) */
+.slide.scrolls.centered .slide-inner { margin: auto; }
+.slide.centered .tally-stage { max-width: 66rem; margin: 0 auto; text-align: left; }
+.tally-stage .tally { max-width: none; box-shadow: 0 1px 2px rgba(29,36,48,0.06), 0 14px 34px rgba(29,36,48,0.08); }
+.tally-stage .app-grid { grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); }
+.tally-stage .tally-total { justify-content: center; text-align: center; }
+.tally-stage .tally-total div { align-items: center; }
+.tally-stage .tally h3, .tally-stage .tally > p, .tally-stage .tally-foot { text-align: center; }
+.tally-stage .staff { justify-content: center; }
+@media (max-width: 560px) { .tally-stage .app-grid { grid-template-columns: 1fr 1fr; } }
