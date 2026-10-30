@@ -255,7 +255,7 @@
     '<p style="--t:2.6s">But more than that, I wanted to build <span class="mark tlate" style="--mt:3.6s">for others</span>.</p>' +
     '<p class="small" style="--t:5s">I built a reader. Paste in text and it reads it aloud. It wasn’t for me. It was for a friend’s student, who was better with audio than with reading.</p>' +
     '</div><div class="late-card" style="--t:7s">' +
-    D.tool("reader", "For a friend’s student", "A reader", "Paste text and hear it read aloud, with each word highlighted as it’s read. Bigger text, calmer colors, and it remembers where you stopped.") +
+    D.tool("reader", "For a friend’s student", "A reader", "A library of texts to come back to. Each one is read aloud, with every word highlighted as it’s read, and it remembers where you stopped. Bigger text, calmer colors.") +
     "</div></div>", { id: "reader" });
   /* The students: learning differences, then looking to the students, then the question, highlighted */
   add(5, 0,
