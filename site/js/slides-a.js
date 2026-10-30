@@ -93,12 +93,15 @@
     '<p style="--t:1.8s">The classroom didn’t snap back like a rubber band. We still live in the era of tech.</p>' +
     '<p class="turn shift-line" style="--t:4.2s">It wasn’t a <span class="strike-lines late">band-aid</span>. It was a <span class="mark late">shift</span>.</p>' +
     "</div>");
-  add(1, 1,
-    '<p class="big"><span class="strike" data-at="1">Supply costs</span> became <span class="mark" data-at="1">subscription costs</span>.</p>' +
-    '<ul class="ledger" data-step="1" aria-label="What we pay for now">' +
-    '<li class="old"><span class="strike on">Paper</span></li><li class="old"><span class="strike on">Pencils</span></li><li class="old"><span class="strike on">Markers</span></li>' +
-    '<li><span class="mark on">Per month</span></li><li><span class="mark on">Per seat</span></li><li><span class="mark on">Per year</span></li>' +
-    "</ul>", { center: true });
+  /* Opens with the line and the old supplies; holds five seconds; then the red pen and highlighter
+     do the rest by themselves: supplies struck, subscriptions arrive. */
+  add(1, 0,
+    '<div class="supplies">' +
+    '<p class="big"><span class="strike t5">Supply costs</span> became <span class="mark t5">subscription costs</span>.</p>' +
+    '<ul class="ledger" aria-label="What we paid for, and what we pay for now">' +
+    '<li class="old"><span class="strike t5">Paper</span></li><li class="old"><span class="strike t5">Pencils</span></li><li class="old"><span class="strike t5">Markers</span></li>' +
+    '<li class="new" style="--d:0s"><span class="mark t5">Per month</span></li><li class="new" style="--d:0.2s"><span class="mark t5">Per seat</span></li><li class="new" style="--d:0.4s"><span class="mark t5">Per year</span></li>' +
+    "</ul></div>", { center: true });
   add(1, 0, '<div class="practical"><div data-figure="tally"></div></div>', { scroll: true });
 
   /* 2 · 150 students */

@@ -448,3 +448,22 @@
   .resume { transform: none; }
   .resume-jobs li { grid-template-columns: 1fr; gap: 0; }
 }
+
+/* Chapter 1: supply costs. Five seconds with the old supplies, then the change happens by itself */
+.supplies .ledger .new { opacity: 0; }
+.slide.is-active .supplies .strike.t5::after, .slide.seen .supplies .strike.t5::after { transform: scaleX(1); }
+.slide.is-active .supplies .mark.t5, .slide.seen .supplies .mark.t5 { background-size: 100% 0.42em; }
+.slide.is-active .supplies .ledger .new, .slide.seen .supplies .ledger .new { opacity: 1; }
+.slide.is-active .supplies .ledger .old { color: var(--ink-soft); }
+.supplies .ledger .old { color: var(--ink); }
+@media (prefers-reduced-motion: no-preference) {
+  .supplies .ledger .new { transform: translateY(0.4rem); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .slide.is-active .supplies .ledger .new { transform: none; transition-delay: calc(5.9s + var(--d)); }
+  .slide.is-active .supplies .strike.t5::after { transition-delay: 5s; }
+  .slide.is-active .supplies .ledger .strike.t5::after { transition-delay: 5.3s; }
+  .slide.is-active .supplies .mark.t5 { transition-delay: 5.6s; }
+  .slide.is-active .supplies .ledger .new .mark.t5 { transition-delay: calc(6.2s + var(--d)); }
+  .supplies .ledger .old { transition: color 0.5s ease; }
+  .slide.is-active .supplies .ledger .old { transition-delay: 5.3s; }
+  .slide.seen .supplies * , .slide.seen .supplies *::after { transition: none !important; }
+}
