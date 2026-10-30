@@ -137,6 +137,19 @@ I started asking it to build the tools I was already using. And the information 
 
 ---
 
+**Since 2026-10-30, after "What about my own apps?":** ("Do I have to pay anymore?" cut.)
+
+> I didn't code. But I knew what I wanted. I could write. I could ask. I could imagine it.
+
+> Fear. Doubt. Time. Knowledge. (Struck one at a time.)
+>
+> We're used to being the experts. It's hard to be a novice. But teachers are quick studies.
+
+> So I built two small things.
+> For my students: a meeting tracker. It tracks my student meetings, holds my notes, and preps the next one. Designed how I work. It molds to me, not the other way around.
+> For me: a screenplay tool. Type a slash for scene, action, character or dialogue, and it formats the page.
+> Start on top of the version I built. (Each has Open it and Download the HTML; holding spots until the lightweight tools are built in the repo.)
+
 ## 5. Why I kept building
 
 **Spine**

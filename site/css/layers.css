@@ -563,3 +563,45 @@
   .look-tabs-notes > p:not(.turn) { max-width: none; }
   .look-tabs-notes .notes { order: 99; }
 }
+
+/* Chapter 4: "I didn't code." The three verbs arrive larger */
+.could-do { margin-top: 1.6rem; }
+.said .could-do p { font-size: clamp(2.2rem, 4.8vw, 4.2rem); line-height: 1.05; margin: 0 0 0.25em; }
+.slide.is-active .late-write, .slide.seen .late-write { background-size: 100% 0.42em; }
+@media (prefers-reduced-motion: no-preference) { .slide.is-active .late-write { transition-delay: 6.5s; } .slide.seen .late-write { transition: none; } }
+
+/* Chapter 4: what held me back */
+.held-words { list-style: none; margin: 0 0 2.4rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.2rem 2.2rem; }
+.held-words li { font-family: var(--serif); font-weight: 600; font-size: clamp(2.4rem, 5vw, 5rem); line-height: 1.05; letter-spacing: -0.03em; }
+.held p { font-family: var(--serif); font-weight: 600; font-size: clamp(1.6rem, 3.1vw, 2.7rem); line-height: 1.18; letter-spacing: -0.015em; margin: 0 0 0.6em; max-width: 30ch; opacity: 0; }
+.held-words li { opacity: 0; }
+.slide.is-active .held-words li, .slide.seen .held-words li, .slide.is-active .held p, .slide.seen .held p { opacity: 1; }
+.slide.is-active .held .strike-lines, .slide.seen .held .strike-lines { background-size: 100% 0.075em; }
+.slide.is-active .held .mark, .slide.seen .held .mark { background-size: 100% 0.42em; }
+@media (prefers-reduced-motion: no-preference) {
+  .held-words li { transition: opacity 0.5s ease; }
+  .slide.is-active .held-words li { transition-delay: calc(var(--i) * 450ms + 300ms); }
+  .slide.is-active .held .strike-lines { transition-delay: calc(var(--i) * 900ms + 3.2s); }
+  .held p { transition: opacity 0.7s ease; }
+  .slide.is-active .held-1 { transition-delay: 7.2s; }
+  .slide.is-active .held-2 { transition-delay: 9.2s; }
+  .slide.is-active .held .mark { transition-delay: 10.1s; }
+  .slide.seen .held *, .slide.seen .held-words li { transition: none !important; }
+}
+
+/* Chapter 4: two small things */
+.tool-pair { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.2rem, 3vw, 2.5rem); margin-top: 1.4rem; }
+.tool-card { font-family: var(--sans); background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: clamp(1rem, 2vw, 1.5rem); display: flex; flex-direction: column; gap: 0.5rem; }
+.tool-card.holding { background: transparent; border: 2px dashed var(--rule); }
+.tool-who { margin: 0; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; }
+.tool-thumb { aspect-ratio: 16 / 9; border-radius: 6px; background: var(--paper-deep); overflow: hidden; display: flex; align-items: center; justify-content: center; color: var(--ink-soft); font-size: 0.9rem; }
+.tool-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.tool-card h3 { font-family: var(--serif); font-size: clamp(1.4rem, 2.2vw, 1.9rem); margin: 0.3rem 0 0; }
+.tool-line { margin: 0; color: var(--ink-soft); font-size: clamp(0.95rem, 1.2vw, 1.1rem); line-height: 1.45; }
+.tool-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: auto; padding-top: 0.6rem; }
+.tool-dl { font-weight: 600; font-size: 1rem; padding: 0.6rem 1.1rem; border: 1px solid var(--ink); border-radius: 999px; text-decoration: none; color: var(--ink); }
+.tool-actions .site-open { font-size: 1rem; margin: 0; }
+.tool-actions .off { opacity: 0.4; border-style: dashed; }
+.tool-note { font-family: var(--serif); font-style: italic; font-size: clamp(1.1rem, 1.6vw, 1.4rem); color: var(--ink-soft); text-align: center; margin: 1.4rem 0 0; }
+@media (max-width: 760px) { .tool-pair { grid-template-columns: 1fr; } }
+.tool-thumb { aspect-ratio: 16 / 7; }

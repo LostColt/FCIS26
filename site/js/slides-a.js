@@ -43,6 +43,24 @@
       "</div>";
   };
 
+  /* David's two small tools, built here as lightweight single files so teachers can download them.
+     When one is ready, set its file (e.g. "demos/tracker.html"); until then the card is a holding spot. */
+  D.TOOLS = {
+    tracker: "",
+    screenplay: ""
+  };
+  D.tool = function (key, who, title, line) {
+    var f = D.TOOLS[key];
+    return '<div class="tool-card' + (f ? "" : " holding") + '">' +
+      '<p class="tool-who">' + who + "</p>" +
+      '<div class="tool-thumb">' + (f ? '<img src="' + f.replace(/\.html$/, ".png") + '" alt="">' : "<span>Picture of the tool</span>") + "</div>" +
+      "<h3>" + title + '</h3><p class="tool-line">' + line + "</p>" +
+      '<div class="tool-actions">' +
+      (f ? '<a class="site-open" href="' + f + '" target="_blank" rel="noopener">Open it</a><a class="tool-dl" href="' + f + '" download>Download the HTML</a>'
+         : '<span class="site-open off">Open it</span><span class="tool-dl off">Download the HTML</span>') +
+      "</div></div>";
+  };
+
   /* 0 · Cover */
   add(0, 1,
     '<div class="cover"><div>' +
@@ -194,13 +212,34 @@
     '<section><h2>The apps I was already using</h2><ul class="pile-row spread" aria-label="Apps I could copy">' + cards(apps) + "</ul></section>" +
     '<section><h2 data-step="1">What about my own apps?</h2><ul class="pile-row tools" aria-label="Tools any teacher could build">' + cards(tools, true) + "</ul></section>" +
     "</div>");
-  add(4, 1,
-    '<p class="big huge">Do I have to pay <span class="mark" data-at="1">anymore?</span></p>' +
-    '<p class="kicker-line" data-step="1">I started asking it to build the tools I was already using. And the information was stored locally.</p>');
-  add(4, 0, '<div class="two sites">' +
-    D.site("tracker", "What I built: a counseling tracker", "Notes, appointments, revisions, and a prep card for the next meeting.") +
-    D.site("screenplay", "A screenplay tool", "Type a slash for scene, action, character or dialogue, and it formats the page.") +
-    "</div>", { id: "tracker" });
+  /* I didn't code. What I had instead arrives line by line; "write" gets the highlighter. */
+  add(4, 0,
+    '<div class="said auto-run">' +
+    '<p style="--t:0.3s">I didn’t code.</p>' +
+    '<p style="--t:1.6s">But I knew what I wanted.</p>' +
+    '<div class="could-do">' +
+    '<p style="--t:3.2s">I could <span class="mark late-write">write</span>.</p>' +
+    '<p style="--t:4.1s">I could ask.</p>' +
+    '<p style="--t:5s">I could imagine it.</p>' +
+    "</div></div>");
+  /* What held me back: four words, struck one at a time, then the turn */
+  add(4, 0,
+    '<div class="held">' +
+    '<ul class="held-words" aria-label="What held me back">' +
+    '<li style="--i:0"><span class="strike-lines">Fear.</span></li>' +
+    '<li style="--i:1"><span class="strike-lines">Doubt.</span></li>' +
+    '<li style="--i:2"><span class="strike-lines">Time.</span></li>' +
+    '<li style="--i:3"><span class="strike-lines">Knowledge.</span></li>' +
+    "</ul>" +
+    '<p class="held-1">We’re used to being the experts. It’s hard to be a novice.</p>' +
+    '<p class="held-2">But teachers are <span class="mark">quick studies</span>.</p>' +
+    "</div>");
+  /* The proof: two small things, one for my students, one for me */
+  add(4, 0,
+    '<div class="two-things"><p class="said-line">So I built two small things.</p><div class="tool-pair">' +
+    D.tool("tracker", "For my students", "A meeting tracker", "It tracks my student meetings, holds my notes, and preps the next one. Designed how I work. It molds to me, not the other way around.") +
+    D.tool("screenplay", "For me", "A screenplay tool", "Type a slash for scene, action, character or dialogue, and it formats the page.") +
+    '</div><p class="tool-note">Start on top of the version I built.</p></div>', { id: "tracker" });
 
   /* 5 · Why I kept building */
   add(5, 2,
