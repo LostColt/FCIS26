@@ -42,9 +42,9 @@
   .by { margin: 0.8em 0 0.2em; }
 
   .b { min-height: 1.15em; outline: none; white-space: pre-wrap; word-wrap: break-word; position: relative; }
-  .b:empty::before { content: attr(data-ph); color: #b3b8ae; }
-  .b.on { background: #fbf7df; box-shadow: -0.6em 0 0 #fbf7df, 0.6em 0 0 #fbf7df; }
-  .b[data-t="scene"] { text-transform: uppercase; margin-top: 2.3em; font-weight: 700; }
+  .b:empty:focus::before { content: attr(data-ph); color: #b3b8ae; }
+  .page, .b { cursor: text; }
+  .b[data-t="scene"] { text-transform: uppercase; margin-top: 2.3em; }
   .b[data-t="action"] { margin-top: 1.15em; }
   .b[data-t="character"] { text-transform: uppercase; margin-top: 1.15em; margin-left: 36.7%; }
   .b[data-t="parenthetical"] { margin-left: 26.7%; width: 33%; }
@@ -53,8 +53,8 @@
   .b[data-t="act"] { text-transform: uppercase; text-align: center; text-decoration: underline; margin-top: 2.3em; font-weight: 700; }
   .b:first-child { margin-top: 0; }
   .page { position: relative; }
-  .tag { position: absolute; left: 0.9rem; width: calc(1.5in - 1.4rem); text-align: right; font: 500 0.72rem/1.4 var(--sans); color: var(--soft); pointer-events: none; }
-  .tag[hidden] { display: none; }
+  .elem { border: 1px solid var(--rule); border-radius: 8px; padding: 0.35rem 0.5rem; background: var(--white); font-weight: 600; min-width: 10.5rem; }
+  .elem-wrap { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--soft); font-size: 0.85rem; }
 
   .menu { position: absolute; z-index: 10; min-width: 13rem; background: var(--white); border: 1px solid var(--rule); border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,.14); padding: 0.3rem; font: 14px/1.3 var(--sans); }
   .menu[hidden] { display: none; }
@@ -91,15 +91,14 @@
   dialog .seg input { margin-right: 0.3rem; }
   #editTitle { font-size: 1.05rem; max-width: 22rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-  @media (max-width: 700px) { .page { padding: 0.6in 0.45in 0.8in 0.6in; font-size: 11pt; } .tag { display: none !important; } }
+  @media (max-width: 700px) { .page { padding: 0.6in 0.45in 0.8in 0.6in; font-size: 11pt; } }
 
   @media print {
     @page { size: letter; margin: 1in 1in 1in 1.5in; }
     html, body { background: #fff; }
-    #home, .bar, .hint, .status, .menu, dialog, .tag { display: none !important; }
+    #home, .bar, .hint, .status, .menu, dialog { display: none !important; }
     .page { width: auto; margin: 0; padding: 0; box-shadow: none; font-size: 12pt; }
     .titlepage { border: 0; height: 9in; display: flex; flex-direction: column; justify-content: center; page-break-after: always; break-after: page; }
-    .b.on { background: none; box-shadow: none; }
     .b:empty::before { content: ""; }
     .titlepage input::placeholder { color: transparent; }
     .b[data-t="act"] { break-before: page; }
@@ -130,11 +129,12 @@
   <div class="seg" role="group" aria-label="Film or TV">
     <button id="fFilm" aria-pressed="true">Film</button><button id="fTV" aria-pressed="false">TV</button>
   </div>
+  <label class="elem-wrap">Element <select class="elem" id="elem" aria-label="Element for this line"></select></label>
   <button class="btn" id="pdfBtn">Save as PDF</button>
   <button class="btn primary" id="docBtn">Download for Google Docs</button>
 </header>
 
-<p class="hint"><span>Type <kbd>/</kbd> at the start of a line to choose what it is. <kbd>Enter</kbd> starts the next line. <kbd>Tab</kbd> changes the type.</span><span id="count"></span></p>
+<p class="hint"><span>Click anywhere on the page and type. <kbd>/</kbd> at the start of a line picks the element. <kbd>Enter</kbd> starts the next line. <kbd>Tab</kbd> changes the type.</span><span id="count"></span></p>
 
 <article class="page" id="page">
   <div class="titlepage">
@@ -143,7 +143,6 @@
     <input id="author" aria-label="Written by" placeholder="Your name">
   </div>
   <div id="script" aria-label="Script"></div>
-  <span class="tag" id="tag" aria-hidden="true" hidden></span>
 </article>
 <p class="status" id="status"></p>
 </div>
@@ -326,13 +325,9 @@
     showTag(el); save();
   }
   function showTag(el) {
-    script.querySelectorAll(".b.on").forEach(function (x) { x.classList.remove("on"); });
-    var tag = $("tag");
-    if (!el) { tag.hidden = true; return; }
-    el.classList.add("on");
-    tag.textContent = TYPES[el.dataset.t].name;
-    tag.style.top = el.offsetTop + "px";
-    tag.hidden = window.innerWidth < 700;
+    if (!el) return;
+    fillElem();
+    $("elem").value = el.dataset.t;
     current = el;
   }
   function caretToEnd(el) {
@@ -343,6 +338,23 @@
   }
   function plain(el) { return el.textContent; }
   function caretAtStart() { var s = window.getSelection(); if (!s.rangeCount) return false; var r = s.getRangeAt(0).cloneRange(); r.setStart(current, 0); return r.toString() === ""; }
+
+  /* ---------- The element menu in the toolbar, like Final Draft's ---------- */
+  function fillElem() {
+    var want = allowed().join(), sel = $("elem");
+    if (sel.dataset.list === want) return;
+    sel.dataset.list = want;
+    sel.innerHTML = allowed().map(function (t) { return '<option value="' + t + '">' + TYPES[t].name + "</option>"; }).join("");
+  }
+  $("elem").addEventListener("change", function () { if (current) { setType(current, this.value); caretToEnd(current); } });
+  $("elem").addEventListener("mousedown", function () { if (!current) { var l = script.querySelector(".b:last-child"); if (l) showTag(l); } });
+
+  /* Clicking the empty part of the page puts the cursor at the end of the script */
+  $("page").addEventListener("mousedown", function (e) {
+    if (e.target.closest(".b") || e.target.closest(".titlepage")) return;
+    var l = script.querySelector(".b:last-child");
+    if (l) { e.preventDefault(); showTag(l); caretToEnd(l); }
+  });
 
   /* ---------- The slash menu ---------- */
   function allowed() { return ORDER.filter(function (t) { return !TYPES[t].tv || doc.format === "tv"; }); }
@@ -371,7 +383,6 @@
   script.addEventListener("input", function () {
     if (!current) return;
     var v = plain(current);
-    $("tag").style.top = current.offsetTop + "px";
     if (v.charAt(0) === "/" && v.indexOf(" ") < 0) openMenu(v.slice(1).toLowerCase()); else closeMenu();
     save();
   });
@@ -413,6 +424,7 @@
   function setFormat(f, quiet) {
     doc.format = f;
     $("fFilm").setAttribute("aria-pressed", f === "film"); $("fTV").setAttribute("aria-pressed", f === "tv");
+    fillElem(); if (current) $("elem").value = current.dataset.t;
     if (!quiet) save();
   }
   $("fFilm").onclick = function () { setFormat("film"); };
