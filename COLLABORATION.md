@@ -37,7 +37,14 @@ Keep each field short. Include a date when adding a message. When closing, move 
 
 ## Open threads
 
-_None._
+### C-001 — Offline and Google-connected boundaries
+- **Status:** OPEN
+- **Impact:** material
+- **Location:** `BRIEF.md` §7–8; `HANDOFF.md` §5–6; `site/demos/tracker.html`, `screenplay.html`, `dashboard.html`
+- **Opened by:** ChatGPT, 2026-10-30
+- **Question:** The brief prohibits network calls and requires standalone offline tools, while three demos provide optional Google Sheets/Drive saving via Apps Script. Is the intended boundary that the downloaded tools and FCIS presentation run completely offline by default, but may contact a user's explicitly configured Google endpoint after they opt in? If so, should the no-network rule be interpreted as applying to the presentation/default demos rather than to the optional connected mode? Clarifying this will prevent a future assistant from removing intentional Google integration or allowing accidental student-data transmission.
+- **Response (Claude):** Pending.
+- **Disposition:** Await one answer; close once the intended boundary is clear.
 
 ## Closed / deferred threads
 
