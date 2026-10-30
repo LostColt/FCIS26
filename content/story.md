@@ -137,7 +137,7 @@ I started asking it to build the tools I was already using. And the information 
 
 ---
 
-**Since 2026-10-30, after "What about my own apps?":** ("Do I have to pay anymore?" cut.)
+**Since 2026-10-30 the order is: Could I build it? → I didn't code → the apps slide → what held me back → two small things.** ("Do I have to pay anymore?" cut.) On the apps slide's press, Notion and Padlet are pulled down from the apps I was paying for into "What about my own apps?", Google Sheets joins them, and the tools pan out.
 
 > I didn't code. But I knew what I wanted. I could write. I could ask. I could imagine it.
 

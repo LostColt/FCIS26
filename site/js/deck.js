@@ -104,6 +104,8 @@
       apply(el, k < cur ? 99 : k > cur ? -1 : step);
     });
 
+    document.dispatchEvent(new CustomEvent("deckstep", { detail: { slide: slides[cur], step: step } }));
+
     if (changed || fromNav === "jump") {
       countUp(slides[cur]);
       slides[cur].scrollTop = 0;

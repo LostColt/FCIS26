@@ -197,21 +197,6 @@
   /* 4 · So I had it build it */
   /* The question */
   add(4, 0, '<p class="big huge">Could I build&nbsp;it?</p>');
-  /* The apps I was already using spread out when the slide opens;
-     one press and "What about my own apps?" brings the tools any teacher could build */
-  var apps = ["Notion", "Padlet", "Trello", "Kahoot!", "Quizlet", "Nearpod", "Gimkit", "Blooket", "Screencastify", "MagicSchool"];
-  var tools = ["A dashboard", "A PDF reader", "A locked browser", "A screenplay writer", "A class website", "A mini LMS", "An automated newsletter", "Flashcards", "An exit-ticket randomizer", "A class timer"];
-  var rot = [-2, 1.5, -1, 2, -1.5, 1, -2, 1.5, -1, 2], drop = [0, 0.6, 0.2, 0.9, 0.1, 0.7, 0.3, 0.8, 0, 0.5];
-  function cards(list, step) {
-    return list.map(function (t, k) {
-      return "<li" + (step ? ' data-step="1"' : "") + ' style="--i:' + k + ";--r:" + rot[k] + "deg;--y:" + drop[k] + 'rem">' + t + "</li>";
-    }).join("");
-  }
-  add(4, 1,
-    '<div class="could">' +
-    '<section><h2>The apps I was already using</h2><ul class="pile-row spread" aria-label="Apps I could copy">' + cards(apps) + "</ul></section>" +
-    '<section><h2 data-step="1">What about my own apps?</h2><ul class="pile-row tools" aria-label="Tools any teacher could build">' + cards(tools, true) + "</ul></section>" +
-    "</div>");
   /* I didn't code. What I had instead arrives line by line; "write" gets the highlighter. */
   add(4, 0,
     '<div class="said auto-run">' +
@@ -222,6 +207,28 @@
     '<p style="--t:4.1s">I could ask.</p>' +
     '<p style="--t:5s">I could imagine it.</p>' +
     "</div></div>");
+  /* The apps I was already using spread out when the slide opens;
+     one press and "What about my own apps?" brings the tools any teacher could build */
+  var apps = ["Notion", "Padlet", "Trello", "Kahoot!", "Quizlet", "Nearpod", "Gimkit", "Blooket", "Screencastify", "MagicSchool"];
+  var tools = ["A dashboard", "A PDF reader", "A locked browser", "A screenplay writer", "A class website", "A mini LMS", "An automated newsletter", "Flashcards", "An exit-ticket randomizer", "A class timer"];
+  var rot = [-2, 1.5, -1, 2, -1.5, 1, -2, 1.5, -1, 2], drop = [0, 0.6, 0.2, 0.9, 0.1, 0.7, 0.3, 0.8, 0, 0.5];
+  var pulled = ["Notion", "Padlet"];
+  function cards(list, step) {
+    return list.map(function (t, k) {
+      var src = pulled.indexOf(t) >= 0 ? ' data-pull-src="' + t + '"' : "";
+      return "<li" + (step ? ' data-step="1"' : "") + src + ' style="--i:' + k + ";--r:" + rot[k] + "deg;--y:" + drop[k] + 'rem">' + t + "</li>";
+    }).join("");
+  }
+  /* On the press: Notion and Padlet are pulled down from the apps I paid for into what I could build,
+     Google Sheets joins them, and the rest of the tools pan out. pull.js does the pulling. */
+  add(4, 1,
+    '<div class="could pull-slide">' +
+    '<section><h2>The apps I was already using</h2><ul class="pile-row spread" aria-label="Apps I was paying for">' + cards(apps) + "</ul></section>" +
+    '<section><h2 data-step="1">What about my own apps?</h2><ul class="pile-row tools" aria-label="What I could build">' +
+    pulled.map(function (t, k) { return '<li class="pulled-in" data-pull="' + t + '" style="--r:' + rot[k + 3] + "deg;--y:" + drop[k + 3] + 'rem">' + t + "</li>"; }).join("") +
+    '<li class="sheets" data-step="1" style="--i:0;--r:1deg;--y:0.3rem">Google Sheets</li>' +
+    cards(tools, true).replace(/--i:(\d+)/g, function (m, n) { return "--i:" + (+n + 2); }) +
+    "</ul></section></div>");
   /* What held me back: four words, struck one at a time, then the turn */
   add(4, 0,
     '<div class="held">' +
