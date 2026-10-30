@@ -219,26 +219,26 @@
       return "<li" + (step ? ' data-step="1"' : "") + src + ' style="--i:' + k + ";--r:" + rot[k] + "deg;--y:" + drop[k] + 'rem">' + t + "</li>";
     }).join("");
   }
-  /* On the press: Notion and Padlet are pulled down from the apps I paid for into what I could build,
-     Google Sheets joins them, and the rest of the tools pan out. pull.js does the pulling. */
+  /* On the press: "Could I build my own app that combined them?" Notion and Padlet are pulled down
+     from the apps I paid for, and Google Sheets joins them. pull.js does the pulling. */
   add(4, 1,
     '<div class="could pull-slide">' +
     '<section><h2>The apps I was already using</h2><ul class="pile-row spread" aria-label="Apps I was paying for">' + cards(apps) + "</ul></section>" +
-    '<section><h2 data-step="1">What about my own apps?</h2><ul class="pile-row tools" aria-label="What I could build">' +
+    '<section><h2 data-step="1">Could I build my own app that combined them?</h2><ul class="pile-row tools combine" aria-label="What I could combine">' +
     pulled.map(function (t, k) { return '<li class="pulled-in" data-pull="' + t + '" style="--r:' + rot[k + 3] + "deg;--y:" + drop[k + 3] + 'rem">' + t + "</li>"; }).join("") +
-    '<li class="sheets" data-step="1" style="--i:0;--r:1deg;--y:0.3rem">Google Sheets</li>' +
-    cards(tools, true).replace(/--i:(\d+)/g, function (m, n) { return "--i:" + (+n + 2); }) +
+    '<li class="sheets" data-step="1" style="--i:4;--r:1deg;--y:0.3rem">Google Sheets</li>' +
     "</ul></section></div>");
-  /* What held me back: four words, struck one at a time, then the turn */
+  /* What held me back: the experts line first, then four words struck one at a time,
+     then the turn, highlighted */
   add(4, 0,
     '<div class="held">' +
+    '<p class="held-1">We’re used to being the experts. It’s hard to be a novice.</p>' +
     '<ul class="held-words" aria-label="What held me back">' +
     '<li style="--i:0"><span class="strike-lines">Fear.</span></li>' +
     '<li style="--i:1"><span class="strike-lines">Doubt.</span></li>' +
     '<li style="--i:2"><span class="strike-lines">Time.</span></li>' +
     '<li style="--i:3"><span class="strike-lines">Knowledge.</span></li>' +
     "</ul>" +
-    '<p class="held-1">We’re used to being the experts. It’s hard to be a novice.</p>' +
     '<p class="held-2">But teachers are <span class="mark">quick studies</span>.</p>' +
     "</div>");
   /* The proof: two small things, one for my students, one for me */

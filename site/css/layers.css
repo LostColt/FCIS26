@@ -613,3 +613,17 @@
 .pile-row li.left { opacity: 0.3 !important; border-style: dashed; box-shadow: none; }
 .pile-row li.sheets { border-color: var(--blue); color: var(--blue); }
 @media (prefers-reduced-motion: no-preference) { .pile-row li.left { transition: opacity 0.4s ease; } }
+
+/* Slide 13 order: experts line, then the words, the strikes, then the turn */
+.held .held-1 { margin: 0 0 1.6rem; }
+.held-words { margin: 0 0 1.8rem; }
+.held .held-2 { font-size: clamp(2rem, 4.2vw, 3.8rem); max-width: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .slide.is-active .held-1 { transition-delay: 0.3s; }
+  .slide.is-active .held-words li { transition-delay: calc(var(--i) * 450ms + 2.2s); }
+  .slide.is-active .held .strike-lines { transition-delay: calc(var(--i) * 900ms + 4.8s); }
+  .slide.is-active .held-2 { transition-delay: 8.6s; }
+  .slide.is-active .held .mark { transition-delay: 9.5s; }
+}
+.pile-row.combine li { font-size: clamp(1.3rem, 2.4vw, 2.1rem); padding: 0.7rem 1.3rem; }
+.pile-row.combine { gap: 1rem 1.4rem; }

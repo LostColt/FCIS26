@@ -137,13 +137,15 @@ I started asking it to build the tools I was already using. And the information 
 
 ---
 
-**Since 2026-10-30 the order is: Could I build it? → I didn't code → the apps slide → what held me back → two small things.** ("Do I have to pay anymore?" cut.) On the apps slide's press, Notion and Padlet are pulled down from the apps I was paying for into "What about my own apps?", Google Sheets joins them, and the tools pan out.
+**Since 2026-10-30 the order is: Could I build it? → I didn't code → the apps slide → what held me back → two small things.** ("Do I have to pay anymore?" cut.) On the apps slide's press: "Could I build my own app that combined them?" Notion and Padlet are pulled down from the apps I was paying for, and Google Sheets joins them.
 
 > I didn't code. But I knew what I wanted. I could write. I could ask. I could imagine it.
 
+> We're used to being the experts. It's hard to be a novice.
+>
 > Fear. Doubt. Time. Knowledge. (Struck one at a time.)
 >
-> We're used to being the experts. It's hard to be a novice. But teachers are quick studies.
+> But teachers are quick studies. (Highlighted.)
 
 > So I built two small things.
 > For my students: a meeting tracker. It tracks my student meetings, holds my notes, and preps the next one. Designed how I work. It molds to me, not the other way around.
