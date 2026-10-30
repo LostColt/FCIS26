@@ -127,8 +127,8 @@
 
   /* 3 · The real cost: one slide. When it opens, the lines slide in by themselves;
      the turn to students lands centered, with their three costs in one row. */
-  /* Trying out an image for the exhaustion: slide 9 as it was, then two temporary options
-     (A: browser tabs, B: a sticky note of passwords). David picks one; the other two come out. */
+  /* The exhaustion: browser tabs fill until they're slivers, then a pile of handwritten sticky notes.
+     (Chosen 2026-10-30 from three options; the other looks are still in realCost() if ever wanted.) */
   var tabNames = ["Google Classroom", "Schoology", "Canva", "Nearpod", "Padlet", "Kahoot!", "Turnitin", "Quizlet", "Blooket", "Gimkit", "Notion", "Trello", "Screencastify", "Brisk", "MagicSchool", "Veracross", "Blackbaud", "Microsoft Teams", "Zoom", "Gemini"];
   /* Option C's sticky notes: color, left, top, tilt, words. Nobody has just one. */
   var notes = [
@@ -174,10 +174,7 @@
       '<li style="--t:8.5s;--r:-0.5deg">Another set of rules before the learning starts</li>' +
     "</ul></div>";
   }
-  add(3, 0, realCost(""));
-  add(3, 0, realCost("tabs", "Option A: tabs"));
-  add(3, 0, realCost("sticky", "Option B: sticky note"));
-  add(3, 0, realCost("tabs-notes", "Option C: tabs, then sticky notes"));
+  add(3, 0, realCost("tabs-notes"));
 
   /* 4 · So I had it build it */
   /* The question */
