@@ -70,18 +70,22 @@
     '<p class="intro-first">A writing teacher first.</p></div>', { id: "about" });
 
   /* 1 · The shift */
-  /* During COVID: the line, then the jobs we all took on drop in by themselves */
+  /* During COVID: the line, then a resume that fills itself in. A joke, kept to this one slide. */
   add(1, 0,
     '<div class="experts"><p class="said-line">During COVID, we were all asked to be experts.</p>' +
-    '<ul class="pile-row spread roles" aria-label="The jobs we took on">' +
-    '<li style="--i:0;--r:-2deg;--y:0rem">Website builder</li>' +
-    '<li style="--i:1;--r:1.5deg;--y:0.6rem">Curriculum designer</li>' +
-    '<li style="--i:2;--r:-1deg;--y:0.2rem">Video producer</li>' +
-    '<li style="--i:3;--r:2deg;--y:0.9rem">Podcaster</li>' +
-    '<li style="--i:4;--r:-1.5deg;--y:0.1rem">Slide designer</li>' +
-    '<li style="--i:5;--r:1deg;--y:0.5rem">Data analyst<small>How long is the kid on the screen? Did they open the assignment?</small></li>' +
-    '<li style="--i:6;--r:-2deg;--y:0.3rem">Tech support</li>' +
-    '</ul><p class="experts-tools">On Zoom, Teams, Google Classroom, and several apps linked together.</p></div>');
+    '<div class="resume" aria-label="A teacher’s resume, 2020 to 2021">' +
+    '<header><h3>Every Teacher</h3><p>2020–2021 · Your classroom, and everyone’s kitchen table</p></header>' +
+    '<h4>Experience</h4><ul class="resume-jobs">' +
+    '<li style="--i:0"><b>Website builder</b><span>Built a class site overnight.</span></li>' +
+    '<li style="--i:1"><b>Curriculum designer</b><span>Rewrote every unit for a screen.</span></li>' +
+    '<li style="--i:2"><b>Video producer</b><span>Recorded every lesson. Twice.</span></li>' +
+    '<li style="--i:3"><b>Podcaster</b><span>Turned lessons into audio.</span></li>' +
+    '<li style="--i:4"><b>Slide designer</b><span>Made every lesson a deck.</span></li>' +
+    '<li style="--i:5"><b>Data analyst</b><span>Tracked how long each kid was on the screen, and who opened the assignment.</span></li>' +
+    '<li style="--i:6"><b>Tech support</b><span>For every family, every evening.</span></li>' +
+    '</ul><h4>Software</h4><p class="resume-skills" style="--i:7">Zoom · Teams · Google Classroom · Screencastify · Nearpod · Padlet · Kahoot! · Several apps, linked together</p>' +
+    '<p class="resume-refs" style="--i:8">References available upon request.</p>' +
+    "</div></div>");
   /* After: plays by itself; the red pen takes "band-aid", the highlighter takes "shift" */
   add(1, 0,
     '<div class="said auto-run">' +

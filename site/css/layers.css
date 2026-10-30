@@ -422,3 +422,29 @@
   .slide.seen .strike-lines.late, .slide.seen .mark.late { transition: none; }
 }
 .pile-row { align-items: flex-start; }
+
+/* Chapter 1: the resume (one slide only) */
+.experts { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+.experts .said-line { margin: 0; }
+.resume { background: var(--white); border: 1px solid var(--rule); border-radius: 4px; box-shadow: 0 1px 2px rgba(29,36,48,0.06), 0 14px 34px rgba(29,36,48,0.08); padding: clamp(1.2rem, 2.4vw, 2rem) clamp(1.3rem, 2.8vw, 2.4rem); font-family: var(--sans); transform: rotate(0.6deg); }
+.resume header { border-bottom: 2px solid var(--ink); padding-bottom: 0.6rem; margin-bottom: 0.9rem; }
+.resume h3 { font-family: var(--serif); font-size: clamp(1.5rem, 2.4vw, 2.1rem); letter-spacing: -0.01em; margin: 0; }
+.resume header p { margin: 0.2rem 0 0; color: var(--ink-soft); font-size: 0.95rem; }
+.resume h4 { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 0.4rem; }
+.resume-jobs { list-style: none; margin: 0 0 1rem; padding: 0; }
+.resume-jobs li { display: grid; grid-template-columns: 11.5rem 1fr; gap: 1rem; padding: 0.3rem 0; font-size: clamp(0.95rem, 1.2vw, 1.12rem); line-height: 1.35; }
+.resume-jobs b { font-weight: 600; }
+.resume-jobs span { color: var(--ink-soft); }
+.resume-skills { margin: 0 0 0.8rem; font-size: clamp(0.92rem, 1.1vw, 1.05rem); line-height: 1.5; }
+.resume-refs { margin: 0; font-style: italic; color: var(--ink-soft); font-size: 0.95rem; }
+@media (prefers-reduced-motion: no-preference) {
+  .slide .resume-jobs li, .slide .resume-skills, .slide .resume-refs { opacity: 0; transform: translateY(0.3rem); transition: opacity 0.4s ease, transform 0.4s ease; }
+  .slide.is-active .resume-jobs li, .slide.is-active .resume-skills, .slide.is-active .resume-refs { opacity: 1; transform: none; transition-delay: calc(var(--i) * 300ms + 600ms); }
+  .slide.is-active .resume-refs { transition-delay: 4s; }
+  .slide.seen .resume-jobs li, .slide.seen .resume-skills, .slide.seen .resume-refs { opacity: 1; transform: none; }
+}
+@media (max-width: 760px) {
+  .experts { grid-template-columns: 1fr; gap: 1.4rem; }
+  .resume { transform: none; }
+  .resume-jobs li { grid-template-columns: 1fr; gap: 0; }
+}
