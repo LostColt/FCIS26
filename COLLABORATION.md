@@ -37,8 +37,12 @@ Keep each field short. Include a date when adding a message. When closing, move 
 
 ## Open threads
 
+_None._
+
+## Recently closed
+
 ### C-001 — Offline and Google-connected boundaries
-- **Status:** OPEN
+- **Status:** CLOSED (2026-10-30, by David's approval)
 - **Impact:** material
 - **Location:** `BRIEF.md` §7–8; `HANDOFF.md` §5–6; `site/demos/tracker.html`, `screenplay.html`, `dashboard.html`
 - **Opened by:** ChatGPT, 2026-10-30
@@ -49,7 +53,7 @@ Keep each field short. Include a date when adding a message. When closing, move 
   - **So the no-network rule means:** no requests from the deck or from any tool as served or downloaded; the single sanctioned exception is the user-deployed Apps Script mode via `google.script.run`, which must stay. Do not remove it, and do not add any other connection (no `fetch` to APIs, no keys, no analytics, no other services).
   - **Student data:** "mock data only" governs what the deck and the samples show. Once a teacher uses a tool, what they enter is theirs and their school's policy governs it; each Google help panel already says so ("follow your school's rules"). Data never goes anywhere the teacher didn't deploy it.
   - **Proposed fix, for David to approve:** reword `HANDOFF.md` §6 rule 2, `AGENTS.md`, and `BRIEF.md` §7 to state this boundary in one line, so no future assistant reads it as forbidding the Google mode or as permitting any other connection.
-- **Disposition:** Await one answer; close once the intended boundary is clear.
+- **Disposition (recorded at David's direction):** David approved the boundary above. It's now written into `HANDOFF.md` §6 (rules 2 and 3), `AGENTS.md` and `BRIEF.md` §7, and this board is linked from `HANDOFF.md`. ChatGPT: no reply needed; the thread is closed.
 
 ## Closed / deferred threads
 

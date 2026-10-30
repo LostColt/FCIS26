@@ -1,6 +1,6 @@
 # Handoff: Stop Subscribing, Start Building
 
-**Read this first.** It's the front door for any assistant (Claude, ChatGPT, Antigravity/Gemini) picking up this project. It says how David works, what the deck is today, where everything lives, and what's still open. Last updated 2026-10-30 by Claude.
+**Read this first.** It's the front door for any assistant (Claude, ChatGPT, Antigravity/Gemini) picking up this project. It says how David works, what the deck is today, where everything lives, and what's still open. Last updated 2026-10-30 by Claude (network boundary clarified after COLLABORATION.md thread C-001).
 
 ---
 
@@ -97,6 +97,7 @@ Presenter controls: arrows, space, clicker, swipe; **Start over** button (and Ho
 | `content/story.md` | The record of David's words, chapter by chapter, including cut material marked as removed. |
 | `BRIEF.md` | The original source of truth (thesis, rules, review rubric). Its chapter table and tool list are current; some history sections are older. |
 | `BUILDLOG.md` | One entry per working session, newest first. |
+| `COLLABORATION.md` | A small board where Claude and ChatGPT (or Antigravity) raise material questions for each other. Strict rules: one issue per thread, three messages at most, David decides, nothing gets built from the board alone. Read it at the start of a session. |
 
 **How a slide is made:** `add(chapter, presses, html, { id, scroll, center })`.
 - `data-step="n"` on an element hides it until the nth press.
@@ -124,12 +125,13 @@ All four: one HTML file, sample content clearly invented and badged, saved in th
 ## 6. Rules that don't bend
 
 1. **Mock data only.** Invented students, invented scripts and texts, labeled. Never real student names, initials, essays or grades, blurred or not.
-2. **No network calls, no API keys, no analytics, no external scripts or fonts.** Fonts live in `site/assets/fonts/` (Literata, IBM Plex Sans, Caveat; SIL OFL). The QR library is vendored in `site/js/vendor/`. Ordinary links out are fine.
-3. **The tools stay single files** that work offline when downloaded.
-4. **Check every change** at laptop size (1440×900 or David's 1836×848) and phone size (390×844), with no console errors and nothing running off the side. Serve `site/` locally (`python3 -m http.server` inside `site/`) to test.
-5. **Accessibility:** keyboard works, focus is visible, reduced motion holds everything still, contrast is readable.
-6. **Keep `content/story.md` in step** when words on a slide change.
-7. **Log every session** at the top of `BUILDLOG.md`: date · who · what changed · what's next. **Update this file's sections 3 and 7** if the deck or open items change.
+2. **The network boundary.** The deck and every tool, as served or downloaded, make **no network requests**: no `fetch` or XHR to outside services, no API keys, no analytics, no external scripts or fonts. (The deck's one `fetch`, behind "Copy the code," reads a tool file from the deck's own site. Ordinary outbound links are fine.) **One deliberate exception, which must stay:** when a teacher pastes a tool into *their own* Apps Script project and deploys it, Google serves the page and it saves to *that teacher's own* Sheet or Drive through `google.script.run`. The tools detect this mode themselves; there are no URLs, keys or tokens in the files. Don't remove this mode, and don't add any other connection. Fonts live in `site/assets/fonts/` (Literata, IBM Plex Sans, Caveat; SIL OFL). The QR library is vendored in `site/js/vendor/`.
+3. **Student data.** "Mock data only" governs what the deck and the samples show. Once a teacher uses a tool, what they enter is theirs and their school's policy governs it; the Google help panels say so.
+4. **The tools stay single files** that work offline when downloaded.
+5. **Check every change** at laptop size (1440×900 or David's 1836×848) and phone size (390×844), with no console errors and nothing running off the side. Serve `site/` locally (`python3 -m http.server` inside `site/`) to test.
+6. **Accessibility:** keyboard works, focus is visible, reduced motion holds everything still, contrast is readable.
+7. **Keep `content/story.md` in step** when words on a slide change.
+8. **Log every session** at the top of `BUILDLOG.md`: date · who · what changed · what's next. **Update this file's sections 3 and 7** if the deck or open items change.
 
 ## 7. Open items
 
@@ -150,4 +152,4 @@ All four: one HTML file, sample content clearly invented and badged, saved in th
 
 ## 9. Opening prompt for a new assistant
 
-> You're picking up David Tran's FCIS presentation site in this repo. Read `HANDOFF.md` first, all of it, then `BUILDLOG.md`'s top entry. Follow the rules there: talk only when I say "take no action"; use my words; restraint in design; mock data only; no network calls; keep the tools as single files; check laptop and phone sizes; work on a branch unless I say push to main; log what you did in `BUILDLOG.md` and update `HANDOFF.md` sections 3 and 7 when they change. Then tell me in two or three sentences where things stand, and wait for me.
+> You're picking up David Tran's FCIS presentation site in this repo. Read `HANDOFF.md` first, all of it, then `BUILDLOG.md`'s top entry and any open threads in `COLLABORATION.md`. Follow the rules there: talk only when I say "take no action"; use my words; restraint in design; mock data only; no network calls; keep the tools as single files; check laptop and phone sizes; work on a branch unless I say push to main; log what you did in `BUILDLOG.md` and update `HANDOFF.md` sections 3 and 7 when they change. Then tell me in two or three sentences where things stand, and wait for me.

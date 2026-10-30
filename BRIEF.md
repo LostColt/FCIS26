@@ -97,7 +97,7 @@ No images. Typography carries the deck: Literata (a book serif) for the story, I
 - `site/js/deck.js` runs the deck; `qr.js` draws the cover's QR code from the deck's own address, using `js/vendor/qrcode.js` (MIT, stored in the repo, no network); `tally.js` runs the chapter 1 tally.
 - Every prompt has a working copy button.
 - Accessible: text contrast at least 4.5:1, visible focus states, works with a keyboard alone, slides off screen can't be tabbed into, and everything holds still under `prefers-reduced-motion`.
-- **No network API calls, no API keys, no analytics, no trackers, no external scripts or fonts.** David's real tools are never connected; they appear as clickable mockups (section 8a). Built-in browser features that need no network or key, such as speech synthesis, are fine. Ordinary links to other sites are fine.
+- **No network requests from the deck or from any tool as served or downloaded:** no outside APIs, API keys, analytics, trackers, or external scripts or fonts. Built-in browser features that need no network or key, such as speech synthesis, are fine. Ordinary links to other sites are fine. **The one deliberate exception:** a tool a teacher pastes into their own Apps Script project and deploys saves to their own Sheet or Drive through `google.script.run` (see `HANDOFF.md` §6). Keep it; add no other connection.
 - Demo videos are linked, not embedded, until David decides where they're hosted.
 
 ## 8. Privacy
