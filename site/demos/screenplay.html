@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Script Room</title>
+<!--
+  Script Room: a screenplay writer for film and TV. One file, no internet needed, no accounts, no AI.
+  Type / at the start of a line to choose scene, action, character, dialogue and more.
+  Your script is saved in this browser. Export it as a PDF or as a file Google Docs can open.
+  Change anything you like. Or paste this whole file into Gemini and ask for a change.
+  The sample script is invented.
+-->
+<style>
+  :root { --paper:#f6f7f4; --deep:#eceee8; --ink:#1d2430; --soft:#4b5563; --rule:#d6dad2; --blue:#2847a8; --white:#fff;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: "Courier Prime", "Courier New", Courier, monospace; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--deep); color: var(--ink); font: 15px/1.5 var(--sans); }
+  button, input, select { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+
+  .bar { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.9rem; padding: 0.7rem 1.2rem; background: var(--white); border-bottom: 1px solid var(--rule); }
+  .bar h1 { font: 600 1.3rem/1 Georgia, serif; margin: 0 auto 0 0; }
+  .seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; overflow: hidden; }
+  .seg button { border: 0; background: var(--white); padding: 0.35rem 0.85rem; }
+  .seg button[aria-pressed="true"] { background: var(--ink); color: var(--white); }
+  .btn { border: 1px solid var(--rule); background: var(--white); border-radius: 999px; padding: 0.4rem 0.85rem; font-weight: 500; }
+  .btn:hover { border-color: var(--ink); }
+  .btn.primary { background: var(--ink); border-color: var(--ink); color: var(--white); }
+  .hint { max-width: 8.5in; margin: 1rem auto 0; padding: 0 0.5rem; color: var(--soft); font-size: 0.88rem; display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; justify-content: space-between; }
+  kbd { font: 600 0.8rem var(--sans); border: 1px solid var(--rule); border-bottom-width: 2px; border-radius: 4px; padding: 0 0.3rem; background: var(--white); }
+
+  /* The page: US letter, standard screenplay margins (1.5in left, 1in right), Courier 12pt */
+  .page { width: min(100% - 1rem, 8.5in); margin: 0.6rem auto 3rem; background: var(--white); box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 12px 30px rgba(0,0,0,.08);
+    padding: 1in 1in 1in 1.5in; font: 12pt/1.15 var(--mono); }
+  .titlepage { text-align: center; border-bottom: 1px dashed var(--rule); padding-bottom: 1.5em; margin-bottom: 2em; }
+  .titlepage input { font: inherit; text-align: center; border: 0; border-bottom: 1px dashed transparent; width: 100%; background: transparent; }
+  .titlepage input:hover, .titlepage input:focus { border-bottom-color: var(--rule); outline: none; }
+  #title { text-transform: uppercase; text-decoration: underline; }
+  .by { margin: 0.8em 0 0.2em; }
+
+  .b { min-height: 1.15em; outline: none; white-space: pre-wrap; word-wrap: break-word; position: relative; }
+  .b:empty::before { content: attr(data-ph); color: #b3b8ae; }
+  .b.on { background: #fbf7df; box-shadow: -0.6em 0 0 #fbf7df, 0.6em 0 0 #fbf7df; }
+  .b[data-t="scene"] { text-transform: uppercase; margin-top: 2.3em; font-weight: 700; }
+  .b[data-t="action"] { margin-top: 1.15em; }
+  .b[data-t="character"] { text-transform: uppercase; margin-top: 1.15em; margin-left: 36.7%; }
+  .b[data-t="parenthetical"] { margin-left: 26.7%; width: 33%; }
+  .b[data-t="dialogue"] { margin-left: 16.7%; width: 58%; }
+  .b[data-t="transition"] { text-transform: uppercase; text-align: right; margin-top: 1.15em; }
+  .b[data-t="act"] { text-transform: uppercase; text-align: center; text-decoration: underline; margin-top: 2.3em; font-weight: 700; }
+  .b:first-child { margin-top: 0; }
+  .page { position: relative; }
+  .tag { position: absolute; left: 0.9rem; width: calc(1.5in - 1.4rem); text-align: right; font: 500 0.72rem/1.4 var(--sans); color: var(--soft); pointer-events: none; }
+  .tag[hidden] { display: none; }
+
+  .menu { position: absolute; z-index: 10; min-width: 13rem; background: var(--white); border: 1px solid var(--rule); border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,.14); padding: 0.3rem; font: 14px/1.3 var(--sans); }
+  .menu[hidden] { display: none; }
+  .menu button { display: flex; width: 100%; justify-content: space-between; gap: 1rem; border: 0; background: none; text-align: left; padding: 0.45rem 0.6rem; border-radius: 6px; }
+  .menu button small { color: var(--soft); }
+  .menu button[aria-selected="true"] { background: var(--ink); color: var(--white); }
+  .menu button[aria-selected="true"] small { color: #c9ced6; }
+
+  .status { max-width: 8.5in; margin: -2rem auto 2rem; padding: 0 0.5rem; color: var(--soft); font-size: 0.85rem; }
+
+  dialog { border: 1px solid var(--rule); border-radius: 12px; padding: 1.3rem 1.5rem; max-width: 34rem; width: calc(100% - 2rem); }
+  dialog::backdrop { background: rgba(29, 36, 48, 0.35); }
+  dialog h3 { font: 600 1.3rem/1.2 Georgia, serif; margin: 0 0 0.6rem; }
+  .row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+
+  @media (max-width: 700px) { .page { padding: 0.6in 0.45in 0.8in 0.6in; font-size: 11pt; } .tag { display: none !important; } }
+
+  @media print {
+    @page { size: letter; margin: 1in 1in 1in 1.5in; }
+    html, body { background: #fff; }
+    .bar, .hint, .status, .menu, dialog, .tag { display: none !important; }
+    .page { width: auto; margin: 0; padding: 0; box-shadow: none; font-size: 12pt; }
+    .titlepage { border: 0; height: 9in; display: flex; flex-direction: column; justify-content: center; page-break-after: always; break-after: page; }
+    .b.on { background: none; box-shadow: none; }
+    .b:empty::before { content: ""; }
+    .b[data-t="act"] { break-before: page; }
+    .b[data-t="scene"], .b[data-t="character"] { break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+<header class="bar">
+  <h1>Script Room</h1>
+  <div class="seg" role="group" aria-label="Film or TV">
+    <button id="fFilm" aria-pressed="true">Film</button><button id="fTV" aria-pressed="false">TV</button>
+  </div>
+  <button class="btn" id="newBtn">New script</button>
+  <button class="btn" id="pdfBtn">Save as PDF</button>
+  <button class="btn primary" id="docBtn">Download for Google Docs</button>
+</header>
+
+<p class="hint"><span>Type <kbd>/</kbd> at the start of a line to choose what it is. <kbd>Enter</kbd> starts the next line. <kbd>Tab</kbd> changes the type.</span><span id="count"></span></p>
+
+<article class="page" id="page">
+  <div class="titlepage">
+    <input id="title" aria-label="Title" placeholder="TITLE">
+    <p class="by">written by</p>
+    <input id="author" aria-label="Written by" placeholder="Your name">
+  </div>
+  <div id="script" aria-label="Script"></div>
+  <span class="tag" id="tag" aria-hidden="true" hidden></span>
+</article>
+<p class="status" id="status"></p>
+
+<div class="menu" id="menu" role="listbox" aria-label="Line type" hidden></div>
+
+<dialog id="newDlg">
+  <h3>Start a new script?</h3>
+  <p>This clears the page. Save it as a PDF or download it for Google Docs first if you want to keep it.</p>
+  <div class="row"><button class="btn primary" id="newYes">Start fresh</button><button class="btn" id="newNo">Keep writing</button></div>
+</dialog>
+
+<dialog id="docDlg">
+  <h3>Open it in Google Docs</h3>
+  <ol>
+    <li>Go to <b>drive.google.com</b> and drag in the file you just downloaded.</li>
+    <li>Right-click it, choose <b>Open with → Google Docs</b>.</li>
+  </ol>
+  <p>It opens as a Google Doc in screenplay format. It also opens in Word or Pages.</p>
+  <div class="row"><button class="btn primary" id="docOk">Got it</button></div>
+</dialog>
+
+<script>
+(function () {
+  "use strict";
+  var KEY = "script-room";
+  var TYPES = {
+    scene: { name: "Scene heading", ph: "INT. KITCHEN - NIGHT", next: "action" },
+    action: { name: "Action", ph: "What we see.", next: "action" },
+    character: { name: "Character", ph: "NAME", next: "dialogue" },
+    parenthetical: { name: "Parenthetical", ph: "(quietly)", next: "dialogue" },
+    dialogue: { name: "Dialogue", ph: "What they say.", next: "character" },
+    transition: { name: "Transition", ph: "CUT TO:", next: "scene" },
+    act: { name: "Act break", ph: "ACT ONE", next: "scene", tv: true }
+  };
+  var ORDER = ["scene", "action", "character", "dialogue", "parenthetical", "transition", "act"];
+  var $ = function (id) { return document.getElementById(id); };
+  var script = $("script"), menu = $("menu");
+  var doc, current = null, menuItems = [], menuPick = 0, saveTimer;
+
+  function sample() {
+    return { format: "film", title: "The Late Bus", author: "A sample (invented)", blocks: [
+      ["scene", "EXT. BUS STOP - NIGHT"],
+      ["action", "Rain. One flickering streetlight. MAYA (17) sits on the bench with a backpack held like a shield."],
+      ["action", "Headlights. The bus slows, then doesn't stop."],
+      ["character", "MAYA"],
+      ["parenthetical", "(to no one)"],
+      ["dialogue", "Of course."],
+      ["action", "A car pulls up. The window rolls down: MR. OKAFOR, her English teacher, more tired than she is."],
+      ["character", "MR. OKAFOR"],
+      ["dialogue", "Draft two was due today."],
+      ["character", "MAYA"],
+      ["dialogue", "Draft two is in my head. It's very good in there."],
+      ["transition", "CUT TO:"],
+      ["scene", "INT. MR. OKAFOR'S CAR - CONTINUOUS"],
+      ["action", "Maya buckles in. She takes out a notebook. Starts writing."]
+    ] };
+  }
+
+  /* ---------- Saving in this browser ---------- */
+  function collect() {
+    doc.title = $("title").value; doc.author = $("author").value;
+    doc.blocks = Array.prototype.map.call(script.children, function (el) { return [el.dataset.t, plain(el)]; });
+  }
+  function save() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () {
+      collect();
+      try { localStorage.setItem(KEY, JSON.stringify(doc)); $("status").textContent = "Saved in this browser."; }
+      catch (e) { $("status").textContent = "This browser won't save. Download for Google Docs to keep your script."; }
+      counts();
+    }, 300);
+  }
+  function load() {
+    try { doc = JSON.parse(localStorage.getItem(KEY)) || sample(); } catch (e) { doc = sample(); }
+    $("title").value = doc.title || ""; $("author").value = doc.author || "";
+    script.innerHTML = "";
+    (doc.blocks.length ? doc.blocks : [["scene", ""]]).forEach(function (b) { script.appendChild(block(b[0], b[1])); });
+    setFormat(doc.format || "film", true);
+    counts();
+    $("status").textContent = "Saved in this browser.";
+  }
+  function counts() {
+    var scenes = doc.blocks.filter(function (b) { return b[0] === "scene" && b[1]; }).length;
+    var lines = doc.blocks.reduce(function (n, b) { return n + Math.max(1, Math.ceil((b[1] || "").length / (b[0] === "dialogue" ? 35 : 60))) + (b[0] === "dialogue" || b[0] === "parenthetical" ? 0 : 1); }, 0);
+    $("count").textContent = scenes + " scene" + (scenes === 1 ? "" : "s") + " · about " + Math.max(1, Math.round(lines / 55)) + " page" + (lines > 82 ? "s" : "");
+  }
+
+  /* ---------- Lines ---------- */
+  function block(t, value) {
+    var el = document.createElement("div");
+    el.className = "b"; el.dataset.t = t; el.dataset.ph = TYPES[t].ph;
+    el.setAttribute("contenteditable", "true"); el.setAttribute("role", "textbox");
+    el.setAttribute("aria-label", TYPES[t].name);
+    el.textContent = value || "";
+    return el;
+  }
+  function setType(el, t) {
+    el.dataset.t = t; el.dataset.ph = TYPES[t].ph; el.setAttribute("aria-label", TYPES[t].name);
+    showTag(el); save();
+  }
+  function showTag(el) {
+    script.querySelectorAll(".b.on").forEach(function (x) { x.classList.remove("on"); });
+    var tag = $("tag");
+    if (!el) { tag.hidden = true; return; }
+    el.classList.add("on");
+    tag.textContent = TYPES[el.dataset.t].name;
+    tag.style.top = el.offsetTop + "px";
+    tag.hidden = window.innerWidth < 700;
+    current = el;
+  }
+  function caretToEnd(el) {
+    el.focus();
+    var r = document.createRange(), s = window.getSelection();
+    r.selectNodeContents(el); r.collapse(false);
+    s.removeAllRanges(); s.addRange(r);
+  }
+  function plain(el) { return el.textContent; }
+  function caretAtStart() { var s = window.getSelection(); if (!s.rangeCount) return false; var r = s.getRangeAt(0).cloneRange(); r.setStart(current, 0); return r.toString() === ""; }
+
+  /* ---------- The slash menu ---------- */
+  function allowed() { return ORDER.filter(function (t) { return !TYPES[t].tv || doc.format === "tv"; }); }
+  function openMenu(filter) {
+    menuItems = allowed().filter(function (t) { return !filter || t.indexOf(filter) === 0 || TYPES[t].name.toLowerCase().indexOf(filter) === 0; });
+    if (!menuItems.length) { closeMenu(); return; }
+    menuPick = Math.min(menuPick, menuItems.length - 1);
+    menu.innerHTML = menuItems.map(function (t, k) {
+      return '<button role="option" data-pick="' + t + '" aria-selected="' + (k === menuPick) + '"><span>' + TYPES[t].name + "</span><small>/" + t + "</small></button>";
+    }).join("");
+    var r = current.getBoundingClientRect();
+    menu.style.left = (r.left + window.scrollX) + "px"; menu.style.top = (r.bottom + window.scrollY + 6) + "px";
+    menu.hidden = false;
+  }
+  function closeMenu() { menu.hidden = true; menuItems = []; menuPick = 0; }
+  function pick(t) {
+    var el = current;
+    var v = plain(el);
+    if (v.charAt(0) === "/") el.textContent = "";
+    closeMenu(); setType(el, t); caretToEnd(el);
+  }
+  menu.addEventListener("mousedown", function (e) { var b = e.target.closest("[data-pick]"); if (b) { e.preventDefault(); pick(b.dataset.pick); } });
+
+  /* ---------- Typing ---------- */
+  script.addEventListener("focusin", function (e) { var el = e.target.closest(".b"); if (el && el !== current) { closeMenu(); showTag(el); } });
+  script.addEventListener("input", function () {
+    if (!current) return;
+    var v = plain(current);
+    $("tag").style.top = current.offsetTop + "px";
+    if (v.charAt(0) === "/" && v.indexOf(" ") < 0) openMenu(v.slice(1).toLowerCase()); else closeMenu();
+    save();
+  });
+  script.addEventListener("paste", function (e) {
+    e.preventDefault();
+    var t = (e.clipboardData || window.clipboardData).getData("text/plain");
+    document.execCommand("insertText", false, t.replace(/\r/g, ""));
+  });
+  script.addEventListener("keydown", function (e) {
+    if (!current) return;
+    if (!menu.hidden) {
+      if (e.key === "ArrowDown") { e.preventDefault(); menuPick = (menuPick + 1) % menuItems.length; openMenu(plain(current).slice(1).toLowerCase()); return; }
+      if (e.key === "ArrowUp") { e.preventDefault(); menuPick = (menuPick - 1 + menuItems.length) % menuItems.length; openMenu(plain(current).slice(1).toLowerCase()); return; }
+      if (e.key === "Enter" || e.key === "Tab") { e.preventDefault(); pick(menuItems[menuPick]); return; }
+      if (e.key === "Escape") { e.preventDefault(); closeMenu(); return; }
+    }
+    if (e.key === "Tab") {
+      e.preventDefault();
+      var list = allowed(), i = list.indexOf(current.dataset.t);
+      setType(current, list[(i + (e.shiftKey ? list.length - 1 : 1)) % list.length]);
+      return;
+    }
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      var t = current.dataset.t;
+      if (!plain(current).trim() && t === "dialogue") { setType(current, "action"); return; }
+      var nb = block(TYPES[t].next, "");
+      current.after(nb); showTag(nb); caretToEnd(nb); save();
+      nb.scrollIntoView({ block: "nearest" });
+      return;
+    }
+    if (e.key === "Backspace" && caretAtStart() && current.previousElementSibling) {
+      var prev = current.previousElementSibling;
+      if (!plain(current)) { e.preventDefault(); current.remove(); showTag(prev); caretToEnd(prev); save(); }
+    }
+  });
+
+  /* ---------- Film or TV ---------- */
+  function setFormat(f, quiet) {
+    doc.format = f;
+    $("fFilm").setAttribute("aria-pressed", f === "film"); $("fTV").setAttribute("aria-pressed", f === "tv");
+    if (!quiet) save();
+  }
+  $("fFilm").onclick = function () { setFormat("film"); };
+  $("fTV").onclick = function () { setFormat("tv"); };
+
+  /* ---------- New, PDF, Google Docs ---------- */
+  $("newBtn").onclick = function () { $("newDlg").showModal(); };
+  $("newNo").onclick = function () { $("newDlg").close(); };
+  $("newYes").onclick = function () {
+    $("newDlg").close();
+    doc = { format: doc.format, title: "", author: "", blocks: [] };
+    $("title").value = ""; $("author").value = "";
+    script.innerHTML = ""; var el = block(doc.format === "tv" ? "act" : "scene", ""); if (doc.format === "tv") el.textContent = "COLD OPEN";
+    script.appendChild(el); showTag(el); caretToEnd(el); save();
+  };
+  $("title").addEventListener("input", save); $("author").addEventListener("input", save);
+
+  $("pdfBtn").onclick = function () { collect(); showTag(null); window.print(); };
+
+  function esc(s) { return String(s).replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); }
+  var STYLE = {
+    scene: "margin:24pt 0 0 0;text-transform:uppercase;font-weight:bold;",
+    action: "margin:12pt 0 0 0;",
+    character: "margin:12pt 0 0 2.2in;text-transform:uppercase;",
+    parenthetical: "margin:0 0 0 1.6in;width:2in;",
+    dialogue: "margin:0 1.5in 0 1in;",
+    transition: "margin:12pt 0 0 0;text-align:right;text-transform:uppercase;",
+    act: "margin:24pt 0 0 0;text-align:center;text-decoration:underline;text-transform:uppercase;font-weight:bold;page-break-before:always;"
+  };
+  $("docBtn").onclick = function () {
+    collect();
+    var body = '<div style="text-align:center;margin-top:3in;"><p style="text-transform:uppercase;text-decoration:underline;">' + esc(doc.title || "Untitled") +
+      "</p><p>written by</p><p>" + esc(doc.author || "") + '</p></div><br style="page-break-before:always" clear="all">' +
+      doc.blocks.filter(function (b) { return b[1].trim(); }).map(function (b) {
+        var v = b[0] === "scene" || b[0] === "character" || b[0] === "transition" || b[0] === "act" ? b[1].toUpperCase() : b[1];
+        return '<p style="' + STYLE[b[0]] + '">' + esc(v).replace(/\n/g, "<br>") + "</p>";
+      }).join("");
+    var html = '<html><head><meta charset="utf-8"><title>' + esc(doc.title || "Script") + "</title>" +
+      "<style>@page{size:8.5in 11in;margin:1in 1in 1in 1.5in;} body{font-family:'Courier New',Courier,monospace;font-size:12pt;line-height:1.0;} p{margin:0;}</style></head><body>" + body + "</body></html>";
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob(["﻿" + html], { type: "application/msword" }));
+    a.download = (doc.title || "script").replace(/[^\w\- ]+/g, "").trim().replace(/\s+/g, "-").toLowerCase() + ".doc";
+    document.body.appendChild(a); a.click(); a.remove();
+    $("docDlg").showModal();
+  };
+  $("docOk").onclick = function () { $("docDlg").close(); };
+
+  document.addEventListener("click", function (e) { if (!menu.hidden && !e.target.closest(".menu") && !e.target.closest(".b")) closeMenu(); });
+
+  load();
+  var first = script.querySelector(".b:last-child"); if (first) showTag(first);
+})();
+</script>
+</body>
+</html>

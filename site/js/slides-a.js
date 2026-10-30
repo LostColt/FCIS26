@@ -47,7 +47,7 @@
      When one is ready, set its file (e.g. "demos/tracker.html"); until then the card is a holding spot. */
   D.TOOLS = {
     tracker: "demos/tracker.html",
-    screenplay: ""
+    screenplay: "demos/screenplay.html"
   };
   D.tool = function (key, who, title, line) {
     var f = D.TOOLS[key];
@@ -245,7 +245,7 @@
   add(4, 0,
     '<div class="two-things"><p class="said-line">So I built two small things.</p><div class="tool-pair">' +
     D.tool("tracker", "For my students", "A meeting tracker", "It tracks my student meetings, holds my notes, and preps the next one. Designed how I work. It molds to me, not the other way around.") +
-    D.tool("screenplay", "For me", "A screenplay tool", "Type a slash for scene, action, character or dialogue, and it formats the page.") +
+    D.tool("screenplay", "For me", "A screenplay tool", "Film or TV. Type a slash for scene, action, character or dialogue, and it formats the page. It saves as you write, and exports to PDF or Google Docs.") +
     '</div><p class="tool-note">Start on top of the version I built.</p></div>', { id: "tracker" });
 
   /* 5 · Why I kept building */
