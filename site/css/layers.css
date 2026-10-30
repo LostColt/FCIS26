@@ -521,3 +521,4 @@
   .look-sticky .sticky { position: static; width: auto; margin: 1.5rem 0 0; transform: rotate(1.5deg); }
   .slide.is-active .look-sticky .sticky { transform: rotate(1.5deg); }
 }
+.option-tag { position: absolute; top: 4.6rem; left: 50%; transform: translateX(-50%); font: 600 0.85rem/1 var(--sans); color: var(--blue); border: 1px dashed var(--blue); border-radius: 999px; padding: 0.35rem 0.8rem; margin: 0; }

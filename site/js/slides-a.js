@@ -127,13 +127,11 @@
 
   /* 3 · The real cost: one slide. When it opens, the lines slide in by themselves;
      the turn to students lands centered, with their three costs in one row. */
-  /* Trying out an image for the exhaustion. Two versions to compare, chosen in the address:
-     ?v=tabs  a browser tab bar that fills until the tabs are slivers
-     ?v=sticky  a sticky note of passwords, crossed out and rewritten
-     Without either, the slide is as it was. */
-  var look = (location.search.match(/[?&]v=(tabs|sticky)/) || [])[1] || "";
+  /* Trying out an image for the exhaustion: slide 9 as it was, then two temporary options
+     (A: browser tabs, B: a sticky note of passwords). David picks one; the other two come out. */
   var tabNames = ["Google Classroom", "Schoology", "Canva", "Nearpod", "Padlet", "Kahoot!", "Turnitin", "Quizlet", "Blooket", "Gimkit", "Notion", "Trello", "Screencastify", "Brisk", "MagicSchool", "Veracross", "Blackbaud", "Microsoft Teams", "Zoom", "Gemini"];
-  var exhaust = look === "tabs"
+  function realCost(look, label) {
+    var exhaust = look === "tabs"
     ? '<div class="tabbar" aria-hidden="true"><div class="tabs">' +
       tabNames.map(function (t, k) { return '<span class="tab" style="--t:' + (0.5 + k * 0.32).toFixed(2) + 's"><i></i>' + t + "</span>"; }).join("") +
       '<span class="tab-plus">+</span></div></div>'
@@ -147,17 +145,21 @@
       '<li><b>Kahoot!</b> it’s on my phone</li>' +
       "</ul></div>"
     : "";
-  add(3, 0,
-    '<div class="said auto-run' + (look ? " look-" + look : "") + '">' + exhaust +
+    return (label ? '<p class="option-tag">' + label + "</p>" : "") +
+      '<div class="said auto-run' + (look ? " look-" + look : "") + '">' + exhaust +
     '<p style="--t:0.3s">Another subscription meant another system to learn.</p>' +
-    '<p style="--t:2.2s">I’d be working the way the tool wanted, not the way I&nbsp;work.</p>' +
-    '<p style="--t:4.4s">The real cost isn’t only the money. It’s <span class="mark auto" style="--t:5.2s">adaptation</span>.</p>' +
-    '<p class="turn" style="--t:7s">And students pay that cost too.</p>' +
-    '<ul class="costs centered-row" aria-label="What it costs students">' +
-    '<li style="--t:8s;--r:-1.5deg">Another login</li>' +
-    '<li style="--t:8.25s;--r:1deg">Another interface</li>' +
-    '<li style="--t:8.5s;--r:-0.5deg">Another set of rules before the learning starts</li>' +
-    "</ul></div>");
+      '<p style="--t:2.2s">I’d be working the way the tool wanted, not the way I&nbsp;work.</p>' +
+      '<p style="--t:4.4s">The real cost isn’t only the money. It’s <span class="mark auto" style="--t:5.2s">adaptation</span>.</p>' +
+      '<p class="turn" style="--t:7s">And students pay that cost too.</p>' +
+      '<ul class="costs centered-row" aria-label="What it costs students">' +
+      '<li style="--t:8s;--r:-1.5deg">Another login</li>' +
+      '<li style="--t:8.25s;--r:1deg">Another interface</li>' +
+      '<li style="--t:8.5s;--r:-0.5deg">Another set of rules before the learning starts</li>' +
+    "</ul></div>";
+  }
+  add(3, 0, realCost(""));
+  add(3, 0, realCost("tabs", "Option A: tabs"));
+  add(3, 0, realCost("sticky", "Option B: sticky note"));
 
   /* 4 · So I had it build it */
   /* The question */
