@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assessment Calendar</title>
+<!--
+  Assessment Calendar: a dashboard for a Google Sheet your department already keeps.
+  Columns: Date, Grade, Course, Teacher, Type (Test, Quiz, Project or Essay).
+  It shows each week at a glance and flags crunch days: two or more big assessments for one grade on one day.
+  One file, no internet needed, no accounts, no AI.
+  On its own it saves in this browser; paste rows straight from Google Sheets with "Edit the data".
+  To run it inside your Sheet so the whole department sees the same thing, click "Use with Google Sheets".
+  The sample data is invented.
+-->
+<style>
+  :root { --paper:#f6f7f4; --deep:#eceee8; --ink:#1d2430; --soft:#4b5563; --rule:#d6dad2; --blue:#2847a8; --red:#b8322a; --white:#fff;
+    --test:#2847a8; --quiz:#8a94a6; --project:#2f6b45; --essay:#8a5a1f;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper); color: var(--ink); font: 15px/1.5 var(--sans); }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+
+  .bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; padding: 0.8rem 1.4rem; background: var(--white); border-bottom: 1px solid var(--rule); }
+  .bar h1 { font: 600 1.35rem/1.1 Georgia, serif; margin: 0 auto 0 0; }
+  .btn { border: 1px solid var(--rule); background: var(--white); border-radius: 999px; padding: 0.4rem 0.85rem; font-weight: 500; }
+  .btn:hover { border-color: var(--ink); }
+  .btn.primary { background: var(--ink); border-color: var(--ink); color: var(--white); }
+  .btn.blue { border-color: var(--blue); color: var(--blue); }
+  .btn.small { padding: 0.2rem 0.6rem; font-size: 0.85rem; }
+  .icon { width: 2rem; height: 2rem; padding: 0; border-radius: 50%; }
+  .weeknav { display: flex; align-items: center; gap: 0.3rem; }
+  .weeknav strong { min-width: 11rem; text-align: center; }
+  select.f { border: 1px solid var(--rule); border-radius: 8px; padding: 0.35rem 0.5rem; background: var(--white); }
+
+  main { max-width: 78rem; margin: 0 auto; padding: 1.4rem; }
+  .tiles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.8rem; margin-bottom: 1.2rem; }
+  .tile { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 0.8rem 1rem; }
+  .tile b { display: block; font: 600 2rem/1.1 Georgia, serif; }
+  .tile span { color: var(--soft); font-size: 0.88rem; }
+  .tile.alert { border-color: var(--red); }
+  .tile.alert b { color: var(--red); }
+
+  .week { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.6rem; }
+  .day { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 0.7rem; min-height: 15rem; display: flex; flex-direction: column; gap: 0.4rem; }
+  .day.today { box-shadow: inset 0 3px 0 var(--blue); }
+  .day.crunch { border-color: var(--red); box-shadow: inset 0 0 0 1px var(--red); }
+  .day h3 { margin: 0 0 0.2rem; font-size: 0.95rem; display: flex; justify-content: space-between; }
+  .day h3 small { color: var(--soft); font-weight: 400; }
+  .warn { font-size: 0.8rem; color: var(--red); font-weight: 600; line-height: 1.3; }
+  .a { border-left: 4px solid var(--c); background: var(--paper); border-radius: 6px; padding: 0.35rem 0.5rem; font-size: 0.85rem; line-height: 1.3; }
+  .a b { display: block; font-weight: 600; }
+  .a span { color: var(--soft); }
+  .a[data-t="Test"] { --c: var(--test); } .a[data-t="Quiz"] { --c: var(--quiz); } .a[data-t="Project"] { --c: var(--project); } .a[data-t="Essay"] { --c: var(--essay); }
+  .none { color: var(--soft); font-size: 0.85rem; }
+
+  .lower { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 1.2rem; margin-top: 1.2rem; }
+  .panel { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 1rem 1.1rem; }
+  .panel h2 { font: 600 0.78rem/1 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--soft); margin: 0 0 0.8rem; }
+  .bars { display: grid; gap: 0.5rem; }
+  .brow { display: grid; grid-template-columns: 7rem 1fr 2rem; gap: 0.6rem; align-items: center; font-size: 0.88rem; }
+  .stack { display: flex; height: 1.1rem; border-radius: 4px; overflow: hidden; background: var(--deep); }
+  .stack i { display: block; height: 100%; }
+  .legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; margin-top: 0.8rem; font-size: 0.82rem; color: var(--soft); }
+  .legend span::before { content: ""; display: inline-block; width: 0.7rem; height: 0.7rem; border-radius: 2px; margin-right: 0.35rem; background: var(--c); vertical-align: -1px; }
+  .crunches { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; }
+  .crunches li { border-left: 4px solid var(--red); padding: 0.3rem 0.6rem; background: #fbefee; border-radius: 6px; font-size: 0.88rem; }
+
+  .foot { max-width: 78rem; margin: 0 auto; padding: 0 1.4rem 1.6rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: center; color: var(--soft); font-size: 0.85rem; }
+  .foot .status { margin-right: auto; }
+
+  dialog { border: 1px solid var(--rule); border-radius: 12px; padding: 1.3rem 1.5rem; max-width: 44rem; width: calc(100% - 2rem); }
+  dialog::backdrop { background: rgba(29, 36, 48, 0.35); }
+  dialog h3 { font: 600 1.35rem/1.2 Georgia, serif; margin: 0 0 0.6rem; }
+  dialog ol { padding-left: 1.3rem; } dialog li { margin-bottom: 0.5rem; }
+  textarea { width: 100%; min-height: 16rem; border: 1px solid var(--rule); border-radius: 8px; padding: 0.6rem; font: 0.85rem/1.45 ui-monospace, Menlo, Consolas, monospace; }
+  .row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+  .note { color: var(--soft); font-size: 0.88rem; }
+  .ui { display: inline-block; font-weight: 600; font-size: 0.9em; padding: 0 0.4em; border: 1px solid var(--ink); border-radius: 5px; white-space: nowrap; }
+
+  @media (max-width: 900px) { .tiles { grid-template-columns: repeat(2, 1fr); } .week { grid-template-columns: 1fr; } .day { min-height: 0; } .lower { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header class="bar">
+  <h1>Assessment Calendar</h1>
+  <div class="weeknav" aria-label="Choose a week">
+    <button class="btn icon" id="prevWk" aria-label="Previous week">‹</button>
+    <strong id="wkLabel"></strong>
+    <button class="btn icon" id="nextWk" aria-label="Next week">›</button>
+    <button class="btn small" id="thisWk">This week</button>
+  </div>
+  <label>Grade <select class="f" id="grade"></select></label>
+  <button class="btn" id="editBtn">Edit the data</button>
+  <button class="btn blue" id="sheetsBtn">Use with Google Sheets</button>
+</header>
+
+<main>
+  <div class="tiles" id="tiles"></div>
+  <div class="week" id="week"></div>
+  <div class="lower">
+    <section class="panel"><h2>The next six weeks</h2><div class="bars" id="bars"></div>
+      <div class="legend"><span style="--c:var(--test)">Test</span><span style="--c:var(--project)">Project</span><span style="--c:var(--essay)">Essay</span><span style="--c:var(--quiz)">Quiz</span></div></section>
+    <section class="panel"><h2>Crunch days coming up</h2><ul class="crunches" id="crunches"></ul>
+      <p class="note">A crunch day is two or more tests, projects or essays for one grade on the same day.</p></section>
+  </div>
+</main>
+
+<footer class="foot">
+  <span class="status" id="status"></span>
+  <span id="sampleNote">The sample data is invented.</span>
+  <button class="btn small" id="csvBtn">Download as a sheet (CSV)</button>
+</footer>
+
+<dialog id="editDlg">
+  <h3>Edit the data</h3>
+  <p>One assessment per line: <b>Date, Grade, Course, Teacher, Type</b>. Type is Test, Quiz, Project or Essay.</p>
+  <p class="note">Keep it in Google Sheets? Select those five columns there (with the heading row), copy, and paste them here. It replaces what's below.</p>
+  <textarea id="dataBox" spellcheck="false"></textarea>
+  <div class="row"><button class="btn primary" id="dataSave">Save</button><button class="btn" id="dataCancel">Cancel</button><button class="btn small" id="dataClear">Start empty</button></div>
+  <p class="note" id="dataMsg"></p>
+</dialog>
+
+<dialog id="sheetsDlg">
+  <h3>Use it with Google Sheets</h3>
+  <p>Run the dashboard inside your department's Google Sheet. Everyone keeps adding rows to the Sheet the way they already do, and everyone you share the link with sees the same dashboard. The data never leaves your school's Google account.</p>
+  <ol>
+    <li>Make a Google Sheet in your school account with these headings in row 1: <b>Date, Grade, Course, Teacher, Type</b>. To start from the sample, <button class="btn small" id="csvBtn2">download it as a sheet</button>, then in Google Sheets choose <span class="ui">File</span> → <span class="ui">Import</span> → <span class="ui">Upload</span>.</li>
+    <li>In the Sheet, choose <span class="ui">Extensions</span> → <span class="ui">Apps Script</span>.</li>
+    <li>Delete what's in <b>Code.gs</b> and paste this in: <button class="btn small" data-copy="code">Copy Code.gs</button></li>
+    <li>Click <span class="ui">+</span> next to Files, choose <span class="ui">HTML</span>, name it <b>Index</b>, delete what's there, and paste in this whole dashboard: <button class="btn small" data-copy="page">Copy the dashboard</button></li>
+    <li>Save. Then <span class="ui">Deploy</span> → <span class="ui">New deployment</span> → type <span class="ui">Web app</span>. Execute as: <b>Me</b>. Who has access: <b>only people in your school</b>. Click <span class="ui">Deploy</span>.</li>
+    <li>Google asks for permission to read your Sheet. That's normal: it's your own script, reading your own Sheet.</li>
+    <li>Open the web app link and share it with your department. When someone adds a row to the Sheet, it shows up on the dashboard the next time it's opened.</li>
+  </ol>
+  <p class="note">Rather ask than paste? Give Gemini this prompt and attach this file: <button class="btn small" data-copy="prompt">Copy the prompt</button></p>
+  <p class="note">Can't deploy? Your school may limit Apps Script. Ask your tech lead.</p>
+  <div class="row"><button class="btn primary" id="sheetsClose">Done</button></div>
+</dialog>
+
+<script type="text/plain" id="codegs">/* Assessment Calendar: shows the first tab of this Google Sheet as a dashboard.
+   Row 1 holds the headings: Date, Grade, Course, Teacher, Type. */
+function doGet() {
+  return HtmlService.createHtmlOutputFromFile('Index')
+    .setTitle('Assessment Calendar')
+    .addMetaTag('viewport', 'width=device-width, initial-scale=1');
+}
+
+function getRows() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
+  var values = sheet.getDataRange().getValues();
+  var tz = Session.getScriptTimeZone();
+  return JSON.stringify(values.map(function (row) {
+    return row.map(function (v) {
+      return v instanceof Date ? Utilities.formatDate(v, tz, 'yyyy-MM-dd') : String(v);
+    });
+  }));
+}</script>
+
+<script>
+(function () {
+  "use strict";
+  var PAGE = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+  var KEY = "assessment-calendar";
+  var TYPES = ["Test", "Project", "Essay", "Quiz"], BIG = ["Test", "Project", "Essay"];
+  var inSheets = typeof google !== "undefined" && google.script && google.script.run;
+  var $ = function (id) { return document.getElementById(id); };
+  var rows = [], isSample = false, grade = "All", monday = mondayOf(new Date());
+
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function ymd(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
+  function mondayOf(d) { var x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); x.setDate(x.getDate() - ((x.getDay() + 6) % 7)); return x; }
+  function addDays(d, n) { var x = new Date(d); x.setDate(x.getDate() + n); return x; }
+  function nice(d, opts) { return d.toLocaleDateString(undefined, opts || { month: "short", day: "numeric" }); }
+  function esc(s) { return String(s || "").replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function parseDate(s) {
+    s = String(s).trim(); var m;
+    if ((m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/))) return new Date(+m[1], m[2] - 1, +m[3]);
+    if ((m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})/))) return new Date(+m[3] < 100 ? 2000 + +m[3] : +m[3], m[1] - 1, +m[2]);
+    var d = new Date(s); return isNaN(d) ? null : d;
+  }
+  function typeOf(s) { s = String(s).trim().toLowerCase(); return TYPES.find(function (t) { return t.toLowerCase() === s; }) || (s.indexOf("quiz") >= 0 ? "Quiz" : s.indexOf("essay") >= 0 ? "Essay" : s.indexOf("project") >= 0 ? "Project" : "Test"); }
+
+  /* ---------- Sample data (invented), always around this week ---------- */
+  function sample() {
+    var m = mondayOf(new Date()), out = [];
+    var plan = [
+      [0, "9", "Biology", "Ms. Park", "Quiz"], [0, "10", "Chemistry", "Mr. Diaz", "Test"], [1, "10", "World History", "Ms. Adeyemi", "Essay"],
+      [1, "11", "Spanish III", "Sra. Ruiz", "Quiz"], [2, "10", "Geometry", "Mr. Cole", "Test"], [2, "10", "English 10", "Ms. Brooks", "Project"],
+      [2, "12", "Economics", "Mr. Shah", "Quiz"], [3, "9", "English 9", "Ms. Lowe", "Essay"], [3, "11", "Physics", "Dr. Kim", "Test"],
+      [4, "12", "AP Literature", "Ms. Brooks", "Essay"], [4, "9", "Algebra I", "Mr. Cole", "Test"],
+      [7, "11", "US History", "Mr. Grant", "Test"], [7, "11", "Physics", "Dr. Kim", "Project"], [8, "9", "Biology", "Ms. Park", "Test"],
+      [9, "10", "Spanish II", "Sra. Ruiz", "Quiz"], [10, "12", "Calculus", "Ms. Tran", "Test"], [11, "10", "Chemistry", "Mr. Diaz", "Quiz"],
+      [14, "9", "World Geography", "Mr. Grant", "Project"], [15, "10", "English 10", "Ms. Brooks", "Essay"], [15, "10", "World History", "Ms. Adeyemi", "Test"],
+      [15, "10", "Geometry", "Mr. Cole", "Quiz"], [16, "12", "Government", "Mr. Shah", "Test"], [18, "11", "Spanish III", "Sra. Ruiz", "Test"],
+      [21, "9", "English 9", "Ms. Lowe", "Test"], [23, "11", "Chemistry", "Mr. Diaz", "Test"], [23, "11", "Precalculus", "Ms. Tran", "Test"],
+      [24, "12", "AP Literature", "Ms. Brooks", "Project"], [28, "10", "Biology", "Ms. Park", "Project"], [30, "12", "Calculus", "Ms. Tran", "Quiz"],
+      [-7, "10", "Geometry", "Mr. Cole", "Quiz"], [-6, "9", "Algebra I", "Mr. Cole", "Test"], [-4, "11", "US History", "Mr. Grant", "Essay"]
+    ];
+    plan.forEach(function (p) { out.push({ date: ymd(addDays(m, p[0])), grade: p[1], course: p[2], teacher: p[3], type: p[4] }); });
+    return out;
+  }
+
+  /* ---------- Reading rows from a grid (Sheet values, or pasted text) ---------- */
+  function fromGrid(grid) {
+    if (!grid.length) return [];
+    var head = grid[0].map(function (h) { return String(h).trim().toLowerCase(); });
+    var col = function (name, fallback) { var i = head.indexOf(name); return i >= 0 ? i : fallback; };
+    var hasHead = head.indexOf("date") >= 0;
+    var c = { date: col("date", 0), grade: col("grade", 1), course: col("course", 2), teacher: col("teacher", 3), type: col("type", 4) };
+    return grid.slice(hasHead ? 1 : 0).map(function (r) {
+      var d = parseDate(r[c.date]); if (!d) return null;
+      return { date: ymd(d), grade: String(r[c.grade] || "").replace(/^grade\s*/i, "").trim(), course: String(r[c.course] || "").trim(), teacher: String(r[c.teacher] || "").trim(), type: typeOf(r[c.type]) };
+    }).filter(Boolean);
+  }
+  function parseText(t) {
+    var lines = t.replace(/\r/g, "").split("\n").filter(function (l) { return l.trim(); });
+    var sep = lines.some(function (l) { return l.indexOf("\t") >= 0; }) ? "\t" : ",";
+    return fromGrid(lines.map(function (l) { return l.split(sep).map(function (x) { return x.replace(/^"|"$/g, ""); }); }));
+  }
+  function toText(list) { return ["Date\tGrade\tCourse\tTeacher\tType"].concat(list.map(function (r) { return [r.date, r.grade, r.course, r.teacher, r.type].join("\t"); })).join("\n"); }
+
+  /* ---------- Saving and loading ---------- */
+  function status(t) { $("status").textContent = t; }
+  function load(done) {
+    if (inSheets) {
+      status("Reading your Sheet…");
+      google.script.run.withSuccessHandler(function (json) {
+        rows = fromGrid(JSON.parse(json)); isSample = false;
+        status("Showing your Google Sheet. Add rows there; reopen this page to see them.");
+        done();
+      }).withFailureHandler(function () { rows = sample(); isSample = true; status("Couldn't read the Sheet. Showing sample data."); done(); }).getRows();
+      return;
+    }
+    try { var s = JSON.parse(localStorage.getItem(KEY)); if (s && Array.isArray(s.rows)) { rows = s.rows; isSample = !!s.sample; } else { rows = sample(); isSample = true; } }
+    catch (e) { rows = sample(); isSample = true; }
+    status("Saved in this browser. To share it with your department, use it with Google Sheets.");
+    done();
+  }
+  function save() { if (inSheets) return; try { localStorage.setItem(KEY, JSON.stringify({ rows: rows, sample: isSample })); } catch (e) {} }
+
+  /* ---------- The dashboard ---------- */
+  function shown() { return rows.filter(function (r) { return grade === "All" || r.grade === grade; }); }
+  function crunchesOn(list, dateStr) {
+    var by = {};
+    list.forEach(function (r) { if (r.date === dateStr && BIG.indexOf(r.type) >= 0) (by[r.grade] = by[r.grade] || []).push(r); });
+    return Object.keys(by).filter(function (g) { return by[g].length >= 2; }).map(function (g) { return { grade: g, items: by[g] }; });
+  }
+  function draw() {
+    var grades = rows.map(function (r) { return r.grade; }).filter(function (g, i, a) { return g && a.indexOf(g) === i; }).sort(function (a, b) { return a.localeCompare(b, undefined, { numeric: true }); });
+    $("grade").innerHTML = ["All"].concat(grades).map(function (g) { return '<option value="' + esc(g) + '">' + (g === "All" ? "All grades" : "Grade " + esc(g)) + "</option>"; }).join("");
+    if (grades.indexOf(grade) < 0) grade = "All";
+    $("grade").value = grade;
+
+    var list = shown(), days = [0, 1, 2, 3, 4].map(function (k) { return addDays(monday, k); });
+    var friday = days[4], today = ymd(new Date());
+    $("wkLabel").textContent = "Week of " + nice(monday) + "–" + nice(friday);
+    var wk = list.filter(function (r) { return r.date >= ymd(monday) && r.date <= ymd(addDays(monday, 6)); });
+    var crunchDays = days.filter(function (d) { return crunchesOn(list, ymd(d)).length; }).length;
+    var n = function (t) { return wk.filter(function (r) { return r.type === t; }).length; };
+    var lab = function (t, one, many) { var k = n(t); return '<div class="tile"><b>' + k + "</b><span>" + (k === 1 ? one : many) + "</span></div>"; };
+    $("tiles").innerHTML =
+      lab("Test", "test this week", "tests this week") + lab("Quiz", "quiz", "quizzes") + lab("Project", "project", "projects") + lab("Essay", "essay", "essays") +
+      '<div class="tile' + (crunchDays ? " alert" : "") + '"><b>' + crunchDays + "</b><span>crunch day" + (crunchDays === 1 ? "" : "s") + "</span></div>";
+
+    $("week").innerHTML = days.map(function (d) {
+      var ds = ymd(d), items = list.filter(function (r) { return r.date === ds; }).sort(function (a, b) { return a.grade.localeCompare(b.grade, undefined, { numeric: true }); });
+      var cr = crunchesOn(list, ds);
+      return '<div class="day' + (cr.length ? " crunch" : "") + (ds === today ? " today" : "") + '"><h3>' + nice(d, { weekday: "long" }) + "<small>" + nice(d) + "</small></h3>" +
+        cr.map(function (c) { return '<p class="warn">Grade ' + esc(c.grade) + " has " + c.items.length + " big assessments</p>"; }).join("") +
+        (items.length ? items.map(function (r) {
+          return '<div class="a" data-t="' + r.type + '"><b>' + esc(r.course) + "</b><span>" + esc(r.type) + " · Grade " + esc(r.grade) + (r.teacher ? " · " + esc(r.teacher) : "") + "</span></div>";
+        }).join("") : '<p class="none">Nothing scheduled.</p>') + "</div>";
+    }).join("");
+
+    var weeks = [0, 1, 2, 3, 4, 5].map(function (k) { return addDays(mondayOf(new Date()), 7 * k); });
+    var counts = weeks.map(function (w) { var a = ymd(w), b = ymd(addDays(w, 6)); return list.filter(function (r) { return r.date >= a && r.date <= b; }); });
+    var most = Math.max.apply(null, counts.map(function (c) { return c.length; }).concat([1]));
+    $("bars").innerHTML = weeks.map(function (w, k) {
+      var c = counts[k];
+      return '<div class="brow"><span>' + (k === 0 ? "This week" : "Week of " + nice(w)) + '</span><div class="stack">' +
+        TYPES.map(function (t) { var x = c.filter(function (r) { return r.type === t; }).length; return x ? '<i title="' + x + " " + t + '" style="width:' + (100 * x / most) + "%;background:var(--" + t.toLowerCase() + ')"></i>' : ""; }).join("") +
+        "</div><b>" + c.length + "</b></div>";
+    }).join("");
+
+    var upcoming = [];
+    for (var k = 0; k < 42; k++) { var d = addDays(mondayOf(new Date()), k), ds = ymd(d); if (ds < today) continue; crunchesOn(list, ds).forEach(function (c) { upcoming.push({ d: d, c: c }); }); }
+    $("crunches").innerHTML = upcoming.length ? upcoming.map(function (u) {
+      return "<li><b>" + nice(u.d, { weekday: "short", month: "short", day: "numeric" }) + "</b> · Grade " + esc(u.c.grade) + ": " + u.c.items.map(function (r) { return esc(r.course) + " " + r.type.toLowerCase(); }).join(", ") + "</li>";
+    }).join("") : '<li style="border-color:var(--project);background:#eef6ef">None in the next six weeks.</li>';
+    $("sampleNote").hidden = !isSample;
+    $("sheetsBtn").hidden = !!inSheets; $("editBtn").hidden = !!inSheets;
+  }
+
+  /* ---------- Controls ---------- */
+  $("prevWk").onclick = function () { monday = addDays(monday, -7); draw(); };
+  $("nextWk").onclick = function () { monday = addDays(monday, 7); draw(); };
+  $("thisWk").onclick = function () { monday = mondayOf(new Date()); draw(); };
+  $("grade").onchange = function () { grade = this.value; draw(); };
+
+  $("editBtn").onclick = function () { $("dataBox").value = toText(rows); $("dataMsg").textContent = ""; $("editDlg").showModal(); };
+  $("dataCancel").onclick = function () { $("editDlg").close(); };
+  $("dataClear").onclick = function () { $("dataBox").value = "Date\tGrade\tCourse\tTeacher\tType\n"; };
+  $("dataSave").onclick = function () {
+    var r = parseText($("dataBox").value);
+    var lines = $("dataBox").value.split("\n").filter(function (l) { return l.trim(); }).length;
+    rows = r; isSample = false; save(); $("editDlg").close(); draw();
+    status(r.length + " assessment" + (r.length === 1 ? "" : "s") + " saved in this browser." + (lines - 1 > r.length ? " Some lines were skipped because their date couldn't be read." : ""));
+  };
+
+  function csv() {
+    var body = "Date,Grade,Course,Teacher,Type\n" + rows.map(function (r) { return [r.date, r.grade, r.course, r.teacher, r.type].map(function (v) { return /[",]/.test(v) ? '"' + String(v).replace(/"/g, '""') + '"' : v; }).join(","); }).join("\n");
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([body], { type: "text/csv" })); a.download = "assessment-calendar.csv";
+    document.body.appendChild(a); a.click(); a.remove();
+  }
+  $("csvBtn").onclick = csv; $("csvBtn2").onclick = csv;
+
+  var GEMINI = "I'm attaching an HTML file: an assessment calendar dashboard.\n" +
+    "Turn it into a Google Apps Script web app that reads the first tab of my Google Sheet (headings: Date, Grade, Course, Teacher, Type) and shows it as this dashboard.\n" +
+    "Give me Code.gs and Index.html, and step-by-step instructions for pasting them in under Extensions → Apps Script and deploying it as a web app only people in my school can open.\n" +
+    "Don't ask me to paste any real data.";
+  $("sheetsBtn").onclick = function () { $("sheetsDlg").showModal(); };
+  $("sheetsClose").onclick = function () { $("sheetsDlg").close(); };
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-copy]"); if (!b) return;
+    var text = b.dataset.copy === "code" ? $("codegs").textContent : b.dataset.copy === "page" ? PAGE : GEMINI, label = b.textContent;
+    function ok() { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1600); }
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(ok, fb); else fb();
+    function fb() { var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); ok(); } catch (err) { b.textContent = "Couldn't copy"; } ta.remove(); }
+  });
+
+  load(draw);
+})();
+</script>
+</body>
+</html>

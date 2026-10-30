@@ -197,40 +197,21 @@ But I wasn't trying to ship a product. I was trying to build smaller things. Wha
 
 ---
 
-## 7. Update your software
+## 6. Build it (since 2026-10-30; "Update your software" and the step-by-step slides are gone)
 
-**Spine**
-> If we are edtech, we need to update our software too.
+> You're not bound by an app. Only by your imagination.
+>
+> Your classroom can be the thing you dreamed of. And it won't cost an arm and a leg to get there.
 
-(The "brush your teeth" slide was cut on 2026-10-29. The workshop now ends on "Build first. Then revise.")
+> Every build has the same shape: Prototype → Store → Host. Buttons move. The shape doesn't.
 
-The revision example leads in with: "Here's what revising looks like. One resource. Each change took a sentence, not a summer." One press and the versions play by themselves.
+> Three ways to do it: all in ChatGPT; inside Google Workspace (Gemini, Google Sheets and Drive, Apps Script); own it end to end (Google AI Studio, GitHub, Vercel). Each has "See the steps," which opens the guide (`site/guide.html`).
 
-**Say**
-I've seen teachers who aren't willing to change, because the resources they built took so long to make. So the resources go stagnant.
-
-But with this, building also means revising and updating. If the system is failing or needs revision, you're not stuck. You can change it. Add to it. Improve it constantly. It lives with you.
-
-("With a subscription, you adapt to the tool. When you build, the tool adapts to you." was cut on 2026-10-30; slide 14's "It molds to me, not the other way around" carries it.)
-
-Build first. Then revise.
-
-**Photo:** an old, worn binder or a filing cabinet drawer.
+> A sheet you already keep can become a dashboard. (The Assessment Calendar, to open, download or copy.)
 
 ---
 
-## 8. Three ways in
-
-**Spine**
-> Pick the path by the job.
-
-The practical slides live in `site/js/steps.js`: a "Before you start" slide (accounts, and the words teachers will see: prompt, preview, HTML, repository, deploy, canvas, Apps Script), then a flowchart and a "How to do it" slide for each path: Own it (Google AI Studio → GitHub → Vercel), Ship it fast (ChatGPT Sites) and Keep it protected (Sheets canvas, with Apps Script and its deploy steps as the fallback).
-
-`[DAVID: recorded demo video links, if any]`
-
----
-
-## 9. Before you build
+## 7. Before you build
 
 **Spine**
 > Build boldly. Not carelessly.
@@ -244,7 +225,7 @@ The practical slides live in `site/js/steps.js`: a "Before you start" slide (acc
 
 ---
 
-## 10. Your turn
+## 8. Your turn
 
 **Spine**
 > One small tool. Built in Gemini.
@@ -269,7 +250,7 @@ The practical slides live in `site/js/steps.js`: a "Before you start" slide (acc
 
 ---
 
-## 11. Keep building
+## 9. Keep building
 
 **Spine**
 > Start small. It lives with you.

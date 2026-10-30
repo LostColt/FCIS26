@@ -12,8 +12,7 @@
     { title: "The real cost", word: "cost" },
     { title: "So I had it build it", word: "build it" },
     { title: "Building for others", word: "others" },
-    { title: "Update your software", word: "revise" },
-    { title: "Three ways in", word: "paths" },
+    { title: "Build it", word: "imagine" },
     { title: "Before you build", word: "care" },
     { title: "Your turn", word: "your turn" },
     { title: "Keep building", word: "keep" }
@@ -45,6 +44,7 @@
   /* David's two small tools, built here as lightweight single files so teachers can download them.
      When one is ready, set its file (e.g. "demos/tracker.html"); until then the card is a holding spot. */
   D.TOOLS = {
+    dashboard: "demos/dashboard.html",
     reader: "demos/reader.html",
     tracker: "demos/tracker.html",
     screenplay: "demos/screenplay.html"
