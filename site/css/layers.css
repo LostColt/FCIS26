@@ -400,3 +400,4 @@
   .slide.is-active .intro-first { opacity: 1; transition-delay: 3.4s; }
   .slide.seen .intro-first { opacity: 1; }
 }
+.intro-first { text-align: center; }
