@@ -375,3 +375,22 @@
   .slide.is-active .auto-fan li { opacity: 1; transform: none; transition-delay: calc(var(--i) * 220ms + 500ms); }
   .slide.seen .auto-fan li { opacity: 1; transform: none; }
 }
+
+/* Chapter 0: who I am */
+.intro { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+.intro-hi { font-family: var(--serif); font-weight: 600; font-size: clamp(2.2rem, 5vw, 4.4rem); line-height: 1.05; letter-spacing: -0.025em; margin: 0 0 1.4rem; }
+.intro-facts { list-style: none; margin: 0; padding: 0; font-family: var(--serif); font-size: clamp(1.1rem, 1.8vw, 1.55rem); line-height: 1.4; }
+.intro-facts li { padding: 0.45rem 0; border-top: 1px solid var(--rule); }
+.trail { list-style: none; margin: 0; padding: 0 0 0 1.4rem; position: relative; font-family: var(--sans); font-size: clamp(1rem, 1.5vw, 1.3rem); }
+.trail::before { content: ""; position: absolute; left: 0.35rem; top: 0.7rem; bottom: 0.7rem; width: 2px; background: var(--rule); }
+.trail li { position: relative; padding: 0.55rem 0; color: var(--ink-soft); }
+.trail li::before { content: ""; position: absolute; left: -1.38rem; top: 50%; width: 0.75rem; height: 0.75rem; margin-top: -0.375rem; border-radius: 50%; background: var(--paper); border: 2px solid var(--ink-soft); }
+.trail li:last-child { color: var(--ink); font-weight: 600; }
+.trail li:last-child::before { background: var(--blue); border-color: var(--blue); }
+@media (prefers-reduced-motion: no-preference) {
+  .slide .intro-facts li, .slide .trail li { opacity: 0; transform: translateY(0.4rem); transition: opacity 0.45s ease, transform 0.45s ease; }
+  .slide.is-active .intro-facts li { opacity: 1; transform: none; transition-delay: calc(var(--i) * 180ms + 250ms); }
+  .slide.is-active .trail li { opacity: 1; transform: none; transition-delay: calc(var(--i) * 260ms + 1300ms); }
+  .slide.seen .intro-facts li, .slide.seen .trail li { opacity: 1; transform: none; }
+}
+@media (max-width: 760px) { .intro { grid-template-columns: 1fr; } }

@@ -23,6 +23,13 @@ David Tran · AI Learning and Teaching Specialist, Gulliver Prep, Miami, FL · F
 
 **Photo:** none. The cover is just words.
 
+**Slide 2: who I am** (added 2026-10-30; lines arrive on their own, then the places)
+> Hi, I'm David Tran.
+>
+> An educator for over 15 years. Taught at Ole Miss. In FCIS schools since 2017. Director of the Learning Lab at Country Day; college essay writing coach at Gulliver. Now the AI Learning and Teaching Specialist at Gulliver Prep. A writer first: a BFA, and an MFA in Creative Writing from Ole Miss.
+>
+> Ohio → San Diego, CA → Oxford, MS → Ho Chi Minh City, Vietnam → Miami, FL
+
 ---
 
 ## 1. The pile
