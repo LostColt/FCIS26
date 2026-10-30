@@ -84,6 +84,8 @@
   .card .acts button { border: 0; background: none; color: var(--soft); font-size: 0.85rem; padding: 0.3rem 0.4rem; border-radius: 6px; }
   .card .acts button:hover { color: var(--ink); background: var(--paper); }
   .card.new { border: 2px dashed var(--rule); box-shadow: none; background: transparent; align-items: center; justify-content: center; min-height: 14rem; color: var(--soft); font-weight: 600; }
+  .card .open { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; }
+  .badge.sample { color: var(--blue); border-color: var(--blue); }
   .hub-note { color: var(--soft); font-size: 0.88rem; margin-top: 1.6rem; }
   .lbl { display: block; font-weight: 600; font-size: 0.85rem; margin: 0.8rem 0 0.35rem; }
   .field { width: 100%; border: 1px solid var(--rule); border-radius: 8px; padding: 0.5rem 0.65rem; }
@@ -118,6 +120,7 @@
 <main class="hub">
   <h2 class="hub-h">Your scripts</h2>
   <div class="cards" id="cards"></div>
+  <p class="hub-note"><button class="btn" id="addSamples" hidden>Add the sample scripts</button></p>
   <p class="hub-note" id="homeStatus">Your scripts are saved in this browser, on this computer. Export a backup now and then.</p>
 </main>
 </div>
@@ -194,7 +197,7 @@
   var store, doc, current = null, menuItems = [], menuPick = 0, saveTimer;
 
   function samples() {
-    return [film(), tv()];
+    return [film(), tv()].map(function (d) { d.sample = true; return d; });
   }
   function tv() {
     return { format: "tv", title: "Office Hours", author: "A sample (invented)", blocks: [
@@ -253,7 +256,7 @@
     if (!store || !Array.isArray(store.projects)) {
       store = { projects: [] };
       try { var old = JSON.parse(localStorage.getItem(OLD_KEY)); if (old && old.blocks) store.projects.push(stamp(old)); } catch (e) {}
-      if (!store.projects.length) store.projects = samples().map(stamp);
+      samples().forEach(function (d) { store.projects.push(stamp(d)); });
       persist();
     }
   }
@@ -284,10 +287,11 @@
         return (b[0] === "character" ? "          " : b[0] === "dialogue" ? "     " : "") + v;
       }).join("\n");
       return '<div class="card"><button class="open" data-open="' + p.id + '"><div class="mini" aria-hidden="true">' + escH(peek) + "</div>" +
-        "<h3>" + escH(p.title || "Untitled") + '</h3><p class="meta"><span class="badge">' + (p.format === "tv" ? "TV" : "Film") + "</span>" + stats(p) + "</p>" +
+        "<h3>" + escH(p.title || "Untitled") + '</h3><p class="meta"><span class="badge">' + (p.format === "tv" ? "TV" : "Film") + "</span>" + (p.sample ? '<span class="badge sample">Sample</span>' : "") + stats(p) + "</p>" +
         '<p class="meta">Edited ' + ago(p.updated) + "</p></button>" +
         '<div class="acts"><button data-dup="' + p.id + '">Duplicate</button><button data-del="' + p.id + '">Delete</button></div></div>';
     }).join("") + '<button class="card new" id="newCard">+ New script</button>';
+    $("addSamples").hidden = store.projects.some(function (p) { return p.sample; });
     document.title = "Script Room";
   }
   function open(id) {
@@ -459,6 +463,7 @@
     persist(); $("delDlg").close(); showHome();
   };
   $("homeBtn").onclick = showHome;
+  $("addSamples").onclick = function () { samples().forEach(function (d) { store.projects.push(stamp(d)); }); persist(); showHome(); };
   $("exportAll").onclick = function () {
     var a = document.createElement("a"), d = new Date();
     a.href = URL.createObjectURL(new Blob([JSON.stringify(store, null, 2)], { type: "application/json" }));
