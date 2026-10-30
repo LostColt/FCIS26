@@ -11,7 +11,6 @@
     { title: "150 students", word: "150" },
     { title: "The real cost", word: "cost" },
     { title: "So I had it build it", word: "build it" },
-    { title: "Why I kept building", word: "present" },
     { title: "Building for others", word: "others" },
     { title: "Update your software", word: "revise" },
     { title: "Three ways in", word: "paths" },
@@ -46,6 +45,7 @@
   /* David's two small tools, built here as lightweight single files so teachers can download them.
      When one is ready, set its file (e.g. "demos/tracker.html"); until then the card is a holding spot. */
   D.TOOLS = {
+    reader: "demos/reader.html",
     tracker: "demos/tracker.html",
     screenplay: "demos/screenplay.html"
   };
@@ -248,26 +248,22 @@
     D.tool("screenplay", "For me", "A screenplay tool", "Film or TV, with a home page for all your scripts. Type a slash for scene, action, character or dialogue, and it formats the page. It saves as you write, to the browser or your Google Drive, and exports to PDF or Google Docs.") +
     '</div><p class="tool-note">Start on top of the version I built.</p></div>', { id: "tracker" });
 
-  /* 5 · Why I kept building */
-  add(5, 2,
-    '<p class="big huge">Faster.</p>' +
-    '<p class="big huge" data-step="1">In my system.</p>' +
-    '<p class="big huge" data-step="2">So I could be more <span class="mark" data-at="2">present</span>.</p>');
-
-  /* 6 · Building for others */
-  add(6, 1,
-    '<p class="big mid">I was building tools for myself.</p>' +
-    '<p class="big mid" data-step="1">But more than that, I wanted to build <span class="mark" data-at="1">for others</span>.</p>');
-  add(6, 0,
-    '<div class="two"><div class="story">' +
-    "<p>I built a PDF reader. You could upload a document or paste text and it would read it aloud.</p>" +
-    "<p>It wasn’t for me. It was for a friend’s student, who was better with audio than with reading.</p>" +
-    "</div>" + D.site("reader", "The reader", "Paste text and hear it read aloud, line by line.") + "</div>", { id: "reader" });
-  add(6, 1,
-    '<div class="story" style="max-width:44rem"><p>I’ve worked with students with learning differences for a long time.</p></div>' +
-    '<p class="big mid" data-step="1">Truth be told, it was working with these students where I began to lean on <span class="mark" data-at="1">technology</span>.</p>');
-  add(6, 2,
-    '<p class="big mid">When I’m building, it’s easy to look at myself.</p>' +
-    '<p class="big mid" data-step="1">But as an educator, I’m always looking to the students.</p>' +
-    '<p class="big mid" data-step="2"><span class="mark" data-at="2">What can I build that helps them?</span></p>');
+  /* 5 · Building for others: why I kept building (faster, present), then for others, the reader */
+  add(5, 0,
+    '<div class="two others"><div class="said auto-run">' +
+    '<p style="--t:0.3s">I was building tools for myself, to work faster, to be more <span class="mark tlate" style="--mt:1.4s">present</span>.</p>' +
+    '<p style="--t:2.6s">But more than that, I wanted to build <span class="mark tlate" style="--mt:3.6s">for others</span>.</p>' +
+    '<p class="small" style="--t:5s">I built a reader. Paste in text and it reads it aloud. It wasn’t for me. It was for a friend’s student, who was better with audio than with reading.</p>' +
+    '</div><div class="late-card" style="--t:7s">' +
+    D.tool("reader", "For a friend’s student", "A reader", "Paste text and hear it read aloud, with each word highlighted as it’s read. Bigger text, calmer colors, and it remembers where you stopped.") +
+    "</div></div>", { id: "reader" });
+  /* The students: learning differences, then looking to the students, then the question, highlighted */
+  add(5, 0,
+    '<div class="said auto-run">' +
+    '<p class="small" style="--t:0.3s">I’ve worked with students with learning differences for a long time.</p>' +
+    '<p style="--t:2s">Truth be told, it was working with these students where I began to lean on <span class="mark tlate" style="--mt:3.2s">technology</span>.</p>' +
+    '<p class="small" style="--t:5.4s">When I’m building, it’s easy to look at myself.</p>' +
+    '<p class="small" style="--t:7.2s">But as an educator, I’m always looking to the students.</p>' +
+    '<p class="turn" style="--t:9.4s"><span class="mark tlate" style="--mt:10.3s">What can I build that helps them?</span></p>' +
+    "</div>");
 })();

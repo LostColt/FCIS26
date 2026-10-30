@@ -1,4 +1,4 @@
-/* Slides for chapters 7–11. Words come from content/story.md; change them there first.
+/* Slides for chapters 6–10. Words come from content/story.md; change them there first.
    Loads after steps.js, which provides D.promptBox, D.ui, D.arrow and D.link. */
 
 (function () {
@@ -6,10 +6,10 @@
   function add(ch, steps, html, opts) { D.add(ch, steps, html, opts); }
   var ui = D.ui, arrow = D.arrow, link = D.link, box = D.promptBox;
 
-  /* 7 · Update your software */
-  add(7, 0, '<p class="big">If we are edtech, we need to update our software too.</p>');
-  /* The story leads in; one press and the revisions play by themselves */
-  add(7, 1,
+  /* 6 · Update your software */
+  /* The line on top, the story under it; one press and the revisions play by themselves */
+  add(6, 1,
+    '<p class="said-line">If we are edtech, we need to update our software too.</p>' +
     '<div class="two"><div class="story">' +
     "<p>I’ve seen teachers who aren’t willing to change, because the resources they built took so long to make. So the resources go stagnant.</p>" +
     "<p>But building also means revising and updating. If the system is failing or needs revision, you’re not stuck. You can change it. Add to it. Improve it constantly. It lives with you.</p>" +
@@ -19,22 +19,20 @@
     '<li data-step="1" style="--i:1"><span class="v">Then</span><span><ins>Works on the class Chromebooks</ins></span></li>' +
     '<li data-step="1" style="--i:2"><span class="v">Now</span><span><ins>A second version for the next unit, in an afternoon</ins></span></li>' +
     "</ol></div></div>");
-  add(7, 1,
-    '<p class="big">With a subscription, you adapt to the tool.</p>' +
-    '<p class="big" data-step="1">When you build, <span class="mark" data-at="1">the tool adapts to you</span>.</p>');
 
-  /* 8 · Three ways in */
-  add(8, 3,
+  /* 7 · Three ways in */
+  /* Holds a moment on the line, then the three paths pan out by themselves within two seconds */
+  add(7, 0,
     '<p class="big">Pick the path by the job.</p>' +
-    '<div class="paths">' +
-    '<div data-step="1"><h3>Own it</h3><p class="tools">Google AI Studio, GitHub, Vercel</p><dl><dt>Best for</dt><dd>Lessons and tools you keep and revise</dd><dt>Cost</dt><dd>Free to start</dd></dl></div>' +
-    '<div data-step="2"><h3>Ship it fast</h3><p class="tools">ChatGPT Sites</p><dl><dt>Best for</dt><dd>A page or small app with a link today</dd><dt>Cost</dt><dd>Paid ChatGPT plan</dd></dl></div>' +
-    '<div data-step="3"><h3>Keep it protected</h3><p class="tools">Google Sheets and Apps Script</p><dl><dt>Best for</dt><dd>Data your school already keeps in Google</dd><dt>Cost</dt><dd>Included in Workspace</dd></dl></div>' +
+    '<div class="paths auto-pan">' +
+    '<div style="--i:0"><h3>Own it</h3><p class="tools">Google AI Studio, GitHub, Vercel</p><dl><dt>Best for</dt><dd>Lessons and tools you keep and revise</dd><dt>Cost</dt><dd>Free to start</dd></dl></div>' +
+    '<div style="--i:1"><h3>Ship it fast</h3><p class="tools">ChatGPT Sites</p><dl><dt>Best for</dt><dd>A page or small app with a link today</dd><dt>Cost</dt><dd>Paid ChatGPT plan</dd></dl></div>' +
+    '<div style="--i:2"><h3>Keep it protected</h3><p class="tools">Google Sheets and Apps Script</p><dl><dt>Best for</dt><dd>Data your school already keeps in Google</dd><dt>Cost</dt><dd>Included in Workspace</dd></dl></div>' +
     "</div>");
   D.insertSteps(add);
 
-  /* 9 · Before you build */
-  add(9, 1,
+  /* 8 · Before you build */
+  add(8, 1,
     '<div class="two" style="align-items:start"><p class="big">Build boldly. Not <span class="strike auto">carelessly</span>.</p>' +
     '<ul class="checklist" data-step="1">' +
     "<li>No student names, grades or work in a prompt or an app unless your school has approved that tool for it.</li>" +
@@ -44,7 +42,7 @@
     "<li>Keep the systems of record (your LMS, gradebook, student information system) where they are. Build the small, specific things around them.</li>" +
     "</ul></div>", { scroll: true });
 
-  /* 10 · Your turn: everyone builds in Gemini, from a ready prompt, and leaves with a link */
+  /* 9 · Your turn: everyone builds in Gemini, from a ready prompt, and leaves with a link */
   var RULES = "Large, readable text. Works on a phone and a Chromebook.\nNo login, no AI or API calls, and don’t collect names or any student data.";
   var PROMPTS = [
     ["Flashcards", "Build a one-page flashcard app for [unit] vocabulary.\nShow the word; tap to flip to the definition. Add Shuffle and Next buttons.\n" + RULES + "\nStart with these words, one per line, as word – definition:\n[your words]"],
@@ -57,10 +55,10 @@
   ];
   D.PROMPTS = PROMPTS;
 
-  add(10, 1,
+  add(9, 1,
     '<p class="big huge">One small tool. Built in&nbsp;Gemini.</p>' +
     '<p class="kicker-line" data-step="1">Everyone builds at once. You’ll leave with a link that works on your phone.</p>');
-  add(10, 0,
+  add(9, 0,
     '<div class="practical"><h2>Five steps</h2><p class="sub">Use a Google account, school or personal.</p><ol class="big-steps">' +
     "<li>Go to " + link("https://gemini.google.com") + " and sign in.</li>" +
     "<li>In the prompt bar, choose " + ui("Canvas") + ". It may sit under " + ui("Tools") + " or the " + ui("+") + " menu.</li>" +
@@ -69,29 +67,29 @@
     "<li>Choose " + ui("Share") + ", copy the link, and open it on your phone.</li></ol>" +
     '<p class="note">A shared link is a snapshot: after you change it, share again. Anyone with the link can open it, so keep student information out. If your school has turned sharing off, a personal account works for practice. On a school account you may also see ' + ui("Share to Classroom") + ".</p></div>",
     { scroll: true, id: "gemini" });
-  add(10, 0,
+  add(9, 0,
     '<div class="practical wide"><h2>Pick a prompt</h2><p class="sub">Copy one, fill in the brackets, paste it into Gemini with Canvas on.</p><div class="prompt-menu">' +
     PROMPTS.map(function (p) { return "<section><h3>" + p[0] + "</h3>" + box(p[1]) + "</section>"; }).join("") +
     '</div><p class="note">The Apps Script prompt gets you the code; the tool runs in your sheet. Paste and deploy it as on the <a href="#keep-it">Keep it protected</a> slides.</p></div>',
     { scroll: true, id: "prompts" });
-  add(10, 0,
+  add(9, 0,
     '<div class="practical"><h2>Swap</h2><ol class="big-steps">' +
     "<li>Send your link to a neighbor. Open theirs.</li>" +
     "<li>Use it like a student. Try to break it.</li>" +
     "<li>Tell them one thing that would make it work in a real class.</li>" +
     "<li>They type that fix in, in one sentence, watch it change, and share again.</li></ol></div>", { scroll: true });
-  add(10, 1,
+  add(9, 1,
     '<p class="big">You just did what we ask students to do: try something, get feedback, revise.</p>' +
     '<p class="big soft" data-step="1">Build first. Then revise.</p>');
 
-  /* 11 · Keep building */
-  add(11, 1,
+  /* 10 · Keep building */
+  add(10, 1,
     '<p class="big huge">Start small. It lives with&nbsp;you.</p>' +
     '<p class="kicker-line" data-step="1">One annoyance. One prompt. One colleague to test it. Then revise it next month, and the month after that.</p>');
   var mine = [["tracker", "The counseling tracker"], ["screenplay", "The screenplay tool"], ["reader", "The reader"]]
     .filter(function (t) { return D.SITES[t[0]]; })
     .map(function (t) { return "<li>" + link(D.SITES[t[0]], t[1]) + "</li>"; }).join("");
-  add(11, 0,
+  add(10, 0,
     '<div class="practical"><h2>Everything in one place</h2><h3>Build</h3><ul class="linklist">' +
     "<li>" + link("https://gemini.google.com", "Google Gemini (Canvas)") + "</li>" +
     "<li>" + link("https://aistudio.google.com", "Google AI Studio") + "</li>" +

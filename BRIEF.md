@@ -44,18 +44,17 @@ The full text is in `content/story.md`. Use that text; do not rewrite David's vo
 
 | # | Chapter | Minutes | Practical or interactive slides |
 |---|---|---|---|
-| 0 | Stop Subscribing, Start Building | 1 | QR code to the site |
-| 1 | The shift | 3 | No |
-| 2 | 150 students | 3 | No |
+| 0 | Stop Subscribing, Start Building | 2 | QR code; who David is |
+| 1 | The shift | 4 | Resume, tally |
+| 2 | 150 students | 2 | No |
 | 3 | The real cost | 3 | No |
-| 4 | So I had it build it | 6 | Yes: links to two of David's tools |
-| 5 | Why I kept building | 3 | No |
-| 6 | Building for others | 3 | Yes: link to the reader |
-| 7 | Update your software | 3 | No |
-| 8 | Three ways in | 8 | Yes: three walkthroughs |
-| 9 | Before you build | 3 | Yes: checklist |
-| 10 | Your turn | 16 | Yes: build in Gemini Canvas from seven ready prompts, share a link |
-| 11 | Keep building | 3 | Yes: every link in one place |
+| 4 | So I had it build it | 7 | Two tools to open, download or copy |
+| 5 | Building for others | 4 | The reader to open, download or copy |
+| 6 | Update your software | 2 | Revision example |
+| 7 | Three ways in | 8 | Three walkthroughs |
+| 8 | Before you build | 2 | Checklist |
+| 9 | Your turn | 16 | Build in Gemini Canvas from seven ready prompts |
+| 10 | Keep building | 3 | Every link in one place |
 | | **Total** | **55** | |
 
 ## 5. How the deck works
@@ -65,7 +64,7 @@ The full text is in `content/story.md`. Use that text; do not rewrite David's vo
 - **Lines arrive one press at a time** where the pause matters ("People loved it." … "I stopped anyway.").
 - **A second layer moves underneath:** a red-pen strike and highlighter draw themselves, the pile drops in, 150 counts up, and a huge faint chapter word drifts behind every slide at its own pace.
 - **Practical slides** (the tally, the instructions, the prompts, the links) scroll inside the slide on a phone, so nothing is crammed.
-- **Chapter 8 teaches the build** with a getting-started slide (accounts and words), then a flowchart and an instructions slide for each of the three paths: Google AI Studio → GitHub → Vercel, ChatGPT Sites, and Google Sheets canvas with Apps Script as the fallback. They live in `site/js/steps.js`.
+- **Chapter 7 teaches the build** with a getting-started slide (accounts and words), then a flowchart and an instructions slide for each of the three paths: Google AI Studio → GitHub → Vercel, ChatGPT Sites, and Google Sheets canvas with Apps Script as the fallback. They live in `site/js/steps.js`.
 
 An attendee should be able to follow every practical slide without David in the room.
 
@@ -96,7 +95,7 @@ No images. Typography carries the deck: Literata (a book serif) for the story, I
 
 - Plain HTML, CSS and JavaScript. No framework, no build step. It opens by double-clicking `site/index.html` and is hosted on Vercel with Root Directory set to `site`.
 - Everything the site needs lives in `/site`: `index.html`, `css/`, `js/`, and `assets/fonts/`.
-- **The words live in two files:** `site/js/slides-a.js` (chapters 0–6) and `site/js/slides-b.js` (7–11). `content/story.md` is the record of David's words; when the story changes, change it there and in the slide files in the same round.
+- **The words live in two files:** `site/js/slides-a.js` (chapters 0–5) and `site/js/slides-b.js` (6–10). `content/story.md` is the record of David's words; when the story changes, change it there and in the slide files in the same round.
 - `site/js/deck.js` runs the deck; `qr.js` draws the cover's QR code from the deck's own address, using `js/vendor/qrcode.js` (MIT, stored in the repo, no network); `tally.js` runs the chapter 1 tally.
 - Every prompt has a working copy button.
 - Accessible: text contrast at least 4.5:1, visible focus states, works with a keyboard alone, slides off screen can't be tabbed into, and everything holds still under `prefers-reduced-motion`.
@@ -115,6 +114,7 @@ No images. Typography carries the deck: Literata (a book serif) for the story, I
 **Built here, as single files teachers can take (since 2026-10-30).** Each tool is one self-contained HTML file in `site/demos/` (with a `.png` picture beside it), no libraries, no internet, sample students clearly invented. On slide 14 each gets Open it, Download the HTML and Copy the code. Set its file in `D.TOOLS` at the top of `site/js/slides-a.js`.
 
 - **Meeting tracker** (`demos/tracker.html`): today's meetings, a prep card from last time's notes and next steps, notes for this meeting, draft stages, add students and meetings. Saves in the browser; Export/Import a backup; a "Save to Google Sheets" help panel gives the steps and the Code.gs, and the same file saves to the Sheet when pasted into Apps Script.
+- **Reader** (`demos/reader.html`): paste text or open a .txt file (PDFs: copy and paste); reads aloud with the browser's own voice, highlighting each sentence and word; click any sentence to start there; speed and voice; remembers where you stopped in each text; display options for text size, spacing, letters, page color, and dimming the rest. No AI, no internet.
 - **Screenplay tool** (`demos/screenplay.html`, "Script Room"): opens on a home page of all your scripts (new, open, duplicate, delete, export and import a backup); film or TV; type / at the start of a line for scene heading, action, character, dialogue, parenthetical, transition (and act break in TV); an Element menu in the toolbar shows and changes the current line (as in Final Draft); Enter moves to the next sensible type, Tab cycles; standard screenplay format (Courier 12pt, 1.5in left margin); autosaves in the browser, or, once set up through its "Save to Google Drive" help panel (Code.gs included), to a Script Room folder in the teacher's Drive with changes pulled and pushed both ways (newest wins; deletions carry across); Save as PDF (print) and Download for Google Docs (.doc that Drive converts). No AI.
 
 A ChatGPT Sites example will also be built for the Ship it fast path.

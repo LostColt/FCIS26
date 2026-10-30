@@ -642,3 +642,30 @@
 @media (prefers-reduced-motion: reduce) { .typing pre::after { animation: none; } }
 @media (max-width: 760px) { .coding { grid-template-columns: 1fr; } .typing { height: 12rem; } }
 .typing { display: flex; flex-direction: column; justify-content: flex-end; } .typing pre { flex: none; }
+
+/* Speaking-size lines with a smaller story line among them */
+.said p.small { font-size: clamp(1.15rem, 1.9vw, 1.6rem); font-weight: 400; line-height: 1.5; max-width: 40rem; }
+.slide.is-active .mark.tlate, .slide.seen .mark.tlate { background-size: 100% 0.42em; }
+@media (prefers-reduced-motion: no-preference) {
+  .slide.is-active .mark.tlate { transition-delay: var(--mt); }
+  .slide.seen .mark.tlate { transition: none; }
+}
+
+/* Building for others: the reader card arrives after the story */
+.others { align-items: center; }
+.late-card { opacity: 0; }
+.slide.is-active .late-card, .slide.seen .late-card { opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .late-card { transform: translateY(0.8rem); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .slide.is-active .late-card { transform: none; transition-delay: var(--t); }
+  .slide.seen .late-card { transform: none; transition: none; }
+}
+
+/* Pick the path: a moment on the line, then the three paths pan out within two seconds */
+.paths.auto-pan > div { opacity: 0; }
+.slide.is-active .paths.auto-pan > div, .slide.seen .paths.auto-pan > div { opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .paths.auto-pan > div { transform: translateX(-1.5rem); transition: opacity 0.6s ease, transform 0.7s cubic-bezier(0.22, 0.7, 0.2, 1); }
+  .slide.is-active .paths.auto-pan > div { transform: none; transition-delay: calc(1s + var(--i) * 0.6s); }
+  .slide.seen .paths.auto-pan > div { transform: none; transition: none; }
+}

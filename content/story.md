@@ -152,39 +152,23 @@ I started asking it to build the tools I was already using. And the information 
 > For me: a screenplay tool. Type a slash for scene, action, character or dialogue, and it formats the page.
 > Start on top of the version I built. (Each has Open it and Download the HTML; holding spots until the lightweight tools are built in the repo.)
 
-## 5. Why I kept building
+## 5. Building for others (since 2026-10-30; the old chapter 5 folded in)
 
-**Spine**
-> Faster.
->
-> In my system.
->
-> So I could be more present.
-
-(Cut on 2026-10-29 to move faster: "Building apps is really about building a workflow: creating repetition, not just in how I do things, but in how students receive the information.")
-
----
-
-## 6. Building for others
-
-**Spine**
-> I was building tools for myself.
+> I was building tools for myself, to work faster, to be more present.
 >
 > But more than that, I wanted to build for others.
+>
+> I built a reader. Paste in text and it reads it aloud. It wasn't for me. It was for a friend's student, who was better with audio than with reading.
+>
+> (The reader card: open it, download it, copy the code.)
 
-> I built a PDF reader. You could upload a document or paste text and it would read it aloud. It wasn't for me. It was for a friend's student, who was better with audio than with reading.
-
-> I've worked with students with learning differences for a long time. `[DAVID: check this line; your words were "I have background with working with students with learning differences"]`
+> I've worked with students with learning differences for a long time.
 >
 > Truth be told, it was working with these students where I began to lean on technology.
-
-> When I'm building, it's easy to look at myself.
 >
-> But as an educator, I'm always looking to the students.
+> When I'm building, it's easy to look at myself. But as an educator, I'm always looking to the students.
 >
 > What can I build that helps them?
-
-**Door: The reader** (a link to David's ChatGPT Sites version; a holding spot until then)
 
 ---
 
@@ -227,7 +211,7 @@ I've seen teachers who aren't willing to change, because the resources they buil
 
 But with this, building also means revising and updating. If the system is failing or needs revision, you're not stuck. You can change it. Add to it. Improve it constantly. It lives with you.
 
-With a subscription, you adapt to the tool. When you build, the tool adapts to you.
+("With a subscription, you adapt to the tool. When you build, the tool adapts to you." was cut on 2026-10-30; slide 14's "It molds to me, not the other way around" carries it.)
 
 Build first. Then revise.
 

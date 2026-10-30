@@ -1,4 +1,4 @@
-/* Chapter 8: three ways in. A getting-started slide, then two slides per path:
+/* Chapter 7: three ways in. A getting-started slide, then two slides per path:
    a flowchart, and instructions with links. Steps checked against each product's documentation
    in October 2026; recheck the week before the session. */
 
@@ -41,7 +41,7 @@
 
   D.insertSteps = function (add) {
     /* Before you start: what a teacher needs */
-    add(8, 0,
+    add(7, 0,
       '<div class="practical wide"><h2>Before you start</h2><p class="sub">What you need, and the words you’ll see.</p>' +
       '<div class="start-grid"><section><h3>Accounts</h3><ul class="plain">' +
       "<li><b>A Google account.</b> School or personal. For Gemini, Google AI Studio and Sheets.</li>" +
@@ -62,14 +62,14 @@
 
     /* Path 1: Own it */
     var A = "Own it: Google AI Studio, GitHub, Vercel";
-    add(8, 1, flow(A, "Google AI Studio builds it. GitHub keeps it. Vercel puts it online.", [
+    add(7, 1, flow(A, "Google AI Studio builds it. GitHub keeps it. Vercel puts it online.", [
       ["Describe", "AI Studio, Build"],
       ["Try and refine", "the live preview"],
       ["Save", "to a GitHub repository"],
       ["Import", "the repository into Vercel"],
       ["Deploy", "get a .vercel.app link"]
     ], "Change it any time: edit in AI Studio, save to GitHub, and Vercel updates the link."), { id: "own-it" });
-    add(8, 0, sheet(A, [
+    add(7, 0, sheet(A, [
       "Go to " + link("https://aistudio.google.com") + " and sign in with your Google account. Choose " + ui("Build") + ".",
       "Describe the tool. Start with this, and fill in the brackets:" + D.promptBox(D.prompt),
       "AI Studio writes the code and shows a live preview beside it. Use it the way a student would, then type what to fix: “Make the buttons bigger.” “Add a timer.”",
@@ -80,14 +80,14 @@
 
     /* Path 2: Ship it fast */
     var B = "Ship it fast: ChatGPT Sites";
-    add(8, 1, flow(B, "ChatGPT Sites builds the site and hosts it. One conversation, one link.", [
+    add(7, 1, flow(B, "ChatGPT Sites builds the site and hosts it. One conversation, one link.", [
       ["Switch to Work", "in ChatGPT"],
       ["Ask for a site", "type @Sites"],
       ["Preview and refine", "in plain language"],
       ["Publish", "it starts private"],
       ["Share", "people, or anyone with the link"]
     ]), { id: "ship-it" });
-    add(8, 0, sheet(B, [
+    add(7, 0, sheet(B, [
       "In ChatGPT, switch to " + ui("Work") + ". Sites lives there, not in regular chat. It needs a paid plan.",
       "Type " + ui("@Sites") + ", or just ask it to build a website. Say who it’s for and what it should do. You can attach files." +
         D.promptBox("Build a website for my 10th-grade biology class with this week’s vocabulary as flip cards and a five-question self-check. Large, readable text. No logins."),
@@ -98,14 +98,14 @@
 
     /* Path 3: Keep it protected */
     var C = "Keep it protected: Google Sheets canvas, or Apps Script";
-    add(8, 1, flow(C, "Turn a sheet you already keep into a small app, inside your school’s Google account.", [
+    add(7, 1, flow(C, "Turn a sheet you already keep into a small app, inside your school’s Google account.", [
       ["Start with a sheet", "school account, a practice copy"],
       ["Create a canvas", "Insert, then Create a canvas"],
       ["Describe the tool", "what to see and do"],
       ["Use it", "the sheet and canvas stay in sync"],
       ["Share", "like any sheet"]
     ], "No canvas option yet? Extensions, then Apps Script: Gemini writes the code, and you deploy it as a web app."), { id: "keep-it" });
-    add(8, 0, sheet(C, [
+    add(7, 0, sheet(C, [
       "Open a sheet you already keep (hours, duties, a sign-up list) in your school account. Make a copy to practice on.",
       "Choose " + ui("Insert") + arrow() + ui("Create a canvas") + ", or open the Gemini panel and choose " + ui("Create canvas") + ". It needs Gemini in Sheets, which depends on your school’s Workspace plan.",
       "Describe the tool:" + D.promptBox("Make a board of our department’s assessments grouped by week, so we can spot when three tests land on the same day."),

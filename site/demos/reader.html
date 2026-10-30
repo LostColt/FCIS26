@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reader</title>
+<!--
+  Reader: paste in text and hear it read aloud, line by line, with the words highlighted as they're read.
+  One file, no internet needed, no accounts, no AI. It uses the voice built into your browser.
+  Your texts and where you stopped are saved in this browser.
+  Have a PDF? Open it, select all, copy, and paste it in.
+  Change anything you like. Or paste this whole file into Gemini and ask for a change.
+  The sample texts are invented.
+-->
+<style>
+  :root { --paper:#f6f7f4; --deep:#eceee8; --ink:#1d2430; --soft:#4b5563; --rule:#d6dad2; --blue:#2847a8; --white:#fff; --hi:#f5e663;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --page:#ffffff; --size: 22px; --lh: 1.75; --face: Georgia, "Times New Roman", serif; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--deep); color: var(--ink); font: 15px/1.5 var(--sans); }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+
+  .bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.8rem; padding: 0.7rem 1.2rem; background: var(--white); border-bottom: 1px solid var(--rule); }
+  .bar h1 { font: 600 1.3rem/1 Georgia, serif; margin: 0 auto 0 0; }
+  .btn { border: 1px solid var(--rule); background: var(--white); border-radius: 999px; padding: 0.4rem 0.85rem; font-weight: 500; }
+  .btn:hover { border-color: var(--ink); }
+  .btn.primary { background: var(--ink); border-color: var(--ink); color: var(--white); }
+
+  main { display: grid; grid-template-columns: 16rem minmax(0, 1fr); gap: 1.2rem; max-width: 76rem; margin: 0 auto; padding: 1.2rem 1.2rem 7rem; }
+  .side h2 { font: 600 0.78rem/1 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--soft); margin: 0.3rem 0 0.7rem; }
+  .lib { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.4rem; }
+  .lib button { width: 100%; text-align: left; background: var(--white); border: 1px solid var(--rule); border-radius: 8px; padding: 0.55rem 0.7rem; }
+  .lib button[aria-current="true"] { border-color: var(--ink); box-shadow: inset 3px 0 0 var(--blue); }
+  .lib b { display: block; font-weight: 600; }
+  .lib small { color: var(--soft); }
+  .tip { color: var(--soft); font-size: 0.85rem; margin-top: 1.2rem; line-height: 1.45; }
+
+  .page { background: var(--page); border-radius: 12px; border: 1px solid var(--rule); padding: clamp(1.4rem, 4vw, 3rem) clamp(1.2rem, 5vw, 4rem); min-height: 60vh; }
+  .head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin: 0 0 1.2rem; }
+  .page h2 { font: 600 1.6rem/1.2 Georgia, serif; margin: 0; }
+  .btn.small { padding: 0.2rem 0.65rem; font-size: 0.85rem; color: var(--soft); }
+  .text { font-family: var(--face); font-size: var(--size); line-height: var(--lh); max-width: 40em; }
+  .text p { margin: 0 0 1em; }
+  .s { cursor: pointer; border-radius: 4px; transition: opacity 0.2s ease, background 0.2s ease; }
+  .s:hover { background: rgba(40, 71, 168, 0.07); }
+  .s.now { background: rgba(245, 230, 99, 0.45); }
+  .s .w { background: var(--hi); border-radius: 3px; box-shadow: 0 0 0 2px var(--hi); }
+  .focus .s:not(.now) { opacity: 0.35; }
+
+  .controls { position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; background: var(--white); border-top: 1px solid var(--rule); padding: 0.7rem 1.2rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.6rem 1.2rem; }
+  .play { min-width: 8.5rem; font-size: 1.1rem; font-weight: 600; padding: 0.6rem 1.2rem; }
+  .ctl { display: inline-flex; align-items: center; gap: 0.45rem; color: var(--soft); font-size: 0.9rem; }
+  .ctl select { border: 1px solid var(--rule); border-radius: 8px; padding: 0.3rem 0.4rem; background: var(--white); max-width: 14rem; }
+  .ctl input[type=range] { width: 7rem; }
+  .where { color: var(--soft); font-size: 0.85rem; min-width: 8rem; text-align: center; }
+
+  dialog { border: 1px solid var(--rule); border-radius: 12px; padding: 1.3rem 1.5rem; max-width: 40rem; width: calc(100% - 2rem); }
+  dialog::backdrop { background: rgba(29, 36, 48, 0.35); }
+  dialog h3 { font: 600 1.3rem/1.2 Georgia, serif; margin: 0 0 0.6rem; }
+  .lbl { display: block; font-weight: 600; font-size: 0.85rem; margin: 0.8rem 0 0.35rem; }
+  .field { width: 100%; border: 1px solid var(--rule); border-radius: 8px; padding: 0.5rem 0.65rem; }
+  textarea.field { min-height: 14rem; resize: vertical; }
+  .row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+  .opts { display: grid; grid-template-columns: 8rem 1fr; gap: 0.7rem 1rem; align-items: center; }
+  .opts .seg { justify-self: start; }
+  .seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--rule); border-radius: 999px; overflow: hidden; }
+  .seg button { border: 0; background: var(--white); padding: 0.3rem 0.75rem; }
+  .seg button[aria-pressed="true"] { background: var(--ink); color: var(--white); }
+  .note { color: var(--soft); font-size: 0.88rem; }
+
+  @media (max-width: 760px) { main { grid-template-columns: 1fr; } .side { order: 2; } .ctl input[type=range] { width: 5rem; } }
+</style>
+</head>
+<body>
+<header class="bar">
+  <h1>Reader</h1>
+  <button class="btn" id="displayBtn">Display</button>
+  <button class="btn" id="fileBtn">Open a text file</button>
+  <input type="file" id="file" accept=".txt,text/plain" hidden>
+  <button class="btn primary" id="addBtn">+ Paste text</button>
+</header>
+
+<main>
+  <aside class="side">
+    <h2>Your texts</h2>
+    <ul class="lib" id="lib"></ul>
+    <p class="tip">Have a PDF? Open it, select all, copy, and paste it in with <b>+ Paste text</b>.</p>
+    <p class="tip">Click any sentence to start reading from there.</p>
+  </aside>
+  <article class="page" id="page"><div class="head"><h2 id="title"></h2><button class="btn small" id="removeBtn">Remove</button></div><div class="text" id="text"></div></article>
+</main>
+
+<div class="controls" role="group" aria-label="Reading controls">
+  <button class="btn" id="back" aria-label="Back one sentence">⏮</button>
+  <button class="btn primary play" id="play">▶ Read aloud</button>
+  <button class="btn" id="fwd" aria-label="Forward one sentence">⏭</button>
+  <span class="where" id="where"></span>
+  <label class="ctl">Speed <input type="range" id="rate" min="0.6" max="1.6" step="0.1" value="1"> <span id="rateOut">1×</span></label>
+  <label class="ctl">Voice <select id="voice"></select></label>
+</div>
+
+<dialog id="addDlg">
+  <form method="dialog" id="addForm">
+    <h3>Paste text</h3>
+    <label class="lbl" for="newTitle">Title</label><input class="field" id="newTitle" placeholder="Chapter 3, my essay, the lab instructions…">
+    <label class="lbl" for="newText">Text</label><textarea class="field" id="newText" required placeholder="Paste or type here."></textarea>
+    <div class="row"><button class="btn primary" value="ok">Add and read</button><button class="btn" value="cancel" formnovalidate>Cancel</button></div>
+  </form>
+</dialog>
+
+<dialog id="dispDlg">
+  <h3>Display</h3>
+  <div class="opts">
+    <span>Text size</span><div class="seg" data-opt="size"><button data-v="18px">Small</button><button data-v="22px">Medium</button><button data-v="27px">Large</button><button data-v="33px">Larger</button></div>
+    <span>Line spacing</span><div class="seg" data-opt="lh"><button data-v="1.5">Normal</button><button data-v="1.75">Relaxed</button><button data-v="2.1">Wide</button></div>
+    <span>Letters</span><div class="seg" data-opt="face"><button data-v='Georgia, "Times New Roman", serif'>Book</button><button data-v='Verdana, Tahoma, "Segoe UI", sans-serif'>Wide and clear</button><button data-v='system-ui, -apple-system, "Segoe UI", sans-serif'>Plain</button></div>
+    <span>Page color</span><div class="seg" data-opt="page"><button data-v="#ffffff">White</button><button data-v="#fbf5e3">Cream</button><button data-v="#eef4ea">Sage</button><button data-v="#eaf0f6">Sky</button></div>
+    <span>Focus</span><div class="seg" data-opt="focus"><button data-v="off">Show everything</button><button data-v="on">Dim the rest</button></div>
+  </div>
+  <div class="row"><button class="btn primary" id="dispOk">Done</button></div>
+</dialog>
+
+<dialog id="delDlg">
+  <h3 id="delTitle">Remove this text?</h3>
+  <p>It's removed from this browser.</p>
+  <div class="row"><button class="btn primary" id="delYes">Remove it</button><button class="btn" id="delNo">Keep it</button></div>
+</dialog>
+
+<script>
+(function () {
+  "use strict";
+  var KEY = "reader-texts", PREFS = "reader-display";
+  var $ = function (id) { return document.getElementById(id); };
+  var synth = window.speechSynthesis;
+  var store, cur = null, sentences = [], idx = 0, playing = false, voices = [], toDelete = null;
+  var prefs = { size: "22px", lh: "1.75", face: 'Georgia, "Times New Roman", serif', page: "#ffffff", focus: "off", rate: "1", voice: "" };
+
+  function uid() { return Math.random().toString(36).slice(2, 10); }
+  function esc(s) { return String(s || "").replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  function samples() {
+    return [
+      { id: uid(), sample: true, title: "The Lighthouse Keeper (sample)", pos: 0, updated: Date.now(),
+        text: "Every night for thirty years, Ana climbed the ninety-two steps to the top of the lighthouse. She counted them out loud, because counting kept the wind out of her head.\n\nAt the top, she cleaned the glass, lit the lamp, and wrote one sentence in a small green notebook. Some nights the sentence was about the weather. Some nights it was about a ship she never saw again.\n\nWhen the town finally replaced the lamp with a machine, they found forty notebooks on the shelf. Read in order, they told the story of a coast, one sentence at a time." },
+      { id: uid(), sample: true, title: "How Plants Drink (sample)", pos: 0, updated: Date.now() - 1000,
+        text: "Plants do not have hearts, but water still travels all the way from their roots to their leaves. How does it climb?\n\nThe answer starts at the leaves. Tiny openings called stomata let water escape into the air as vapor. As water leaves, it pulls on the water behind it, like a long chain of people holding hands.\n\nThis pull reaches down through narrow tubes inside the stem, all the way to the roots. Scientists call this process transpiration. On a hot day, a single large tree can move hundreds of liters of water this way." }
+    ];
+  }
+
+  /* ---------- Saving in this browser ---------- */
+  function load() {
+    try { store = JSON.parse(localStorage.getItem(KEY)); } catch (e) { store = null; }
+    if (!store || !Array.isArray(store.texts)) store = { texts: samples() };
+    try { var p = JSON.parse(localStorage.getItem(PREFS)); if (p) for (var k in p) prefs[k] = p[k]; } catch (e) {}
+  }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {} }
+  function savePrefs() { try { localStorage.setItem(PREFS, JSON.stringify(prefs)); } catch (e) {} }
+
+  /* ---------- Library ---------- */
+  function drawLib() {
+    var list = store.texts.slice().sort(function (a, b) { return b.updated - a.updated; });
+    $("lib").innerHTML = list.map(function (t) {
+      var n = split(t.text).length, pct = n ? Math.round(100 * Math.min(t.pos, n) / n) : 0;
+      return '<li><button data-open="' + t.id + '"' + (cur && cur.id === t.id ? ' aria-current="true"' : "") + "><b>" + esc(t.title || "Untitled") + "</b><small>" +
+        (pct ? pct + "% read" : "Not started") + "</small></button></li>";
+    }).join("") || '<li class="note">No texts yet. Use + Paste text.</li>';
+  }
+  $("lib").addEventListener("click", function (e) { var b = e.target.closest("[data-open]"); if (b) open(b.dataset.open); });
+  $("removeBtn").addEventListener("click", function () {
+    if (!cur) return; toDelete = cur.id;
+    $("delTitle").textContent = "Remove “" + (store.texts.find(function (t) { return t.id === toDelete; }).title || "Untitled") + "”?"; $("delDlg").showModal();
+  });
+  $("delNo").onclick = function () { $("delDlg").close(); };
+  $("delYes").onclick = function () {
+    store.texts = store.texts.filter(function (t) { return t.id !== toDelete; }); save(); $("delDlg").close();
+    if (cur && cur.id === toDelete) { stop(); cur = null; if (store.texts[0]) open(store.texts[0].id); else { $("title").textContent = ""; $("text").innerHTML = ""; } }
+    drawLib();
+  };
+
+  /* ---------- Splitting text into sentences ---------- */
+  function split(text) {
+    var out = [];
+    text.replace(/\r/g, "").split(/\n\s*\n/).forEach(function (para, pi) {
+      var parts = para.replace(/\s*\n\s*/g, " ").match(/[^.!?]+(?:[.!?]+["”’)]*|$)\s*/g) || [];
+      parts.forEach(function (s) { if (s.trim()) out.push({ t: s.trim(), p: pi }); });
+    });
+    return out;
+  }
+
+  function open(id) {
+    stop();
+    cur = store.texts.find(function (t) { return t.id === id; });
+    if (!cur) return;
+    sentences = split(cur.text);
+    idx = Math.min(cur.pos || 0, Math.max(0, sentences.length - 1));
+    if (idx >= sentences.length - 1 && cur.pos >= sentences.length) idx = 0;
+    $("title").textContent = cur.title || "Untitled";
+    var html = "", lastP = -1;
+    sentences.forEach(function (s, i) {
+      if (s.p !== lastP) { if (lastP >= 0) html += "</p>"; html += "<p>"; lastP = s.p; }
+      html += '<span class="s" data-i="' + i + '">' + esc(s.t) + "</span> ";
+    });
+    $("text").innerHTML = html + (lastP >= 0 ? "</p>" : "");
+    mark(idx, false);
+    prefs.last = cur.id; savePrefs();
+    drawLib();
+  }
+
+  function mark(i, scroll) {
+    document.querySelectorAll(".s.now").forEach(function (el) { el.classList.remove("now"); el.innerHTML = esc(sentences[+el.dataset.i].t); });
+    var el = document.querySelector('.s[data-i="' + i + '"]');
+    if (el && (playing || i > 0)) { el.classList.add("now"); if (scroll) el.scrollIntoView({ block: "center", behavior: "smooth" }); }
+    $("where").textContent = sentences.length ? "Sentence " + (i + 1) + " of " + sentences.length : "";
+  }
+  function word(i, start, len) {
+    var el = document.querySelector('.s[data-i="' + i + '"]'); if (!el) return;
+    var t = sentences[i].t;
+    if (!len) { var m = t.slice(start).match(/^[^\s]+/); len = m ? m[0].length : 0; }
+    el.innerHTML = esc(t.slice(0, start)) + '<span class="w">' + esc(t.slice(start, start + len)) + "</span>" + esc(t.slice(start + len));
+  }
+
+  /* ---------- Reading aloud ---------- */
+  function speak() {
+    if (!playing) return;
+    if (idx >= sentences.length) { playing = false; idx = 0; cur.pos = sentences.length; cur.updated = Date.now(); save(); drawLib(); button(); mark(-1); $("where").textContent = "Finished. Press Read aloud to start again."; return; }
+    mark(idx, true);
+    var u = new SpeechSynthesisUtterance(sentences[idx].t);
+    u.rate = +prefs.rate;
+    var v = voices.find(function (x) { return x.voiceURI === prefs.voice; }); if (v) { u.voice = v; u.lang = v.lang; }
+    var mine = idx;
+    u.onboundary = function (e) { if (e.name === "word" || e.name === undefined) word(mine, e.charIndex, e.charLength); };
+    u.onend = function () { if (!playing || mine !== idx) return; idx++; cur.pos = idx; cur.updated = Date.now(); save(); speak(); };
+    u.onerror = function (e) { if (e.error === "interrupted" || e.error === "canceled") return; playing = false; button(); };
+    synth.speak(u);
+  }
+  function play() {
+    if (!synth) { $("where").textContent = "This browser can't read aloud. Try Chrome, Edge or Safari."; return; }
+    if (!cur || !sentences.length) return;
+    playing = true; button(); synth.cancel(); speak();
+  }
+  function stop() { playing = false; if (synth) synth.cancel(); button(); }
+  function button() { $("play").textContent = playing ? "❚❚ Pause" : "▶ Read aloud"; }
+  function jump(i) {
+    idx = Math.max(0, Math.min(sentences.length - 1, i));
+    if (cur) { cur.pos = idx; save(); }
+    if (playing) { synth.cancel(); setTimeout(speak, 60); } else mark(idx, true);
+  }
+
+  $("play").onclick = function () { playing ? stop() : play(); };
+  $("back").onclick = function () { jump(idx - 1); };
+  $("fwd").onclick = function () { jump(idx + 1); };
+  $("text").addEventListener("click", function (e) {
+    var s = e.target.closest(".s"); if (!s) return;
+    idx = +s.dataset.i; if (cur) { cur.pos = idx; save(); }
+    if (!playing) play(); else jump(idx);
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.target.closest("input, textarea, select, dialog")) return;
+    if (e.key === " ") { e.preventDefault(); $("play").click(); }
+    else if (e.key === "ArrowRight") $("fwd").click();
+    else if (e.key === "ArrowLeft") $("back").click();
+  });
+
+  $("rate").oninput = function () { prefs.rate = this.value; $("rateOut").textContent = (+this.value).toFixed(1).replace(/\.0$/, "") + "×"; savePrefs(); if (playing) jump(idx); };
+  function loadVoices() {
+    if (!synth) return;
+    voices = synth.getVoices().filter(function (v) { return /^en/i.test(v.lang); });
+    if (!voices.length) voices = synth.getVoices();
+    $("voice").innerHTML = voices.map(function (v) { return '<option value="' + esc(v.voiceURI) + '">' + esc(v.name.replace(/^(Microsoft|Google)\s+/, "")) + "</option>"; }).join("") || "<option>Default voice</option>";
+    if (prefs.voice) $("voice").value = prefs.voice;
+  }
+  $("voice").onchange = function () { prefs.voice = this.value; savePrefs(); if (playing) jump(idx); };
+  if (synth) { loadVoices(); synth.onvoiceschanged = loadVoices; }
+
+  /* ---------- Adding texts ---------- */
+  function add(title, text) {
+    var t = { id: uid(), title: title || text.trim().split(/\s+/).slice(0, 6).join(" ") + "…", text: text, pos: 0, updated: Date.now() };
+    store.texts.push(t); save(); open(t.id);
+  }
+  $("addBtn").onclick = function () { $("addForm").reset(); $("addDlg").showModal(); };
+  $("addDlg").addEventListener("close", function () { if ($("addDlg").returnValue === "ok" && $("newText").value.trim()) add($("newTitle").value.trim(), $("newText").value); });
+  $("fileBtn").onclick = function () { $("file").click(); };
+  $("file").onchange = function () {
+    var f = this.files[0]; if (!f) return;
+    f.text().then(function (t) { add(f.name.replace(/\.[^.]+$/, ""), t); });
+    this.value = "";
+  };
+
+  /* ---------- Display ---------- */
+  function applyPrefs() {
+    var r = document.documentElement.style;
+    r.setProperty("--size", prefs.size); r.setProperty("--lh", prefs.lh); r.setProperty("--face", prefs.face); r.setProperty("--page", prefs.page);
+    $("page").classList.toggle("focus", prefs.focus === "on");
+    document.querySelectorAll("#dispDlg .seg").forEach(function (g) {
+      g.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.v === prefs[g.dataset.opt]); });
+    });
+    $("rate").value = prefs.rate; $("rateOut").textContent = (+prefs.rate).toFixed(1).replace(/\.0$/, "") + "×";
+  }
+  $("displayBtn").onclick = function () { $("dispDlg").showModal(); };
+  $("dispOk").onclick = function () { $("dispDlg").close(); };
+  $("dispDlg").addEventListener("click", function (e) {
+    var b = e.target.closest(".seg button"); if (!b) return;
+    prefs[b.parentNode.dataset.opt] = b.dataset.v; savePrefs(); applyPrefs();
+  });
+
+  window.addEventListener("beforeunload", function () { if (synth) synth.cancel(); });
+
+  load(); applyPrefs();
+  var first = store.texts.find(function (t) { return t.id === prefs.last; }) || store.texts.slice().sort(function (a, b) { return b.updated - a.updated; })[0];
+  if (first) open(first.id); else drawLib();
+})();
+</script>
+</body>
+</html>

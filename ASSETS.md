@@ -8,7 +8,7 @@ Paste each one into `D.SITES` at the top of `site/js/slides-a.js`. Until then th
 |---|---|---|
 | Meeting tracker | built in the repo: `site/demos/tracker.html` | done |
 | Screenplay tool (slash commands, no AI) | built in the repo: `site/demos/screenplay.html` | done |
-| Reader | `reader` | needed |
+| Reader | built in the repo: `site/demos/reader.html` | done |
 
 ## Screenshots (from David)
 
