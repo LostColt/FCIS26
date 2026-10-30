@@ -146,6 +146,7 @@
     show(parseInt(a.dataset.go, 10), 0, "jump");
   });
 
+  document.getElementById("restart").addEventListener("click", function () { show(0, 0, "jump"); });
   document.getElementById("prev").addEventListener("click", prev);
   document.getElementById("next").addEventListener("click", next);
   document.getElementById("full").addEventListener("click", toggleFull);
