@@ -6,7 +6,7 @@ Paste each one into `D.SITES` at the top of `site/js/slides-a.js`. Until then th
 
 | Tool | Key | Status |
 |---|---|---|
-| Counseling tracker | `tracker` | needed |
+| Meeting tracker | built in the repo: `site/demos/tracker.html` | done |
 | Screenplay tool (slash commands, no AI) | `screenplay` | needed |
 | Reader | `reader` | needed |
 

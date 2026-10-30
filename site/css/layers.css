@@ -628,3 +628,6 @@
 .pile-row.combine li { font-size: clamp(1.3rem, 2.4vw, 2.1rem); padding: 0.7rem 1.3rem; }
 .pile-row.combine { gap: 1rem 1.4rem; }
 .held .held-1 { max-width: 34ch; }
+.tool-copy { font: 500 0.95rem var(--sans); padding: 0.55rem 0.9rem; border: 1px solid var(--rule); border-radius: 999px; background: var(--white); color: var(--ink); cursor: pointer; }
+.tool-copy:hover { border-color: var(--ink); }
+.tool-card:not(.holding) .tool-thumb { border: 1px solid var(--rule); }

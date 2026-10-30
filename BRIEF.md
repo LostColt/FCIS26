@@ -110,7 +110,16 @@ No images. Typography carries the deck: Literata (a book serif) for the story, I
 - Any screenshot or mockup showing mock student data carries a small label: "Mock data."
 - David's real tools are never connected to the site. They appear as links to versions built with mock data (section 8a).
 
-## 8a. David's tools: links to ChatGPT Sites
+## 8a. David's tools
+
+**Built here, as single files teachers can take (since 2026-10-30).** Each tool is one self-contained HTML file in `site/demos/` (with a `.png` picture beside it), no libraries, no internet, sample students clearly invented. On slide 14 each gets Open it, Download the HTML and Copy the code. Set its file in `D.TOOLS` at the top of `site/js/slides-a.js`.
+
+- **Meeting tracker** (`demos/tracker.html`): today's meetings, a prep card from last time's notes and next steps, notes for this meeting, draft stages, add students and meetings. Saves in the browser; Export/Import a backup; a "Save to Google Sheets" help panel gives the steps and the Code.gs, and the same file saves to the Sheet when pasted into Apps Script.
+- **Screenplay tool:** to come.
+
+A ChatGPT Sites example will also be built for the Ship it fast path.
+
+### Earlier: links to ChatGPT Sites
 
 The coded mockups were taken down on 2026-10-29 (they're in git history). David is building his tools in ChatGPT Sites and will share the links.
 

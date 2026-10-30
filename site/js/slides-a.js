@@ -46,7 +46,7 @@
   /* David's two small tools, built here as lightweight single files so teachers can download them.
      When one is ready, set its file (e.g. "demos/tracker.html"); until then the card is a holding spot. */
   D.TOOLS = {
-    tracker: "",
+    tracker: "demos/tracker.html",
     screenplay: ""
   };
   D.tool = function (key, who, title, line) {
@@ -56,8 +56,8 @@
       '<div class="tool-thumb">' + (f ? '<img src="' + f.replace(/\.html$/, ".png") + '" alt="">' : "<span>Picture of the tool</span>") + "</div>" +
       "<h3>" + title + '</h3><p class="tool-line">' + line + "</p>" +
       '<div class="tool-actions">' +
-      (f ? '<a class="site-open" href="' + f + '" target="_blank" rel="noopener">Open it</a><a class="tool-dl" href="' + f + '" download>Download the HTML</a>'
-         : '<span class="site-open off">Open it</span><span class="tool-dl off">Download the HTML</span>') +
+      (f ? '<a class="site-open" href="' + f + '" target="_blank" rel="noopener">Open it</a><a class="tool-dl" href="' + f + '" download>Download the HTML</a><button type="button" class="tool-copy" data-copy-file="' + f + '">Copy the code</button>'
+         : '<span class="site-open off">Open it</span><span class="tool-dl off">Download the HTML</span><span class="tool-copy off">Copy the code</span>') +
       "</div></div>";
   };
 

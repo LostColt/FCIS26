@@ -203,6 +203,22 @@
     if (swallowClick) { e.preventDefault(); e.stopPropagation(); swallowClick = false; }
   }, true);
 
+  /* ---------- Copy a tool's whole file ---------- */
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-copy-file]");
+    if (!b) return;
+    var label = b.textContent;
+    function say(t) { b.textContent = t; setTimeout(function () { b.textContent = label; }, 2000); }
+    fetch(b.getAttribute("data-copy-file")).then(function (r) { return r.text(); }).then(function (text) {
+      if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text).then(function () { say("Copied"); });
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); say("Copied"); } catch (err) { say("Use Download instead"); }
+      document.body.removeChild(ta);
+    }).catch(function () { say("Use Download instead"); });
+  });
+
   /* ---------- Copy buttons ---------- */
   document.addEventListener("click", function (e) {
     var b = e.target.closest("[data-copy]");
