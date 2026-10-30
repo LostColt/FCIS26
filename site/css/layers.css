@@ -631,3 +631,14 @@
 .tool-copy { font: 500 0.95rem var(--sans); padding: 0.55rem 0.9rem; border: 1px solid var(--rule); border-radius: 999px; background: var(--white); color: var(--ink); cursor: pointer; }
 .tool-copy:hover { border-color: var(--ink); }
 .tool-card:not(.holding) .tool-thumb { border: 1px solid var(--rule); }
+
+/* Slide 11: code typing itself off to the right */
+.coding { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr); gap: clamp(1.5rem, 4vw, 4rem); align-items: center; }
+.typing { height: clamp(18rem, 58vh, 34rem); overflow: hidden; border-radius: 10px; background: var(--paper-deep); border: 1px solid var(--rule); padding: 1rem 1.2rem;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 22%); mask-image: linear-gradient(to bottom, transparent 0, #000 22%); }
+.typing pre { margin: 0; font: 0.88rem/1.55 ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace; color: var(--ink-soft); white-space: pre-wrap; word-break: break-word; }
+.typing pre::after { content: ""; display: inline-block; width: 0.55em; height: 1.1em; margin-left: 1px; vertical-align: -0.2em; background: var(--blue); animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .typing pre::after { animation: none; } }
+@media (max-width: 760px) { .coding { grid-template-columns: 1fr; } .typing { height: 12rem; } }
+.typing { display: flex; flex-direction: column; justify-content: flex-end; } .typing pre { flex: none; }

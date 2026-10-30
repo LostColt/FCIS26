@@ -199,14 +199,14 @@
   add(4, 0, '<p class="big huge">Could I build&nbsp;it?</p>');
   /* I didn't code. What I had instead arrives line by line; "write" gets the highlighter. */
   add(4, 0,
-    '<div class="said auto-run">' +
+    '<div class="coding"><div class="said auto-run">' +
     '<p style="--t:0.3s">I didn’t code.</p>' +
     '<p style="--t:1.6s">But I knew what I wanted.</p>' +
     '<div class="could-do">' +
     '<p style="--t:3.2s">I could <span class="mark late-write">write</span>.</p>' +
     '<p style="--t:4.1s">I could ask.</p>' +
     '<p style="--t:5s">I could imagine it.</p>' +
-    "</div></div>");
+    '</div></div><div class="typing" data-typing aria-hidden="true"><pre></pre></div></div>');
   /* The apps I was already using spread out when the slide opens;
      one press and "What about my own apps?" brings the tools any teacher could build */
   var apps = ["Notion", "Padlet", "Trello", "Kahoot!", "Quizlet", "Nearpod", "Gimkit", "Blooket", "Screencastify", "MagicSchool"];
