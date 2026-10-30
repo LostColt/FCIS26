@@ -1,5 +1,7 @@
 # Stop Subscribing, Start Building
 
+**Picking this up? Read [`HANDOFF.md`](HANDOFF.md) first.** It's the current front door for any assistant or collaborator.
+
 A website for an FCIS professional development session by David Tran, Gulliver Prep, Miami, FL. David presents from it; attendees keep it.
 
 This repo also records how the site gets made: every prompt, every review, every revision.
@@ -19,7 +21,8 @@ David writes a prompt  →  Antigravity builds  →  Claude and ChatGPT review  
 | `reviews/` | Every review, numbered to match its prompt |
 | `BUILDLOG.md` | One line per round, in plain language |
 | `ASSETS.md` | Screenshots, demo videos and placeholders still needed |
-| `site/` | The deck (`index.html`, `css/`, `js/`). David's tools are links to ChatGPT Sites, set in `js/slides-a.js` |
+| `site/` | The deck (`index.html`, `css/`, `js/`), the guide (`guide.html`) and the four tools (`demos/`) |
+| `HANDOFF.md`, `AGENTS.md`, `CLAUDE.md` | How to pick up the project, for people and AI assistants |
 
 ## Rules of the road
 
