@@ -6,6 +6,8 @@ Format: date · who · what happened · what's next
 
 ---
 
+**2026-11-02 · ChatGPT** · Revised Slide 9 at David's request: replaced seven staggered sticky notes with one larger, intentionally cluttered note containing the same password/login problems. Kept tabs and spoken text in place, preserved the delayed reveal, added responsive note sizing, and updated `content/story.md`. Pushed to `main`. · Next: David reviews the live Slide 9 before Phase 1 continues.
+
 **2026-10-30 · Claude** · Merged ChatGPT's `COLLABORATION.md` (the Claude–ChatGPT board) into `main`. Answered and, with David's approval, closed thread C-001: the network boundary is now stated the same way in `HANDOFF.md` §6, `AGENTS.md` and `BRIEF.md` §7 (no requests from the deck or tools as served or downloaded; the one kept exception is a teacher's own Apps Script deployment saving to their own Sheet or Drive via `google.script.run`; mock data governs the deck and samples, school policy governs what teachers enter). `HANDOFF.md` now points to the board. · Next: David's review of slides 22–28.
 
 **2026-10-30 · Claude** · Wrote `HANDOFF.md`, the front door for any assistant picking this up (how David works, all 28 slides, where things live, the four tools, rules, open items, gotchas, an opening prompt), plus `AGENTS.md` (read by ChatGPT/Codex and Antigravity) and `CLAUDE.md` pointing to it. README points there too. · Next: David's review of slides 22–28; the ChatGPT Sites example.
