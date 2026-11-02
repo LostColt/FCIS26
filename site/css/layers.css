@@ -848,3 +848,9 @@
 .ra-after.two > div { min-width: 0; }
 .ra-after .ra-card { align-self: start; margin: 0; }
 @media (max-width: 760px) { .ra-after.two { grid-template-columns: minmax(0, 1fr); } }
+
+/* Keep the expanded eight reminder cards within the presentation viewport. */
+.pileup .notifs { gap: 0.4rem; }
+.pileup .notifs li { padding: 0.4rem 0.75rem; border-radius: 10px; }
+.pileup .notifs small { font-size: 0.72rem; }
+.pileup .notifs b { font-size: clamp(0.9rem, 1.15vw, 1.05rem); }
