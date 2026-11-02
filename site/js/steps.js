@@ -22,18 +22,20 @@
   };
 
   D.insertSteps = function (add) {
-    /* Questions stay visible like a teacher working at a whiteboard. */
+    /* Eight questions in two columns and four rows; fan in, then stay. */
     var questions = [
-      ["Where do my students get stuck?", "5%", "6%", "-3deg"],
-      ["What takes my attention away?", "49%", "4%", "2deg"],
-      ["What do I keep forgetting?", "12%", "30%", "3deg"],
-      ["What am I doing over and over?", "54%", "31%", "-4deg"],
-      ["What could work differently?", "4%", "57%", "-2deg"],
-      ["What would help one student?", "54%", "57%", "3deg"]
+      "Where do my students get stuck?",
+      "What takes my attention away?",
+      "What do I keep forgetting?",
+      "What am I doing over and over?",
+      "What could work differently?",
+      "What would help one student?",
+      "What takes too much time?",
+      "What can I simplify?"
     ];
     add(6, 0,
-      '<div class="whiteboard"><div class="whiteboard-notes" aria-label="Questions to ask before building">' +
-      questions.map(function (q, i) { return '<p style="--x:' + q[1] + ';--y:' + q[2] + ';--angle:' + q[3] + ';--i:' + i + '">' + q[0] + '</p>'; }).join('') +
+      '<div class="whiteboard"><div class="question-cards" aria-label="Questions to ask before building">' +
+      questions.map(function (q, i) { return '<div class="question-card" style="--i:' + i + '">' + q + '</div>'; }).join('') +
       '</div><p class="whiteboard-bottom">What is one small thing worth fixing?</p></div>',
       { id: "build" });
 

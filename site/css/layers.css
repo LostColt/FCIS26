@@ -888,3 +888,30 @@
  .whiteboard-notes p { width:48%; font-size:clamp(1.3rem,5vw,2rem); }
  .whiteboard-bottom { font-size:clamp(1.35rem,5vw,1.9rem); }
 }
+
+/* Slide 15: reader starts visible; the narrative follows in three beats. */
+@keyframes reader-enter { from { opacity:0; transform:translateX(-2rem); } to { opacity:1; transform:none; } }
+@media (prefers-reduced-motion:no-preference) {
+ .reader-copy p { opacity:0; }
+ .slide.is-active .reader-copy .reader-head { animation:reader-enter .7s ease-out 1.5s both; }
+ .slide.is-active .reader-copy p:not(.reader-head) { animation:reader-enter .7s ease-out 3.1s both; }
+ .slide.is-active .reader-copy p:last-child { animation-delay:4s; }
+ .slide.seen .reader-copy p { opacity:1; transform:none; }
+}
+
+/* Slide 17: eight restrained handwritten cards in a two-by-four grid. */
+.whiteboard .question-cards { position:absolute; inset:0 0 5.8rem; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:repeat(4,minmax(0,1fr)); gap:clamp(.55rem,1.3vh,.9rem) clamp(.9rem,2vw,1.6rem); }
+.question-card { display:flex; align-items:center; justify-content:center; text-align:center; padding:.45rem 1.1rem; border:1px solid var(--rule); border-radius:9px; background:var(--paper); box-shadow:0 4px 11px rgba(29,36,48,.075); font:600 clamp(1.4rem,2.3vw,2.25rem)/1.05 "Caveat",cursive; color:var(--ink); min-width:0; }
+.question-card:nth-child(3n+2) { background:#f7f1dc; }
+.question-card:nth-child(4n+3) { background:#f2f0e7; }
+@keyframes question-fan { from { opacity:0; transform:translateX(-.75rem) translateY(-.55rem) rotate(-5deg); } to { opacity:1; transform:none; } }
+@media (prefers-reduced-motion:no-preference) {
+ .question-card { opacity:0; }
+ .slide.is-active .question-card { animation:question-fan .5s ease-out both; animation-delay:calc(.25s + var(--i)*.65s); }
+ .slide.seen .question-card { opacity:1; transform:none; }
+ .slide.is-active .whiteboard-bottom { transition-delay:5.9s; }
+}
+@media (max-width:760px) {
+ .whiteboard .question-cards { inset:0 0 5rem; gap:.45rem .55rem; }
+ .question-card { font-size:clamp(1.15rem,4.5vw,1.65rem); padding:.3rem .45rem; }
+}
