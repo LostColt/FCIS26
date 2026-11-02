@@ -790,21 +790,26 @@
   .slide.seen .ra-card, .slide.seen .ra-after { transition: none; opacity: 1; transform: none; }
 }
 
-/* 16 · Reminders pile up, then clear */
+/* 16 · Work accumulates, scrolls, then holds instead of disappearing. */
 .pileup { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(1.5rem, 4vw, 4rem); align-items: center; }
-.notifs { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
-.notifs li { font-family: var(--sans); background: rgba(255,255,255,0.92); border: 1px solid var(--rule); border-radius: 14px; padding: 0.7rem 0.95rem; box-shadow: 0 6px 18px rgba(29,36,48,0.08); opacity: 0; }
-.notifs small { display: block; color: var(--ink-soft); font-size: 0.78rem; margin-bottom: 0.1rem; }
-.notifs b { font-weight: 600; font-size: clamp(1rem, 1.35vw, 1.2rem); }
-@keyframes notif-in-out { 0% { opacity: 0; transform: translateY(-0.8rem) scale(0.97); } 12% { opacity: 1; transform: none; } 82% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateX(3rem); } }
+.notifs-window { --window-height: clamp(18rem, 56vh, 30rem); position: relative; height: var(--window-height); overflow: hidden; border-radius: 12px; }
+.notifs { list-style: none; margin: 0; padding: 0.15rem 0.2rem 0.6rem; display: grid; gap: 0.4rem; }
+.notifs li { font-family: var(--sans); background: rgba(255,255,255,0.94); border: 1px solid var(--rule); border-radius: 10px; padding: 0.45rem 0.75rem; box-shadow: 0 5px 15px rgba(29,36,48,0.07); opacity: 0; }
+.notifs small { display: block; color: var(--ink-soft); font-size: 0.72rem; margin-bottom: 0.08rem; }
+.notifs b { font-weight: 600; font-size: clamp(0.9rem, 1.15vw, 1.05rem); }
+@keyframes notif-appear { from { opacity: 0; transform: translateY(0.7rem); } to { opacity: 1; transform: none; } }
+@keyframes notif-scroll { 0%, 33% { transform: translateY(0); } 100% { transform: translateY(min(0px, calc(var(--window-height) - 100%))); } }
 @media (prefers-reduced-motion: no-preference) {
-  .slide.is-active .notifs li { animation: notif-in-out 5s ease both; animation-delay: calc(1.6s + var(--i) * 0.45s); }
-  .slide.is-active .notifs li:nth-child(2) { animation-duration: 4.55s; }
-  .slide.is-active .notifs li:nth-child(3) { animation-duration: 4.1s; }
-  .slide.is-active .notifs li:nth-child(4) { animation-duration: 3.65s; }
-  .slide.is-active .notifs li:nth-child(5) { animation-duration: 3.2s; }
+  .slide.is-active .notifs li { animation: notif-appear 0.4s ease both; animation-delay: calc(0.8s + var(--i) * 0.56s); }
+  .slide.is-active .notifs { animation: notif-scroll 11s ease-in-out both; }
 }
-@media (prefers-reduced-motion: reduce) { .notifs { display: none; } }
+.slide.seen .notifs li { opacity: 1; animation: none; }
+.slide.seen .notifs { transform: translateY(min(0px, calc(var(--window-height) - 100%))); animation: none; }
+@media (prefers-reduced-motion: reduce) {
+  .notifs li { opacity: 1; }
+  .notifs { transform: translateY(min(0px, calc(var(--window-height) - 100%))); }
+}
+@media (max-width: 760px) { .pileup { grid-template-columns: 1fr; } .notifs-window { --window-height: 15rem; } }
 
 /* 17 · Familiar thoughts drift in, fade back, and one comes forward */
 .thoughts { position: relative; min-height: clamp(22rem, 62vh, 36rem); }
@@ -849,8 +854,3 @@
 .ra-after .ra-card { align-self: start; margin: 0; }
 @media (max-width: 760px) { .ra-after.two { grid-template-columns: minmax(0, 1fr); } }
 
-/* Keep the expanded eight reminder cards within the presentation viewport. */
-.pileup .notifs { gap: 0.4rem; }
-.pileup .notifs li { padding: 0.4rem 0.75rem; border-radius: 10px; }
-.pileup .notifs small { font-size: 0.72rem; }
-.pileup .notifs b { font-size: clamp(0.9rem, 1.15vw, 1.05rem); }
