@@ -22,12 +22,16 @@
   };
 
   D.insertSteps = function (add) {
-    /* The invitation */
+    /* The handoff: questions teachers can ask before deciding to build. */
     add(6, 0,
-      '<div class="said auto-run">' +
-      '<p class="invite" style="--t:0.3s">You’re not bound by an app.</p>' +
-      '<p class="invite" style="--t:1.8s">Only by your <span class="mark tlate" style="--mt:2.6s">imagination</span>.</p>' +
-      '<p class="small" style="--t:4.2s">Your classroom can be the thing you dreamed of. And it won’t cost an arm and a leg to get there.</p>' +
+      '<div class="build-questions said auto-run">' +
+      '<p class="invite" style="--t:0.3s">Before you build, ask:</p>' +
+      '<ol aria-label="Questions to ask before building">' +
+      '<li style="--t:1.7s">Where do my students get stuck?</li>' +
+      '<li style="--t:3.1s">What takes my attention away from them?</li>' +
+      '<li style="--t:4.5s">What do I struggle to organize or keep up with?</li>' +
+      '<li style="--t:5.9s">What is one small thing worth fixing?</li>' +
+      '</ol><p class="small" style="--t:7.6s">The full checklist is in <a href="guide.html#questions">the guide</a>.</p>' +
       "</div>", { id: "build" });
 
     /* The shape that doesn't change */
