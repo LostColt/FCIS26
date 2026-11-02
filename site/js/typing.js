@@ -62,14 +62,24 @@
 
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var timer = null;
+  // Enter with a substantial draft already on screen, rather than a blank editor.
+  var START = CODE.indexOf("  function showToday()");
 
   function run(box) {
-    var pre = box.querySelector("pre"), i = 0;
+    var pre = box.querySelector("pre"), i = START;
     if (reduce) { pre.textContent = CODE; return; }
     if (timer) return;
+    pre.textContent = CODE.slice(0, i);
+    box.scrollTop = box.scrollHeight;
     (function tick() {
       i += 1 + (Math.random() < 0.3 ? 1 : 0);
-      if (i > CODE.length) { i = 0; pre.textContent = ""; timer = setTimeout(tick, 900); return; }
+      if (i > CODE.length) {
+        i = START;
+        pre.textContent = CODE.slice(0, i);
+        box.scrollTop = box.scrollHeight;
+        timer = setTimeout(tick, 900);
+        return;
+      }
       pre.textContent = CODE.slice(0, i);
       box.scrollTop = box.scrollHeight;
       var ch = CODE.charAt(i - 1);
