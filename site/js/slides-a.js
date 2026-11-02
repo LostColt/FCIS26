@@ -242,22 +242,22 @@
     D.tool("screenplay", "For me", "A screenplay tool", "Film or TV, with a home page for all your scripts. Type a slash for scene, action, character or dialogue, and it formats the page. It saves as you write, to the browser or your Google Drive, and exports to PDF or Google Docs.") +
     '</div><p class="tool-note">Start on top of the version I built.</p></div>', { id: "tracker" });
 
-  /* 5 · Building for others: why I kept building (faster, present), then for others, the reader */
+  /* 5 · Helping students drew me toward technology; then tools for my own work. */
   add(5, 0,
     '<div class="two others"><div class="said auto-run">' +
-    '<p style="--t:0.3s">I was building tools for myself, to work faster, to be more <span class="mark tlate" style="--mt:1.4s">present</span>.</p>' +
-    '<p style="--t:2.6s">But more than that, I wanted to build <span class="mark tlate" style="--mt:3.6s">for others</span>.</p>' +
-    '<p class="small" style="--t:5s">I built a reader. Paste in text and it reads it aloud. It wasn’t for me. It was for a friend’s student, who was better with audio than with reading.</p>' +
+    '<p style="--t:0.3s">Helping students is what first drew me toward <span class="mark tlate" style="--mt:1.4s">technology</span>.</p>' +
+    '<p class="small" style="--t:3s">I kept looking for different ways to help them learn.</p>' +
+    '<p class="small" style="--t:5s">I built a reader for a friend’s student who found listening easier than reading.</p>' +
     '</div><div class="late-card" style="--t:7s">' +
     D.tool("reader", "For a friend’s student", "A reader", "A library of texts to come back to. Each one is read aloud, with every word highlighted as it’s read, and it remembers where you stopped. Bigger text, calmer colors.") +
     "</div></div>", { id: "reader" });
-  /* The students: learning differences, then looking to the students, then the question, highlighted */
+  /* The same attention applied to my own limits; local tools, not products to sell. */
   add(5, 0,
     '<div class="said auto-run">' +
-    '<p class="small" style="--t:0.3s">I’ve worked with students with learning differences for a long time.</p>' +
-    '<p style="--t:2s">Truth be told, it was working with these students where I began to lean on <span class="mark tlate" style="--mt:3.2s">technology</span>.</p>' +
-    '<p class="small" style="--t:5.4s">When I’m building, it’s easy to look at myself.</p>' +
-    '<p class="small" style="--t:7.2s">But as an educator, I’m always looking to the students.</p>' +
-    '<p class="turn" style="--t:9.4s"><span class="mark tlate" style="--mt:10.3s">What can I build that helps them?</span></p>' +
+    '<p style="--t:0.3s">I have my own shortcomings, too.</p>' +
+    '<p class="small" style="--t:2.5s">Things I struggle to organize, keep up with, or remember.</p>' +
+    '<p style="--t:5s">I build small tools to help me work better, faster, and be more <span class="mark tlate" style="--mt:6.5s">present</span>.</p>' +
+    '<p class="small" style="--t:8s">I’m not trying to ship or sell an app. These are tools for me and people in my orbit.</p>' +
     "</div>");
+
 })();
