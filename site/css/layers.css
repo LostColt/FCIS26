@@ -564,6 +564,18 @@
   .look-tabs-notes .notes { order: 99; }
 }
 
+/* Slide 9 revision (2026-11-02): one cluttered handwritten note, same reveal. */
+.look-tabs-notes .notes .note {
+  width: clamp(15rem, 24vw, 23rem);
+  min-height: 0;
+  padding: 1.05rem 1.15rem;
+  font-size: clamp(1.05rem, 1.35vw, 1.4rem);
+  line-height: 1.1;
+}
+@media (max-width: 760px) {
+  .look-tabs-notes .notes .note { width: min(100%, 23rem); }
+}
+
 /* Chapter 4: "I didn't code." The three verbs arrive larger */
 .could-do { margin-top: 1.6rem; }
 .said .could-do p { font-size: clamp(2.2rem, 4.8vw, 4.2rem); line-height: 1.05; margin: 0 0 0.25em; }
