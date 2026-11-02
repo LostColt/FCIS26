@@ -93,7 +93,7 @@ We all became edtech. Zoom, Teams, Google Classroom, several apps linked togethe
 
 > And students pay that cost too. (Another login. Another interface. Another set of rules before the learning starts.)
 
-(Since 2026-10-30 the slide also shows the exhaustion: browser tabs open across the top until they're slivers, then seven handwritten sticky notes pile up on the right: passwords crossed out and rewritten, "Nearpod reset AGAIN," "Canva = same as Classroom??," "Turnitin → ask IT," "Kahoot! code is on my phone," "which email did I use for Padlet?," "2FA → phone → which phone?")
+(Since 2026-10-30 the slide also shows the exhaustion: browser tabs open across the top until they're slivers, then one deliberately cluttered handwritten sticky note appears on the right, combining: passwords crossed out and rewritten, "Nearpod reset AGAIN," "Canva = same as Classroom??," "Turnitin → ask IT," "Kahoot! code is on my phone," "which email did I use for Padlet?," "2FA → phone → which phone?")
 
 (Since 2026-10-29 chapter 3 is one slide that runs by itself when it opens: the first three lines slide in about two seconds apart, then "And students pay that cost too." lands centered with the three student costs in one row under it. The Say below is for David to speak.)
 
