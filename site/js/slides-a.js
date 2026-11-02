@@ -242,17 +242,15 @@
     D.tool("screenplay", "For me", "A screenplay tool", "Film or TV, with a home page for all your scripts. Type a slash for scene, action, character or dialogue, and it formats the page. It saves as you write, to the browser or your Google Drive, and exports to PDF or Google Docs.") +
     '</div><p class="tool-note">Start on top of the version I built.</p></div>', { id: "tracker" });
 
-  /* 5 · Helping others: the line reads itself aloud, word by word, the way the reader does; then the reader */
-  var readWords = "Helping students is what first drew me toward technology.".split(" ");
+  /* 5 · Helping students: the reader is visible from the start. */
   add(5, 0,
-    '<div class="readalong">' +
-    '<p class="ra-line" aria-label="Helping students is what first drew me toward technology.">' +
-    readWords.map(function (w, k) { return '<span class="ra-w' + "" + '" style="--w:' + k + '" aria-hidden="true">' + w + "</span>"; }).join(" ") +
-    '</p><div class="ra-after two"><div><p class="ra-small">I kept looking for different ways to help them learn.</p>' +
-    '<p class="ra-small">I built a reader for a friend’s student who found listening easier than reading.</p></div>' +
-    '<div class="ra-card">' +
+    '<div class="reader-split"><div class="reader-copy">' +
+    '<p class="reader-head"><span class="mark">Helping students</span> is what first drew me toward <span class="mark">technology</span>.</p>' +
+    '<p>I kept looking for different ways to help them learn.</p>' +
+    '<p>I built a reader for a friend’s student who found listening easier than reading.</p>' +
+    '</div><div class="reader-demo">' +
     D.tool("reader", "For a friend’s student", "A reader", "A library of texts to come back to. Each one is read aloud, with every word highlighted as it’s read, and it remembers where you stopped. Bigger text, calmer colors.") +
-    "</div></div></div>", { id: "reader" });
+    "</div></div>", { id: "reader" });
 
   /* My own shortcomings: sixteen reminders accumulate, scroll, and stay visible. */
   var notes = [

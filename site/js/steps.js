@@ -22,21 +22,19 @@
   };
 
   D.insertSteps = function (add) {
-    /* Why we build: familiar thoughts drift in, then one comes forward */
-    var thoughts = [
-      ["There has to be a better way to do this.", "8%", "6%", 0],
-      ["I make this same thing every year.", "54%", "2%", 1],
-      ["If it just did this one thing…", "62%", "40%", 2],
-      ["My students always get lost right here.", "4%", "44%", 3],
-      ["I spend more time on the platform than with the kids.", "30%", "76%", 4],
-      ["I’d use it if it worked the way I work.", "58%", "70%", 5]
+    /* Questions stay visible like a teacher working at a whiteboard. */
+    var questions = [
+      ["Where do my students get stuck?", "5%", "6%", "-3deg"],
+      ["What takes my attention away?", "49%", "4%", "2deg"],
+      ["What do I keep forgetting?", "12%", "30%", "3deg"],
+      ["What am I doing over and over?", "54%", "31%", "-4deg"],
+      ["What could work differently?", "4%", "57%", "-2deg"],
+      ["What would help one student?", "54%", "57%", "3deg"]
     ];
     add(6, 0,
-      '<div class="thoughts"><div class="drift" aria-hidden="true">' +
-      thoughts.map(function (t) { return '<p style="left:' + t[1] + ";top:" + t[2] + ";--i:" + t[3] + '">' + t[0] + "</p>"; }).join("") +
-      '</div><div class="forward"><p class="fw-1">There has to be a better way to do this.</p>' +
-      '<p class="fw-2">That thought is where building <span class="mark tlate" style="--mt:7.4s">starts</span>.</p>' +
-      '<p class="fw-3">Questions to start with are in <a href="guide.html#questions" target="_blank" rel="noopener">the guide</a>.</p></div></div>',
+      '<div class="whiteboard"><div class="whiteboard-notes" aria-label="Questions to ask before building">' +
+      questions.map(function (q, i) { return '<p style="--x:' + q[1] + ';--y:' + q[2] + ';--angle:' + q[3] + ';--i:' + i + '">' + q[0] + '</p>'; }).join('') +
+      '</div><p class="whiteboard-bottom">What is one small thing worth fixing?</p></div>',
       { id: "build" });
 
     /* The shape that doesn't change */

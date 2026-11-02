@@ -854,3 +854,37 @@
 .ra-after .ra-card { align-self: start; margin: 0; }
 @media (max-width: 760px) { .ra-after.two { grid-template-columns: minmax(0, 1fr); } }
 
+
+/* Slide 15: stable two-column story and reader card. */
+.reader-split { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(2rem,5vw,5rem); align-items:center; width:100%; }
+.reader-copy,.reader-demo { min-width:0; }
+.reader-demo { align-self:center; }
+.reader-copy .reader-head { font:600 clamp(2rem,3.6vw,3.65rem)/1.17 var(--serif); letter-spacing:-.02em; margin:0 0 1.15rem; }
+.reader-copy p:not(.reader-head) { font:400 clamp(1.14rem,1.55vw,1.5rem)/1.5 var(--serif); margin:0 0 .95rem; }
+.reader-copy .mark { background-size:100% .38em; }
+
+/* Slide 17: persistent handwritten whiteboard questions, bottom thought last. */
+.whiteboard { position:relative; min-height:clamp(24rem,65vh,39rem); width:100%; }
+.whiteboard-notes { position:absolute; inset:0 0 6.3rem; }
+.whiteboard-notes p { position:absolute; left:var(--x); top:var(--y); width:42%; margin:0; font:600 clamp(1.6rem,3.05vw,3.05rem)/1.15 "Caveat",cursive; color:var(--ink); transform:rotate(var(--angle)); opacity:1; }
+.whiteboard-notes p:nth-child(2),.whiteboard-notes p:nth-child(5) { color:var(--blue); }
+.whiteboard-notes p:nth-child(3) { text-decoration:underline; text-underline-offset:.12em; }
+.whiteboard-bottom { position:absolute; bottom:0; left:0; right:0; margin:0; text-align:center; font:600 clamp(1.65rem,3vw,2.8rem)/1.25 var(--serif); opacity:0; }
+.slide.is-active .whiteboard-bottom,.slide.seen .whiteboard-bottom { opacity:1; }
+@keyframes board-write { from { opacity:0; transform:translateY(.4rem) rotate(var(--angle)); } to { opacity:1; transform:rotate(var(--angle)); } }
+@media (prefers-reduced-motion:no-preference) {
+ .whiteboard-notes p { opacity:0; }
+ .slide.is-active .whiteboard-notes p { animation:board-write .45s ease forwards; animation-delay:calc(.2s + var(--i)*.75s); }
+ .slide.seen .whiteboard-notes p { opacity:1; }
+ .whiteboard-bottom { transition:opacity .7s ease; }
+ .slide.is-active .whiteboard-bottom { transition-delay:5.1s; }
+ .slide.seen .whiteboard-bottom { transition:none; }
+}
+@media (max-width:760px) {
+ .reader-split { grid-template-columns:1fr; gap:1.1rem; }
+ .reader-copy .reader-head { font-size:clamp(1.7rem,6vw,2.6rem); }
+ .whiteboard { min-height:31rem; }
+ .whiteboard-notes { inset:0 0 5rem; }
+ .whiteboard-notes p { width:48%; font-size:clamp(1.3rem,5vw,2rem); }
+ .whiteboard-bottom { font-size:clamp(1.35rem,5vw,1.9rem); }
+}
