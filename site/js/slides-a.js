@@ -61,6 +61,24 @@
       "</div></div>";
   };
 
+  /* 0 · Mockup pre-title: Gulliver Prep / David Tran with animated code. */
+  add(0, 0,
+    '<div class="pretitle">' +
+    '<div class="pretitle-name"><p class="pretitle-school">Gulliver Prep</p>' +
+    '<h1>David Tran</h1></div>' +
+    '<div class="pretitle-code" aria-label="Animated illustration of code being written">' +
+    '<div class="pretitle-codebar"><span class="pretitle-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>classroom-tool.js</span><span class="pretitle-status">working draft</span></div>' +
+    '<div class="pretitle-terminal" aria-hidden="true">' +
+    '<div class="pretitle-line" style="--i:0"><em>01</em><span class="code-muted">// Start with a question.</span></div>' +
+    '<div class="pretitle-line" style="--i:1"><em>02</em><span><b>const</b> problem = <q>What takes too much time?</q>;</span></div>' +
+    '<div class="pretitle-line" style="--i:2"><em>03</em><span><b>const</b> students = <q>Who needs help?</q>;</span></div>' +
+    '<div class="pretitle-line" style="--i:3"><em>04</em><span></span></div>' +
+    '<div class="pretitle-line" style="--i:4"><em>05</em><span><b>function</b> buildTool(idea) {</span></div>' +
+    '<div class="pretitle-line" style="--i:5"><em>06</em><span>&nbsp;&nbsp;<b>return</b> prototype(idea);</span></div>' +
+    '<div class="pretitle-line" style="--i:6"><em>07</em><span>}</span></div>' +
+    '<div class="pretitle-line" style="--i:7"><em>08</em><span class="code-muted">// Test. Adjust. Try again.</span><span class="pretitle-caret"></span></div>' +
+    '</div></div></div>', { id: "pretitle" });
+
   /* 0 · Cover */
   add(0, 1,
     '<div class="cover"><div>' +
