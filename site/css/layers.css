@@ -841,3 +841,10 @@
   .drift p:nth-child(5) { left: 4% !important; top: 80% !important; }
   .drift p:nth-child(6) { left: 54% !important; top: 64% !important; }
 }
+
+/* Slide 15 refinements: a quieter headline and consistent alignment of copy and reader card. */
+.readalong .ra-last { background-image: none; }
+.ra-after.two { display: grid; grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr); align-items: start; gap: clamp(1.5rem, 3vw, 3rem); }
+.ra-after.two > div { min-width: 0; }
+.ra-after .ra-card { align-self: start; margin: 0; }
+@media (max-width: 760px) { .ra-after.two { grid-template-columns: minmax(0, 1fr); } }
