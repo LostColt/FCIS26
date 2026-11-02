@@ -150,7 +150,7 @@
   var tabNames = ["Google Classroom", "Schoology", "Canva", "Nearpod", "Padlet", "Kahoot!", "Turnitin", "Quizlet", "Blooket", "Gimkit", "Notion", "Trello", "Screencastify", "Brisk", "MagicSchool", "Veracross", "Blackbaud", "Microsoft Teams", "Zoom", "Gemini"];
   /* One deliberately crowded note: all seven login problems together. */
   var notes = [
-    ["y", "72%", "2%", 3, '<b>passwords!!</b><br>Classroom: <s>Summer2020</s> Summer2020!<br>Schoology: <s>Tran123</s> <s>Tran1234</s> Tran1234!<br>Nearpod: reset AGAIN<br>Canva = same as Classroom??<br>Turnitin → ask IT<br>Kahoot! code is on my phone<br>which email did I use for Padlet?<br>2FA → phone → which phone?']
+    ["y", "calc(72% - 70px)", "calc(2% + 30px)", 3, '<b>passwords!!</b><br>Classroom: <s>Summer2020</s> Summer2020!<br>Schoology: <s>Tran123</s> <s>Tran1234</s> Tran1234!<br>Nearpod: reset AGAIN<br>Canva = same as Classroom??<br>Turnitin → ask IT<br>Kahoot! code is on my phone<br>which email did I use for Padlet?<br>2FA → phone → which phone?']
   ];
   function realCost(look, label) {
     var exhaust = look === "tabs"
