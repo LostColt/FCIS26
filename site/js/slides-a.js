@@ -254,7 +254,7 @@
     D.tool("reader", "For a friend’s student", "A reader", "A library of texts to come back to. Each one is read aloud, with every word highlighted as it’s read, and it remembers where you stopped. Bigger text, calmer colors.") +
     "</div></div></div>", { id: "reader" });
 
-  /* My own shortcomings: reminders pile up, then clear, and the reason lands in the quiet */
+  /* My own shortcomings: sixteen reminders accumulate, scroll, and stay visible. */
   var notes = [
     ["Reminders", "Follow up with 3 families"],
     ["Mail", "Draft 2 feedback due today"],
