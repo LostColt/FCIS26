@@ -152,23 +152,23 @@ I started asking it to build the tools I was already using. And the information 
 > For me: a screenplay tool. Type a slash for scene, action, character or dialogue, and it formats the page.
 > Start on top of the version I built. (Each has Open it and Download the HTML; holding spots until the lightweight tools are built in the repo.)
 
-## 5. Building for others (since 2026-10-30; the old chapter 5 folded in)
+## 5. Helping students and ourselves (revised 2026-11-02)
 
-> I was building tools for myself, to work faster, to be more present.
+> Helping students is what first drew me toward technology.
 >
-> But more than that, I wanted to build for others.
+> I kept looking for different ways to help them learn.
 >
-> I built a reader. Paste in text and it reads it aloud. It wasn't for me. It was for a friend's student, who was better with audio than with reading.
+> I built a reader for a friend's student who found listening easier than reading.
 >
 > (The reader card: open it, download it, copy the code.)
 
-> I've worked with students with learning differences for a long time.
+> I have my own shortcomings, too.
 >
-> Truth be told, it was working with these students where I began to lean on technology.
+> Things I struggle to organize, keep up with, or remember.
 >
-> When I'm building, it's easy to look at myself. But as an educator, I'm always looking to the students.
+> I build small tools to help me work better, faster, and be more present.
 >
-> What can I build that helps them?
+> I'm not trying to ship or sell an app. These are tools for me and people in my orbit.
 
 ---
 
@@ -199,9 +199,13 @@ But I wasn't trying to ship a product. I was trying to build smaller things. Wha
 
 ## 6. Build it (since 2026-10-30; "Update your software" and the step-by-step slides are gone)
 
-> You're not bound by an app. Only by your imagination.
+> Before you build, ask:
+> Where do my students get stuck?
+> What takes my attention away from them?
+> What do I struggle to organize or keep up with?
+> What is one small thing worth fixing?
 >
-> Your classroom can be the thing you dreamed of. And it won't cost an arm and a leg to get there.
+> The full checklist is in the guide.
 
 > Every build has the same shape: Prototype → Store → Host. Buttons move. The shape doesn't.
 
