@@ -247,7 +247,7 @@
   add(5, 0,
     '<div class="readalong">' +
     '<p class="ra-line" aria-label="Helping students is what first drew me toward technology.">' +
-    readWords.map(function (w, k) { return '<span class="ra-w' + (k === readWords.length - 1 ? " ra-last" : "") + '" style="--w:' + k + '" aria-hidden="true">' + w + "</span>"; }).join(" ") +
+    readWords.map(function (w, k) { return '<span class="ra-w' + "" + '" style="--w:' + k + '" aria-hidden="true">' + w + "</span>"; }).join(" ") +
     '</p><div class="ra-after two"><div><p class="ra-small">I kept looking for different ways to help them learn.</p>' +
     '<p class="ra-small">I built a reader for a friend’s student who found listening easier than reading.</p></div>' +
     '<div class="ra-card">' +
@@ -260,14 +260,17 @@
     ["Mail", "Draft 2 feedback due today"],
     ["Calendar", "Meeting moved to 1:40"],
     ["Notes", "Where did I save that rubric?"],
-    ["Messages", "Did you sign up for duty?"]
+    ["Messages", "Did you sign up for duty?"],
+    ["Deadlines", "Grade-level reports due Friday"],
+    ["Schedule", "Parent conference at 3:15"],
+    ["Tasks", "Update the assessment calendar"]
   ];
   add(5, 0,
     '<div class="pileup"><div class="said auto-run">' +
     '<p style="--t:0.3s">I have my own shortcomings, too.</p>' +
     '<p class="small" style="--t:1.4s">Things I struggle to organize, keep up with, or remember.</p>' +
     '<p style="--t:6.6s">I build small tools to help me work better, faster, and be more <span class="mark tlate" style="--mt:7.6s">present</span>.</p>' +
-    '<p class="small" style="--t:8.8s">I’m not trying to ship or sell an app. These are tools for me and people in my orbit.</p>' +
+    '' +
     '</div><ul class="notifs" aria-hidden="true">' +
     notes.map(function (n, k) { return '<li style="--i:' + k + '"><small>' + n[0] + " · now</small><b>" + n[1] + "</b></li>"; }).join("") +
     "</ul></div>");
