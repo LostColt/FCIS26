@@ -242,22 +242,34 @@
     D.tool("screenplay", "For me", "A screenplay tool", "Film or TV, with a home page for all your scripts. Type a slash for scene, action, character or dialogue, and it formats the page. It saves as you write, to the browser or your Google Drive, and exports to PDF or Google Docs.") +
     '</div><p class="tool-note">Start on top of the version I built.</p></div>', { id: "tracker" });
 
-  /* 5 · Helping students drew me toward technology; then tools for my own work. */
+  /* 5 · Helping others: the line reads itself aloud, word by word, the way the reader does; then the reader */
+  var readWords = "Helping students is what first drew me toward technology.".split(" ");
   add(5, 0,
-    '<div class="two others"><div class="said auto-run">' +
-    '<p style="--t:0.3s">Helping students is what first drew me toward <span class="mark tlate" style="--mt:1.4s">technology</span>.</p>' +
-    '<p class="small" style="--t:3s">I kept looking for different ways to help them learn.</p>' +
-    '<p class="small" style="--t:5s">I built a reader for a friend’s student who found listening easier than reading.</p>' +
-    '</div><div class="late-card" style="--t:7s">' +
+    '<div class="readalong">' +
+    '<p class="ra-line" aria-label="Helping students is what first drew me toward technology.">' +
+    readWords.map(function (w, k) { return '<span class="ra-w' + (k === readWords.length - 1 ? " ra-last" : "") + '" style="--w:' + k + '" aria-hidden="true">' + w + "</span>"; }).join(" ") +
+    '</p><div class="ra-after two"><div><p class="ra-small">I kept looking for different ways to help them learn.</p>' +
+    '<p class="ra-small">I built a reader for a friend’s student who found listening easier than reading.</p></div>' +
+    '<div class="ra-card">' +
     D.tool("reader", "For a friend’s student", "A reader", "A library of texts to come back to. Each one is read aloud, with every word highlighted as it’s read, and it remembers where you stopped. Bigger text, calmer colors.") +
-    "</div></div>", { id: "reader" });
-  /* The same attention applied to my own limits; local tools, not products to sell. */
+    "</div></div></div>", { id: "reader" });
+
+  /* My own shortcomings: reminders pile up, then clear, and the reason lands in the quiet */
+  var notes = [
+    ["Reminders", "Follow up with 3 families"],
+    ["Mail", "Draft 2 feedback due today"],
+    ["Calendar", "Meeting moved to 1:40"],
+    ["Notes", "Where did I save that rubric?"],
+    ["Messages", "Did you sign up for duty?"]
+  ];
   add(5, 0,
-    '<div class="said auto-run">' +
+    '<div class="pileup"><div class="said auto-run">' +
     '<p style="--t:0.3s">I have my own shortcomings, too.</p>' +
-    '<p class="small" style="--t:2.5s">Things I struggle to organize, keep up with, or remember.</p>' +
-    '<p style="--t:5s">I build small tools to help me work better, faster, and be more <span class="mark tlate" style="--mt:6.5s">present</span>.</p>' +
-    '<p class="small" style="--t:8s">I’m not trying to ship or sell an app. These are tools for me and people in my orbit.</p>' +
-    "</div>");
+    '<p class="small" style="--t:1.4s">Things I struggle to organize, keep up with, or remember.</p>' +
+    '<p style="--t:6.6s">I build small tools to help me work better, faster, and be more <span class="mark tlate" style="--mt:7.6s">present</span>.</p>' +
+    '<p class="small" style="--t:8.8s">I’m not trying to ship or sell an app. These are tools for me and people in my orbit.</p>' +
+    '</div><ul class="notifs" aria-hidden="true">' +
+    notes.map(function (n, k) { return '<li style="--i:' + k + '"><small>' + n[0] + " · now</small><b>" + n[1] + "</b></li>"; }).join("") +
+    "</ul></div>");
 
 })();

@@ -22,17 +22,22 @@
   };
 
   D.insertSteps = function (add) {
-    /* The handoff: questions teachers can ask before deciding to build. */
+    /* Why we build: familiar thoughts drift in, then one comes forward */
+    var thoughts = [
+      ["There has to be a better way to do this.", "8%", "6%", 0],
+      ["I make this same thing every year.", "54%", "2%", 1],
+      ["If it just did this one thing…", "62%", "40%", 2],
+      ["My students always get lost right here.", "4%", "44%", 3],
+      ["I spend more time on the platform than with the kids.", "30%", "76%", 4],
+      ["I’d use it if it worked the way I work.", "58%", "70%", 5]
+    ];
     add(6, 0,
-      '<div class="build-questions said auto-run">' +
-      '<p class="invite" style="--t:0.3s">Before you build, ask:</p>' +
-      '<ol aria-label="Questions to ask before building">' +
-      '<li style="--t:1.7s">Where do my students get stuck?</li>' +
-      '<li style="--t:3.1s">What takes my attention away from them?</li>' +
-      '<li style="--t:4.5s">What do I struggle to organize or keep up with?</li>' +
-      '<li style="--t:5.9s">What is one small thing worth fixing?</li>' +
-      '</ol><p class="small" style="--t:7.6s">The full checklist is in <a href="guide.html#questions">the guide</a>.</p>' +
-      "</div>", { id: "build" });
+      '<div class="thoughts"><div class="drift" aria-hidden="true">' +
+      thoughts.map(function (t) { return '<p style="left:' + t[1] + ";top:" + t[2] + ";--i:" + t[3] + '">' + t[0] + "</p>"; }).join("") +
+      '</div><div class="forward"><p class="fw-1">There has to be a better way to do this.</p>' +
+      '<p class="fw-2">That thought is where building <span class="mark tlate" style="--mt:7.4s">starts</span>.</p>' +
+      '<p class="fw-3">Questions to start with are in <a href="guide.html#questions" target="_blank" rel="noopener">the guide</a>.</p></div></div>',
+      { id: "build" });
 
     /* The shape that doesn't change */
     add(6, 0,

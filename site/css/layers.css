@@ -764,3 +764,80 @@
   .slide.is-active .build-questions li { transition-delay: var(--t); }
   .slide.seen .build-questions li { transition: none; }
 }
+
+/* ---------- Slides 15–17, rebuilt 2026-11-02 ---------- */
+
+/* 15 · The line reads itself aloud, word by word, then makes room for the reader */
+.readalong { display: flex; flex-direction: column; }
+.ra-line { font: 600 clamp(2.2rem, 4.8vw, 4.4rem)/1.12 var(--serif); letter-spacing: -0.02em; max-width: 20ch; margin: 0; }
+.ra-w { border-radius: 0.12em; padding: 0 0.04em; }
+.ra-last { background-image: linear-gradient(var(--highlight), var(--highlight)); background-repeat: no-repeat; background-position: 0 88%; background-size: 0% 0.42em; }
+.slide.is-active .ra-last, .slide.seen .ra-last { background-size: 100% 0.42em; }
+.ra-after { margin-top: 2rem; align-items: start; opacity: 0; }
+.ra-small { font-family: var(--serif); font-size: clamp(1.15rem, 1.9vw, 1.6rem); line-height: 1.5; margin: 0 0 0.8em; max-width: 30ch; }
+.slide.is-active .ra-after, .slide.seen .ra-after { opacity: 1; }
+@keyframes word-read { 0% { background: transparent; } 25%, 70% { background: var(--highlight); } 100% { background: transparent; } }
+@media (prefers-reduced-motion: no-preference) {
+  .ra-line { transform: translateY(18vh); transition: transform 0.9s cubic-bezier(0.22, 0.7, 0.2, 1); }
+  .slide.is-active .ra-line { transform: none; transition-delay: 3.7s; }
+  .slide.seen .ra-line { transform: none; transition: none; }
+  .slide.is-active .ra-w:not(.ra-last) { animation: word-read 0.55s ease both; animation-delay: calc(0.5s + var(--w) * 0.33s); }
+  .slide.is-active .ra-last { transition: background-size 0.5s ease; transition-delay: 3.15s; }
+  .ra-after { transition: opacity 0.8s ease; }
+  .slide.is-active .ra-after { transition-delay: 4.5s; }
+  .ra-card { opacity: 0; transform: translateY(0.8rem); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .slide.is-active .ra-card { opacity: 1; transform: none; transition-delay: 5.6s; }
+  .slide.seen .ra-card, .slide.seen .ra-after { transition: none; opacity: 1; transform: none; }
+}
+
+/* 16 · Reminders pile up, then clear */
+.pileup { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(1.5rem, 4vw, 4rem); align-items: center; }
+.notifs { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.notifs li { font-family: var(--sans); background: rgba(255,255,255,0.92); border: 1px solid var(--rule); border-radius: 14px; padding: 0.7rem 0.95rem; box-shadow: 0 6px 18px rgba(29,36,48,0.08); opacity: 0; }
+.notifs small { display: block; color: var(--ink-soft); font-size: 0.78rem; margin-bottom: 0.1rem; }
+.notifs b { font-weight: 600; font-size: clamp(1rem, 1.35vw, 1.2rem); }
+@keyframes notif-in-out { 0% { opacity: 0; transform: translateY(-0.8rem) scale(0.97); } 12% { opacity: 1; transform: none; } 82% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateX(3rem); } }
+@media (prefers-reduced-motion: no-preference) {
+  .slide.is-active .notifs li { animation: notif-in-out 5s ease both; animation-delay: calc(1.6s + var(--i) * 0.45s); }
+  .slide.is-active .notifs li:nth-child(2) { animation-duration: 4.55s; }
+  .slide.is-active .notifs li:nth-child(3) { animation-duration: 4.1s; }
+  .slide.is-active .notifs li:nth-child(4) { animation-duration: 3.65s; }
+  .slide.is-active .notifs li:nth-child(5) { animation-duration: 3.2s; }
+}
+@media (prefers-reduced-motion: reduce) { .notifs { display: none; } }
+
+/* 17 · Familiar thoughts drift in, fade back, and one comes forward */
+.thoughts { position: relative; min-height: clamp(22rem, 62vh, 36rem); }
+.drift { position: absolute; inset: 0; }
+.drift p { position: absolute; margin: 0; max-width: 22ch; font: italic 400 clamp(1.15rem, 2vw, 1.75rem)/1.3 var(--serif); color: var(--ink-soft); opacity: 0; }
+.forward { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; pointer-events: none; }
+.forward a { pointer-events: auto; }
+.fw-1 { font: 600 clamp(2.2rem, 4.8vw, 4.4rem)/1.1 var(--serif); letter-spacing: -0.02em; max-width: 18ch; margin: 0; opacity: 0; }
+.fw-2 { font: 600 clamp(1.5rem, 2.8vw, 2.5rem)/1.2 var(--serif); margin: 1.2rem 0 0; opacity: 0; }
+.fw-3 { font-family: var(--sans); color: var(--ink-soft); font-size: clamp(0.95rem, 1.2vw, 1.1rem); margin: 1.6rem 0 0; opacity: 0; }
+.slide.is-active .drift p, .slide.seen .drift p { opacity: 0.07; }
+.slide.is-active .forward p, .slide.seen .forward p { opacity: 1; }
+@keyframes thought { 0% { opacity: 0; transform: translateY(0.6rem); } 15%, 70% { opacity: 1; transform: none; } 100% { opacity: 0.07; } }
+@media (prefers-reduced-motion: no-preference) {
+  .slide.is-active .drift p { animation: thought 5.4s ease both; animation-delay: calc(0.3s + var(--i) * 0.55s); }
+  .slide.is-active .drift p:nth-child(2) { animation-duration: 4.85s; }
+  .slide.is-active .drift p:nth-child(3) { animation-duration: 4.3s; }
+  .slide.is-active .drift p:nth-child(4) { animation-duration: 3.75s; }
+  .slide.is-active .drift p:nth-child(5) { animation-duration: 3.2s; }
+  .slide.is-active .drift p:nth-child(6) { animation-duration: 2.65s; }
+  .forward p { transition: opacity 0.9s ease; }
+  .slide.is-active .fw-1 { transition-delay: 5.9s; }
+  .slide.is-active .fw-2 { transition-delay: 6.9s; }
+  .slide.is-active .fw-3 { transition-delay: 8.4s; }
+  .slide.seen .forward p { transition: none; }
+}
+
+@media (max-width: 760px) {
+  .ra-line { transform: none !important; }
+  .pileup { grid-template-columns: 1fr; }
+  .notifs { order: -1; }
+  .thoughts { min-height: 34rem; }
+  .drift p { max-width: 15ch; font-size: 1.05rem; }
+  .drift p:nth-child(5) { left: 4% !important; top: 80% !important; }
+  .drift p:nth-child(6) { left: 54% !important; top: 64% !important; }
+}

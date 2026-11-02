@@ -162,6 +162,8 @@ I started asking it to build the tools I was already using. And the information 
 >
 > (The reader card: open it, download it, copy the code.)
 
+> (Each word of that first line lights up in turn, the way the reader highlights words.)
+
 > I have my own shortcomings, too.
 >
 > Things I struggle to organize, keep up with, or remember.
@@ -169,6 +171,8 @@ I started asking it to build the tools I was already using. And the information 
 > I build small tools to help me work better, faster, and be more present.
 >
 > I'm not trying to ship or sell an app. These are tools for me and people in my orbit.
+>
+> (Between the two halves, mock notifications pile up and clear: Follow up with 3 families · Draft 2 feedback due today · Meeting moved to 1:40 · Where did I save that rubric? · Did you sign up for duty?)
 
 ---
 
@@ -199,13 +203,13 @@ But I wasn't trying to ship a product. I was trying to build smaller things. Wha
 
 ## 6. Build it (since 2026-10-30; "Update your software" and the step-by-step slides are gone)
 
-> Before you build, ask:
-> Where do my students get stuck?
-> What takes my attention away from them?
-> What do I struggle to organize or keep up with?
-> What is one small thing worth fixing?
+> (Thoughts drift in, not a list; Claude's wording, revised 2026-11-02:)
+> There has to be a better way to do this. · I make this same thing every year. · If it just did this one thing… · My students always get lost right here. · I spend more time on the platform than with the kids. · I'd use it if it worked the way I work.
 >
-> The full checklist is in the guide.
+> There has to be a better way to do this.
+> That thought is where building starts.
+>
+> Questions to start with are in the guide.
 
 > Every build has the same shape: Prototype → Store → Host. Buttons move. The shape doesn't.
 

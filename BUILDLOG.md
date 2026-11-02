@@ -6,6 +6,8 @@ Format: date · who · what happened · what's next
 
 ---
 
+**2026-11-02 · Claude** · Rebuilt slides 15–17 so each looks and moves differently. 15: the opening line reads itself word by word like the reader, then makes room for the reader card; "learning differences" removed at David's request. 16: his own shortcomings, with mock notifications piling up and clearing before "I build small tools… present." 17: replaced the "Before you build" list (it clashed with slide 21) with drifting teacher thoughts and "That thought is where building starts."; guide link opens in a new tab. The "not bound by an app / only by your imagination" line is still out of the deck. Checked at 1836×848 and 390×844. · Next: David reads the new wording on 16–17 and changes any of it; decide whether chapter 5 keeps the name "Building for others".
+
 **2026-11-02 · ChatGPT** · Slide 11: kept the existing narrative and code sample, restyled the code panel as a subdued charcoal terminal with a small file header, and made the typing start with an already-written draft and loop back to that mid-stream point rather than emptying. Changes prepared on `slide-11-terminal` for David's review; `main` unchanged. · Next: review the slide's live preview and approve before merging.
 
 **2026-11-02 · ChatGPT** · Adjusted Slide 9’s yellow Post-it position only: moved it 70px left and 30px down, preserving its size, rotation, text, timing, tabs, and all other slide content. Pushed directly to `main` at David’s request. · Next: continue Slide 9 review.
