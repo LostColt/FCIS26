@@ -170,9 +170,7 @@ I started asking it to build the tools I was already using. And the information 
 >
 > I build small tools to help me work better, faster, and be more present.
 >
-> I'm not trying to ship or sell an app. These are tools for me and people in my orbit.
->
-> (Between the two halves, mock notifications pile up and clear: Follow up with 3 families · Draft 2 feedback due today · Meeting moved to 1:40 · Where did I save that rubric? · Did you sign up for duty?)
+> (Between the two halves, mock notifications pile up and clear: Follow up with 3 families · Draft 2 feedback due today · Meeting moved to 1:40 · Where did I save that rubric? · Grade-level reports due Friday · Parent conference at 3:15 · Update the assessment calendar · Did you sign up for duty?)
 
 ---
 
