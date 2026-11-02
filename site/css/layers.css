@@ -646,10 +646,10 @@
 
 /* Slide 11: code typing itself off to the right */
 .coding { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr); gap: clamp(1.5rem, 4vw, 4rem); align-items: center; }
-.typing { height: clamp(18rem, 58vh, 34rem); overflow: hidden; border-radius: 10px; background: var(--paper-deep); border: 1px solid var(--rule); padding: 1rem 1.2rem;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 22%); mask-image: linear-gradient(to bottom, transparent 0, #000 22%); }
-.typing pre { margin: 0; font: 0.88rem/1.55 ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace; color: var(--ink-soft); white-space: pre-wrap; word-break: break-word; }
-.typing pre::after { content: ""; display: inline-block; width: 0.55em; height: 1.1em; margin-left: 1px; vertical-align: -0.2em; background: var(--blue); animation: blink 1s steps(1) infinite; }
+.typing { position: relative; height: clamp(18rem, 58vh, 34rem); overflow: hidden; border-radius: 10px; background: #191f26; border: 1px solid #36404a; padding: 3.2rem 1.2rem 1rem; }
+.typing::before { content: "tracker.html  —  working draft"; position: absolute; inset: 0 0 auto; padding: 0.85rem 1.2rem; background: #222a33; border-bottom: 1px solid #36404a; font: 500 0.78rem/1 ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; color: #aab7c4; letter-spacing: 0.01em; }
+.typing pre { margin: 0; font: 0.88rem/1.55 ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace; color: #c5ced6; white-space: pre-wrap; word-break: break-word; }
+.typing pre::after { content: ""; display: inline-block; width: 0.55em; height: 1.1em; margin-left: 1px; vertical-align: -0.2em; background: #9cb6c9; animation: blink 1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .typing pre::after { animation: none; } }
 @media (max-width: 760px) { .coding { grid-template-columns: 1fr; } .typing { height: 12rem; } }
