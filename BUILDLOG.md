@@ -6,6 +6,8 @@ Format: date · who · what happened · what's next
 
 ---
 
+**2026-11-02 · ChatGPT** · Slide 11: kept the existing narrative and code sample, restyled the code panel as a subdued charcoal terminal with a small file header, and made the typing start with an already-written draft and loop back to that mid-stream point rather than emptying. Changes prepared on `slide-11-terminal` for David's review; `main` unchanged. · Next: review the slide's live preview and approve before merging.
+
 **2026-11-02 · ChatGPT** · Adjusted Slide 9’s yellow Post-it position only: moved it 70px left and 30px down, preserving its size, rotation, text, timing, tabs, and all other slide content. Pushed directly to `main` at David’s request. · Next: continue Slide 9 review.
 
 **2026-11-02 · ChatGPT** · Revised Slide 9 at David's request: replaced seven staggered sticky notes with one larger, intentionally cluttered note containing the same password/login problems. Kept tabs and spoken text in place, preserved the delayed reveal, added responsive note sizing, and updated `content/story.md`. Pushed to `main`. · Next: David reviews the live Slide 9 before Phase 1 continues.
