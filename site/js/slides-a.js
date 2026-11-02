@@ -263,16 +263,24 @@
     ["Messages", "Did you sign up for duty?"],
     ["Deadlines", "Grade-level reports due Friday"],
     ["Schedule", "Parent conference at 3:15"],
-    ["Tasks", "Update the assessment calendar"]
+    ["Tasks", "Update the assessment calendar"],
+    ["Department", "Department meeting at 3:30"],
+    ["Planning", "Tomorrow's lesson still needs work"],
+    ["Grading", "Essay feedback for period 4"],
+    ["Attendance", "Correct yesterday's attendance"],
+    ["Student support", "Check in before Friday"],
+    ["Forms", "Field trip permission forms"],
+    ["Technology", "Classroom link isn't working"],
+    ["Advisory", "Prepare next week's advisory"]
   ];
   add(5, 0,
     '<div class="pileup"><div class="said auto-run">' +
     '<p style="--t:0.3s">I have my own shortcomings, too.</p>' +
     '<p class="small" style="--t:1.4s">Things I struggle to organize, keep up with, or remember.</p>' +
-    '<p style="--t:6.6s">I build small tools to help me work better, faster, and be more <span class="mark tlate" style="--mt:7.6s">present</span>.</p>' +
+    '<p style="--t:11.2s">I build small tools to help me work better, faster, and be more <span class="mark tlate" style="--mt:12.2s">present</span>.</p>' +
     '' +
-    '</div><ul class="notifs" aria-hidden="true">' +
+    '</div><div class="notifs-window" aria-hidden="true"><ul class="notifs">' +
     notes.map(function (n, k) { return '<li style="--i:' + k + '"><small>' + n[0] + " · now</small><b>" + n[1] + "</b></li>"; }).join("") +
-    "</ul></div>");
+    "</ul></div></div>");
 
 })();
