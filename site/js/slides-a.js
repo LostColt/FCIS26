@@ -148,15 +148,9 @@
   /* The exhaustion: browser tabs fill until they're slivers, then a pile of handwritten sticky notes.
      (Chosen 2026-10-30 from three options; the other looks are still in realCost() if ever wanted.) */
   var tabNames = ["Google Classroom", "Schoology", "Canva", "Nearpod", "Padlet", "Kahoot!", "Turnitin", "Quizlet", "Blooket", "Gimkit", "Notion", "Trello", "Screencastify", "Brisk", "MagicSchool", "Veracross", "Blackbaud", "Microsoft Teams", "Zoom", "Gemini"];
-  /* Option C's sticky notes: color, left, top, tilt, words. Nobody has just one. */
+  /* One deliberately crowded note: all seven login problems together. */
   var notes = [
-    ["y", "68%", "0%", 4, '<b>passwords!!</b><br>Classroom: <s>Summer2020</s> Summer2020!<br>Schoology: <s>Tran123</s> <s>Tran1234</s> Tran1234!'],
-    ["p", "86%", "3%", -6, "Nearpod<br>reset AGAIN"],
-    ["b", "74%", "30%", 7, "Canva =<br>same as<br>Classroom??"],
-    ["g", "92%", "27%", -3, "Turnitin<br>→ ask IT"],
-    ["y", "65%", "52%", -8, "Kahoot! code<br>is on my phone"],
-    ["p", "82%", "55%", 5, "which email<br>did I use<br>for Padlet?"],
-    ["b", "58%", "24%", -4, "2FA → phone<br>→ which phone?"]
+    ["y", "72%", "2%", 3, '<b>passwords!!</b><br>Classroom: <s>Summer2020</s> Summer2020!<br>Schoology: <s>Tran123</s> <s>Tran1234</s> Tran1234!<br>Nearpod: reset AGAIN<br>Canva = same as Classroom??<br>Turnitin → ask IT<br>Kahoot! code is on my phone<br>which email did I use for Padlet?<br>2FA → phone → which phone?']
   ];
   function realCost(look, label) {
     var exhaust = look === "tabs"
