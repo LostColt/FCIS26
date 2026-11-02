@@ -894,8 +894,10 @@
 @media (prefers-reduced-motion:no-preference) {
  .reader-copy p { opacity:0; }
  .slide.is-active .reader-copy .reader-head { animation:reader-enter .7s ease-out 1.5s both; }
- .slide.is-active .reader-copy p:not(.reader-head) { animation:reader-enter .7s ease-out 3.1s both; }
- .slide.is-active .reader-copy p:last-child { animation-delay:4s; }
+ .slide.is-active .reader-copy p:not(.reader-head) { animation:reader-enter .7s ease-out 4s both; }
+ .reader-copy .mark { background-size:0% .38em; }
+ .slide.is-active .reader-copy .mark { animation:reader-highlight .5s ease-out 2.7s both; }
+ .slide.seen .reader-copy .mark { background-size:100% .38em; }
  .slide.seen .reader-copy p { opacity:1; transform:none; }
 }
 
@@ -915,3 +917,5 @@
  .whiteboard .question-cards { inset:0 0 5rem; gap:.45rem .55rem; }
  .question-card { font-size:clamp(1.15rem,4.5vw,1.65rem); padding:.3rem .45rem; }
 }
+
+@keyframes reader-highlight { to { background-size:100% .38em; } }

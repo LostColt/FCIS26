@@ -246,7 +246,6 @@
   add(5, 0,
     '<div class="reader-split"><div class="reader-copy">' +
     '<p class="reader-head"><span class="mark">Helping students</span> is what first drew me toward <span class="mark">technology</span>.</p>' +
-    '<p>I kept looking for different ways to help them learn.</p>' +
     '<p>I built a reader for a friend’s student who found listening easier than reading.</p>' +
     '</div><div class="reader-demo">' +
     D.tool("reader", "For a friend’s student", "A reader", "A library of texts to come back to. Each one is read aloud, with every word highlighted as it’s read, and it remembers where you stopped. Bigger text, calmer colors.") +
