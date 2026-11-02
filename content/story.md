@@ -170,7 +170,7 @@ I started asking it to build the tools I was already using. And the information 
 >
 > I build small tools to help me work better, faster, and be more present.
 >
-> (Between the two halves, mock notifications pile up and clear: Follow up with 3 families · Draft 2 feedback due today · Meeting moved to 1:40 · Where did I save that rubric? · Grade-level reports due Friday · Parent conference at 3:15 · Update the assessment calendar · Did you sign up for duty?)
+> (Sixteen mock notifications accumulate and scroll upward before holding on screen: Follow up with 3 families · Draft 2 feedback due today · Meeting moved to 1:40 · Where did I save that rubric? · Grade-level reports due Friday · Parent conference at 3:15 · Update the assessment calendar · Did you sign up for duty? · Department meeting · Lesson planning · Grading · Attendance corrections · Student check-in · Permission forms · Broken classroom link · Advisory prep.)
 
 ---
 
