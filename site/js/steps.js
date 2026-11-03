@@ -156,14 +156,14 @@
       '</div></div>' +
       '<div class="publish-demo-bottom">' +
       '<div class="publish-demo-explainer publish-demo-explainer--export"><span>01 / GEMINI CANVAS</span>' +
-      '<p>Open <strong>Export</strong> and choose <strong>Google Sites</strong>.</p></div>' +
+      '<p><strong>Export → Google Sites</strong></p></div>' +
       '<div class="publish-demo-explainer publish-demo-explainer--sites"><span>02 / GOOGLE SITES</span>' +
-      '<p>The site opens in an editor. Check the page, then select <strong>Publish</strong>.</p></div>' +
+      '<p><strong>Review → Publish</strong></p></div>' +
       '<div class="publish-demo-explainer publish-demo-explainer--live"><span>03 / PUBLISH AND CHECK</span>' +
-      '<p>Review access, publish the site, then open the published page.</p></div>' +
-      '<div class="publish-demo-context"><strong>Best demonstrated in school Google Workspace</strong> when Sites is enabled.' +
-      '<small>Personal accounts can look different. You can still look for Download code.</small>' +
-      '<a href="guide.html#share" target="_blank" rel="noopener">Detailed export guide</a></div>' +
+      '<p><strong>Publish → View site</strong></p></div>' +
+      '<div class="publish-demo-context"><strong>School Google Workspace</strong> · Sites enabled' +
+      '<small>Other accounts: look for Download code.</small>' +
+      '<a href="guide.html#share" target="_blank" rel="noopener">Instructions</a></div>' +
       '</div></div>', { id:"publish" });
 
     /* An existing practical example: keep the assessment dashboard for later review. */
