@@ -222,24 +222,19 @@ The line “Today, we’ll build in Gemini Canvas.” appears after the complete
 
 Project storage is not necessarily application-data storage; Gemini apps that save user data may use a separate service. The table is a simple conceptual map, not a claim that every project requires a database.
 
-**Slide 19: A conversation becomes a build — ONE continuously evolving slide**
+**Slide 19: One prompt, revealed in sections**
 > Start with what you want.
-> Ask Gemini to prompt itself.
-> Select Canvas. Then ask Gemini to build.
+> Ask Gemini to develop its own detailed instructions.
+> Use those instructions to build in Canvas.
 
-Use a two-column design: an illustrative but recognizable Gemini-style chat history on the left, an explanation of why each step matters on the right. The left chat **accumulates**, rather than swapping out the whole slide or simulating clicking Send.
+The two columns stay on one slide. Canvas mode is visibly **selected before submitting the prompt**. The left column contains just **one user message bubble**, not an invented dialogue or any fabricated Gemini response. Presenter swipes reveal the message in pieces: opening description of the particle HUD; a request for Gemini to draft more detailed instructions for itself; and the instruction to use that prompt to build in Canvas. The message remains continuous. The right column changes its short explanation as each new part is revealed.
 
-- Initial state: David's natural-language description of his futuristic particle HUD. Right: ordinary language is enough.
-- First NEXT/swipe: David asks Gemini to write a detailed prompt for itself; an **illustrative, explicitly labeled** abbreviated Gemini response appears underneath. Right: AI fills in technical details, which he can review.
-- Second NEXT/swipe: Canvas mode is shown as selected **before** the final message appears: “Now use the prompt you created. Build it in Canvas.” A clearly illustrative “Creating your first version…” status follows. Right: Canvas begins building.
-- Third NEXT/swipe: advance to the actual interactive HUD demonstration on slide 20.
-
-Do not imply these messages were actually sent during the talk, or that Gemini is running live on the presentation slide. The goal is to demonstrate David's process rather than teach prompt engineering. Avoid an extra Enter button or an extra “Generate” step.
+There are exactly two internal swipes. The third swipe advances to the existing working HUD. This visual is an illustrative prompt, not a record of a model responding. Full instructions and the entire copyable prompt belong on the companion resource page, not on the presentation screen.
 
 **Slide 20: A tangible outcome**
 > This is what an idea can become.
 
-David's uploaded interactive JARVIS HUD is displayed as an actual working HTML demo in an on-demand iframe. It has pointer-drag and click response. Source is an existing HTML upload; do not claim Gemini generated the exact file during the talk.
+The existing working JARVIS HUD remains interactive in its preview. The actions alongside it are **Copy code** (copies the actual checked-in HTML file), **Download HTML** (saves that file), and **Open app** (opens its working standalone view). These are practical fallbacks if attendees get different results. Do not suggest this is exactly what Gemini will generate from the illustrative prompt. The separate “How the build works” link was removed from the slide; instructions are in the resource guide.
 
 **Slide 21: Make it available**
 > From Canvas to a published site.
