@@ -1,6 +1,6 @@
 # Handoff: Stop Subscribing, Start Building
 
-**Read this first.** It's the front door for any assistant (Claude, ChatGPT, Antigravity/Gemini) picking up this project. It says how David works, what the deck is today, where everything lives, and what's still open. Last updated 2026-10-30 by Claude (network boundary clarified after COLLABORATION.md thread C-001).
+**Read this first.** It's the front door for any assistant (Claude, ChatGPT, Antigravity/Gemini) picking up this project. It says how David works, what the deck is today, where everything lives, and what's still open. Last updated 2026-11-03 by Claude (slides 21–28 polished at laptop size; slide 17 description corrected).
 
 ---
 
@@ -61,24 +61,24 @@ Each line: slide · what it says/does · how it moves. "Auto" means it plays by 
 16. Auto (~9s): "I have my own shortcomings, too." / "Things I struggle to organize, keep up with, or remember." while five notification cards pile up on the right (Reminders, Mail, Calendar, Notes, Messages; mock text), then they clear → "I build small tools to help me work better, faster, and be more present." → "I'm not trying to ship or sell an app. These are tools for me and people in my orbit."
 
 **6 · Build it** (teaches the shape, not the clicks: tools change, the shape doesn't)
-17. `#build` Auto (~9s): no heading, no list. Six familiar teacher thoughts drift in, scattered ("There has to be a better way to do this." "I make this same thing every year." "If it just did this one thing…" "My students always get lost right here." "I spend more time on the platform than with the kids." "I'd use it if it worked the way I work."), fade back, then "There has to be a better way to do this." comes forward large → "That thought is where building starts." → small link to `guide.html#questions` (new tab). The thoughts and that last line are Claude's words, offered to David to change.
+17. `#build` Auto (~9s): no heading. Eight question cards fan in, two columns by four rows ("Where do my students get stuck?" … "What can I simplify?"), then stay; "What is one small thing worth fixing?" sits along the bottom. The questions are Claude's wording and the fuller lists are in `guide.html#questions`.
 18. Auto: "Every build has the same shape." Prototype → Store → Host, one line each. "Buttons move. The shape doesn't."
 19. `#ways` Auto (1s pause, rows over 2s): "Three ways to do it." Grid: All in ChatGPT / Inside Google Workspace / Own it end to end (AI Studio, GitHub, Vercel), by Prototype, Store, Host; each row has "See the steps" → `guide.html`.
 20. `#dashboard` Auto: "A sheet you already keep can become a dashboard." A mini Google Sheet fills in → arrow → Assessment Calendar card.
 
 **7 · Before you build**
-21. "Build boldly. Not ~~carelessly~~." For you (checklist) and For your school (paid school accounts let the school see data, review with committees, decide; four questions: who owns the account, where the data lives, who reviews it, how we decide what we keep).
+21. "Build boldly. Not ~~carelessly~~." For you (four-item checklist: no student data unless the school approved the tool; check the content; name an owner; leave the gradebook and LMS alone) and For your school (a paid, school-managed account lets the school see the data, review it, decide; four questions: who owns the account, where the data lives, who reviews it, how we decide what we keep).
 
-**8 · Your turn** (not yet reviewed by David in this round)
+**8 · Your turn** (polished 2026-11-03; David hasn't reviewed it slide by slide yet)
 22. Press: "One small tool. Built in Gemini." → "Everyone builds at once. You'll leave with a link that works on your phone."
-23. `#gemini` Five steps in Gemini Canvas, share a link.
-24. `#prompts` Seven copyable prompts (flashcards, exit tickets, rubric check, slider simulation, your own idea, Apps Script from a sheet, change an HTML file).
-25. Swap with a neighbor.
+23. `#gemini` Five steps in Gemini Canvas, share a link. Two plain notes under it: a shared link is a snapshot and public; if Gemini or sharing is blocked, use a personal account or pair with a neighbor (that fallback line is Claude's wording).
+24. `#prompts` Four copyable prompts on the slide (flashcards, exit tickets, rubric check, your own idea), fitting one screen. All seven (plus slider simulation, Apps Script from a sheet, change an HTML file) are in `guide.html#prompts`.
+25. Swap with a neighbor (four lines, speaking size, serif).
 26. Press: "You just did what we ask students to do: try something, get feedback, revise." → "Build first. Then revise."
 
 **9 · Keep building** (not yet reviewed)
 27. Press: "Start small. It lives with you." → "One annoyance. One prompt. One colleague…"
-28. Everything in one place: links to the tools, the guide, the four tools from the talk, LinkedIn.
+28. Everything in one place: four columns (Build, The guide, The tools from the talk, Keep in touch), fits one laptop screen with no scrolling.
 
 Presenter controls: arrows, space, clicker, swipe; **Start over** button (and Home key) returns to the cover; Slides menu; F for full screen. Every slide has a link (`#15`) and some have names (`#reader`).
 
@@ -136,7 +136,9 @@ All four: one HTML file, sample content clearly invented and badged, saved in th
 ## 7. Open items
 
 - **ChatGPT Sites example** for the "All in ChatGPT" row: David may build one and share the link. `D.SITES` in `slides-a.js` is a leftover hook for ChatGPT Sites links; it's empty and nothing shows until a link is set.
-- **Slides 22–28 (Your turn, Keep building)** haven't had David's slide-by-slide review yet. Likely next.
+- **Slides 22–28 (Your turn, Keep building)** were polished on Nov 3 (laptop sizes only) but haven't had David's slide-by-slide review. Likely next.
+- **Workshop time and blocked accounts.** No timer on the Your turn slides (removed Oct 29), and some school accounts block Gemini or sharing. Slide 23 now says to use a personal account or pair up; David may want a time cue as well.
+- **Phone layout** is parked on purpose: present on a laptop, or ask people to turn phones sideways. Slide 20's card is cut off on a phone; slide 28 and the prompts were checked at laptop sizes only.
 - **Try the three Google setups** (tracker → Sheets, Script Room → Drive, dashboard → Sheets) on a real school account.
 - **Recheck `guide.html`** and the Gemini workshop steps the week before the session; these interfaces change often. Update the "Checked" date.
 - **Recheck tally prices** (`js/tally.js`) the week before.

@@ -201,13 +201,12 @@ But I wasn't trying to ship a product. I was trying to build smaller things. Wha
 
 ## 6. Build it (since 2026-10-30; "Update your software" and the step-by-step slides are gone)
 
-> (Thoughts drift in, not a list; Claude's wording, revised 2026-11-02:)
-> There has to be a better way to do this. · I make this same thing every year. · If it just did this one thing… · My students always get lost right here. · I spend more time on the platform than with the kids. · I'd use it if it worked the way I work.
+> (Slide 17, revised 2026-11-02: eight handwritten-style question cards fan in, then stay.)
+> Where do my students get stuck? · What takes my attention away? · What do I keep forgetting? · What am I doing over and over? · What could work differently? · What would help one student? · What takes too much time? · What can I simplify?
 >
-> There has to be a better way to do this.
-> That thought is where building starts.
+> What is one small thing worth fixing? (along the bottom)
 >
-> Questions to start with are in the guide.
+> The longer lists of questions are in the guide (`guide.html#questions`).
 
 > Every build has the same shape: Prototype → Store → Host. Buttons move. The shape doesn't.
 
@@ -223,11 +222,12 @@ But I wasn't trying to ship a product. I was trying to build smaller things. Wha
 > Build boldly. Not carelessly.
 
 **Door: Checklist**
-- No student names, grades or work in a prompt or an app unless your school has approved that tool for it.
-- Follow your school's policy. Ask your tech lead before, not after.
+- No student names, grades or work in a prompt or an app unless your school has approved the tool.
 - Check the content yourself. AI-built tools can be confidently wrong.
 - Name an owner. Who fixes it in June? If nobody, keep it small.
-- Keep the systems of record (your LMS, gradebook, student information system) where they are. Build the small, specific things around them.
+- Leave your gradebook and LMS where they are. Build the small things around them.
+
+(Trimmed 2026-11-03 to match the slide; "Ask your tech lead before, not after" came off the slide. The "For your school" side says: a paid, school-managed account lets the school see the data, review it, and decide together. Four questions: Who owns the account? Where does the data live? Who reviews it? How do we decide what we keep?)
 
 ---
 
@@ -245,7 +245,9 @@ But I wasn't trying to ship a product. I was trying to build smaller things. Wha
 4. Try it in the preview. Ask for one change.
 5. Share, copy the link, and open it on your phone.
 
-**Pick a prompt** (seven, each with a copy button; the text is in `site/js/slides-b.js`): flashcards, an exit-ticket randomizer, a rubric check, a slider simulation, your own idea (the fill-in template), a sheet you keep (Apps Script), and changing an HTML file.
+**Notes under the five steps (2026-11-03):** A shared link is a snapshot: after you change it, share again. Anyone with the link can open it, so keep student information out. *(Claude's words, for David to change:)* If Gemini or sharing is blocked on your school account, use a personal account, or pair up with a neighbor who can.
+
+**Pick a prompt** (four on the slide: flashcards, exit tickets, rubric check, your own idea; all seven, each with a copy button, are in `site/js/slides-b.js` and in the guide at `guide.html#prompts`): flashcards, an exit-ticket randomizer, a rubric check, a slider simulation, your own idea (the fill-in template), a sheet you keep (Apps Script), and changing an HTML file.
 
 **Swap:** send your link to a neighbor, use theirs like a student, suggest one fix, and they make it and share again.
 

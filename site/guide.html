@@ -86,6 +86,7 @@
     <li><a href="#google">Inside Google Workspace</a></li>
     <li><a href="#own-it">Own it end to end</a></li>
     <li><a href="#tools">The tools from the talk</a></li>
+    <li><a href="#prompts">All seven workshop prompts</a></li>
     <li><a href="#school">For your school</a></li>
   </ol></nav>
 
@@ -234,6 +235,51 @@ Don't collect names or any student data.<button class="btn" data-copy>Copy</butt
       <div><b>Reader</b><p>A library of texts, read aloud with each word highlighted. Bigger text, calmer colors.</p><a href="demos/reader.html">Open</a><a href="demos/reader.html" download>Download</a></div>
       <div><b>Assessment Calendar</b><p>A dashboard for a department's assessment sheet that flags crunch days.</p><a href="demos/dashboard.html">Open</a><a href="demos/dashboard.html" download>Download</a></div>
     </div>
+  </section>
+
+  <section id="prompts">
+    <h2>All seven workshop prompts</h2>
+    <p class="why">The same prompts from the Your turn slides. Copy one, fill in the brackets, and paste it into Gemini with Canvas on (or any chatbot you build in). The Apps Script prompt gets you the code; see <a href="#google">Inside Google Workspace</a> for pasting and deploying it.</p>
+    <h3>Flashcards</h3>
+    <div class="prompt" data-prompt>Build a one-page flashcard app for [unit] vocabulary.
+Show the word; tap to flip to the definition. Add Shuffle and Next buttons.
+Large, readable text. Works on a phone and a Chromebook.
+No login, no AI or API calls, and don't collect names or any student data.
+Start with these words, one per line, as word – definition:
+[your words]<button class="btn" data-copy>Copy</button></div>
+    <h3>Exit-ticket randomizer</h3>
+    <div class="prompt" data-prompt>Build a one-page exit-ticket randomizer.
+I paste my questions, one per line. A big button shows one at random, with no repeats until every question has come up.
+Big enough to read on a projector, with a full-screen button.
+Large, readable text. Works on a phone and a Chromebook.
+No login, no AI or API calls, and don't collect names or any student data.<button class="btn" data-copy>Copy</button></div>
+    <h3>Rubric check</h3>
+    <div class="prompt" data-prompt>Build a one-page checklist students use to check a draft against my rubric before they turn it in.
+Each criterion is a checkbox with one line on what it looks like. When everything is checked, show “Ready to turn in.” Nothing is saved or sent.
+Large, readable text. Works on a phone and a Chromebook.
+No login, no AI or API calls, and don't collect names or any student data.
+My rubric:
+[paste your criteria]<button class="btn" data-copy>Copy</button></div>
+    <h3>Slider simulation</h3>
+    <div class="prompt" data-prompt>Build a one-page simulation that shows [concept] in [subject].
+Give it sliders for [first variable] and [second variable], and a picture or chart that changes as they move, with one sentence saying what changed and why.
+Large, readable text. Works on a phone and a Chromebook.
+No login, no AI or API calls, and don't collect names or any student data.<button class="btn" data-copy>Copy</button></div>
+    <h3>Your own idea</h3>
+    <div class="prompt" data-prompt>I teach [grade and subject]. My students struggle with [the problem].
+Build a one-page app where they [what they do].
+It must work on a Chromebook, need no login, and use large, readable text.
+Make it work without any AI or API calls.
+Don't collect names or any student data.<button class="btn" data-copy>Copy</button></div>
+    <h3>A sheet you keep (Apps Script)</h3>
+    <div class="prompt" data-prompt>I have a Google Sheet called [name] with these columns: [column names].
+Write a Google Apps Script web app that shows it as [a board grouped by week / a sign-up list / a duty schedule].
+Give me two files, Code.gs and Index.html, and step-by-step instructions: where to paste each one under Extensions → Apps Script, and how to deploy it as a web app that only people in my school can open.
+Don't ask me to paste any real data.<button class="btn" data-copy>Copy</button></div>
+    <h3>Change an HTML file</h3>
+    <div class="prompt" data-prompt>Here is an HTML file. Keep everything that works, and change it so [your change].
+Give me the whole file back, ready to open.
+[paste the HTML]<button class="btn" data-copy>Copy</button></div>
   </section>
 
   <section id="school">

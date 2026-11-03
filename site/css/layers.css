@@ -919,3 +919,35 @@
 }
 
 @keyframes reader-highlight { to { background-size:100% .38em; } }
+
+/* Slides 21–28 polish (Nov 3): readable notes, one-screen prompts, speaking-size Swap, four-column links.
+   .slide-note replaces the old .note on the Your turn slides, which borrowed the handwritten sticky-note style. */
+.practical .slide-note { font-family: var(--sans); font-size: clamp(1.05rem, 1.45vw, 1.3rem); line-height: 1.5; color: var(--ink); margin: 0.9rem 0 0; max-width: 46rem; }
+.practical.wide .slide-note { max-width: none; color: var(--ink-soft); }
+.care-slide .checklist { font-size: clamp(1.05rem, 1.35vw, 1.3rem); }
+.care-slide .checklist li { padding: 0.6rem 0; }
+.care-slide .care-lede { font-size: clamp(1.05rem, 1.35vw, 1.3rem); }
+.prompt-menu { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.prompt-menu .prompt-box pre { font-size: clamp(0.85rem, 1.05vw, 1rem); }
+.practical.swap { max-width: 64rem; }
+.practical.swap ol.big-steps { font-family: var(--serif); font-size: clamp(1.5rem, 2.5vw, 2.3rem); line-height: 1.3; margin-top: 1.6rem; }
+.practical.swap .big-steps li { margin-bottom: 1.1rem; }
+.place-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 clamp(1.2rem, 2.5vw, 2.5rem); margin-top: 1.2rem; }
+.place-grid section { border: 0; margin: 0; padding: 0; }
+.place-grid h3 { font-family: var(--sans); font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 0.4rem; }
+.place-grid .linklist { grid-template-columns: 1fr; margin: 0 0 1.1rem; gap: 0; }
+.place-grid .linklist a { padding: 0.45rem 0; }
+.place-grid p { margin: 0 0 0.7rem; }
+@media (max-width: 1000px) {
+  .place-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .prompt-menu { grid-template-columns: 1fr; }
+}
+/* Slide 24: Copy button in the corner so four prompts and the footnote fit one screen */
+.prompt-menu { gap: 0.9rem 1.5rem; margin-bottom: 0.4rem; }
+.prompt-menu .prompt-box { margin: 0.4rem 0 0; }
+.prompt-menu .prompt-box pre { padding: 0.8rem 6.6rem 0.8rem 1rem; }
+.prompt-menu .prompt-box .copy { top: 0.55rem; bottom: auto; }
+.prompt-menu h3 { margin-bottom: 0; }
+.prompt-menu .prompt-box pre { font-size: 0.85rem; line-height: 1.4; padding: 0.7rem 6.2rem 0.7rem 0.9rem; }
+.practical.wide .sub { margin-bottom: 0.8rem; }
+.prompt-menu .prompt-box pre { padding-right: 8rem; }

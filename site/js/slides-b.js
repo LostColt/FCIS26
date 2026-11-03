@@ -11,13 +11,13 @@
 
   /* 7 · Before you build: for you, and for your school */
   add(7, 0,
-    '<div class="practical wide"><p class="big" style="font-size:clamp(2rem,4.4vw,3.8rem);max-width:none">Build boldly. Not <span class="strike auto">carelessly</span>.</p>' +
+    '<div class="practical wide care-slide"><p class="big" style="font-size:clamp(2rem,4.4vw,3.8rem);max-width:none">Build boldly. Not <span class="strike auto">carelessly</span>.</p>' +
     '<div class="care"><section><h3>For you</h3><ul class="checklist">' +
-    "<li>No student names, grades or work in a prompt or an app unless your school has approved that tool for it.</li>" +
+    "<li>No student names, grades or work in a prompt or an app unless your school has approved the tool.</li>" +
     "<li>Check the content yourself. AI-built tools can be confidently wrong.</li>" +
     "<li>Name an owner. Who fixes it in June? If nobody, keep it small.</li>" +
-    "<li>Keep the systems of record (LMS, gradebook, student information system) where they are. Build the small things around them.</li>" +
-    '</ul></section><section><h3>For your school</h3><p class="care-lede">A school-managed, paid account means the school can see the data, review it with committees, and decide together.</p><ol class="questions">' +
+    "<li>Leave your gradebook and LMS where they are. Build the small things around them.</li>" +
+    '</ul></section><section><h3>For your school</h3><p class="care-lede">A paid, school-managed account lets the school see the data, review it, and decide together.</p><ol class="questions">' +
     "<li>Who owns the account?</li><li>Where does the data live?</li><li>Who reviews it?</li><li>How do we decide what we keep?</li>" +
     "</ol></section></div></div>", { scroll: true });
 
@@ -44,15 +44,18 @@
     "<li>Pick a prompt on the next slide. Copy it, fill in the brackets, and send it.</li>" +
     "<li>Try it in the preview, like a student would. Ask for one change: “Make the buttons bigger.”</li>" +
     "<li>Choose " + ui("Share") + ", copy the link, and open it on your phone.</li></ol>" +
-    '<p class="note">A shared link is a snapshot: after you change it, share again. Anyone with the link can open it, so keep student information out. If your school has turned sharing off, a personal account works for practice. On a school account you may also see ' + ui("Share to Classroom") + ".</p></div>",
+    '<p class="slide-note"><b>A shared link is a snapshot: after you change it, share again.</b> Anyone with the link can open it, so keep student information out.</p>' +
+    '<p class="slide-note">If Gemini or sharing is blocked on your school account, use a personal account, or pair up with a neighbor who can. On a school account you may also see ' + ui("Share to Classroom") + ".</p></div>",
     { scroll: true, id: "gemini" });
+  /* Four on the slide so it fits one screen; all seven are in the guide (#prompts). */
+  var FEATURED = [0, 1, 2, 4].map(function (i) { return PROMPTS[i]; });
   add(8, 0,
     '<div class="practical wide"><h2>Pick a prompt</h2><p class="sub">Copy one, fill in the brackets, paste it into Gemini with Canvas on.</p><div class="prompt-menu">' +
-    PROMPTS.map(function (p) { return "<section><h3>" + p[0] + "</h3>" + box(p[1]) + "</section>"; }).join("") +
-    '</div><p class="note">The Apps Script prompt gets you the code; the tool runs in your sheet. The guide shows how to paste and deploy it: <a href="guide.html#google" target="_blank" rel="noopener">Inside Google Workspace</a>.</p></div>',
+    FEATURED.map(function (p) { return "<section><h3>" + p[0] + "</h3>" + box(p[1]) + "</section>"; }).join("") +
+    '</div><p class="slide-note">Three more are in <a href="guide.html#prompts" target="_blank" rel="noopener">the guide</a>: a slider simulation, a sheet you keep (Apps Script), and changing an HTML file.</p></div>',
     { scroll: true, id: "prompts" });
   add(8, 0,
-    '<div class="practical"><h2>Swap</h2><ol class="big-steps">' +
+    '<div class="practical swap"><h2>Swap</h2><ol class="big-steps">' +
     "<li>Send your link to a neighbor. Open theirs.</li>" +
     "<li>Use it like a student. Try to break it.</li>" +
     "<li>Tell them one thing that would make it work in a real class.</li>" +
@@ -69,18 +72,18 @@
     .filter(function (t) { return D.SITES[t[0]]; })
     .map(function (t) { return "<li>" + link(D.SITES[t[0]], t[1]) + "</li>"; }).join("");
   add(9, 0,
-    '<div class="practical"><h2>Everything in one place</h2><h3>Build</h3><ul class="linklist">' +
+    '<div class="practical wide"><h2>Everything in one place</h2><div class="place-grid"><section><h3>Build</h3><ul class="linklist">' +
     "<li>" + link("https://gemini.google.com", "Google Gemini (Canvas)") + "</li>" +
     "<li>" + link("https://aistudio.google.com", "Google AI Studio") + "</li>" +
     "<li>" + link("https://chatgpt.com/features/sites/", "ChatGPT Sites") + "</li>" +
     "<li>" + link("https://script.google.com", "Google Apps Script") + "</li>" +
     "<li>" + link("https://developers.google.com/apps-script/guides/web", "Apps Script web apps, Google’s guide") + "</li>" +
-    "<li>" + link("https://github.com", "GitHub") + "</li><li>" + link("https://vercel.com", "Vercel") + "</li></ul>" +
-    '<h3>The guide</h3><ul class="linklist"><li><a href="guide.html" target="_blank" rel="noopener">Build it: the guide</a></li><li><a href="guide.html#chatgpt" target="_blank" rel="noopener">All in ChatGPT</a></li>' +
-    '<li><a href="guide.html#google" target="_blank" rel="noopener">Inside Google Workspace</a></li><li><a href="guide.html#own-it" target="_blank" rel="noopener">Own it end to end</a></li><li><a href="#prompts">All the workshop prompts</a></li></ul>' +
-    '<h3>The tools from the talk</h3><ul class="linklist"><li><a href="demos/tracker.html" target="_blank" rel="noopener">Meeting tracker</a></li><li><a href="demos/screenplay.html" target="_blank" rel="noopener">Script Room</a></li>' +
+    "<li>" + link("https://github.com", "GitHub") + "</li><li>" + link("https://vercel.com", "Vercel") + "</li></ul></section>" +
+    '<section><h3>The guide</h3><ul class="linklist"><li><a href="guide.html" target="_blank" rel="noopener">Build it: the guide</a></li><li><a href="guide.html#chatgpt" target="_blank" rel="noopener">All in ChatGPT</a></li>' +
+    '<li><a href="guide.html#google" target="_blank" rel="noopener">Inside Google Workspace</a></li><li><a href="guide.html#own-it" target="_blank" rel="noopener">Own it end to end</a></li><li><a href="guide.html#prompts" target="_blank" rel="noopener">All seven prompts</a></li></ul></section>' +
+    '<section><h3>The tools from the talk</h3><ul class="linklist"><li><a href="demos/tracker.html" target="_blank" rel="noopener">Meeting tracker</a></li><li><a href="demos/screenplay.html" target="_blank" rel="noopener">Script Room</a></li>' +
     '<li><a href="demos/reader.html" target="_blank" rel="noopener">Reader</a></li><li><a href="demos/dashboard.html" target="_blank" rel="noopener">Assessment Calendar</a></li></ul>' +
-    (mine ? '<h3>What I built</h3><ul class="linklist">' + mine + "</ul>" : "") +
-    '<h3>Keep in touch</h3><p>David Tran, AI Learning and Teaching Specialist, Gulliver Prep, Miami, FL<br>' + link("https://www.linkedin.com/in/david-t-04864734", "Connect with me on LinkedIn") + "</p></div>",
+    (mine ? '<h3>What I built</h3><ul class="linklist">' + mine + "</ul>" : "") + "</section>" +
+    '<section><h3>Keep in touch</h3><p>David Tran<br>AI Learning and Teaching Specialist<br>Gulliver Prep, Miami, FL</p><p>' + link("https://www.linkedin.com/in/david-t-04864734", "Connect with me on LinkedIn") + "</p></section></div></div>",
     { scroll: true });
 })();
