@@ -68,19 +68,19 @@
 
     /* Slide 19: ONE prompt, not a simulation of Gemini answering.
        Presenter swipes reveal parts of the SAME user message, with the explanation alongside.
-       Canvas is shown selected before the user prompt is sent. */
+       Canvas selection is visibly animated first; each prompt paragraph types on demand. */
     add(6, 2,
       '<div class="conversation-scene conversation-scene--single-prompt">' +
       '<div class="conversation-left">' +
       '<div class="conversation-browser"><span class="conversation-eyebrow">ONE PROMPT · REVEALED IN PARTS</span>' +
       '<span class="conversation-brand"><span class="conversation-sparkle" aria-hidden="true">✦</span> Gemini</span>' +
-      '<span class="conversation-progress">Canvas <span class="conversation-mode-on">SELECTED</span></span></div>' +
+      '<span class="conversation-progress"><span class="conversation-canvas-button" aria-label="Canvas selection illustrated">Canvas <span class="conversation-mode-on">SELECTED</span></span></span></div>' +
       '<div class="conversation-history" aria-label="One continuous user prompt; additional paragraphs appear with each presenter swipe">' +
       '<div class="conversation-message conversation-user conversation-single-message">' +
       '<span class="conversation-speaker">ONE MESSAGE · YOU TO GEMINI</span>' +
-      '<p class="conversation-prompt-part conversation-prompt-part--idea">I want a futuristic interface with a moving particle shape in the middle. I want to move it with my mouse and see computer panels around it.</p>' +
-      '<p class="conversation-prompt-part conversation-prompt-part--self" data-step="1">Turn what I just described into a detailed build prompt for yourself. Include the design, movement, interactions, and things I might have missed.</p>' +
-      '<p class="conversation-prompt-part conversation-prompt-part--build" data-step="2">Then use that prompt to build the application in Canvas.</p>' +
+      '<p class="conversation-prompt-part conversation-prompt-part--idea" data-prompt-type>I want a futuristic interface with a moving particle shape in the middle. I want to move it with my mouse and see computer panels around it.</p>' +
+      '<p class="conversation-prompt-part conversation-prompt-part--self" data-step="1" data-prompt-type>Turn what I just described into a detailed build prompt for yourself. Include the design, movement, interactions, and things I might have missed.</p>' +
+      '<p class="conversation-prompt-part conversation-prompt-part--build" data-step="2" data-prompt-type>Then use that prompt to build the application in Canvas.</p>' +
       '</div></div>' +
       '<div class="conversation-footer"><span>ONE ILLUSTRATIVE USER PROMPT · NO GENERATED REPLY</span><span>CANVAS SELECTED FIRST</span></div>' +
       '</div>' +

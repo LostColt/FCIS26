@@ -1816,3 +1816,151 @@
   font:400 .83rem/1.3 var(--sans);
   color:var(--ink-soft);
 }
+
+
+/* Slide 19 projector/smart-screen QA: fit full message and animate Canvas selection.
+   Keep one continuous bubble; paragraph breaks, not decorative divider lines. */
+.conversation-scene--single-prompt {
+  height:min(68vh,570px);
+  min-height:0;
+  align-items:stretch;
+  grid-template-columns:minmax(0,1fr) minmax(0,.94fr);
+  column-gap:clamp(30px,4vw,66px);
+}
+.conversation-scene--single-prompt .conversation-left {
+  height:100%;
+  min-height:0;
+  max-height:100%;
+}
+.conversation-scene--single-prompt .conversation-browser {
+  min-height:68px;
+  flex-basis:68px;
+  padding:10px 16px;
+}
+.conversation-scene--single-prompt .conversation-history {
+  min-height:0;
+  flex:1 1 0;
+  padding:clamp(10px,1.5vh,16px);
+  overscroll-behavior:contain;
+}
+.conversation-scene--single-prompt .conversation-single-message {
+  padding:clamp(13px,1.4vw,20px);
+  border-radius:14px 14px 4px 14px;
+}
+.conversation-scene--single-prompt .conversation-single-message .conversation-speaker {
+  margin-bottom:12px;
+}
+.conversation-scene--single-prompt .conversation-prompt-part {
+  font-size:clamp(.94rem,1.23vw,1.2rem);
+  line-height:1.38;
+}
+.conversation-scene--single-prompt .conversation-prompt-part + .conversation-prompt-part {
+  /* The next paragraph is part of the SAME message, with a natural blank line. */
+  margin-top:1.1em;
+  padding-top:0;
+  border-top:0;
+}
+.conversation-scene--single-prompt .conversation-footer {
+  min-height:24px;
+  height:24px;
+  flex-basis:24px;
+  padding:0 12px;
+}
+.conversation-scene--single-prompt .conversation-right {
+  min-height:0;
+  height:100%;
+}
+.conversation-scene--single-prompt .conversation-right-kicker {
+  margin-bottom:clamp(15px,3vh,32px);
+}
+.conversation-scene--single-prompt .conversation-explanation {
+  min-height:0;
+  gap:clamp(9px,1.9vh,17px);
+}
+.conversation-scene--single-prompt .conversation-explanation h2 {
+  font-size:clamp(2.15rem,3.4vw,3.35rem);
+}
+.conversation-scene--single-prompt .conversation-explanation p {
+  font-size:clamp(1.05rem,1.45vw,1.33rem);
+}
+.conversation-scene--single-prompt .conversation-takeaway {
+  margin-top:clamp(13px,2.5vh,24px);
+}
+/* Noticeable Canvas button press before the first prompt begins typing. */
+.conversation-scene--single-prompt .conversation-canvas-button {
+  display:inline-flex;
+  align-items:center;
+  padding:6px 9px;
+  gap:5px;
+  border-radius:999px;
+  position:relative;
+  isolation:isolate;
+  border:1px solid #c6d0cc;
+  background:#fbfcfa;
+  color:#62717a;
+  font:600 .79rem/1 var(--sans);
+}
+.conversation-scene--single-prompt .conversation-canvas-button .conversation-mode-on {
+  display:inline-block;
+  margin-left:2px;
+  padding:4px 6px;
+  font-size:.58rem;
+}
+@media(prefers-reduced-motion:no-preference) {
+  .slide.is-active .conversation-scene--single-prompt .conversation-canvas-button {
+    animation:canvas-button-press .95s ease-in-out both .18s;
+  }
+  .slide.is-active .conversation-scene--single-prompt .conversation-canvas-button::after {
+    content:"";
+    position:absolute;
+    width:9px;height:14px;
+    left:50%;top:65%;
+    background:#213844;
+    clip-path:polygon(0 0,100% 60%,55% 65%,80% 100%,61% 100%,38% 70%,0 100%);
+    z-index:3;
+    filter:drop-shadow(1px 1px 0 white);
+    animation:canvas-pointer-click 1s ease both .1s;
+  }
+  .slide.is-active .conversation-scene--single-prompt .conversation-mode-on {
+    animation:canvas-selected-ink .65s ease both .63s;
+  }
+}
+@keyframes canvas-button-press {
+  0%,40%{background:#fbfcfa;border-color:#c6d0cc;transform:scale(1);}
+  58%{background:#d7eadf;border-color:#527c6d;transform:scale(.94);}
+  100%{background:#e0eee7;border-color:#4f846c;transform:scale(1);}
+}
+@keyframes canvas-pointer-click {
+  0%{opacity:0;transform:translate(18px,20px);}
+  24%{opacity:1;transform:translate(7px,8px);}
+  50%{opacity:1;transform:translate(0,0) scale(.91);}
+  78%,100%{opacity:0;transform:translate(-5px,-5px);}
+}
+@keyframes canvas-selected-ink {
+  0%,25%{opacity:0;transform:scale(.85);}
+  100%{opacity:1;transform:scale(1);}
+}
+@media(prefers-reduced-motion:reduce) {
+  .conversation-scene--single-prompt .conversation-canvas-button {
+    background:#e0eee7;border-color:#4f846c;
+  }
+}
+@media(max-width:1050px) and (min-width:761px) {
+  .conversation-scene--single-prompt {column-gap:20px;}
+  .conversation-scene--single-prompt .conversation-prompt-part {font-size:clamp(.91rem,1.3vw,1.1rem);}
+  .conversation-scene--single-prompt .conversation-explanation h2 {font-size:clamp(1.9rem,3vw,2.55rem);}
+}
+@media(max-height:750px) and (min-width:761px) {
+  .conversation-scene--single-prompt {height:min(68vh,495px);}
+  .conversation-scene--single-prompt .conversation-browser {min-height:59px;flex-basis:59px;}
+  .conversation-scene--single-prompt .conversation-single-message {padding:12px 15px;}
+  .conversation-scene--single-prompt .conversation-prompt-part {line-height:1.3;}
+  .conversation-scene--single-prompt .conversation-prompt-part + .conversation-prompt-part {margin-top:.82em;}
+  .conversation-scene--single-prompt .conversation-explanation p {font-size:clamp(.97rem,1.3vw,1.2rem);}
+}
+@media(max-width:760px) {
+  .conversation-scene--single-prompt {height:auto;display:flex;flex-direction:column;gap:14px;}
+  .conversation-scene--single-prompt .conversation-left {height:auto;max-height:none;min-height:0;overflow:visible;}
+  .conversation-scene--single-prompt .conversation-history {overflow:visible;}
+  .conversation-scene--single-prompt .conversation-right {height:auto;}
+}
