@@ -203,56 +203,46 @@ But I wasn't trying to ship a product. I was trying to build smaller things. Wha
 
 **Slide 17:** The same eight reflection questions from the prior pass. Do not change.
 
-**Slide 18: Anatomy of a small tool — lower position**
+**Slide 18: Three parts become three routes — ONE continuous slide**
 > Three parts. One idea.
 > Interface — what people use.
 > Storage — what gets kept.
 > Hosting — where people open it.
-> These parts can live together or in different places.
 
-The three connected parts arrive sequentially in the lower portion of the slide.
+Begin with three large, open editorial title shapes that introduce the architecture. **Hold for roughly three seconds.** Those same headings then rise to the top without changing slides. Below, the examples assemble in three visibly different forms:
 
-**Slide 19: Three columns rise and the build routes stack**
-> The same three parts, different tools.
+- Gemini: connected, cut-corner modules — Gemini Canvas / Google Sites draft / Google Sites.
+- ChatGPT Sites: one continuous ribbon spanning the three columns — build, keep, and publish in the same integrated service (eligible subscription).
+- Advanced: four smaller coding tools (AI Studio, Claude Code, Codex, Antigravity) visually converge toward GitHub (code/version history) and Vercel (hosting).
 
-The previous three-part framework appears to rise into the top row as three **column headings**: Interface / Storage / Hosting. Three full rows stack below, one after another, aligned across all columns:
+Finish by emphasizing Gemini Canvas, which is the first live demonstration. Keep the distinction between **project storage** and optional persistent **app data**; a Google Sites draft is not the database for every Gemini-generated application. The arrangement should look more like the first 17 slides' varied editorial design than an ordinary three-column software dashboard.
 
-| Approach | Interface | Storage | Hosting |
-|---|---|---|---|
-| Gemini | Gemini Canvas | Google Sites draft | Google Sites |
-| ChatGPT Sites | ChatGPT Sites | Managed with the site | ChatGPT Sites |
-| Coding tools | AI Studio / Claude Code / Codex / Antigravity | GitHub (source code) | Vercel |
-
-Notes explicitly distinguish project/code storage from optional **app data**. Google Sites drafts follow Google Drive and Sites policies; that does not make Drive the persistent backend of every Gemini Canvas app. Canvas app data, if enabled, may be stored separately (for example Firebase). Some tools do not require any persistent app data.
-
-Each row animates into place across the three columns; Gemini is highlighted. Final focus: “We’ll build the first example in Gemini Canvas.”
-
-**Slide 20: My ordinary request**
+**Slide 19: My ordinary request**
 > Start with an idea.
 
 David asks for a futuristic HUD with an interactive particle structure. His actual teaching method begins with normal language, not a prompt-engineering lesson.
 
-**Slide 21: Ask Gemini to prompt itself**
+**Slide 20: Ask Gemini to prompt itself**
 > Let it do the technical thinking.
 
 David asks Gemini to translate his request into a more detailed prompt for itself. The visible sample expansion is illustrative, not a verbatim Gemini response. David can correct what it misunderstands.
 
-**Slide 22: Use the generated prompt**
+**Slide 21: Use the generated prompt**
 > Now build it.
 
 David asks Gemini to use the prompt it wrote in Canvas. A small staged preview assembles; this is illustrative, not a live API call.
 
-**Slide 23: A tangible outcome**
+**Slide 22: A tangible outcome**
 > This is what an idea can become.
 
 David's uploaded interactive JARVIS HUD is displayed as an actual working HTML demo in an on-demand iframe. It has pointer-drag and click response. Source is an existing HTML upload; do not claim Gemini generated the exact file during the talk.
 
-**Slide 24: Make it available**
+**Slide 23: Make it available**
 > From Canvas to a published site.
 
 Animated steps: Canvas → Export to Google Sites (creates a private draft) → Publish → open the finished site. Confirm account permissions and audience settings. This direct integration was announced October 19, 2026.
 
-**Slide 25:** The existing sample Google Sheet → Assessment Calendar example. Keep for the later review of other tool pathways.
+**Slide 24:** The existing sample Google Sheet → Assessment Calendar example. Keep for the later review of other tool pathways.
 
 ---
 
@@ -264,7 +254,7 @@ Retain the current safety slide: student privacy, teacher fact-checking, steward
 
 ---
 
-## 8. Your turn (slides 27–29 unchanged this pass)
+## 8. Your turn (slides 26–28 unchanged this pass)
 
 **Classroom examples:** Four featured starter prompts on the slide; the linked `site/prompt-library.html` has 20 filterable and copyable prompts from Pre-K–12, with reading-support adaptations. Broader disciplines appear in the library rather than extra slides.
 
@@ -280,7 +270,7 @@ Participants can make one simple tool or examine a sample, suggest a change and 
 
 ---
 
-## 9. Keep building (slides 30–31 unchanged this pass)
+## 9. Keep building (slides 29–30 unchanged this pass)
 
 > Start small. Keep changing it.
 

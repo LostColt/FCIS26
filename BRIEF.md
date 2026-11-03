@@ -44,7 +44,7 @@ The live presentation has an updated second half after slide 17. The new sequenc
 
 ## November 3 — motion and prompting revision
 
-Slides 18–24 now restore the three-part Interface / Storage / Hosting explanation, then transition to three tool pathways and a Gemini Canvas demonstration of David's actual approach: describe what he wants, ask Gemini to write its own prompt, then use that prompt to build and revise. The supplied interactive HUD is shown as an existing working example; export to a private Google Sites draft and publish follow on the next slide. Google announced this direct export on October 19, 2026. See `content/story.md`, `HANDOFF.md` and `reviews/2026-11-03-slide18-motion-rebuild.md`. Slides 1–17 and the later workshop/closing section remain unchanged aside from renumbering. Target is still 55 minutes.
+Slide 18 now contains the entire three-part Interface / Storage / Hosting sequence and transitions internally into the three pathways. Slides 19–23 then demonstrate David's actual approach: describe what he wants, ask Gemini to write its own prompt, then use that prompt to build and revise. The supplied interactive HUD is shown as an existing working example; export to a private Google Sites draft and publish follow on the next slide. Google announced this direct export on October 19, 2026. See `content/story.md`, `HANDOFF.md` and `reviews/2026-11-03-slide18-motion-rebuild.md`. Slides 1–17 and the later workshop/closing section remain unchanged aside from renumbering. Target is still 55 minutes.
 
 ## 4. The story structure
 
