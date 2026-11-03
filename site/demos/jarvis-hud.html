@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive particle HUD — FCIS classroom demonstration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Demo built from the user-provided original; online font and utility CSS require network access. -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #050914; /* Deep space blue/black */
+            overflow: hidden;
+            font-family: 'Share Tech Mono', monospace;
+            color: #00f3ff;
+            user-select: none;
+        }
+
+        #hud-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        canvas {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            cursor: grab;
+        }
+
+        canvas:active {
+            cursor: grabbing;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 5px rgba(0, 243, 255, 0.5), 0 0 10px rgba(0, 243, 255, 0.3);
+        }
+
+        .panel {
+            background: rgba(0, 20, 40, 0.3);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 8px;
+            backdrop-filter: blur(4px);
+            box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.05);
+        }
+
+        .terminal-line {
+            opacity: 0;
+            animation: fadeIn 0.2s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Scanline effect */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0,0,0,0.1) 50%,
+                rgba(0,0,0,0.1)
+            );
+            background-size: 100% 4px;
+            z-index: 50;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Canvas for 3D Fluid Particle Core -->
+    <canvas id="coreCanvas"></canvas>
+    
+    <!-- Scanline Overlay -->
+    <div class="scanlines"></div>
+
+    <!-- HUD Elements Container -->
+    <div id="hud-container" class="p-6 flex flex-col justify-between">
+        
+        <!-- Top Section -->
+        <div class="flex justify-between items-start w-full">
+            <!-- Top Left: Diagnostics -->
+            <div class="panel p-4 w-64">
+                <div class="text-xs tracking-widest text-cyan-200 opacity-70 mb-2 border-b border-cyan-800 pb-1">SYSTEM DIAGNOSTICS</div>
+                <div class="flex justify-between mb-1">
+                    <span>CPU LOAD</span>
+                    <span id="cpu-load">24%</span>
+                </div>
+                <div class="w-full bg-cyan-950 h-1 mb-3">
+                    <div id="cpu-bar" class="bg-cyan-400 h-1" style="width: 24%"></div>
+                </div>
+                
+                <div class="flex justify-between mb-1">
+                    <span>MEMORY ALLOC</span>
+                    <span id="mem-load">4,096 MB</span>
+                </div>
+                <div class="w-full bg-cyan-950 h-1 mb-3">
+                    <div id="mem-bar" class="bg-cyan-400 h-1" style="width: 65%"></div>
+                </div>
+
+                <div class="flex justify-between mb-1">
+                    <span>CORE TEMP</span>
+                    <span id="temp-load">42°C</span>
+                </div>
+                <div class="w-full bg-cyan-950 h-1">
+                    <div id="temp-bar" class="bg-cyan-400 h-1" style="width: 40%"></div>
+                </div>
+            </div>
+
+            <!-- Top Right: Location & Status -->
+            <div class="panel p-4 w-64 text-right">
+                <div class="text-xs tracking-widest text-cyan-200 opacity-70 mb-2 border-b border-cyan-800 pb-1">ENVIRONMENT</div>
+                <div class="text-lg glow-text mb-1" id="clock">00:00:00</div>
+                <div class="text-sm opacity-80" id="date-display">DATE</div>
+                <div class="mt-4 text-xs text-cyan-300">
+                    LOC: DEMO ENVIRONMENT<br>
+                    MODE: INTERACTIVE PREVIEW<br>
+                    NET: SECURE SEC-7
+                </div>
+                <div class="mt-2 text-green-400 animate-pulse text-sm font-bold">
+                    SYSTEM ONLINE
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Section (Targeting reticle / data points) -->
+        <div class="flex-grow flex items-center justify-between pointer-events-none px-10">
+            <!-- Left Data Stream -->
+            <div class="text-xs opacity-50 space-y-1 w-32" id="left-stream">
+                <!-- Populated by JS -->
+            </div>
+            
+            <!-- Right Data Stream -->
+            <div class="text-xs opacity-50 space-y-1 w-32 text-right" id="right-stream">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- Bottom Section -->
+        <div class="flex justify-between items-end w-full">
+            <!-- Bottom Left: Clean System Protocol Logs -->
+            <div class="panel p-4 w-80 h-48 overflow-hidden relative flex flex-col justify-between">
+                <div class="text-xs tracking-widest text-cyan-200 opacity-70 mb-2 border-b border-cyan-800 pb-1">PROTOCOL LOGS</div>
+                <div id="terminal-output" class="text-xs space-y-1 h-36 overflow-hidden flex flex-col justify-end">
+                    <!-- System logs go here -->
+                </div>
+            </div>
+
+            <!-- Bottom Right: Module Status -->
+            <div class="panel p-4 w-64 text-sm space-y-2">
+                <div class="text-xs tracking-widest text-cyan-200 opacity-70 mb-2 border-b border-cyan-800 pb-1">MODULES</div>
+                <div class="flex items-center justify-between">
+                    <span>SECURITY</span>
+                    <span class="text-green-400">[ACTIVE]</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span>DEFENSE NETWORK</span>
+                    <span class="text-green-400">[ACTIVE]</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span>SATELLITE UPLINK</span>
+                    <span class="text-yellow-400 animate-pulse">[SYNCING]</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span>POWER GRID</span>
+                    <span class="text-green-400">[NOMINAL]</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- 3D FLUID & FRACTURING PARTICLE CORE ---
+        const canvas = document.getElementById('coreCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let cx, cy;
+        let time = 0;
+        let mouseX = 0, mouseY = 0;
+        let mouseScreenX = -1000, mouseScreenY = -1000;
+        let prevMouseScreenX = -1000, prevMouseScreenY = -1000;
+        let mouseVelX = 0, mouseVelY = 0;
+        let burstForce = 0;
+        let rotX = 0, rotY = 0;
+
+        // Grab & Drag Physics State
+        let isDragging = false;
+        let dragStartX = 0, dragStartY = 0;
+        let lastMouseX = 0, lastMouseY = 0;
+        let coreOffsetX = 0, coreOffsetY = 0;
+        let coreVelX = 0, coreVelY = 0;
+        let dragRotX = 0, dragRotY = 0;
+        let dragRotVelX = 0, dragRotVelY = 0;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            cx = canvas.width / 2;
+            cy = canvas.height / 2;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+
+        function handlePointerDown(x, y) {
+            isDragging = true;
+            dragStartX = x;
+            dragStartY = y;
+            lastMouseX = x;
+            lastMouseY = y;
+            mouseScreenX = x;
+            mouseScreenY = y;
+        }
+
+        function handlePointerMove(x, y) {
+            mouseX = (x - cx) / cx;
+            mouseY = (y - cy) / cy;
+            
+            // Calculate cursor velocity for physical sand impact
+            if (prevMouseScreenX > -500) {
+                mouseVelX = (x - prevMouseScreenX) * 0.75;
+                mouseVelY = (y - prevMouseScreenY) * 0.75;
+            }
+            prevMouseScreenX = mouseScreenX;
+            prevMouseScreenY = mouseScreenY;
+            mouseScreenX = x;
+            mouseScreenY = y;
+
+            if (isDragging) {
+                const dx = x - lastMouseX;
+                const dy = y - lastMouseY;
+                
+                // Pull the fluid core across the screen and impart 3D rotational torque
+                coreOffsetX += dx * 0.85;
+                coreOffsetY += dy * 0.85;
+                coreVelX = dx * 0.45;
+                coreVelY = dy * 0.45;
+
+                dragRotVelY = dx * 0.009;
+                dragRotVelX = -dy * 0.009;
+                dragRotY += dragRotVelY;
+                dragRotX += dragRotVelX;
+            }
+            lastMouseX = x;
+            lastMouseY = y;
+        }
+
+        function handlePointerUp(x, y) {
+            if (!isDragging) return;
+            isDragging = false;
+            const moveDist = Math.hypot(x - dragStartX, y - dragStartY);
+            // Quick click without dragging still triggers a radial shatter burst
+            if (moveDist < 8) {
+                burstForce = 1.35;
+            }
+        }
+
+        window.addEventListener('mousedown', (e) => handlePointerDown(e.clientX, e.clientY));
+        window.addEventListener('mousemove', (e) => handlePointerMove(e.clientX, e.clientY));
+        window.addEventListener('mouseup', (e) => handlePointerUp(e.clientX, e.clientY));
+
+        // Touch support for mobile/tablet dragging
+        window.addEventListener('touchstart', (e) => {
+            if (e.touches.length > 0) handlePointerDown(e.touches[0].clientX, e.touches[0].clientY);
+        }, { passive: true });
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) handlePointerMove(e.touches[0].clientX, e.touches[0].clientY);
+        }, { passive: true });
+        window.addEventListener('touchend', (e) => {
+            handlePointerUp(lastMouseX, lastMouseY);
+        });
+
+        resizeCanvas();
+
+        // 3D Pseudo-Noise helper for fluid turbulence and breaking apart
+        function fluidNoise(x, y, z, t) {
+            return (
+                Math.sin(x * 0.018 + t * 1.4) * Math.cos(y * 0.018 - t * 1.1) +
+                Math.sin(y * 0.022 + z * 0.022 + t * 1.7) * 0.6 +
+                Math.cos(z * 0.015 - x * 0.015 - t * 0.9) * 0.4
+            );
+        }
+
+        const NUM_PARTICLES = 5600;
+        const baseRadius = 420; // Massively enlarged base radius to fill the viewport
+        const stripWidth = 190; // Widened ribbon for bold structure and clear visibility
+        const particles = [];
+
+        for (let i = 0; i < NUM_PARTICLES; i++) {
+            // Parametric distribution along the continuous Mobius loop [0, 2*PI]
+            const u = (i / NUM_PARTICLES) * Math.PI * 2;
+            // Cross-sectional distribution across the ribbon width [-1, 1]
+            const v = (Math.random() * 2 - 1);
+            
+            // Cluster assignment for disruption tearing
+            const clusterAngle = Math.sin(u * 3) * Math.cos(v * Math.PI);
+            const scatterMultiplier = Math.random() * 1.6 + 0.4;
+
+            particles.push({
+                u: u,
+                v: v,
+                speed: (Math.random() * 0.0025 + 0.0012) * (Math.random() > 0.5 ? 1 : -1),
+                x: 0, y: 0, z: 0,
+                vx: 0, vy: 0, vz: 0,
+                // Sand granular displacement physics
+                sandDispX: 0, sandDispY: 0, sandDispZ: 0,
+                sandVx: 0, sandVy: 0, sandVz: 0,
+                grainWeight: Math.random() * 0.6 + 0.7,
+                size: Math.random() * 1.8 + 0.5,
+                phase: Math.random() * Math.PI * 2,
+                cluster: clusterAngle,
+                scatterMult: scatterMultiplier,
+                strandLayer: (Math.random() - 0.5) * 8, // Tighter strand alignment to hold crisp shape
+                colorType: Math.random() > 0.82 ? 'accent' : (Math.random() > 0.45 ? 'mid' : 'main')
+            });
+        }
+
+        function drawTargetingLines() {
+            ctx.strokeStyle = 'rgba(0, 243, 255, 0.07)';
+            ctx.lineWidth = 1;
+            ctx.shadowBlur = 0;
+            
+            // Crosshairs
+            ctx.beginPath();
+            ctx.moveTo(cx, 0);
+            ctx.lineTo(cx, canvas.height);
+            ctx.moveTo(0, cy);
+            ctx.lineTo(canvas.width, cy);
+            ctx.stroke();
+
+            // Corner brackets
+            const size = 40;
+            const padding = 140;
+            ctx.lineWidth = 1.5;
+            ctx.strokeStyle = 'rgba(0, 243, 255, 0.28)';
+            
+            // Top Left
+            ctx.beginPath(); ctx.moveTo(padding, padding + size); ctx.lineTo(padding, padding); ctx.lineTo(padding + size, padding); ctx.stroke();
+            // Top Right
+            ctx.beginPath(); ctx.moveTo(canvas.width - padding, padding + size); ctx.lineTo(canvas.width - padding, padding); ctx.lineTo(canvas.width - padding - size, padding); ctx.stroke();
+            // Bottom Left
+            ctx.beginPath(); ctx.moveTo(padding, canvas.height - padding - size); ctx.lineTo(padding, canvas.height - padding); ctx.lineTo(padding + size, canvas.height - padding); ctx.stroke();
+            // Bottom Right
+            ctx.beginPath(); ctx.moveTo(canvas.width - padding, canvas.height - padding - size); ctx.lineTo(canvas.width - padding, canvas.height - padding); ctx.lineTo(canvas.width - padding - size, canvas.height - padding); ctx.stroke();
+        }
+
+        function animateCanvas() {
+            if (document.hidden || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { requestAnimationFrame(animateCanvas); return; }
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawTargetingLines();
+
+            time += 0.016;
+
+            // Decay click-burst smoothly
+            burstForce *= 0.96;
+
+            // Spring-back physics when released + rotational momentum
+            if (!isDragging) {
+                coreVelX = (coreVelX - coreOffsetX * 0.065) * 0.86;
+                coreVelY = (coreVelY - coreOffsetY * 0.065) * 0.86;
+                coreOffsetX += coreVelX;
+                coreOffsetY += coreVelY;
+
+                dragRotY += dragRotVelY;
+                dragRotX += dragRotVelX;
+                dragRotVelY *= 0.94;
+                dragRotVelX *= 0.94;
+            }
+
+            const currentCx = cx + coreOffsetX;
+            const currentCy = cy + coreOffsetY;
+            const dragSpeed = Math.min(2.0, Math.hypot(coreVelX, coreVelY) * 0.04);
+
+            // Shape integrity: stays cohesive & structured, only breaks apart when disrupted by click burst or dragging
+            const fractureAmount = burstForce + dragSpeed * 0.65;
+
+            // Smooth 3D rotation combining steady rotation + user drag torque
+            const targetRotY = time * 0.28 + dragRotY + (isDragging ? 0 : mouseX * 0.35);
+            const targetRotX = Math.sin(time * 0.15) * 0.25 + dragRotX + (isDragging ? 0 : mouseY * 0.35);
+            rotY += (targetRotY - rotY) * 0.12;
+            rotX += (targetRotX - rotX) * 0.12;
+
+            // Subtle elastic tether line connecting the displaced core back to the center reticle
+            if (Math.hypot(coreOffsetX, coreOffsetY) > 6) {
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(currentCx, currentCy);
+                ctx.strokeStyle = 'rgba(0, 243, 255, 0.18)';
+                ctx.lineWidth = 1;
+                ctx.setLineDash([4, 6]);
+                ctx.stroke();
+                ctx.setLineDash([]);
+            }
+
+            // Ambient core glow that follows the dragged position (guarantee non-negative radius)
+            const glowRadius = Math.max(10, baseRadius * (1.15 + fractureAmount * 0.4));
+            const grad = ctx.createRadialGradient(currentCx, currentCy, 4, currentCx, currentCy, glowRadius);
+            grad.addColorStop(0, `rgba(0, 243, 255, ${0.18 / (1 + fractureAmount * 0.4)})`);
+            grad.addColorStop(0.45, 'rgba(0, 120, 255, 0.04)');
+            grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.arc(currentCx, currentCy, glowRadius, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Compute 3D Mobius Strip spine & edge guide lines to define the shape crisply
+            function project3D(x, y, z) {
+                let x1 = x * Math.cos(rotY) - z * Math.sin(rotY);
+                let z1 = z * Math.cos(rotY) + x * Math.sin(rotY);
+                let y2 = y * Math.cos(rotX) - z1 * Math.sin(rotX);
+                let z2 = z1 * Math.cos(rotX) + y * Math.sin(rotX);
+                const scale = 720 / (720 + z2 + 480);
+                return {
+                    x: currentCx + x1 * scale,
+                    y: currentCy + y2 * scale,
+                    z: z2,
+                    scale: scale
+                };
+            }
+
+            function getMobiusPoint(u, vNorm) {
+                const halfU = u / 2;
+                const effV = vNorm * stripWidth;
+                const rad = baseRadius + effV * Math.cos(halfU);
+                const bx = rad * Math.cos(u);
+                const by = effV * Math.sin(halfU);
+                const bz = rad * Math.sin(u);
+                const invFactor = 1 - 0.28 * Math.cos(u * 2);
+                return {
+                    x: bx * invFactor,
+                    y: (by * Math.cos(u) - bz * 0.18) * 1.15,
+                    z: (bz * Math.cos(halfU) + bx * Math.sin(halfU) * 0.3) * invFactor
+                };
+            }
+
+            // Draw structural edge lines (top edge, spine, bottom edge)
+            const edgeV = [-1, 0, 1];
+            for (let e = 0; e < edgeV.length; e++) {
+                const vNorm = edgeV[e];
+                const lineAlpha = (e === 1 ? 0.38 : 0.22) * Math.max(0.08, 1 - fractureAmount * 0.7);
+                ctx.strokeStyle = e === 1 ? `rgba(200, 255, 255, ${lineAlpha})` : `rgba(0, 243, 255, ${lineAlpha})`;
+                ctx.lineWidth = e === 1 ? 1.4 : 0.8;
+                ctx.beginPath();
+                const steps = 140;
+                for (let s = 0; s <= steps; s++) {
+                    const u = (s / steps) * Math.PI * 2;
+                    const pt = getMobiusPoint(u, vNorm);
+                    const proj = project3D(pt.x, pt.y, pt.z);
+                    if (s === 0) ctx.moveTo(proj.x, proj.y);
+                    else ctx.lineTo(proj.x, proj.y);
+                }
+                ctx.stroke();
+            }
+
+            // Draw transverse structural ribs along the strip
+            const ribAlpha = 0.16 * Math.max(0.04, 1 - fractureAmount * 0.8);
+            ctx.strokeStyle = `rgba(0, 243, 255, ${ribAlpha})`;
+            ctx.lineWidth = 0.7;
+            const ribCount = 36;
+            for (let r = 0; r < ribCount; r++) {
+                const u = (r / ribCount) * Math.PI * 2;
+                const pEdge1 = project3D(...Object.values(getMobiusPoint(u, -1)));
+                const pEdge2 = project3D(...Object.values(getMobiusPoint(u, 1)));
+                ctx.beginPath();
+                ctx.moveTo(pEdge1.x, pEdge1.y);
+                ctx.lineTo(pEdge2.x, pEdge2.y);
+                ctx.stroke();
+            }
+
+            const projected = [];
+            const fov = 720;
+
+            for (let i = 0; i < NUM_PARTICLES; i++) {
+                const p = particles[i];
+                
+                // Continuous particle flow along the loop
+                p.u = (p.u + p.speed + 0.0022) % (Math.PI * 2);
+
+                const u = p.u;
+                // Inverted Möbius strip parametric manifold:
+                const halfU = u / 2;
+                const cosHalfU = Math.cos(halfU);
+                const sinHalfU = Math.sin(halfU);
+
+                // Modulate ribbon width with tight coherence
+                const effectiveV = (p.v * stripWidth + p.strandLayer);
+                
+                // Base Inverted Möbius Coordinates:
+                const rad = baseRadius + effectiveV * cosHalfU;
+                const bx = rad * Math.cos(u);
+                const by = effectiveV * sinHalfU;
+                const bz = rad * Math.sin(u);
+
+                // Inversion fold: inside-out manifold topology
+                const invFactor = 1 - 0.28 * Math.cos(u * 2);
+                let mx = bx * invFactor;
+                let my = (by * Math.cos(u) - bz * 0.18) * 1.15;
+                let mz = (bz * Math.cos(halfU) + bx * sinHalfU * 0.3) * invFactor;
+
+                // 3D turbulence curl/noise kicks in when disrupted
+                let targetX = mx;
+                let targetY = my;
+                let targetZ = mz;
+
+                if (fractureAmount > 0.01) {
+                    const nX = fluidNoise(mx * 0.8, my * 0.8, mz * 0.8, time);
+                    const nY = fluidNoise(my * 0.8, mz * 0.8, mx * 0.8, time + 12);
+                    const nZ = fluidNoise(mz * 0.8, mx * 0.8, my * 0.8, time + 24);
+
+                    const clusterBreak = (0.5 + 0.5 * Math.sin(p.cluster * 4 + time * 1.4)) * fractureAmount * 180 * p.scatterMult;
+                    const driftScale = fractureAmount * 95 * p.scatterMult;
+
+                    targetX += (mx / (baseRadius || 1)) * clusterBreak + nX * driftScale;
+                    targetY += (my / (stripWidth || 1)) * clusterBreak * 0.7 + nY * driftScale;
+                    targetZ += (mz / (baseRadius || 1)) * clusterBreak + nZ * driftScale;
+                }
+
+                // Rapid return when not disrupted; fluid lag when disrupted
+                const followStiffness = fractureAmount > 0.01 ? (0.1 / (0.65 + p.scatterMult * 0.45)) : 0.32;
+                p.vx = (p.vx + (targetX - p.x) * followStiffness) * 0.78;
+                p.vy = (p.vy + (targetY - p.y) * followStiffness) * 0.78;
+                p.vz = (p.vz + (targetZ - p.z) * followStiffness) * 0.78;
+
+                p.x += p.vx;
+                p.y += p.vy;
+                p.z += p.vz;
+
+                // Apply sand dispersal physics (granular spray, friction, and return)
+                p.sandDispX += p.sandVx;
+                p.sandDispY += p.sandVy;
+                p.sandDispZ += p.sandVz;
+
+                // High friction so it acts like dry granular sand, not fluid liquid
+                p.sandVx *= 0.88;
+                p.sandVy *= 0.88;
+                p.sandVz *= 0.88;
+
+                // Gravity & elastic return back into the Möbius manifold
+                p.sandDispX *= 0.93;
+                p.sandDispY *= 0.93;
+                p.sandDispZ *= 0.93;
+
+                const curX = p.x + p.sandDispX;
+                const curY = p.y + p.sandDispY;
+                const curZ = p.z + p.sandDispZ;
+
+                // 3D Rotation around Y axis
+                let x1 = curX * Math.cos(rotY) - curZ * Math.sin(rotY);
+                let z1 = curZ * Math.cos(rotY) + curX * Math.sin(rotY);
+
+                // 3D Rotation around X axis
+                let y2 = curY * Math.cos(rotX) - z1 * Math.sin(rotX);
+                let z2 = z1 * Math.cos(rotX) + curY * Math.sin(rotX);
+
+                // Trailing momentum lag from user drag
+                const trailLagX = -coreVelX * p.scatterMult * 2.2;
+                const trailLagY = -coreVelY * p.scatterMult * 2.2;
+
+                // Perspective projection
+                const scale = fov / (fov + z2 + 480);
+                let px = currentCx + (x1 + trailLagX) * scale;
+                let py = currentCy + (y2 + trailLagY) * scale;
+
+                // Sand-like impact and disruption
+                if (!isDragging) {
+                    const mdx = px - mouseScreenX;
+                    const mdy = py - mouseScreenY;
+                    const mDistSq = mdx * mdx + mdy * mdy;
+                    const sandRadius = 90;
+                    
+                    if (mDistSq < sandRadius * sandRadius) {
+                        const mDist = Math.sqrt(mDistSq) || 1;
+                        const impact = (1 - mDist / sandRadius);
+                        const cursorSpeed = Math.min(25, Math.hypot(mouseVelX, mouseVelY));
+                        
+                        // Scatter grains with jittered radial push + cursor momentum transfer
+                        const scatterJitter = (Math.random() - 0.5) * 1.4;
+                        const sprayPower = (impact * 22 + cursorSpeed * 1.8) * p.grainWeight;
+                        
+                        // Granular spray across 3D coordinates
+                        const normDx = mdx / mDist;
+                        const normDy = mdy / mDist;
+                        
+                        p.sandVx += (normDx + scatterJitter) * sprayPower;
+                        p.sandVy += (normDy + (Math.random() - 0.5) * 1.2) * sprayPower + (Math.random() * 2); // slight downward settling
+                        p.sandVz += (Math.random() - 0.5) * sprayPower * 1.8;
+                    }
+                }
+
+                projected.push({
+                    x: px,
+                    y: py,
+                    z: z2,
+                    scale: scale,
+                    size: p.size,
+                    colorType: p.colorType
+                });
+            }
+
+            // Sort back-to-front for proper 3D depth rendering
+            projected.sort((a, b) => b.z - a.z);
+
+            // Render 3D Particles
+            for (let i = 0; i < projected.length; i++) {
+                const p = projected[i];
+                const depthAlpha = Math.max(0.1, Math.min(1, (480 - p.z) / 680));
+                const particleRadius = Math.max(0.2, p.size * p.scale * 1.6);
+                
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, particleRadius, 0, Math.PI * 2);
+                
+                if (p.colorType === 'accent') {
+                    ctx.fillStyle = `rgba(235, 255, 255, ${depthAlpha})`;
+                    ctx.shadowBlur = p.z < -40 ? 6 : 0;
+                    ctx.shadowColor = '#00f3ff';
+                } else if (p.colorType === 'mid') {
+                    ctx.fillStyle = `rgba(0, 205, 255, ${depthAlpha * 0.9})`;
+                    ctx.shadowBlur = 0;
+                } else {
+                    ctx.fillStyle = `rgba(0, 243, 255, ${depthAlpha * 0.78})`;
+                    ctx.shadowBlur = 0;
+                }
+                ctx.fill();
+            }
+            ctx.shadowBlur = 0;
+
+            requestAnimationFrame(animateCanvas);
+        }
+
+        // --- HUD LOGIC & UPDATES ---
+
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').innerText = now.toLocaleTimeString('en-US', { hour12: false });
+            document.getElementById('date-display').innerText = now.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }).toUpperCase();
+        }
+
+        function updateDiagnostics() {
+            const cpu = Math.floor(Math.random() * 40) + 10;
+            const mem = Math.floor(Math.random() * 30) + 50;
+            const temp = Math.floor(Math.random() * 10) + 38;
+
+            document.getElementById('cpu-load').innerText = cpu + '%';
+            document.getElementById('cpu-bar').style.width = cpu + '%';
+
+            document.getElementById('mem-load').innerText = (mem * 64) + ' MB';
+            document.getElementById('mem-bar').style.width = mem + '%';
+
+            document.getElementById('temp-load').innerText = temp + '°C';
+            document.getElementById('temp-bar').style.width = temp + '%';
+            
+            document.getElementById('cpu-bar').className = cpu > 40 ? 'bg-yellow-400 h-1' : 'bg-cyan-400 h-1';
+        }
+
+        const logMessages = [
+            "INITIALIZING NEURAL NET...",
+            "CHECKING BIOMETRICS...",
+            "SCANNING LOCAL NETWORK...",
+            "UPLINK ESTABLISHED.",
+            "CALIBRATING FLUID MATRIX...",
+            "WEATHER DATA UPDATED.",
+            "ENCRYPTING DATA STREAMS...",
+            "MEMORY OPTIMIZATION COMPLETE.",
+            "PINGING SECURE SERVER...",
+            "RESPONSE TIME: 12ms",
+            "ROUTING POWER TO SUBSYSTEMS...",
+            "ALL SYSTEMS NOMINAL."
+        ];
+
+        function addTerminalLog() {
+            const terminal = document.getElementById('terminal-output');
+            const randomMsg = logMessages[Math.floor(Math.random() * logMessages.length)];
+            const timestamp = new Date().toISOString().substring(11,19);
+            
+            const line = document.createElement('div');
+            line.className = 'terminal-line';
+            line.innerHTML = `<span class="text-cyan-600">[${timestamp}]</span> ${randomMsg}`;
+            
+            terminal.appendChild(line);
+
+            if (terminal.children.length > 7) {
+                terminal.removeChild(terminal.firstChild);
+            }
+        }
+
+        function updateSideStreams() {
+            const generateHex = () => Array.from({length: 4}, () => Math.floor(Math.random()*16).toString(16).toUpperCase()).join('');
+            
+            let leftHTML = '';
+            let rightHTML = '';
+            for(let i=0; i<8; i++) {
+                leftHTML += `<div>${generateHex()} : ${generateHex()}</div>`;
+                rightHTML += `<div>${generateHex()} : ${generateHex()}</div>`;
+            }
+            
+            document.getElementById('left-stream').innerHTML = leftHTML;
+            document.getElementById('right-stream').innerHTML = rightHTML;
+        }
+
+        // Initialize loops
+        window.onload = () => {
+            animateCanvas();
+            setInterval(updateClock, 1000);
+            setInterval(updateDiagnostics, 2000);
+            setInterval(addTerminalLog, 1500);
+            setInterval(updateSideStreams, 200);
+            updateClock();
+            addTerminalLog();
+        };
+
+    </script>
+</body>
+</html>
