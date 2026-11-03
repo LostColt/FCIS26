@@ -6,6 +6,9 @@ Format: date · who · what happened · what's next
 
 ---
 
+**2026-11-03 · ChatGPT (slide 18 automatic highlight)** · Removed the one-click Gemini Canvas word marker. The Gemini table row now receives a left-to-right full-row yellow highlighter sweep automatically about two seconds after the concluding line finishes appearing. Slide 18 now has zero extra presenter steps, so NEXT navigates directly to slide 19. Existing slides 1–17 and 19 onward unchanged.
+
+
 **2026-11-03 · ChatGPT (slide 18 graphic-design revision)** · Replaced the crowded mixed-shape architecture with three identical clipped-paper-tab headers, one restrained 3-column table, and one row-at-a-time reveal. The header stage holds, then the original headings rise; the final yellow highlighter is precisely the prior deck's `.mark` effect, controlled by one presenter NEXT press on `Gemini Canvas` in the first table row. Slide 18 declares one press; next press advances to slide 19. No other slide content changed. Source checks and audit in `reviews/2026-11-03-slide18-editorial-table.md`. Physical projector/realtime visual rehearsal still needed.\n
 
 **2026-11-03 · ChatGPT (single-slide architecture)** · Merged slides 18 and 19 into one 30-slide-deck sequence. The three architecture headings appear, hold roughly three seconds, and move upward as the tool paths populate beneath them. Replaced repetitive rectangular cards with connected Gemini modules, one continuous ChatGPT Sites ribbon, and converging advanced tool chips to GitHub/Vercel. Preserved slide 17 and all material after the old slide 19 (renumbered), with no change to the content of the Gemini walkthrough. Updated handoff and story numbers. Next: projector-size visual assessment of typography, pacing and shape.\n

@@ -37,9 +37,9 @@
 
     /* Slide 18 — one composed editorial slide.
        Three sculpted headings hold for the spoken explanation, then move up as a single unit.
-       The comparison stays a table; on the presenter's NEXT press Gemini Canvas is marked
-       with the exact yellow marker sweep used earlier in this deck. */
-    add(6, 1,
+       The comparison stays a table; the entire Gemini row sweeps yellow automatically
+       two seconds after the final sentence finishes appearing. */
+    add(6, 0,
       '<div class="anatomy-scene anatomy-editorial">' +
       '<header class="anatomy-intro"><span>WHAT MAKES A TOOL WORK?</span>' +
       '<h2>Three parts. <em>One idea.</em></h2></header>' +
@@ -50,7 +50,7 @@
       '</div>' +
       '<div class="anatomy-table" role="table" aria-label="Three ways to build and publish a tool">' +
       '<div class="anatomy-table-row anatomy-table-row--gemini" role="row">' +
-      '<div role="cell"><small>01 / GEMINI</small><strong><span class="mark" data-at="1">Gemini Canvas</span></strong></div>' +
+      '<div role="cell"><small>01 / GEMINI</small><strong>Gemini Canvas</strong></div>' +
       '<div role="cell"><strong>Google Sites draft</strong><span>Exported project</span></div>' +
       '<div role="cell"><strong>Google Sites</strong><span>Published site</span></div></div>' +
       '<div class="anatomy-table-row anatomy-table-row--chatgpt" role="row">' +
