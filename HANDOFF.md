@@ -28,7 +28,7 @@
 - **Shipping.** Claude has been pushing straight to `main` after each approved change because David reviews live. **Other assistants: work on a branch** (Vercel builds a preview link for every branch), and merge to `main` only when David approves or says "push to main." If he says push to main, push to main.
 - **Answer his questions directly.** He sometimes asks "is it static or can I type?" style questions; answer plainly first, then fix.
 
-## 3. The deck today: 30 slides
+## 3. The deck today: 28 slides
 
 Each line: slide · what it says/does · how it moves. "Auto" means it plays by itself when the slide opens; "press" means the presenter's next press reveals something.
 
@@ -63,24 +63,22 @@ Each line: slide · what it says/does · how it moves. "Auto" means it plays by 
 **6 · Build it** (November 3 single-slide design revision)
 17. `#build` Existing eight-question board (2×4). Preserved.
 18. `#architecture` One continuous automatically staged slide: three matched heading tabs rise, three table rows appear, and the line “Today, we’ll build in Gemini Canvas” enters. About two seconds after that line has appeared, the **entire Gemini row highlights yellow automatically**. There is no additional presenter step; the next click advances to slide 19.
-19. `#gemini-idea` David describes an interactive particle HUD in ordinary words.
-20. `#gemini-self-prompt` Gemini writes its own more detailed prompt (illustrative sample).
-21. `#gemini` Ask Gemini to use that prompt in Canvas; simulated preview.
-22. `#hud-result` Existing user-supplied interactive particle HUD, presented in on-demand iframe.
-23. `#publish` Export Gemini Canvas into a private Google Sites draft → Publish → test.
-24. `#dashboard` Original sample Google Sheets to Assessment Calendar example; saved for later review.
+19. `#gemini` ONE two-column, swipe-driven conversation (2 internal presentation steps). Left: a continuing chat; right: a synchronized explanation. Start with David's idea, first swipe adds his request for Gemini to write its own detailed prompt plus an explicitly illustrative Gemini reply; second swipe shows Canvas selected and adds “Use the prompt you created. Build it in Canvas.” with a small illustrative creating state; third swipe advances. No fake send button or extra build command.
+20. `#hud-result` Existing user-supplied interactive particle HUD in an on-demand iframe; not misrepresented as live Gemini output.
+21. `#publish` Export Canvas to a private Google Sites draft → publish → test.
+22. `#dashboard` Existing fictional Google Sheets to Assessment Calendar example; retained for later review.
 
 **7 · Before you build**
-25. Existing student-data and school-account safety slide unchanged.
+23. Existing student-data and school-account safety slide unchanged.
 
 **8 · Your turn**
-26. Existing four featured workshop prompts, unchanged.
-27. Existing optional colleague activity, unchanged.
-28. Existing “Build first. Then revise” slide, unchanged.
+24. Existing four featured workshop prompts, unchanged.
+25. Existing optional colleague activity, unchanged.
+26. Existing “Build first. Then revise” slide, unchanged.
 
 **9 · Keep building**
-29. Existing closing statement, unchanged.
-30. Existing resource hub, unchanged.
+27. Existing closing statement, unchanged.
+28. Existing resource hub, unchanged.
 
 Presenter controls: arrows, space, clicker, swipe; **Start over** button (and Home key) returns to the cover; Slides menu; F for full screen. Every slide has a link (`#15`) and some have names (`#reader`).
 
