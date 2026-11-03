@@ -6,6 +6,9 @@ Format: date · who · what happened · what's next
 
 ---
 
+**2026-11-03 · ChatGPT (slide 21 copy reduction)** · After the user's request to focus on the build rather than talking through the workflow, shortened each stage to a single action cue: “Export → Google Sites,” “Review → Publish,” and “Publish → View site.” Made the publishing UI larger in hierarchy while retaining concise workspace and download-code notes. Details remain on the resource page.
+
+
 **2026-11-03 · ChatGPT (slide 21 screenshot-informed publishing redesign)** · Replaced the stale three-box explanation with a three-state reproduction of the user-provided Gemini Export menu, Google Sites editor and Google Sites Publish menu. One slide; two presenter-controlled swipes and changing copy. The footer distinguishes school Workspace administrator-controlled Sites permissions, personal account differences, and Download code fallback. The resource guide was corrected against Google's October 19, 2026 release notes: the feature is also available to eligible personal accounts. No screenshots were committed; interface controls are recreated in CSS from the supplied visual references. Total deck stays 28 slides.
 
 
