@@ -4,10 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive particle HUD — FCIS classroom demonstration</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Demo built from the user-provided original; online font and utility CSS require network access. -->
+    <!-- Self-contained demo; utilities below replace Tailwind CDN for offline reliability. -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+        /* Tailwind-equivalent utilities used by this standalone example. */
+        * { box-sizing: border-box; }
+        .flex { display:flex; } .flex-col { flex-direction:column; }
+        .flex-grow { flex-grow:1; }
+        .items-center { align-items:center; } .items-end { align-items:flex-end; } .items-start { align-items:flex-start; }
+        .justify-between { justify-content:space-between; } .justify-end { justify-content:flex-end; }
+        .p-4 { padding:1rem; } .p-6 { padding:1.5rem; } .px-10 { padding-left:2.5rem; padding-right:2.5rem; } .pb-1 { padding-bottom:.25rem; }
+        .mb-1 { margin-bottom:.25rem; } .mb-2 { margin-bottom:.5rem; } .mb-3 { margin-bottom:.75rem; }
+        .mt-2 { margin-top:.5rem; } .mt-4 { margin-top:1rem; }
+        .w-full { width:100%; } .w-64 { width:16rem; } .w-80 { width:20rem; } .w-32 { width:8rem; }
+        .h-1 { height:.25rem; } .h-36 { height:9rem; } .h-48 { height:12rem; }
+        .border-b { border-bottom-width:1px; border-bottom-style:solid; }
+        .border-cyan-800 { border-color:#155e75; }
+        .tracking-widest { letter-spacing:.1em; }
+        .text-xs { font-size:.75rem;line-height:1rem; }
+        .text-sm { font-size:.875rem;line-height:1.25rem; }
+        .text-lg { font-size:1.125rem;line-height:1.75rem; }
+        .text-right { text-align:right; } .font-bold { font-weight:700; }
+        .text-cyan-200 { color:#a5f3fc; } .text-cyan-300 { color:#67e8f9; }
+        .text-cyan-600 { color:#0891b2; } .text-green-400 { color:#4ade80; }
+        .text-yellow-400 { color:#facc15; }
+        .bg-cyan-950 { background:#083344; } .bg-cyan-400 { background:#22d3ee; }
+        .bg-yellow-400 { background:#facc15; }
+        .opacity-50 { opacity:.5; } .opacity-70 { opacity:.7; } .opacity-80 { opacity:.8; }
+        .relative { position:relative; } .overflow-hidden { overflow:hidden; }
+        .pointer-events-none { pointer-events:none; }
+        .space-y-1 > * + * { margin-top:.25rem; } .space-y-2 > * + * { margin-top:.5rem; }
+        @keyframes pulse-demo { 50% { opacity:.48; } }
+        .animate-pulse { animation:pulse-demo 2s ease-in-out infinite; }
+        @media (prefers-reduced-motion:reduce) { .animate-pulse { animation:none; } }
+        /* System monospace fallback keeps this demo self-contained. */
 
         body, html {
             margin: 0;
@@ -16,7 +46,7 @@
             height: 100%;
             background-color: #050914; /* Deep space blue/black */
             overflow: hidden;
-            font-family: 'Share Tech Mono', monospace;
+            font-family: 'Share Tech Mono', 'Consolas', 'Courier New', monospace;
             color: #00f3ff;
             user-select: none;
         }
@@ -103,7 +133,7 @@
         <div class="flex justify-between items-start w-full">
             <!-- Top Left: Diagnostics -->
             <div class="panel p-4 w-64">
-                <div class="text-xs tracking-widest text-cyan-200 opacity-70 mb-2 border-b border-cyan-800 pb-1">SYSTEM DIAGNOSTICS</div>
+                <div class="text-xs tracking-widest text-cyan-200 opacity-70 mb-2 border-b border-cyan-800 pb-1">SIMULATED DIAGNOSTICS</div>
                 <div class="flex justify-between mb-1">
                     <span>CPU LOAD</span>
                     <span id="cpu-load">24%</span>
@@ -131,7 +161,7 @@
 
             <!-- Top Right: Location & Status -->
             <div class="panel p-4 w-64 text-right">
-                <div class="text-xs tracking-widest text-cyan-200 opacity-70 mb-2 border-b border-cyan-800 pb-1">ENVIRONMENT</div>
+                <div class="text-xs tracking-widest text-cyan-200 opacity-70 mb-2 border-b border-cyan-800 pb-1">DEMO ENVIRONMENT</div>
                 <div class="text-lg glow-text mb-1" id="clock">00:00:00</div>
                 <div class="text-sm opacity-80" id="date-display">DATE</div>
                 <div class="mt-4 text-xs text-cyan-300">
