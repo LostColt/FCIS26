@@ -6,7 +6,7 @@
   function add(ch, steps, html, opts) { D.add(ch, steps, html, opts); }
   var ui = D.ui, arrow = D.arrow, link = D.link, box = D.promptBox;
 
-  /* 6 · Build it: the invitation, the shape, three ways, the dashboard (steps.js) */
+  /* 6 · Build it: brief choices, one Gemini demo, Sheets and optional advanced routes (steps.js) */
   D.insertSteps(add);
 
   /* 7 · Before you build: for you, and for your school */
@@ -17,7 +17,7 @@
     "<li>Check the content yourself. AI-built tools can be confidently wrong.</li>" +
     "<li>Name an owner. Who fixes it in June? If nobody, keep it small.</li>" +
     "<li>Keep the systems of record (LMS, gradebook, student information system) where they are. Build the small things around them.</li>" +
-    '</ul></section><section><h3>For your school</h3><p class="care-lede">A school-managed, paid account means the school can see the data, review it with committees, and decide together.</p><ol class="questions">' +
+    '</ul></section><section><h3>For your school</h3><p class="care-lede">A school-managed account can provide oversight, but data access and protections depend on the provider, plan and school settings. Review them before sharing.</p><ol class="questions">' +
     "<li>Who owns the account?</li><li>Where does the data live?</li><li>Who reviews it?</li><li>How do we decide what we keep?</li>" +
     "</ol></section></div></div>", { scroll: true });
 
@@ -34,7 +34,8 @@
     '<div class="build-simple"><p class="said-line">Pick a small thing. Build a first version.</p>' +
     '<p class="build-quiet">Choose a classroom prompt. Try the result. Ask for one change.</p>' +
     '<p class="build-actions"><a href="prompt-library.html" target="_blank" rel="noopener">Open the copyable prompt library</a></p>' +
-    '<p class="build-quiet">If you are not building here, open a sample and note one change you would make.</p></div>', { id: "prompts" });
+    '<p class="build-quiet">Not building today? Open the sample Reader, try it, and decide on one change.</p>' +
+    '<p class="build-actions"><a href="demos/reader.html" target="_blank" rel="noopener">Try the sample Reader</a> · <a href="guide.html#gemini" target="_blank" rel="noopener">Follow the build steps</a></p></div>', { id: "prompts" });
 
   add(8, 1,
     '<p class="big">Try it. Get feedback. Revise.</p>' +
