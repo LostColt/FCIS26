@@ -218,7 +218,7 @@ The three headers share one strong **clipped paper-tab** shape and the same seri
 | ChatGPT Sites | Managed with site | ChatGPT Sites |
 | AI Studio / Claude Code / Codex / Antigravity | GitHub | Vercel |
 
-The line “Today, we’ll build in Gemini Canvas.” appears after the completed table. **One presenter click** sweeps the deck's existing yellow highlighter over the words **Gemini Canvas in the first table row**, not the whole row. This uses the existing `.mark` element and `data-at="1"` rather than a new special effect. The next click advances to the ordinary-language demonstration.
+The line “Today, we’ll build in Gemini Canvas.” appears after the completed table. After it finishes appearing, the slide waits approximately two seconds and **automatically sweeps the familiar yellow highlighter across the entire Gemini row**, not just the tool name. No presenter interaction is needed for highlighting; the next click advances to the ordinary-language demonstration.
 
 Project storage is not necessarily application-data storage; Gemini apps that save user data may use a separate service. The table is a simple conceptual map, not a claim that every project requires a database.
 
