@@ -236,10 +236,12 @@ There are exactly two internal swipes. The third swipe advances to the existing 
 
 The existing working JARVIS HUD begins full-viewport as an immersive, interactive demo. After a short hold, the same iframe animates into its existing right-hand preview; only then does the heading and explanatory content animate into the left-hand column. No additional presenter swipe is required, and the motion replays on re-entry. The actions alongside it are **Copy code** (copies the actual checked-in HTML file), **Download HTML** (saves that file), and **Open app** (opens its working standalone view). These are practical fallbacks if attendees get different results. Do not suggest this is exactly what Gemini will generate from the illustrative prompt. The separate “How the build works” link and the small 'Example built from an existing HTML file' caption are absent from the slide; provenance and build instructions remain in the resource guide.
 
-**Slide 21: Make it available**
-> From Canvas to a published site.
+**Slide 21: From Canvas to a published page — visual walkthrough**
+> See the actual controls.
 
-Animated steps: Canvas → Export to Google Sites (creates a private draft) → Publish → open the finished site. Confirm account permissions and audience settings. This direct integration was announced October 19, 2026.
+The older three-card flowchart is replaced by a screenshot-informed staged walkthrough using the user's real Gemini and Google Sites screenshots as interface references. Two presenter swipes transform the large preview of the UI through Gemini Canvas (Export menu open → Google Sites; Download code also available), Google Sites editor (Publish button highlighted), and the Google Sites Publish menu (Review changes and publish; View published site). The slide is a CSS illustration of the visible controls, not an embedded screenshot. Brief accompanying copy changes each step.
+
+The account note explains that this workflow is especially useful when presenting in a school Google Workspace environment where Google Sites is enabled, but availability is not exclusive to schools: Google also lists eligible personal accounts. If menus differ, download the code where supported and use an allowed publishing route. A private draft is not published automatically. The step-by-step details and access checks remain on the resource guide.
 
 **Slide 22:** The existing sample Google Sheet → Assessment Calendar example. Keep for the later review of other tool pathways.
 
