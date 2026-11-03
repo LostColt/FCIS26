@@ -56,7 +56,7 @@
     "<li>" + link("https://developers.google.com/apps-script/guides/web", "Apps Script web apps, Google’s guide") + "</li>" +
     "<li>" + link("https://github.com", "GitHub") + "</li><li>" + link("https://vercel.com", "Vercel") + "</li></ul>" +
     '<h3>The guide</h3><ul class="linklist"><li><a href="guide.html" target="_blank" rel="noopener">Build it: the guide</a></li><li><a href="guide.html#chatgpt" target="_blank" rel="noopener">All in ChatGPT</a></li>' +
-    '<li><a href="guide.html#google" target="_blank" rel="noopener">Inside Google Workspace</a></li><li><a href="guide.html#own-it" target="_blank" rel="noopener">Own it end to end</a></li><li><a href="#prompts">All the workshop prompts</a></li></ul>' +
+    '<li><a href="guide.html#sheets" target="_blank" rel="noopener">Inside Google Workspace</a></li><li><a href="guide.html#advanced" target="_blank" rel="noopener">Own it end to end</a></li><li><a href="prompt-library.html" target="_blank" rel="noopener">Classroom prompts by grade and subject</a></li></ul>' +
     '<h3>The tools from the talk</h3><ul class="linklist"><li><a href="demos/tracker.html" target="_blank" rel="noopener">Meeting tracker</a></li><li><a href="demos/screenplay.html" target="_blank" rel="noopener">Script Room</a></li>' +
     '<li><a href="demos/reader.html" target="_blank" rel="noopener">Reader</a></li><li><a href="demos/dashboard.html" target="_blank" rel="noopener">Assessment Calendar</a></li></ul>' +
     (mine ? '<h3>What I built</h3><ul class="linklist">' + mine + "</ul>" : "") +
