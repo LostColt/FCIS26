@@ -236,12 +236,17 @@ There are exactly two internal swipes. The third swipe advances to the existing 
 
 The existing working JARVIS HUD begins full-viewport as an immersive, interactive demo. After a short hold, the same iframe animates into its existing right-hand preview; only then does the heading and explanatory content animate into the left-hand column. No additional presenter swipe is required, and the motion replays on re-entry. The actions alongside it are **Copy code** (copies the actual checked-in HTML file), **Download HTML** (saves that file), and **Open app** (opens its working standalone view). These are practical fallbacks if attendees get different results. Do not suggest this is exactly what Gemini will generate from the illustrative prompt. The separate “How the build works” link and the small 'Example built from an existing HTML file' caption are absent from the slide; provenance and build instructions remain in the resource guide.
 
-**Slide 21: From Canvas to a published page — visual walkthrough**
-> See the actual controls.
+**Slide 21: From Canvas to a published page — three control close-ups**
 
-The older three-card flowchart is replaced by a screenshot-informed staged walkthrough using the user's real Gemini and Google Sites screenshots as interface references. Two presenter swipes transform the large preview of the UI through Gemini Canvas (Export menu open → Google Sites; Download code also available), Google Sites editor (Publish button highlighted), and the Google Sites Publish menu (Review changes and publish; View published site). The slide is a CSS illustration of the visible controls, not an embedded screenshot. The only spoken-screen cues are “Export → Google Sites,” “Review → Publish,” and “Publish → View site.” The walkthrough is predominantly visual; longer explanations are reserved for the resource page.
+The interface gets the attention, not the text. Show three aligned columns with a short practical control illustration in each, based on the user-supplied screenshots:
 
-The account note explains that this workflow is especially useful when presenting in a school Google Workspace environment where Google Sites is enabled, but availability is not exclusive to schools: Google also lists eligible personal accounts. If menus differ, download the code where supported and use an allowed publishing route. A private draft is not published automatically. The step-by-step details and access checks remain on the resource guide.
+1. Gemini Canvas: Export dropdown opens, Google Sites highlighted, Download code available.
+2. Google Sites editor: click/highlight the Publish button.
+3. Google Sites Publish menu: Review changes and publish; View published site.
+
+Presenter starts with the first column enlarged and centered in focus. First swipe pans to the second, next swipe pans to the third. Third swipe pulls back to show all three columns together. The fourth swipe leaves for slide 22. Each column is a tight close-up, not a whole application screen. Motion is presenter controlled and supports reduced-motion preferences.
+
+The only bottom copy: “School Google Workspace: Google Sites, when enabled. Other accounts: Download code is another option.” Keep a small Instructions link to the detailed resource page.
 
 **Slide 22:** The existing sample Google Sheet → Assessment Calendar example. Keep for the later review of other tool pathways.
 
