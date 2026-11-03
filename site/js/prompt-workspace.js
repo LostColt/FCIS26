@@ -67,7 +67,7 @@
     meta.textContent=t.grade+" · "+t.subject+" · "+t.need;
     document.getElementById("reset").disabled=false;
     markSelected();clearStatus();
-    if(scroll)document.getElementById("editor").scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"instant":"smooth",block:"start"});
+    if(scroll)document.getElementById("editor").scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});
   }
   function startBlank() {
     chosen=null;changedFinal=false;
