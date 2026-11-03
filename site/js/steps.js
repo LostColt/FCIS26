@@ -162,16 +162,31 @@
       '<a href="guide.html#share" target="_blank" rel="noopener">Instructions</a>' +
       '</div></div>', { id:"publish" });
 
-    /* An existing practical example: keep the assessment dashboard for later review. */
-    var rows = [["Date","Grade","Course","Type"],["Nov 3","10","Geometry","Test"],["Nov 3","10","English 10","Project"],["Nov 4","11","Physics","Test"]];
+    /* Slide 22: turn the audience from the Gemini build into concrete, age-appropriate
+       classroom ideas. Full editable prompts live in the linked companion workspace. */
+    var catalog = window.FCIS_TOOLS.tools.filter(function (t) { return t.level !== "support"; });
+    var grades = [["lower","LOWER SCHOOL"],["middle","MIDDLE SCHOOL"],["high","HIGH SCHOOL"]];
+    var subjects = ["Math","English","Science","History"];
+    var cells = subjects.map(function (subject) {
+      return '<div class="toolboard-subject">' + subject + '</div>' +
+        grades.map(function (grade) {
+          var tool = catalog.find(function (t) { return t.subject === subject && t.level === grade[0]; });
+          return '<a class="toolboard-tile" href="prompt-library.html?tool=' + encodeURIComponent(tool.id) +
+            '#editor" target="_blank" rel="noopener" aria-label="Edit prompt for ' + tool.title + '">' +
+            '<strong>' + tool.title + '</strong><small>' + tool.need + '</small></a>';
+        }).join("");
+    }).join("");
     add(6, 0,
-      '<p class="said-line">You can build around information you already keep.</p>' +
-      '<div class="sheet-to-dash"><div class="mini-sheet" aria-label="Fictional assessment spreadsheet"><div class="mini-sheet-bar">Sample assessments · Google Sheets</div><table>' +
-      rows.map(function (r,k) { return "<tr>" + r.map(function(c){return (k?"<td>":"<th>")+c+(k?"</td>":"</th>");}).join("")+"</tr>";}).join("") +
-      '</table></div><div class="to-arrow" aria-hidden="true">→</div><div class="late-card" style="--t:2s">' +
-      D.tool("dashboard", "For a department", "Assessment Calendar", "The same information, easier to see. A Sheets canvas or a school-approved Apps Script can extend it.") +
-      '</div></div><p class="build-footnote"><a href="guide.html#sheets" target="_blank" rel="noopener">How Sheets canvas and Apps Script differ</a></p>',
-      { id: "dashboard" });
+      '<div class="toolboard-scene"><p class="arch-eyebrow">YOUR CLASSROOM / YOUR NEXT BUILD</p>' +
+      '<h2>What would you build?</h2>' +
+      '<div class="toolboard-grid">' +
+      '<div class="toolboard-corner">SUBJECT</div>' +
+      grades.map(function (g) { return '<div class="toolboard-grade">' + g[1] + '</div>'; }).join("") +
+      cells + '</div>' +
+      '<div class="toolboard-foot"><span>Choose a tool. Edit the idea. Copy it into Gemini Canvas.</span>' +
+      '<a href="prompt-library.html" target="_blank" rel="noopener">Open editable prompt workspace</a>' +
+      '<a href="prompt-library.html?tool=word-navigator#editor" target="_blank" rel="noopener">Learning supports</a></div>' +
+      '</div>', { id: "tool-ideas" });
 
   };
 })();

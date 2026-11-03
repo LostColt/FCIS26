@@ -248,7 +248,9 @@ Presenter starts with the first column enlarged and centered in focus. First swi
 
 The only bottom copy: “School Google Workspace: Google Sites, when enabled. Other accounts: Download code is another option.” Keep a small Instructions link to the detailed resource page.
 
-**Slide 22:** The existing sample Google Sheet → Assessment Calendar example. Keep for the later review of other tool pathways.
+**Slide 22: What would you build?**
+
+Replace the Sheets / Apps Script Assessment Calendar example with a classroom-tool matrix. Three columns for Lower, Middle, High School; four rows for Math, English, Science, History. Twelve examples are grounded in distinct instructional needs: place value, proportional reasoning, model fitting; sentence meaning, evidence to interpretation, argument revision; fair-test design, food-web systems, experimental uncertainty; then/now observation, source corroboration, historical interpretation. Each tile opens that tool in the editable prompt workspace. A compact footer includes Learning supports and Open editable prompt workspace. This slide does not teach implementation details.
 
 ---
 
@@ -262,7 +264,7 @@ Retain the current safety slide: student privacy, teacher fact-checking, steward
 
 ## 8. Your turn (slides 24–26 unchanged this pass)
 
-**Classroom examples:** Four featured starter prompts on the slide; the linked `site/prompt-library.html` has 20 filterable and copyable prompts from Pre-K–12, with reading-support adaptations. Broader disciplines appear in the library rather than extra slides.
+**Classroom examples:** Slide 22 gives twelve purposeful subject/grade starters. The later `#prompts` slide shows the workflow: Choose → Change → Copy → Build. The linked `site/prompt-library.html` provides editable starter ideas, a full editable Canvas prompt, copying and a Gemini link, plus three targeted reading and accessibility tools and a Start from scratch option.
 
 **Optional short build or sample Reader**
 > Pick a small thing. Build a first version.

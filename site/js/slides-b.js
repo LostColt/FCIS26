@@ -21,25 +21,21 @@
     "<li>Who owns the account?</li><li>Where does the data live?</li><li>Who reviews it?</li><li>How do we decide what we keep?</li>" +
     "</ol></section></div></div>", { scroll: true });
 
-  /* 8 · Your turn: four fast starting points; the take-home library has twenty. */
-  var RULES = "Large, readable text. Works on a phone and a Chromebook.\nNo login, no AI or API calls, and no student data collection.";
-  var PROMPTS = [
-    ["Flashcards", "Build a one-page flashcard app for [unit] vocabulary.\nShow the word; tap to flip to the definition. Add Shuffle and Next buttons.\n" + RULES + "\nStart with these words, one per line, as word – definition:\n[your words]"],
-    ["Exit-ticket randomizer", "Build a one-page exit-ticket randomizer.\nI paste my questions, one per line. A big button shows one at random, with no repeats until every question has come up.\nBig enough to read on a projector, with a full-screen button.\n" + RULES],
-    ["Rubric check", "Build a one-page checklist students use to check a draft against my rubric before they turn it in.\nEach criterion is a checkbox with one line on what it looks like. When everything is checked, show Ready to turn in. Nothing is saved or sent.\n" + RULES + "\nMy rubric:\n[paste your criteria]"],
-    ["Your own idea", D.prompt]
-  ];
-  D.PROMPTS = PROMPTS;
-
+  /* 8 · Your turn: a working editable prompt workspace, not generic flashcards. */
   add(8, 0,
-    '<div class="practical wide"><h2>Pick a prompt</h2><p class="sub">Choose one to try. <a href="prompt-library.html" target="_blank" rel="noopener">20 more by grade and subject</a>, including reading supports.</p><div class="prompt-menu">' +
-    PROMPTS.map(function (p) { return "<section><h3>" + p[0] + "</h3>" + box(p[1]) + "</section>"; }).join("") +
-    '</div><p class="slide-note">Make one change, then try it again. <a href="guide.html#gemini" target="_blank" rel="noopener">Steps</a></p></div>',
-    { scroll: true, id: "prompts" });
+    '<div class="prompt-workshop-slide"><p class="arch-eyebrow">YOUR TURN / MAKE IT YOURS</p>' +
+    '<h2>Choose. Change. Copy. Build.</h2>' +
+    '<div class="prompt-workshop-steps"><div><span>01</span><strong>Choose</strong><p>Find a tool for your students.</p></div>' +
+    '<div><span>02</span><strong>Change</strong><p>Rewrite the idea for your class.</p></div>' +
+    '<div><span>03</span><strong>Copy</strong><p>Take the full prompt into Canvas.</p></div></div>' +
+    '<div class="prompt-workshop-links"><a href="prompt-library.html" target="_blank" rel="noopener">Open editable prompt workspace</a>' +
+    '<a href="prompt-library.html?tool=word-navigator#editor" target="_blank" rel="noopener">Reading and accessibility supports</a>' +
+    '<a href="prompt-library.html?tool=scratch#editor" target="_blank" rel="noopener">Start with your own idea</a></div>' +
+    '</div>', { id: "prompts" });
 
   add(8, 0,
     '<div class="practical swap"><h2>Try it with a colleague</h2><ol class="big-steps">' +
-    '<li>Choose a prompt or open the <a href="demos/reader.html" target="_blank" rel="noopener">sample Reader</a>.</li>' +
+    '<li>Choose and edit a prompt, or open the <a href="demos/reader.html" target="_blank" rel="noopener">sample Reader</a>.</li>' +
     '<li>Use the tool as a student would.</li>' +
     '<li>Tell a neighbor one thing you would change.</li>' +
     '<li>Ask the builder for that change, then test it again.</li></ol>' +
@@ -61,13 +57,11 @@
     "<li>" + link("https://gemini.google.com", "Google Gemini (Canvas)") + "</li>" +
     "<li>" + link("https://aistudio.google.com", "Google AI Studio") + "</li>" +
     "<li>" + link("https://chatgpt.com/features/sites/", "ChatGPT Sites") + "</li>" +
-    "<li>" + link("https://script.google.com", "Google Apps Script") + "</li>" +
-    "<li>" + link("https://developers.google.com/apps-script/guides/web", "Apps Script web apps, Google’s guide") + "</li>" +
     "<li>" + link("https://github.com", "GitHub") + "</li><li>" + link("https://vercel.com", "Vercel") + "</li></ul></section>" +
     '<section><h3>The guide</h3><ul class="linklist"><li><a href="guide.html" target="_blank" rel="noopener">Build it: the guide</a></li><li><a href="guide.html#chatgpt" target="_blank" rel="noopener">All in ChatGPT</a></li>' +
-    '<li><a href="guide.html#sheets" target="_blank" rel="noopener">Inside Google Workspace</a></li><li><a href="guide.html#advanced" target="_blank" rel="noopener">Own it end to end</a></li><li><a href="prompt-library.html" target="_blank" rel="noopener">Classroom prompts by grade and subject</a></li></ul></section>' +
+    '<li><a href="guide.html#advanced" target="_blank" rel="noopener">Own it end to end</a></li><li><a href="prompt-library.html" target="_blank" rel="noopener">Classroom prompts by grade and subject</a></li></ul></section>' +
     '<section><h3>The tools from the talk</h3><ul class="linklist"><li><a href="demos/tracker.html" target="_blank" rel="noopener">Meeting tracker</a></li><li><a href="demos/screenplay.html" target="_blank" rel="noopener">Script Room</a></li>' +
-    '<li><a href="demos/reader.html" target="_blank" rel="noopener">Reader</a></li><li><a href="demos/dashboard.html" target="_blank" rel="noopener">Assessment Calendar</a></li></ul>' +
+    '<li><a href="demos/reader.html" target="_blank" rel="noopener">Reader</a></li></ul>' +
     (mine ? '<h3>What I built</h3><ul class="linklist">' + mine + "</ul>" : "") + "</section>" +
     '<section><h3>Keep in touch</h3><p>David Tran<br>AI Learning and Teaching Specialist<br>Gulliver Prep, Miami, FL</p><p>' + link("https://www.linkedin.com/in/david-t-04864734", "Connect with me on LinkedIn") + "</p></section></div></div>",
     { scroll: true });
