@@ -6,6 +6,9 @@ Format: date · who · what happened · what's next
 
 ---
 
+**2026-11-03 · ChatGPT (audit-driven revision)** · Applied audit fixes on `fcis-final-section-first-pass`: added the existing Reader demo as a practice fallback in the slide, prompt library and guide; corrected school-account oversight claims; clarified Google Sites embedding and Sheets canvas availability; revised the guide to distinguish published instructions from unverified school-account tests. Updated the phase audit and created `reviews/2026-11-03-claude-review-plan.md` for Claude’s independent narrative, functional, accessibility and timing review. Rechecked JS syntax, guide anchors and fallback links. · Next: Claude and David review at desktop and phone sizes, test live account sharing, and rehearse timing before any merge to `main`.
+
+
 **2026-11-03 · ChatGPT (first-pass branch)** · Completed the six-phase final-section build on `fcis-final-section-first-pass`, leaving `main` untouched. Replaced the old framework and repetitive workshop with a Gemini Canvas reading-companion demonstration, one revision, a Sheets extension, a brief ChatGPT Sites / advanced build option, a 20-example subject/grade prompt library, and an updated take-home guide. Preserved slide 17, earlier chapters, the safety slide and standalone demos. Verified changed slide JS parses and repaired guide links. Six staged audits and unresolved real-account/browser checks are recorded in `reviews/2026-11-03-final-section-audits.md`. · Next: David's review starting at slide 18; test all links, mobile layout, live-account demonstration and full 55-minute timing before any merge to main.
 
 
