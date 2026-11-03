@@ -951,3 +951,27 @@
 .prompt-menu .prompt-box pre { font-size: 0.85rem; line-height: 1.4; padding: 0.7rem 6.2rem 0.7rem 0.9rem; }
 .practical.wide .sub { margin-bottom: 0.8rem; }
 .prompt-menu .prompt-box pre { padding-right: 8rem; }
+
+
+/* FCIS final-section first pass, 2026-11-03: quiet practical build slides. */
+.build-simple { max-width: 1050px; margin: auto; width: 100%; display:flex; flex-direction:column; justify-content:center; min-height:65vh; gap:clamp(1rem,2.8vh,2rem); }
+.build-simple .said-line { margin:0; }
+.build-paths { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }
+.build-paths-two { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.build-paths section { border-top:2px solid currentColor; padding:1.2rem .2rem; display:flex; flex-direction:column; gap:.65rem; min-width:0; }
+.build-paths section b { font:600 clamp(.9rem,1.5vw,1.1rem)/1.4 var(--sans); color:var(--ink); }
+.build-paths section span { font:400 clamp(1.18rem,2.05vw,1.7rem)/1.25 var(--serif); overflow-wrap:anywhere; }
+.build-paths section small { font:400 clamp(.86rem,1.3vw,1rem)/1.5 var(--sans); opacity:.77; }
+.build-quiet { font:400 clamp(1rem,1.9vw,1.3rem)/1.5 var(--sans); margin:0; max-width:45rem; }
+.build-problem { font:400 clamp(1.5rem,3.4vw,2.9rem)/1.35 var(--serif); max-width:52rem; margin:0; }
+.build-prompt { font:400 clamp(1rem,1.9vw,1.42rem)/1.65 var(--sans); padding:1.25rem 1.5rem; background:#f3f1ed; border-left:3px solid #344c61; max-width:57rem; white-space:pre-wrap; overflow-wrap:anywhere; }
+.build-actions { font:500 clamp(.9rem,1.4vw,1.1rem)/1.5 var(--sans); margin:0; }
+.build-actions a, .build-footnote a { color:#245c94; text-underline-offset:4px; }
+.build-footnote { font:400 1rem/1.5 var(--sans); margin:1rem 0 0; }
+@media(max-width:700px) {
+  .build-simple { min-height:0; gap:1.2rem; justify-content:flex-start; padding:1.5rem .2rem 2rem; }
+  .build-paths, .build-paths-two {grid-template-columns:1fr;gap:.25rem;}
+  .build-paths section {padding:.8rem 0;gap:.3rem;}
+  .build-prompt {padding:1rem;font-size:1rem;}
+}
+@media(prefers-reduced-motion:reduce) { .build-simple * {animation:none!important;transition:none!important;} }

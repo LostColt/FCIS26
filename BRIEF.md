@@ -38,6 +38,10 @@ Supporting ideas, in David's own words where possible:
 - Building can also mean building for others.
 - "Do you brush your teeth while you eat chocolate? No. You eat, then brush." Build first, then revise.
 
+## November 3 integration note
+
+The live presentation has an updated second half after slide 17. The new sequence, including Gemini Canvas, an optional Reader fallback, Google Sheets, ChatGPT Sites, an advanced coding path and a 20-prompt take-home library, is recorded in `HANDOFF.md` and `content/story.md`. The earlier chapter table below records historical planning; do not use it as the current slide numbering. The 55-minute target and safety principles remain.
+
 ## 4. The story structure
 
 The full text is in `content/story.md`. Use that text; do not rewrite David's voice.
