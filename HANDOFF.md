@@ -28,7 +28,7 @@
 - **Shipping.** Claude has been pushing straight to `main` after each approved change because David reviews live. **Other assistants: work on a branch** (Vercel builds a preview link for every branch), and merge to `main` only when David approves or says "push to main." If he says push to main, push to main.
 - **Answer his questions directly.** He sometimes asks "is it static or can I type?" style questions; answer plainly first, then fix.
 
-## 3. The deck today: 31 slides
+## 3. The deck today: 30 slides
 
 Each line: slide · what it says/does · how it moves. "Auto" means it plays by itself when the slide opens; "press" means the presenter's next press reveals something.
 
@@ -60,28 +60,27 @@ Each line: slide · what it says/does · how it moves. "Auto" means it plays by 
 15. `#reader` Auto (~6s): "Helping students is what first drew me toward technology." is read aloud on screen, each word highlighted in turn like the reader, "technology" stays marked; the line rises → "I kept looking for different ways to help them learn." → the reader story (a friend's student who found listening easier than reading) → the Reader card. No "learning differences" (David, Nov 2).
 16. Auto (~9s): "I have my own shortcomings, too." / "Things I struggle to organize, keep up with, or remember." while five notification cards pile up on the right (Reminders, Mail, Calendar, Notes, Messages; mock text), then they clear → "I build small tools to help me work better, faster, and be more present." → "I'm not trying to ship or sell an app. These are tools for me and people in my orbit."
 
-**6 · Build it** (motion-first rebuild approved November 3, 2026)
-17. `#build` Existing eight-question board (2×4): unchanged, including its fan-in animation.
-18. `#architecture` The three-part Interface / Storage / Hosting architecture appears in the lower third; each part arrives separately. It is deliberately positioned for the next slide’s upward transition.
-19. `#ways` The same three headings rise to the top to become column labels. A three-row matrix stacks Gemini Canvas → Sites draft → Google Sites; ChatGPT Sites → managed site → ChatGPT Sites; AI Studio / Claude Code / Codex / Antigravity → GitHub source → Vercel. Each row assembles across all three columns, then Gemini becomes the live example.
-20. `#gemini-idea` David asks Gemini, naturally, for an interactive JARVIS-style particle HUD. No technical prompt language.
-21. `#gemini-self-prompt` David asks Gemini to write its own detailed prompt from the idea. The detailed output on the slide is **illustrative**, not a quote from a live Gemini session.
-22. `#gemini` David says “Use the prompt you created. Build it in Canvas.” An illustrative preview forms beside the conversation.
-23. `#hud-result` Interactive JARVIS-style particle HUD, imported from David's supplied HTML source and presented inside an on-demand iframe. The iframe is unloaded after leaving the slide to avoid continuous particle animation. It is explicitly an existing example, not falsely presented as an actual generated artifact from the onstage prompt.
-24. `#publish` Motion follows Canvas → Export → Google Sites (private draft) → Publish → open/test link. Based on Google's October 19, 2026 Workspace announcement.
-25. `#dashboard` Original example of Google Sheets → Assessment Calendar, retained **unchanged** for later review.
+**6 · Build it** (November 3 single-slide design revision)
+17. `#build` Existing eight-question board (2×4). Preserved.
+18. `#architecture` ONE continuous, automatically staged slide: Interface / Storage / Hosting appear large and hold about three seconds. Their same typographic headings rise up; Gemini's three connected tab modules stack beneath first, then a single continuous ChatGPT Sites ribbon, then four advanced coding tools converging into GitHub and Vercel. Distinct shapes are intentional. “Today, we'll build in Gemini Canvas” appears last.
+19. `#gemini-idea` David describes an interactive particle HUD in ordinary words.
+20. `#gemini-self-prompt` Gemini writes its own more detailed prompt (illustrative sample).
+21. `#gemini` Ask Gemini to use that prompt in Canvas; simulated preview.
+22. `#hud-result` Existing user-supplied interactive particle HUD, presented in on-demand iframe.
+23. `#publish` Export Gemini Canvas into a private Google Sites draft → Publish → test.
+24. `#dashboard` Original sample Google Sheets to Assessment Calendar example; saved for later review.
 
 **7 · Before you build**
-26. Existing student-data and school-account safety slide retained unchanged.
+25. Existing student-data and school-account safety slide unchanged.
 
 **8 · Your turn**
-27. Existing four featured prompts and classroom library link, unchanged.
-28. Existing optional colleague practice and Reader fallback, unchanged.
-29. Existing “Build first. Then revise.” slide, unchanged.
+26. Existing four featured workshop prompts, unchanged.
+27. Existing optional colleague activity, unchanged.
+28. Existing “Build first. Then revise” slide, unchanged.
 
 **9 · Keep building**
-30. Existing closing statement, unchanged.
-31. Existing resource hub, unchanged.
+29. Existing closing statement, unchanged.
+30. Existing resource hub, unchanged.
 
 Presenter controls: arrows, space, clicker, swipe; **Start over** button (and Home key) returns to the cover; Slides menu; F for full screen. Every slide has a link (`#15`) and some have names (`#reader`).
 
