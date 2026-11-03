@@ -92,5 +92,45 @@
       '<p class="scene-quiet">We are not writing code. We are describing, trying, and revising.</p></div>',
       { id: "gemini" });
 
+    /* Slide 23: the actual user-supplied HTML is shown, not a mock image or an invented Gemini output.
+       The preview starts only when this slide is active (see hud-preview.js). */
+    add(6, 0,
+      '<div class="hud-scene"><div class="hud-story"><p class="arch-eyebrow">04 / TRY THE RESULT</p>' +
+      '<h2 class="scene-heading">This is what an idea can become.</h2>' +
+      '<p class="scene-quiet">An interactive particle HUD. Move the cursor. Click the core. Ask for a change.</p>' +
+      '<div class="hud-actions"><a href="demos/jarvis-hud.html" target="_blank" rel="noopener">Open the interactive HUD</a>' +
+      '<a href="guide.html#gemini" target="_blank" rel="noopener">How the build works</a></div>' +
+      '<small>Example built from an existing HTML file; not a live Gemini generation.</small></div>' +
+      '<div class="hud-frame-shell"><div class="hud-frame-header"><span>INTERACTIVE PREVIEW</span><span>JARVIS / DEMO</span></div>' +
+      '<iframe class="hud-preview" title="Interactive particle HUD demo" data-hud-preview data-src="demos/jarvis-hud.html" loading="lazy"></iframe></div></div>',
+      { id: "hud-result" });
+
+    /* Slide 24: verified new 2026 pathway, export directly to a private Google Sites draft, then publish. */
+    add(6, 0,
+      '<div class="publish-scene"><p class="arch-eyebrow">05 / MAKE IT AVAILABLE</p>' +
+      '<h2 class="scene-heading">From Canvas to a published site.</h2>' +
+      '<div class="publish-flow"><div class="publish-node"><span class="publish-icon">01</span><b>Canvas</b><small>Try it. Revise it.</small></div>' +
+      '<i class="publish-connector" aria-hidden="true"></i>' +
+      '<div class="publish-node"><span class="publish-icon">02</span><b>Export → Google Sites</b><small>Creates a private draft</small></div>' +
+      '<i class="publish-connector" aria-hidden="true"></i>' +
+      '<div class="publish-node"><span class="publish-icon">03</span><b>Publish</b><small>Review who can open it</small></div></div>' +
+      '<div class="publish-browser"><div class="publish-browser-bar"><span></span><span></span><span></span><strong>YOUR SITE · PUBLISHED</strong></div>' +
+      '<div class="publish-browser-inside"><div class="publish-mini-ring" aria-hidden="true"></div><div><strong>Open the link.</strong><small>See what your audience sees.</small></div></div></div>' +
+      '<p class="scene-quiet publish-note">Google Sites must be enabled for your account. Check publishing permissions before sharing.</p>' +
+      '<p class="build-actions"><a href="https://gemini.google.com" target="_blank" rel="noopener">Open Gemini</a> · ' +
+      '<a href="guide.html#share" target="_blank" rel="noopener">Export and publishing steps</a></p></div>',
+      { id: "publish" });
+
+    /* An existing practical example: keep the assessment dashboard for later review. */
+    var rows = [["Date","Grade","Course","Type"],["Nov 3","10","Geometry","Test"],["Nov 3","10","English 10","Project"],["Nov 4","11","Physics","Test"]];
+    add(6, 0,
+      '<p class="said-line">You can build around information you already keep.</p>' +
+      '<div class="sheet-to-dash"><div class="mini-sheet" aria-label="Fictional assessment spreadsheet"><div class="mini-sheet-bar">Sample assessments · Google Sheets</div><table>' +
+      rows.map(function (r,k) { return "<tr>" + r.map(function(c){return (k?"<td>":"<th>")+c+(k?"</td>":"</th>");}).join("")+"</tr>";}).join("") +
+      '</table></div><div class="to-arrow" aria-hidden="true">→</div><div class="late-card" style="--t:2s">' +
+      D.tool("dashboard", "For a department", "Assessment Calendar", "The same information, easier to see. A Sheets canvas or a school-approved Apps Script can extend it.") +
+      '</div></div><p class="build-footnote"><a href="guide.html#sheets" target="_blank" rel="noopener">How Sheets canvas and Apps Script differ</a></p>',
+      { id: "dashboard" });
+
   };
 })();
