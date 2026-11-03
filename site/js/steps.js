@@ -35,29 +35,45 @@
       { id: "build" });
 
 
-    /* Slide 18 — keep the architecture from the earlier version, but animate the three actual parts.
-       The three nouns deliberately separate visual UI, saved data, and how people open the tool. */
+    /* Slide 18: three elements gather at the bottom. Slide 19 carries the exact columns upward.
+       Storage describes where project files or OPTIONAL app data live, not a universal database. */
     add(6, 0,
-      '<div class="architecture-scene"><p class="arch-eyebrow">WHAT MAKES A TOOL WORK?</p>' +
+      '<div class="architecture-scene architecture-scene--handoff">' +
+      '<p class="arch-eyebrow">WHAT MAKES A TOOL WORK?</p>' +
       '<h2 class="arch-heading">Three parts. One idea.</h2>' +
-      '<div class="architecture-lane" aria-label="Interface connects to storage and hosting">' +
-      '<div class="arch-part"><b>Interface</b><span>What people see and use</span></div>' +
+      '<div class="architecture-lane" aria-label="Three building elements: interface, storage, hosting">' +
+      '<div class="arch-part"><b>Interface</b><span>What people use</span></div>' +
       '<i class="arch-link" aria-hidden="true"></i>' +
-      '<div class="arch-part"><b>Storage</b><span>What the tool remembers</span></div>' +
+      '<div class="arch-part"><b>Storage</b><span>What gets kept</span></div>' +
       '<i class="arch-link" aria-hidden="true"></i>' +
       '<div class="arch-part"><b>Hosting</b><span>Where people open it</span></div>' +
-      '</div><p class="arch-after">Some tools handle all three. Others let you choose.</p></div>',
+      '</div><p class="arch-after">These parts can live together or in different places.</p></div>',
       { id: "architecture" });
 
-    /* Slide 19 — the three groups should travel, branch, then settle. Not three more static cards. */
+    /* Slide 19: the previous three parts rise into a header and the tool examples STACK beneath.
+       Rows appear together across the three columns, not as separate lists of brand names. */
+    var toolStacks = [
+      { label:"Gemini", cls:"gemini", ui:"Gemini Canvas", store:"Google Sites draft", host:"Google Sites",
+        note:"Export creates a private draft. App data, if used, may be stored separately (for example in Firebase)." },
+      { label:"ChatGPT Sites", cls:"chatgpt", ui:"ChatGPT Sites", store:"Managed with the site", host:"ChatGPT Sites",
+        note:"Build, keep and publish in one place with an eligible subscription." },
+      { label:"Coding tools", cls:"code", ui:"AI Studio · Claude Code · Codex · Antigravity", store:"GitHub · code",
+        host:"Vercel", note:"Code has version history. Add separate storage only if the tool needs persistent data." }
+    ];
     add(6, 0,
-      '<div class="path-scene"><p class="arch-eyebrow">SAME IDEA. DIFFERENT ROUTES.</p>' +
-      '<h2 class="path-heading">Choose how you want to build.</h2>' +
-      '<div class="path-map">' +
-      '<div class="path-lane path-lane--gemini"><b>Gemini</b><div class="path-steps"><span>Canvas</span><i>→</i><span>Export to Google Sites</span></div><small>Our live example</small></div>' +
-      '<div class="path-lane path-lane--sites"><b>ChatGPT Sites</b><div class="path-steps"><span>Describe it</span><i>→</i><span>Build and publish</span></div><small>One place, with an eligible subscription</small></div>' +
-      '<div class="path-lane path-lane--code"><b>More control</b><div class="path-steps"><span>AI Studio · Claude Code · Codex · Antigravity</span><i>→</i><span>GitHub</span><i>→</i><span>Vercel</span></div><small>Code, version history, then hosting</small></div>' +
-      '</div><div class="path-focus"><span>For today, we will build in</span><strong>Gemini Canvas.</strong></div></div>',
+      '<div class="stack-scene"><p class="arch-eyebrow">THE SAME THREE PARTS, DIFFERENT TOOLS</p>' +
+      '<div class="stack-columns" role="table" aria-label="How three different build approaches handle interface, storage, and hosting">' +
+      '<div class="stack-column-headings" role="row"><div role="columnheader">Interface<small>What people use</small></div>' +
+      '<div role="columnheader">Storage<small>What gets kept</small></div>' +
+      '<div role="columnheader">Hosting<small>Where it opens</small></div></div>' +
+      '<div class="stack-rows">' + toolStacks.map(function (t, i) {
+        return '<div class="stack-row stack-row--' + t.cls + '" role="row" style="--stack:' + i + '">' +
+          '<div class="stack-cell" role="cell"><small>' + t.label + '</small><b>' + t.ui + '</b></div>' +
+          '<div class="stack-cell" role="cell"><b>' + t.store + '</b></div>' +
+          '<div class="stack-cell" role="cell"><b>' + t.host + '</b></div>' +
+          '<p class="stack-description">' + t.note + '</p></div>';
+      }).join('') + '</div></div>' +
+      '<p class="stack-focus">We’ll build the first example in <strong>Gemini Canvas.</strong></p></div>',
       { id: "ways" });
 
     /* Slide 20: David's ordinary first request. We intentionally do not teach prompt templates. */
