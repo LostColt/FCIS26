@@ -32,9 +32,9 @@
   D.PROMPTS = PROMPTS;
 
   add(8, 0,
-    '<div class="practical wide"><h2>Pick a prompt</h2><p class="sub">Start with one small need. These four work in Gemini Canvas; the <a href="prompt-library.html" target="_blank" rel="noopener">classroom library</a> has 20 by grade and subject, plus reading-support options.</p><div class="prompt-menu">' +
+    '<div class="practical wide"><h2>Pick a prompt</h2><p class="sub">Choose one to try. <a href="prompt-library.html" target="_blank" rel="noopener">20 more by grade and subject</a>, including reading supports.</p><div class="prompt-menu">' +
     PROMPTS.map(function (p) { return "<section><h3>" + p[0] + "</h3>" + box(p[1]) + "</section>"; }).join("") +
-    '</div><p class="slide-note">Keep the first version small. Try it and ask for one change. <a href="guide.html#gemini" target="_blank" rel="noopener">Build instructions</a></p></div>',
+    '</div><p class="slide-note">Make one change, then try it again. <a href="guide.html#gemini" target="_blank" rel="noopener">Steps</a></p></div>',
     { scroll: true, id: "prompts" });
 
   add(8, 0,
