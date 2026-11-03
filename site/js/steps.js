@@ -35,46 +35,41 @@
       { id: "build" });
 
 
-    /* Slide 18: three elements gather at the bottom. Slide 19 carries the exact columns upward.
-       Storage describes where project files or OPTIONAL app data live, not a universal database. */
+    /* Slide 18 — one self-contained animated transformation.
+       The architecture stays visible for ~3 seconds before becoming the grid header.
+       Different shapes illustrate three different kinds of building:
+       Gemini is a connected path, ChatGPT Sites one unified service, coding tools converging. */
     add(6, 0,
-      '<div class="architecture-scene architecture-scene--handoff">' +
-      '<p class="arch-eyebrow">WHAT MAKES A TOOL WORK?</p>' +
-      '<h2 class="arch-heading">Three parts. One idea.</h2>' +
-      '<div class="architecture-lane" aria-label="Three building elements: interface, storage, hosting">' +
-      '<div class="arch-part"><b>Interface</b><span>What people use</span></div>' +
-      '<i class="arch-link" aria-hidden="true"></i>' +
-      '<div class="arch-part"><b>Storage</b><span>What gets kept</span></div>' +
-      '<i class="arch-link" aria-hidden="true"></i>' +
-      '<div class="arch-part"><b>Hosting</b><span>Where people open it</span></div>' +
-      '</div><p class="arch-after">These parts can live together or in different places.</p></div>',
+      '<div class="anatomy-scene">' +
+      '<div class="anatomy-opening"><p class="anatomy-overline">WHAT MAKES A TOOL WORK?</p>' +
+      '<h2>Three parts. <em>One idea.</em></h2></div>' +
+      '<div class="anatomy-headings" aria-label="Interface, storage, and hosting">' +
+      '<div class="anatomy-heading"><span>01 / THE FRONT</span><strong>Interface</strong><small>What people use</small></div>' +
+      '<div class="anatomy-heading"><span>02 / WHAT REMAINS</span><strong>Storage</strong><small>What gets kept</small></div>' +
+      '<div class="anatomy-heading"><span>03 / THE LINK</span><strong>Hosting</strong><small>Where people open it</small></div>' +
+      '</div>' +
+      '<div class="anatomy-examples">' +
+      '<div class="anatomy-gemini"><span class="anatomy-row-label">A / GOOGLE GEMINI</span>' +
+      '<div class="anatomy-row anatomy-row--gemini" aria-label="Gemini Canvas, a Google Sites draft, and Google Sites publishing">' +
+      '<div class="anatomy-gemini-module"><span class="anatomy-gemini-dot"></span><strong>Gemini Canvas</strong></div>' +
+      '<div class="anatomy-gemini-module"><span class="anatomy-gemini-dot"></span><strong>Sites draft</strong><small>Exported project</small></div>' +
+      '<div class="anatomy-gemini-module"><span class="anatomy-gemini-dot"></span><strong>Google Sites</strong><small>Published address</small></div></div></div>' +
+      '<div class="anatomy-chatgpt"><span class="anatomy-row-label">B / CHATGPT SITES</span>' +
+      '<div class="anatomy-row anatomy-row--chatgpt" aria-label="ChatGPT Sites handles the interface, the project, and publication in one service">' +
+      '<div class="anatomy-chatgpt-cell"><strong>Build in Sites</strong></div>' +
+      '<div class="anatomy-chatgpt-cell"><strong>Kept in Sites</strong></div>' +
+      '<div class="anatomy-chatgpt-cell"><strong>Published by Sites</strong></div>' +
+      '</div><p class="anatomy-row-caption">One service, with an eligible subscription.</p></div>' +
+      '<div class="anatomy-advanced"><span class="anatomy-row-label">C / MORE CONTROL</span>' +
+      '<div class="anatomy-row anatomy-row--advanced" aria-label="Coding tools create the project, GitHub stores its code, and Vercel hosts it">' +
+      '<div class="anatomy-coding"><span>AI Studio</span><span>Claude Code</span><span>Codex</span><span>Antigravity</span></div>' +
+      '<div class="anatomy-destination"><strong>GitHub</strong><small>Source and version history</small></div>' +
+      '<div class="anatomy-destination"><strong>Vercel</strong><small>Web hosting</small></div></div>' +
+      '</div></div>' +
+      '<p class="anatomy-landing">Today, we’ll build in <strong>Gemini Canvas.</strong></p>' +
+      '<p class="visually-hidden">Some tools need separate data storage; these storage examples refer to the saved project or code. Gemini app data can use a different service.</p>' +
+      '</div>',
       { id: "architecture" });
-
-    /* Slide 19: the previous three parts rise into a header and the tool examples STACK beneath.
-       Rows appear together across the three columns, not as separate lists of brand names. */
-    var toolStacks = [
-      { label:"Gemini", cls:"gemini", ui:"Gemini Canvas", store:"Google Sites draft", host:"Google Sites",
-        note:"Export creates a private draft. App data, if used, may be stored separately (for example in Firebase)." },
-      { label:"ChatGPT Sites", cls:"chatgpt", ui:"ChatGPT Sites", store:"Managed with the site", host:"ChatGPT Sites",
-        note:"Build, keep and publish in one place with an eligible subscription." },
-      { label:"Coding tools", cls:"code", ui:"AI Studio · Claude Code · Codex · Antigravity", store:"GitHub · code",
-        host:"Vercel", note:"Code has version history. Add separate storage only if the tool needs persistent data." }
-    ];
-    add(6, 0,
-      '<div class="stack-scene"><p class="arch-eyebrow">THE SAME THREE PARTS, DIFFERENT TOOLS</p>' +
-      '<div class="stack-columns" role="table" aria-label="How three different build approaches handle interface, storage, and hosting">' +
-      '<div class="stack-column-headings" role="row"><div role="columnheader">Interface<small>What people use</small></div>' +
-      '<div role="columnheader">Storage<small>What gets kept</small></div>' +
-      '<div role="columnheader">Hosting<small>Where it opens</small></div></div>' +
-      '<div class="stack-rows">' + toolStacks.map(function (t, i) {
-        return '<div class="stack-row stack-row--' + t.cls + '" role="row" style="--stack:' + i + '">' +
-          '<div class="stack-cell" role="cell"><small>' + t.label + '</small><b>' + t.ui + '</b></div>' +
-          '<div class="stack-cell" role="cell"><b>' + t.store + '</b></div>' +
-          '<div class="stack-cell" role="cell"><b>' + t.host + '</b></div>' +
-          '<p class="stack-description">' + t.note + '</p></div>';
-      }).join('') + '</div></div>' +
-      '<p class="stack-focus">We’ll build the first example in <strong>Gemini Canvas.</strong></p></div>',
-      { id: "ways" });
 
     /* Slide 20: David's ordinary first request. We intentionally do not teach prompt templates. */
     add(6, 0,
