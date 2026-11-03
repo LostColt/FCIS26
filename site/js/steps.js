@@ -112,21 +112,59 @@
       '<iframe class="hud-preview" title="Interactive particle HUD demo" data-hud-preview data-src="demos/jarvis-hud.html" loading="lazy"></iframe></div></div>',
       { id: "hud-result" });
 
-    /* Slide 24: verified new 2026 pathway, export directly to a private Google Sites draft, then publish. */
-    add(6, 0,
-      '<div class="publish-scene"><p class="arch-eyebrow">05 / MAKE IT AVAILABLE</p>' +
-      '<h2 class="scene-heading">From Canvas to a published site.</h2>' +
-      '<div class="publish-flow"><div class="publish-node"><span class="publish-icon">01</span><b>Canvas</b><small>Try it. Revise it.</small></div>' +
-      '<i class="publish-connector" aria-hidden="true"></i>' +
-      '<div class="publish-node"><span class="publish-icon">02</span><b>Export → Google Sites</b><small>Creates a private draft</small></div>' +
-      '<i class="publish-connector" aria-hidden="true"></i>' +
-      '<div class="publish-node"><span class="publish-icon">03</span><b>Publish</b><small>Review who can open it</small></div></div>' +
-      '<div class="publish-browser"><div class="publish-browser-bar"><span></span><span></span><span></span><strong>YOUR SITE · PUBLISHED</strong></div>' +
-      '<div class="publish-browser-inside"><div class="publish-mini-ring" aria-hidden="true"></div><div><strong>Open the link.</strong><small>See what your audience sees.</small></div></div></div>' +
-      '<p class="scene-quiet publish-note">Google Sites must be enabled for your account. Check publishing permissions before sharing.</p>' +
-      '<p class="build-actions"><a href="https://gemini.google.com" target="_blank" rel="noopener">Open Gemini</a> · ' +
-      '<a href="guide.html#share" target="_blank" rel="noopener">Export and publishing steps</a></p></div>',
-      { id: "publish" });
+    /* Slide 21: screenshot-informed workflow, not a vague flowchart.
+       Presenter advances through the actual menu placements shown in supplied images:
+       Gemini Export -> Google Sites editor -> Publish menu. */
+    add(6, 2,
+      '<div class="publish-demo">' +
+      '<div class="publish-demo-heading"><p class="arch-eyebrow">05 / MAKE IT AVAILABLE</p>' +
+      '<h2>From Canvas to a published page.</h2></div>' +
+      '<div class="publish-ui-window">' +
+      '<div class="publish-ui-stage publish-ui-stage--gemini">' +
+      '<div class="publish-gemini-bar"><span class="publish-gemini-name">Jarvis HUD</span>' +
+      '<span class="publish-gemini-modes">Code <strong>Preview</strong></span>' +
+      '<span class="publish-export-button">Export <span>⌄</span></span></div>' +
+      '<div class="publish-export-menu"><div class="publish-export-target"><span aria-hidden="true">▣</span> Google Sites</div>' +
+      '<div><span aria-hidden="true">↓</span> Download code</div></div>' +
+      '<div class="publish-hud-screen"><div class="publish-hud-diagnostics">SYSTEM DIAGNOSTICS<small>CPU LOAD <b>14%</b></small><small>MEMORY ALLOC <b>3264 MB</b></small></div>' +
+      '<div class="publish-hud-orb"><i></i><i></i><i></i></div>' +
+      '<div class="publish-hud-right">ENVIRONMENT<small>SYSTEM ONLINE</small></div>' +
+      '<div class="publish-hud-footer">PROTOCOL LOGS<small>ALL SYSTEMS NOMINAL</small></div></div>' +
+      '<div class="publish-ui-target-label">EXPORT → GOOGLE SITES</div>' +
+      '</div>' +
+      '<div class="publish-ui-stage publish-ui-stage--sites" data-step="1">' +
+      '<div class="publish-sites-toolbar"><span class="publish-sites-logo">▦</span>' +
+      '<b>JARVIS System HUD</b><span class="publish-sites-status">All changes saved in Drive</span>' +
+      '<span class="publish-sites-publish">Publish</span></div>' +
+      '<div class="publish-sites-editor"><div class="publish-sites-page"><div class="publish-sites-site-name">JARVIS System HUD</div>' +
+      '<div class="publish-sites-embed"><div class="publish-sites-mini-head">SYSTEM DIAGNOSTICS <span>ENVIRONMENT</span></div>' +
+      '<div class="publish-hud-orb publish-hud-orb--small"><i></i><i></i><i></i></div></div></div>' +
+      '<aside class="publish-sites-sidebar"><b>Insert</b><span>Embed</span><span>Drive</span><span>Text box</span><span>Images</span></aside></div>' +
+      '<div class="publish-ui-target-label">GOOGLE SITES → PUBLISH</div>' +
+      '</div>' +
+      '<div class="publish-ui-stage publish-ui-stage--live" data-step="2">' +
+      '<div class="publish-sites-toolbar"><span class="publish-sites-logo">▦</span>' +
+      '<b>JARVIS System HUD</b><span class="publish-sites-status">All changes saved in Drive</span>' +
+      '<span class="publish-sites-publish">Publish <span>⌄</span></span></div>' +
+      '<div class="publish-sites-menu"><div>Publish settings…</div><div class="publish-menu-priority">Review changes and publish</div>' +
+      '<div>View published site</div></div>' +
+      '<div class="publish-sites-editor"><div class="publish-sites-page"><div class="publish-sites-site-name">JARVIS System HUD</div>' +
+      '<div class="publish-sites-embed"><div class="publish-sites-mini-head">SYSTEM DIAGNOSTICS <span>ENVIRONMENT</span></div>' +
+      '<div class="publish-hud-orb publish-hud-orb--small"><i></i><i></i><i></i></div></div></div>' +
+      '<aside class="publish-sites-sidebar"><b>Insert</b><span>Embed</span><span>Drive</span><span>Text box</span><span>Images</span></aside></div>' +
+      '<div class="publish-ui-target-label">REVIEW → PUBLISH → VIEW</div>' +
+      '</div></div>' +
+      '<div class="publish-demo-bottom">' +
+      '<div class="publish-demo-explainer publish-demo-explainer--export"><span>01 / GEMINI CANVAS</span>' +
+      '<p><strong>Export → Google Sites</strong></p></div>' +
+      '<div class="publish-demo-explainer publish-demo-explainer--sites"><span>02 / GOOGLE SITES</span>' +
+      '<p><strong>Review → Publish</strong></p></div>' +
+      '<div class="publish-demo-explainer publish-demo-explainer--live"><span>03 / PUBLISH AND CHECK</span>' +
+      '<p><strong>Publish → View site</strong></p></div>' +
+      '<div class="publish-demo-context"><strong>School Google Workspace</strong> · Sites enabled' +
+      '<small>Other accounts: look for Download code.</small>' +
+      '<a href="guide.html#share" target="_blank" rel="noopener">Instructions</a></div>' +
+      '</div></div>', { id:"publish" });
 
     /* An existing practical example: keep the assessment dashboard for later review. */
     var rows = [["Date","Grade","Course","Type"],["Nov 3","10","Geometry","Test"],["Nov 3","10","English 10","Project"],["Nov 4","11","Physics","Test"]];
