@@ -1145,3 +1145,139 @@
  .publish-connector{min-width:8px;}
  .publish-browser{width:100%;}
 }
+
+
+/* Nov 3 — slide 18/19 continuity. Three architectural parts collect low on 18,
+   then appear to rise into the top headings on 19; three whole workflow rows stack underneath. */
+.architecture-scene--handoff {
+  justify-content:flex-start;
+  min-height:min(67vh,600px);
+  gap:clamp(.8rem,1.8vh,1.2rem);
+}
+.architecture-scene--handoff .architecture-lane {
+  margin-top:auto;
+  margin-bottom:.3rem;
+}
+.architecture-scene--handoff .arch-part {
+  min-height:140px;
+  border-color:#83919b;
+  background:rgba(255,255,255,.45);
+}
+.architecture-scene--handoff .arch-after {
+  margin-bottom:0;
+  font-size:clamp(.98rem,1.4vw,1.2rem);
+}
+.stack-scene {
+  width:min(1160px,100%); margin:0 auto;
+  min-height:65vh; display:flex; flex-direction:column;
+  justify-content:center; gap:clamp(.6rem,1.45vh,1rem);
+}
+.stack-columns {display:flex;flex-direction:column;gap:0;width:100%;}
+.stack-column-headings {
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr));gap:.9rem;
+  position:relative; z-index:1;
+}
+.stack-column-headings > div {
+  display:flex;flex-direction:column;justify-content:center;
+  padding:.8rem 1.2rem;
+  border:1px solid #8798a6;
+  border-top:3px solid #3f5365;
+  background:#edece8; min-height:93px;
+  font:400 clamp(1.65rem,2.4vw,2.45rem)/1.16 var(--serif);
+}
+.stack-column-headings small {
+  font:400 clamp(.76rem,.95vw,.95rem)/1.3 var(--sans);
+  color:var(--ink-soft);margin-top:.35rem;
+}
+.stack-rows {display:flex;flex-direction:column;gap:.5rem;margin-top:.7rem;}
+.stack-row {
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  column-gap:.9rem;row-gap:0;
+  padding:.2rem 0 .4rem;
+  border-bottom:1px solid #adb6b9;
+}
+.stack-cell {
+  min-width:0; min-height:68px;
+  display:flex;flex-direction:column;
+  justify-content:center;gap:.3rem;
+  padding:.48rem 1.2rem;
+  background:rgba(255,255,255,.36);
+  border-left:2px solid #7e949f;
+}
+.stack-cell b {
+  font:500 clamp(.97rem,1.35vw,1.28rem)/1.24 var(--sans);
+  overflow-wrap:anywhere;
+}
+.stack-cell small {
+  font:600 clamp(.7rem,.85vw,.85rem)/1.2 var(--sans);
+  color:var(--ink-soft);
+  letter-spacing:.1em;text-transform:uppercase;
+}
+.stack-description {
+  grid-column:1/-1;
+  font:400 clamp(.75rem,.95vw,.94rem)/1.36 var(--sans);
+  color:var(--ink-soft);
+  padding:.28rem 1.2rem 0;
+  margin:0;
+}
+.stack-row--gemini .stack-cell {border-left-color:#3e6e7a;background:#e4eeef;}
+.stack-row--chatgpt .stack-cell {border-left-color:#6c7868;}
+.stack-row--code .stack-cell {border-left-color:#9a836b;}
+.stack-focus {
+  text-align:right;margin:.35rem 0 0;
+  font:400 clamp(1rem,1.4vw,1.2rem)/1.4 var(--sans);
+}
+.stack-focus strong {font:400 clamp(1.35rem,2vw,1.75rem)/1.24 var(--serif);}
+
+/* Stacking is deliberate: headings move upward first, then each row assembles
+   across all three columns and holds. Re-entering the slide replays its sequence. */
+@media(prefers-reduced-motion:no-preference) {
+  .slide.is-active .stack-column-headings {
+    animation:stack-head-rise 1.2s cubic-bezier(.2,.68,.18,1) both .12s;
+  }
+  .slide.is-active .stack-row {
+    animation:stack-row-assemble .72s cubic-bezier(.17,.76,.21,1) both;
+    animation-delay:calc(1.05s + var(--stack)*.85s);
+  }
+  .slide.is-active .stack-row .stack-cell:nth-child(2) {
+    animation:stack-cell-fill .45s both;
+    animation-delay:calc(1.32s + var(--stack)*.85s);
+  }
+  .slide.is-active .stack-row .stack-cell:nth-child(3) {
+    animation:stack-cell-fill .45s both;
+    animation-delay:calc(1.58s + var(--stack)*.85s);
+  }
+  .slide.is-active .stack-focus {animation:arch-in .55s both 4s;}
+}
+@keyframes stack-head-rise {
+  from {opacity:.82;transform:translateY(235px) scale(.98);}
+  to {opacity:1;transform:translateY(0) scale(1);}
+}
+@keyframes stack-row-assemble {
+  from {opacity:0;transform:translateY(28px);}
+  to {opacity:1;transform:translateY(0);}
+}
+@keyframes stack-cell-fill {
+  from {opacity:0;transform:translateY(13px);}
+  to {opacity:1;transform:translateY(0);}
+}
+@media(max-width:1000px) {
+  .stack-scene {min-height:0;}
+  .stack-column-headings,.stack-row {column-gap:.45rem;}
+  .stack-column-headings>div{padding:.65rem .8rem;}
+  .stack-cell{padding:.4rem .65rem;min-height:63px;}
+  .stack-description{padding-left:.65rem;}
+}
+@media(max-width:650px) {
+  .stack-scene{min-height:0;padding:1rem 0;}
+  .stack-column-headings>div{font-size:1.3rem;min-height:70px;padding:.55rem .4rem;}
+  .stack-column-headings small{font-size:.68rem;}
+  .stack-cell b{font-size:.85rem;}
+  .stack-cell small{font-size:.64rem;}
+  .stack-cell{padding:.35rem .4rem;}
+  .stack-description{font-size:.75rem;padding:.3rem .4rem;}
+  .stack-focus{text-align:left;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .stack-scene * {animation:none!important;transition:none!important;}
+}

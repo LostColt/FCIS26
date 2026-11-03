@@ -62,8 +62,8 @@ Each line: slide · what it says/does · how it moves. "Auto" means it plays by 
 
 **6 · Build it** (motion-first rebuild approved November 3, 2026)
 17. `#build` Existing eight-question board (2×4): unchanged, including its fan-in animation.
-18. `#architecture` The architectural idea returns: Interface → Storage → Hosting, each part entering in sequence. “Some tools handle all three. Others let you choose.”
-19. `#ways` Animated routes: Gemini Canvas → Google Sites; ChatGPT Sites as the simple integrated route with an eligible subscription; AI Studio / Claude Code / Codex / Antigravity → GitHub → Vercel. Motion draws the paths into view and concentrates attention on Gemini.
+18. `#architecture` The three-part Interface / Storage / Hosting architecture appears in the lower third; each part arrives separately. It is deliberately positioned for the next slide’s upward transition.
+19. `#ways` The same three headings rise to the top to become column labels. A three-row matrix stacks Gemini Canvas → Sites draft → Google Sites; ChatGPT Sites → managed site → ChatGPT Sites; AI Studio / Claude Code / Codex / Antigravity → GitHub source → Vercel. Each row assembles across all three columns, then Gemini becomes the live example.
 20. `#gemini-idea` David asks Gemini, naturally, for an interactive JARVIS-style particle HUD. No technical prompt language.
 21. `#gemini-self-prompt` David asks Gemini to write its own detailed prompt from the idea. The detailed output on the slide is **illustrative**, not a quote from a live Gemini session.
 22. `#gemini` David says “Use the prompt you created. Build it in Canvas.” An illustrative preview forms beside the conversation.
