@@ -203,19 +203,29 @@ But I wasn't trying to ship a product. I was trying to build smaller things. Wha
 
 **Slide 17:** The same eight reflection questions from the prior pass. Do not change.
 
-**Slide 18: Anatomy of a small tool**
+**Slide 18: Anatomy of a small tool — lower position**
 > Three parts. One idea.
-> Interface — what people see and use.
-> Storage — what the tool remembers.
+> Interface — what people use.
+> Storage — what gets kept.
 > Hosting — where people open it.
-> Some tools handle all three. Others let you choose.
+> These parts can live together or in different places.
 
-The three parts assemble one by one, linked by arrows. Do not replace this with a plain heading and three static cards. If a tool saves nothing, it may not need persistent storage.
+The three connected parts arrive sequentially in the lower portion of the slide.
 
-**Slide 19: Paths**
-> Choose how you want to build.
+**Slide 19: Three columns rise and the build routes stack**
+> The same three parts, different tools.
 
-Animated branches, one at a time: Gemini Canvas to Google Sites; ChatGPT Sites for a direct integrated paid-plan route; AI Studio, Claude Code, Codex or Antigravity to GitHub to Vercel. Return focus to Gemini.
+The previous three-part framework appears to rise into the top row as three **column headings**: Interface / Storage / Hosting. Three full rows stack below, one after another, aligned across all columns:
+
+| Approach | Interface | Storage | Hosting |
+|---|---|---|---|
+| Gemini | Gemini Canvas | Google Sites draft | Google Sites |
+| ChatGPT Sites | ChatGPT Sites | Managed with the site | ChatGPT Sites |
+| Coding tools | AI Studio / Claude Code / Codex / Antigravity | GitHub (source code) | Vercel |
+
+Notes explicitly distinguish project/code storage from optional **app data**. Google Sites drafts follow Google Drive and Sites policies; that does not make Drive the persistent backend of every Gemini Canvas app. Canvas app data, if enabled, may be stored separately (for example Firebase). Some tools do not require any persistent app data.
+
+Each row animates into place across the three columns; Gemini is highlighted. Final focus: “We’ll build the first example in Gemini Canvas.”
 
 **Slide 20: My ordinary request**
 > Start with an idea.
