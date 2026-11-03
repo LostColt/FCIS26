@@ -108,7 +108,7 @@
       '<p>Use the prompt Gemini just wrote. It starts building the first version in Canvas. You can test it and ask for changes.</p></div>' +
       '<div class="conversation-takeaway">You bring the idea. <span>AI helps work out the implementation.</span></div>' +
       '</div></div>',
-      { id:"gemini-conversation" });
+      { id:"gemini" });
 
     /* Slide 23: the actual user-supplied HTML is shown, not a mock image or an invented Gemini output.
        The preview starts only when this slide is active (see hud-preview.js). */
