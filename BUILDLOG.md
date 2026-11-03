@@ -6,6 +6,9 @@ Format: date · who · what happened · what's next
 
 ---
 
+**2026-11-03 · ChatGPT (slide 19 Canvas and smart-screen motion)** · Animated a visible Canvas press/selection before text types; each existing internal swipe now types its corresponding paragraph into the single original user prompt. Removed paragraph divider lines, used ordinary whitespace, and reworked the two-column scene for constrained heights. A new `conversation-type.js` controller measures completed prompt text and reduces its font when needed; the chat can scroll as a last resort instead of clipping. No changes to slide numbers or text of the prompt. Source audit passed; physical smart-screen review still recommended.
+
+
 **2026-11-03 · ChatGPT (one prompt + real HUD actions)** · Rebuilt slide 19 from multiple fabricated messages into one progressively revealed user message, with Canvas selected in the header and changing explanation alongside. Removed all invented Gemini response/build-status bubbles. Slide 20 offers functional Copy code (actual HTML), Download HTML, and Open app. The step-by-step building explanation and complete copyable prompt now live in `site/guide.html#gemini`; no “How the build works” link on the demo slide. Slides total remain 28.
 
 
