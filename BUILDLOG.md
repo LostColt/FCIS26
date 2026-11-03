@@ -6,6 +6,9 @@ Format: date · who · what happened · what's next
 
 ---
 
+**2026-11-03 · ChatGPT (slide 20 true fullscreen fix)** · Replaced the error-prone scale/translate-from-track entrance with a body-level fullscreen HUD layer. The existing iframe begins at viewport coordinates (0,0), holds stationary for 3000ms, animates into the measured preview rectangle in 1400ms, then restores to its original place and fades in the left-hand copy. The old keyframe and its calculated origin were removed. iframe liveness now follows slide ID to accommodate temporary body placement. Reduced-motion support and navigation cleanup retained. No content changes to other slides.
+
+
 **2026-11-03 · ChatGPT (slide 21 copy reduction)** · After the user's request to focus on the build rather than talking through the workflow, shortened each stage to a single action cue: “Export → Google Sites,” “Review → Publish,” and “Publish → View site.” Made the publishing UI larger in hierarchy while retaining concise workspace and download-code notes. Details remain on the resource page.
 
 
