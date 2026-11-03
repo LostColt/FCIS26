@@ -1423,9 +1423,26 @@
   color:var(--ink);
 }
 
+/* Sweep the entire first table row, not just its title. Cells remain above ink. */
+.anatomy-editorial .anatomy-table-row--gemini { position:relative; isolation:isolate; overflow:hidden; }
+.anatomy-editorial .anatomy-table-row--gemini::before {
+  content:""; position:absolute; z-index:0; inset:0;
+  background:var(--highlight); opacity:.68;
+  transform:scaleX(0); transform-origin:left center;
+}
+.anatomy-editorial .anatomy-table-row--gemini > div { z-index:1; }
+@media(prefers-reduced-motion:no-preference) {
+  .slide.is-active .anatomy-editorial .anatomy-table-row--gemini::before {
+    animation:anatomy-yellow-row .8s cubic-bezier(.55,0,.2,1) both 9.3s;
+  }
+}
+@keyframes anatomy-yellow-row { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+@media(prefers-reduced-motion:reduce) {
+  .anatomy-editorial .anatomy-table-row--gemini::before { transform:scaleX(1); }
+}
 /* The title and heading plaques settle for 3.1 seconds. The plaques then
    travel upwards as the ORIGINAL elements; rows enter as whole editorial lines.
-   The last yellow highlighter is triggered solely by the presenter's NEXT press. */
+   The whole Gemini row highlights automatically two seconds after the outro has appeared. */
 @media(prefers-reduced-motion:no-preference) {
   .slide.is-active .anatomy-editorial .anatomy-intro {
     animation:editorial-title-out .7s ease-in both 3.15s;
@@ -1455,8 +1472,7 @@
   from{opacity:0;transform:translateY(14px);}
   to{opacity:1;transform:translateY(0);}
 }
-/* Old global .mark handles timing and yellow ink. Under reduced motion,
-   the comparison is legible from the start while the press still marks Gemini. */
+/* Under reduced motion, the comparison is immediately legible with Gemini distinguished. */
 @media(prefers-reduced-motion:reduce) {
   .anatomy-editorial .anatomy-intro {opacity:0;}
   .anatomy-editorial .anatomy-columns {transform:none;}
