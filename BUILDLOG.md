@@ -6,6 +6,9 @@ Format: date · who · what happened · what's next
 
 ---
 
+**2026-11-03 · ChatGPT (slide 21 three-column pan and pullback)** · Replaced the oversized publishing screen reconstructions with three cropped, screenshot-informed controls: Gemini Export dropdown, Google Sites Publish button, and Publish menu. Focus moves from column 1 to 2 to 3 on two swipes, and the third internal swipe pulls back to show all three together. Each view has a cursor/dropdown emphasis, with minimal account copy at bottom. Removed obsolete large-window CSS. Slide count remains 28, slide 21 now 3 internal steps, and detailed instructions remain in the guide.
+
+
 **2026-11-03 · ChatGPT (slide 20 true fullscreen fix)** · Replaced the error-prone scale/translate-from-track entrance with a body-level fullscreen HUD layer. The existing iframe begins at viewport coordinates (0,0), holds stationary for 3000ms, animates into the measured preview rectangle in 1400ms, then restores to its original place and fades in the left-hand copy. The old keyframe and its calculated origin were removed. iframe liveness now follows slide ID to accommodate temporary body placement. Reduced-motion support and navigation cleanup retained. No content changes to other slides.
 
 
