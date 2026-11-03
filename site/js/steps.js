@@ -60,5 +60,37 @@
       '</div><div class="path-focus"><span>For today, we will build in</span><strong>Gemini Canvas.</strong></div></div>',
       { id: "ways" });
 
+    /* Slide 20: David's ordinary first request. We intentionally do not teach prompt templates. */
+    add(6, 0,
+      '<div class="gemini-scene gemini-scene--ask">' +
+      '<p class="arch-eyebrow">01 / SAY WHAT YOU WANT</p>' +
+      '<h2 class="scene-heading">Start with an idea.</h2>' +
+      '<div class="gemini-chat"><span class="gemini-speaker">You, to Gemini</span>' +
+      '<p class="gemini-user-words">“I want a futuristic interface with a moving particle shape in the middle. I want to move it with my mouse. Put some computer panels around it.”</p></div>' +
+      '<p class="scene-quiet">That is enough to start. No technical vocabulary required.</p></div>',
+      { id: "gemini-idea" });
+
+    /* Slide 21: explicitly ask Gemini to prompt itself. Model-generated example is labeled illustrative. */
+    add(6, 0,
+      '<div class="gemini-scene gemini-scene--prompt">' +
+      '<p class="arch-eyebrow">02 / ASK GEMINI TO WRITE THE PROMPT</p>' +
+      '<h2 class="scene-heading">Let it do the technical thinking.</h2>' +
+      '<div class="gemini-direct"><span class="gemini-speaker">You, to Gemini</span>' +
+      '<p>“Turn what I described into a detailed build prompt for yourself. Include the design, motion, interactions, and things I might have missed.”</p></div>' +
+      '<div class="gemini-draft" aria-label="Illustrative prompt Gemini might produce"><span class="gemini-speaker">Illustrative expanded prompt</span>' +
+      '<div class="draft-lines"><span>Full-screen, dark futuristic HUD</span><span>Animated interactive particle core</span><span>Mouse drag and click reactions</span><span>Readable status panels and responsive layout</span></div></div>' +
+      '</div>', { id: "gemini-self-prompt" });
+
+    /* Slide 22: activate Canvas; this is a staged illustration rather than an actual Gemini call. */
+    add(6, 0,
+      '<div class="gemini-scene gemini-scene--canvas">' +
+      '<p class="arch-eyebrow">03 / USE THE PROMPT IT WROTE</p>' +
+      '<h2 class="scene-heading">Now build it.</h2>' +
+      '<div class="canvas-workflow"><div class="canvas-chat"><span class="gemini-speaker">You, to Gemini</span><p>“Use the prompt you created. Build it in Canvas.”</p></div>' +
+      '<div class="canvas-arrow" aria-hidden="true">→</div>' +
+      '<div class="canvas-result"><div class="canvas-topline">Canvas <span>Preview</span></div><div class="canvas-wireframe"><span></span><div class="canvas-ring"></div><span></span></div><small>First version · try it, then ask for a change</small></div></div>' +
+      '<p class="scene-quiet">We are not writing code. We are describing, trying, and revising.</p></div>',
+      { id: "gemini" });
+
   };
 })();
