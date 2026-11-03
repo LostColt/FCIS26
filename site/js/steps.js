@@ -107,7 +107,7 @@
       '<div class="hud-actions hud-actions--practical"><button type="button" data-copy-hud>Copy code</button>' +
       '<a href="demos/jarvis-hud.html" download="jarvis-hud.html">Download HTML</a>' +
       '<a href="demos/jarvis-hud.html" target="_blank" rel="noopener">Open app</a></div>' +
-      '<p class="hud-action-feedback" data-copy-hud-status role="status" aria-live="polite"></p>' + +
+      '<p class="hud-action-feedback" data-copy-hud-status role="status" aria-live="polite"></p>' +
       '<small>Example built from an existing HTML file; not a live Gemini generation.</small></div>' +
       '<div class="hud-frame-shell"><div class="hud-frame-header"><span>INTERACTIVE PREVIEW</span><span>JARVIS / DEMO</span></div>' +
       '<iframe class="hud-preview" title="Interactive particle HUD demo" data-hud-preview data-src="demos/jarvis-hud.html" loading="lazy"></iframe></div></div>',
