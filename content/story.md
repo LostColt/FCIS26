@@ -222,32 +222,31 @@ The line “Today, we’ll build in Gemini Canvas.” appears after the complete
 
 Project storage is not necessarily application-data storage; Gemini apps that save user data may use a separate service. The table is a simple conceptual map, not a claim that every project requires a database.
 
-**Slide 19: My ordinary request**
-> Start with an idea.
+**Slide 19: A conversation becomes a build — ONE continuously evolving slide**
+> Start with what you want.
+> Ask Gemini to prompt itself.
+> Select Canvas. Then ask Gemini to build.
 
-David asks for a futuristic HUD with an interactive particle structure. His actual teaching method begins with normal language, not a prompt-engineering lesson.
+Use a two-column design: an illustrative but recognizable Gemini-style chat history on the left, an explanation of why each step matters on the right. The left chat **accumulates**, rather than swapping out the whole slide or simulating clicking Send.
 
-**Slide 20: Ask Gemini to prompt itself**
-> Let it do the technical thinking.
+- Initial state: David's natural-language description of his futuristic particle HUD. Right: ordinary language is enough.
+- First NEXT/swipe: David asks Gemini to write a detailed prompt for itself; an **illustrative, explicitly labeled** abbreviated Gemini response appears underneath. Right: AI fills in technical details, which he can review.
+- Second NEXT/swipe: Canvas mode is shown as selected **before** the final message appears: “Now use the prompt you created. Build it in Canvas.” A clearly illustrative “Creating your first version…” status follows. Right: Canvas begins building.
+- Third NEXT/swipe: advance to the actual interactive HUD demonstration on slide 20.
 
-David asks Gemini to translate his request into a more detailed prompt for itself. The visible sample expansion is illustrative, not a verbatim Gemini response. David can correct what it misunderstands.
+Do not imply these messages were actually sent during the talk, or that Gemini is running live on the presentation slide. The goal is to demonstrate David's process rather than teach prompt engineering. Avoid an extra Enter button or an extra “Generate” step.
 
-**Slide 21: Use the generated prompt**
-> Now build it.
-
-David asks Gemini to use the prompt it wrote in Canvas. A small staged preview assembles; this is illustrative, not a live API call.
-
-**Slide 22: A tangible outcome**
+**Slide 20: A tangible outcome**
 > This is what an idea can become.
 
 David's uploaded interactive JARVIS HUD is displayed as an actual working HTML demo in an on-demand iframe. It has pointer-drag and click response. Source is an existing HTML upload; do not claim Gemini generated the exact file during the talk.
 
-**Slide 23: Make it available**
+**Slide 21: Make it available**
 > From Canvas to a published site.
 
 Animated steps: Canvas → Export to Google Sites (creates a private draft) → Publish → open the finished site. Confirm account permissions and audience settings. This direct integration was announced October 19, 2026.
 
-**Slide 24:** The existing sample Google Sheet → Assessment Calendar example. Keep for the later review of other tool pathways.
+**Slide 22:** The existing sample Google Sheet → Assessment Calendar example. Keep for the later review of other tool pathways.
 
 ---
 
@@ -259,7 +258,7 @@ Retain the current safety slide: student privacy, teacher fact-checking, steward
 
 ---
 
-## 8. Your turn (slides 26–28 unchanged this pass)
+## 8. Your turn (slides 24–26 unchanged this pass)
 
 **Classroom examples:** Four featured starter prompts on the slide; the linked `site/prompt-library.html` has 20 filterable and copyable prompts from Pre-K–12, with reading-support adaptations. Broader disciplines appear in the library rather than extra slides.
 
@@ -275,7 +274,7 @@ Participants can make one simple tool or examine a sample, suggest a change and 
 
 ---
 
-## 9. Keep building (slides 29–30 unchanged this pass)
+## 9. Keep building (slides 27–28 unchanged this pass)
 
 > Start small. Keep changing it.
 
