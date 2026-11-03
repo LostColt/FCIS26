@@ -6,6 +6,9 @@ Format: date · who · what happened · what's next
 
 ---
 
+**2026-11-03 · ChatGPT (classroom prompt-building workshop)** · Removed the Google Sheets / Apps Script teaching path and Assessment Calendar slide from the live deck, replacing slide 22 with 12 deliberate grade-band/subject tool ideas. Replaced the older 20-item static prompt page with a full editable workspace: grade×subject matrix, browse by learning need, 3 accessibility-oriented starters, start-from-scratch, editable idea and full Canvas prompt, copy and Open Gemini. The reusable instruction asks Gemini to expand the teacher's own concept and build a first version in Canvas. Updated the later #prompts slide to Choose → Change → Copy → Build and moved implementation details to the guide. Deck remains 28 slides.
+
+
 **2026-11-03 · ChatGPT (slide 21 three-column pan and pullback)** · Replaced the oversized publishing screen reconstructions with three cropped, screenshot-informed controls: Gemini Export dropdown, Google Sites Publish button, and Publish menu. Focus moves from column 1 to 2 to 3 on two swipes, and the third internal swipe pulls back to show all three together. Each view has a cursor/dropdown emphasis, with minimal account copy at bottom. Removed obsolete large-window CSS. Slide count remains 28, slide 21 now 3 internal steps, and detailed instructions remain in the guide.
 
 
