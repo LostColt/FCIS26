@@ -199,39 +199,50 @@ But I wasn't trying to ship a product. I was trying to build smaller things. Wha
 
 ---
 
-## 6. Build it (first-pass restructure, November 3, 2026)
+## 6. Build it — motion-first sequence (November 3, 2026)
 
-**Slide 17 · Questions:** Eight questions in a two-column/four-row board. This layout was requested on November 2 and is preserved. Last line: “What is one small thing worth fixing?”
+**Slide 17:** The same eight reflection questions from the prior pass. Do not change.
 
-**Slide 18 · The choices**
-> There are a few ways to build it.
+**Slide 18: Anatomy of a small tool**
+> Three parts. One idea.
+> Interface — what people see and use.
+> Storage — what the tool remembers.
+> Hosting — where people open it.
+> Some tools handle all three. Others let you choose.
 
-Three paths: Gemini Canvas (start here), ChatGPT Sites (another way), AI coding tools with GitHub and Vercel (when you want more). The detailed steps remain in the guide.
+The three parts assemble one by one, linked by arrows. Do not replace this with a plain heading and three static cards. If a tool saves nothing, it may not need persistent storage.
 
-**Slide 19 · The problem**
-> Start with something your students need.
+**Slide 19: Paths**
+> Choose how you want to build.
 
-A learner benefits from hearing a text while reading it; the example is a small reading companion, a return to the reader story earlier in the deck.
+Animated branches, one at a time: Gemini Canvas to Google Sites; ChatGPT Sites for a direct integrated paid-plan route; AI Studio, Claude Code, Codex or Antigravity to GitHub to Vercel. Return focus to Gemini.
 
-**Slide 20 · Gemini demonstration**
-> Describe it. Try it.
+**Slide 20: My ordinary request**
+> Start with an idea.
 
-Copyable prompt: a one-page reading companion with read-aloud controls, adjustable text, sample content and no personal data. Link to Gemini and the guide.
+David asks for a futuristic HUD with an interactive particle structure. His actual teaching method begins with normal language, not a prompt-engineering lesson.
 
-**Slide 21 · Revision**
-> Then ask for one change.
+**Slide 21: Ask Gemini to prompt itself**
+> Let it do the technical thinking.
 
-One focused revision adds text/spacing controls, keyboard focus and a distraction-reduced view. Check sharing as a visitor before giving students a link.
+David asks Gemini to translate his request into a more detailed prompt for itself. The visible sample expansion is illustrative, not a verbatim Gemini response. David can correct what it misunderstands.
 
-**Slide 22 · Sheets**
-> You can build around information you already keep.
+**Slide 22: Use the generated prompt**
+> Now build it.
 
-The fictional assessment spreadsheet becomes the Assessment Calendar. Sheets canvas is an account-dependent option; Apps Script is more technical.
+David asks Gemini to use the prompt it wrote in Canvas. A small staged preview assembles; this is illustrative, not a live API call.
 
-**Slide 23 · Beyond the first build**
-> And when you are ready, you can go further.
+**Slide 23: A tangible outcome**
+> This is what an idea can become.
 
-ChatGPT Sites and the optional coding route. GitHub and Vercel are named, not taught here.
+David's uploaded interactive JARVIS HUD is displayed as an actual working HTML demo in an on-demand iframe. It has pointer-drag and click response. Source is an existing HTML upload; do not claim Gemini generated the exact file during the talk.
+
+**Slide 24: Make it available**
+> From Canvas to a published site.
+
+Animated steps: Canvas → Export to Google Sites (creates a private draft) → Publish → open the finished site. Confirm account permissions and audience settings. This direct integration was announced October 19, 2026.
+
+**Slide 25:** The existing sample Google Sheet → Assessment Calendar example. Keep for the later review of other tool pathways.
 
 ---
 
@@ -243,7 +254,7 @@ Retain the current safety slide: student privacy, teacher fact-checking, steward
 
 ---
 
-## 8. Your turn
+## 8. Your turn (slides 27–29 unchanged this pass)
 
 **Classroom examples:** Four featured starter prompts on the slide; the linked `site/prompt-library.html` has 20 filterable and copyable prompts from Pre-K–12, with reading-support adaptations. Broader disciplines appear in the library rather than extra slides.
 
@@ -259,7 +270,7 @@ Participants can make one simple tool or examine a sample, suggest a change and 
 
 ---
 
-## 9. Keep building
+## 9. Keep building (slides 30–31 unchanged this pass)
 
 > Start small. Keep changing it.
 

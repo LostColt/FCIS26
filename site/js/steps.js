@@ -34,32 +34,94 @@
       '</div><p class="whiteboard-bottom">What is one small thing worth fixing?</p></div>',
       { id: "build" });
 
-    /* Slide 18: show the choices, not a software lecture. */
-    add(6, 0,
-      '<div class="build-simple"><p class="said-line">There are a few ways to build it.</p>' +
-      '<div class="build-paths">' +
-      '<section><b>Start here</b><span>Gemini Canvas</span><small>Build, try, revise, share.</small></section>' +
-      '<section><b>Another way</b><span>ChatGPT Sites</span><small>Build and host in one place.</small></section>' +
-      '<section><b>When you want more</b><span>AI coding tools</span><small>GitHub keeps the code. Vercel hosts it.</small></section>' +
-      '</div><p class="build-quiet">We’ll start with the simplest one.</p></div>', { id: "ways" });
 
-    /* Slides 19-21: one continuous Gemini Canvas demonstration. */
+    /* Slide 18 — keep the architecture from the earlier version, but animate the three actual parts.
+       The three nouns deliberately separate visual UI, saved data, and how people open the tool. */
     add(6, 0,
-      '<div class="build-simple"><p class="said-line">Start with something your students need.</p>' +
-      '<p class="build-problem">A student understands the story better when they can listen along.</p>' +
-      '<p class="build-quiet">What if I could build a small reading companion?</p></div>', { id: "canvas-problem" });
-    add(6, 0,
-      '<div class="build-simple"><p class="said-line">Describe it. Try it.</p>' +
-      '<div class="build-prompt">Build a one-page reading companion. Let me paste a short passage. Add read-aloud controls, large readable text and a clear place to start and pause. Use sample text. No login or student data.</div>' +
-      '<p class="build-quiet">Open Gemini Canvas. Paste the prompt. Test the result as a student would.</p>' +
-      '<p class="build-actions"><a href="https://gemini.google.com" target="_blank" rel="noopener">Open Gemini</a> · <a href="guide.html#gemini" target="_blank" rel="noopener">Steps to follow</a></p></div>', { id: "gemini" });
-    add(6, 0,
-      '<div class="build-simple"><p class="said-line">Then ask for one change.</p>' +
-      '<div class="build-prompt">Keep everything that works. Add a control for text size and spacing, visible keyboard focus, and an optional distraction-reduced view. Leave the original passage unchanged.</div>' +
-      '<p class="build-quiet">Try it again. Share only after you have checked what the link opens for someone else.</p>' +
-      '<p class="build-actions"><a href="guide.html#share" target="_blank" rel="noopener">Sharing and Google Sites notes</a></p></div>', { id: "revise" });
+      '<div class="architecture-scene"><p class="arch-eyebrow">WHAT MAKES A TOOL WORK?</p>' +
+      '<h2 class="arch-heading">Three parts. One idea.</h2>' +
+      '<div class="architecture-lane" aria-label="Interface connects to storage and hosting">' +
+      '<div class="arch-part"><b>Interface</b><span>What people see and use</span></div>' +
+      '<i class="arch-link" aria-hidden="true"></i>' +
+      '<div class="arch-part"><b>Storage</b><span>What the tool remembers</span></div>' +
+      '<i class="arch-link" aria-hidden="true"></i>' +
+      '<div class="arch-part"><b>Hosting</b><span>Where people open it</span></div>' +
+      '</div><p class="arch-after">Some tools handle all three. Others let you choose.</p></div>',
+      { id: "architecture" });
 
-    /* Slide 22: extension, not another full tutorial. */
+    /* Slide 19 — the three groups should travel, branch, then settle. Not three more static cards. */
+    add(6, 0,
+      '<div class="path-scene"><p class="arch-eyebrow">SAME IDEA. DIFFERENT ROUTES.</p>' +
+      '<h2 class="path-heading">Choose how you want to build.</h2>' +
+      '<div class="path-map">' +
+      '<div class="path-lane path-lane--gemini"><b>Gemini</b><div class="path-steps"><span>Canvas</span><i>→</i><span>Export to Google Sites</span></div><small>Our live example</small></div>' +
+      '<div class="path-lane path-lane--sites"><b>ChatGPT Sites</b><div class="path-steps"><span>Describe it</span><i>→</i><span>Build and publish</span></div><small>One place, with an eligible subscription</small></div>' +
+      '<div class="path-lane path-lane--code"><b>More control</b><div class="path-steps"><span>AI Studio · Claude Code · Codex · Antigravity</span><i>→</i><span>GitHub</span><i>→</i><span>Vercel</span></div><small>Code, version history, then hosting</small></div>' +
+      '</div><div class="path-focus"><span>For today, we will build in</span><strong>Gemini Canvas.</strong></div></div>',
+      { id: "ways" });
+
+    /* Slide 20: David's ordinary first request. We intentionally do not teach prompt templates. */
+    add(6, 0,
+      '<div class="gemini-scene gemini-scene--ask">' +
+      '<p class="arch-eyebrow">01 / SAY WHAT YOU WANT</p>' +
+      '<h2 class="scene-heading">Start with an idea.</h2>' +
+      '<div class="gemini-chat"><span class="gemini-speaker">You, to Gemini</span>' +
+      '<p class="gemini-user-words">“I want a futuristic interface with a moving particle shape in the middle. I want to move it with my mouse. Put some computer panels around it.”</p></div>' +
+      '<p class="scene-quiet">That is enough to start. No technical vocabulary required.</p></div>',
+      { id: "gemini-idea" });
+
+    /* Slide 21: explicitly ask Gemini to prompt itself. Model-generated example is labeled illustrative. */
+    add(6, 0,
+      '<div class="gemini-scene gemini-scene--prompt">' +
+      '<p class="arch-eyebrow">02 / ASK GEMINI TO WRITE THE PROMPT</p>' +
+      '<h2 class="scene-heading">Let it do the technical thinking.</h2>' +
+      '<div class="gemini-direct"><span class="gemini-speaker">You, to Gemini</span>' +
+      '<p>“Turn what I described into a detailed build prompt for yourself. Include the design, motion, interactions, and things I might have missed.”</p></div>' +
+      '<div class="gemini-draft" aria-label="Illustrative prompt Gemini might produce"><span class="gemini-speaker">Illustrative expanded prompt</span>' +
+      '<div class="draft-lines"><span>Full-screen, dark futuristic HUD</span><span>Animated interactive particle core</span><span>Mouse drag and click reactions</span><span>Readable status panels and responsive layout</span></div></div>' +
+      '</div>', { id: "gemini-self-prompt" });
+
+    /* Slide 22: activate Canvas; this is a staged illustration rather than an actual Gemini call. */
+    add(6, 0,
+      '<div class="gemini-scene gemini-scene--canvas">' +
+      '<p class="arch-eyebrow">03 / USE THE PROMPT IT WROTE</p>' +
+      '<h2 class="scene-heading">Now build it.</h2>' +
+      '<div class="canvas-workflow"><div class="canvas-chat"><span class="gemini-speaker">You, to Gemini</span><p>“Use the prompt you created. Build it in Canvas.”</p></div>' +
+      '<div class="canvas-arrow" aria-hidden="true">→</div>' +
+      '<div class="canvas-result"><div class="canvas-topline">Canvas <span>Preview</span></div><div class="canvas-wireframe"><span></span><div class="canvas-ring"></div><span></span></div><small>First version · try it, then ask for a change</small></div></div>' +
+      '<p class="scene-quiet">We are not writing code. We are describing, trying, and revising.</p></div>',
+      { id: "gemini" });
+
+    /* Slide 23: the actual user-supplied HTML is shown, not a mock image or an invented Gemini output.
+       The preview starts only when this slide is active (see hud-preview.js). */
+    add(6, 0,
+      '<div class="hud-scene"><div class="hud-story"><p class="arch-eyebrow">04 / TRY THE RESULT</p>' +
+      '<h2 class="scene-heading">This is what an idea can become.</h2>' +
+      '<p class="scene-quiet">An interactive particle HUD. Move the cursor. Click the core. Ask for a change.</p>' +
+      '<div class="hud-actions"><a href="demos/jarvis-hud.html" target="_blank" rel="noopener">Open the interactive HUD</a>' +
+      '<a href="guide.html#gemini" target="_blank" rel="noopener">How the build works</a></div>' +
+      '<small>Example built from an existing HTML file; not a live Gemini generation.</small></div>' +
+      '<div class="hud-frame-shell"><div class="hud-frame-header"><span>INTERACTIVE PREVIEW</span><span>JARVIS / DEMO</span></div>' +
+      '<iframe class="hud-preview" title="Interactive particle HUD demo" data-hud-preview data-src="demos/jarvis-hud.html" loading="lazy"></iframe></div></div>',
+      { id: "hud-result" });
+
+    /* Slide 24: verified new 2026 pathway, export directly to a private Google Sites draft, then publish. */
+    add(6, 0,
+      '<div class="publish-scene"><p class="arch-eyebrow">05 / MAKE IT AVAILABLE</p>' +
+      '<h2 class="scene-heading">From Canvas to a published site.</h2>' +
+      '<div class="publish-flow"><div class="publish-node"><span class="publish-icon">01</span><b>Canvas</b><small>Try it. Revise it.</small></div>' +
+      '<i class="publish-connector" aria-hidden="true"></i>' +
+      '<div class="publish-node"><span class="publish-icon">02</span><b>Export → Google Sites</b><small>Creates a private draft</small></div>' +
+      '<i class="publish-connector" aria-hidden="true"></i>' +
+      '<div class="publish-node"><span class="publish-icon">03</span><b>Publish</b><small>Review who can open it</small></div></div>' +
+      '<div class="publish-browser"><div class="publish-browser-bar"><span></span><span></span><span></span><strong>YOUR SITE · PUBLISHED</strong></div>' +
+      '<div class="publish-browser-inside"><div class="publish-mini-ring" aria-hidden="true"></div><div><strong>Open the link.</strong><small>See what your audience sees.</small></div></div></div>' +
+      '<p class="scene-quiet publish-note">Google Sites must be enabled for your account. Check publishing permissions before sharing.</p>' +
+      '<p class="build-actions"><a href="https://gemini.google.com" target="_blank" rel="noopener">Open Gemini</a> · ' +
+      '<a href="guide.html#share" target="_blank" rel="noopener">Export and publishing steps</a></p></div>',
+      { id: "publish" });
+
+    /* An existing practical example: keep the assessment dashboard for later review. */
     var rows = [["Date","Grade","Course","Type"],["Nov 3","10","Geometry","Test"],["Nov 3","10","English 10","Project"],["Nov 4","11","Physics","Test"]];
     add(6, 0,
       '<p class="said-line">You can build around information you already keep.</p>' +
@@ -67,14 +129,8 @@
       rows.map(function (r,k) { return "<tr>" + r.map(function(c){return (k?"<td>":"<th>")+c+(k?"</td>":"</th>");}).join("")+"</tr>";}).join("") +
       '</table></div><div class="to-arrow" aria-hidden="true">→</div><div class="late-card" style="--t:2s">' +
       D.tool("dashboard", "For a department", "Assessment Calendar", "The same information, easier to see. A Sheets canvas or a school-approved Apps Script can extend it.") +
-      '</div></div><p class="build-footnote"><a href="guide.html#sheets" target="_blank" rel="noopener">How Sheets canvas and Apps Script differ</a></p>', { id: "dashboard" });
+      '</div></div><p class="build-footnote"><a href="guide.html#sheets" target="_blank" rel="noopener">How Sheets canvas and Apps Script differ</a></p>',
+      { id: "dashboard" });
 
-    /* Slide 23: optional paths remain optional. */
-    add(6, 0,
-      '<div class="build-simple"><p class="said-line">And when you are ready, you can go further.</p>' +
-      '<div class="build-paths build-paths-two">' +
-      '<section><b>ChatGPT Sites</b><span>Describe → preview → revise → publish</span><small>Build and host together. Check your sharing settings.</small></section>' +
-      '<section><b>More complex builds</b><span>AI Studio / Codex / Claude Code / Antigravity</span><small>Keep source in GitHub. Deploy a compatible project through Vercel.</small></section>' +
-      '</div><p class="build-quiet">The full instructions are in the guide, not on this slide.</p></div>', { id: "more-paths" });
   };
 })();

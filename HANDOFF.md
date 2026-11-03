@@ -1,6 +1,6 @@
 # Handoff: Stop Subscribing, Start Building
 
-**Read this first.** It's the front door for any assistant (Claude, ChatGPT, Antigravity/Gemini) picking up this project. It says how David works, what the deck is today, where everything lives, and what's still open. Last updated 2026-11-03: integrated Claude's presentation polish and the revised practical build sequence.
+**Read this first.** It's the front door for any assistant (Claude, ChatGPT, Antigravity/Gemini) picking up this project. It says how David works, what the deck is today, where everything lives, and what's still open. Last updated 2026-11-03: rebuilt slides 18–24 around varied motion, self-prompting and Gemini-to-Google-Sites export.
 
 ---
 
@@ -28,7 +28,7 @@
 - **Shipping.** Claude has been pushing straight to `main` after each approved change because David reviews live. **Other assistants: work on a branch** (Vercel builds a preview link for every branch), and merge to `main` only when David approves or says "push to main." If he says push to main, push to main.
 - **Answer his questions directly.** He sometimes asks "is it static or can I type?" style questions; answer plainly first, then fix.
 
-## 3. The deck today: 29 slides
+## 3. The deck today: 31 slides
 
 Each line: slide · what it says/does · how it moves. "Auto" means it plays by itself when the slide opens; "press" means the presenter's next press reveals something.
 
@@ -60,26 +60,28 @@ Each line: slide · what it says/does · how it moves. "Auto" means it plays by 
 15. `#reader` Auto (~6s): "Helping students is what first drew me toward technology." is read aloud on screen, each word highlighted in turn like the reader, "technology" stays marked; the line rises → "I kept looking for different ways to help them learn." → the reader story (a friend's student who found listening easier than reading) → the Reader card. No "learning differences" (David, Nov 2).
 16. Auto (~9s): "I have my own shortcomings, too." / "Things I struggle to organize, keep up with, or remember." while five notification cards pile up on the right (Reminders, Mail, Calendar, Notes, Messages; mock text), then they clear → "I build small tools to help me work better, faster, and be more present." → "I'm not trying to ship or sell an app. These are tools for me and people in my orbit."
 
-**6 · Build it** (practical sequence agreed with David, integrated 2026-11-03)
-17. `#build` Eight question cards (2×4) ending “What is one small thing worth fixing?” — unchanged.
-18. `#ways` Three levels: Gemini Canvas; ChatGPT Sites; advanced coding tools → GitHub → Vercel. Short orientation.
-19. `#canvas-problem` One reading-support problem, connected to the Reader story.
-20. `#gemini` A first prompt to build a small reading companion in Gemini Canvas.
-21. `#revise` One focused improvement to reading controls, then test and share carefully; Google Sites notes in the guide.
-22. `#dashboard` Fictional assessment spreadsheet → sample Assessment Calendar, with Sheets canvas/Apps Script options explained in the guide.
-23. `#more-paths` ChatGPT Sites and AI Studio, Codex, Claude Code, Antigravity, GitHub and Vercel; details kept off-slide.
+**6 · Build it** (motion-first rebuild approved November 3, 2026)
+17. `#build` Existing eight-question board (2×4): unchanged, including its fan-in animation.
+18. `#architecture` The architectural idea returns: Interface → Storage → Hosting, each part entering in sequence. “Some tools handle all three. Others let you choose.”
+19. `#ways` Animated routes: Gemini Canvas → Google Sites; ChatGPT Sites as the simple integrated route with an eligible subscription; AI Studio / Claude Code / Codex / Antigravity → GitHub → Vercel. Motion draws the paths into view and concentrates attention on Gemini.
+20. `#gemini-idea` David asks Gemini, naturally, for an interactive JARVIS-style particle HUD. No technical prompt language.
+21. `#gemini-self-prompt` David asks Gemini to write its own detailed prompt from the idea. The detailed output on the slide is **illustrative**, not a quote from a live Gemini session.
+22. `#gemini` David says “Use the prompt you created. Build it in Canvas.” An illustrative preview forms beside the conversation.
+23. `#hud-result` Interactive JARVIS-style particle HUD, imported from David's supplied HTML source and presented inside an on-demand iframe. The iframe is unloaded after leaving the slide to avoid continuous particle animation. It is explicitly an existing example, not falsely presented as an actual generated artifact from the onstage prompt.
+24. `#publish` Motion follows Canvas → Export → Google Sites (private draft) → Publish → open/test link. Based on Google's October 19, 2026 Workspace announcement.
+25. `#dashboard` Original example of Google Sheets → Assessment Calendar, retained **unchanged** for later review.
 
 **7 · Before you build**
-24. “Build boldly. Not carelessly.” Four concise teacher precautions and four school governance questions. Account oversight claims are conditional, not automatic.
+26. Existing student-data and school-account safety slide retained unchanged.
 
 **8 · Your turn**
-25. `#prompts` Claude's four-prompt layout (flashcards, exit-ticket randomizer, rubric check, your own idea); 20 additional grade- and subject-filterable starters in `prompt-library.html`.
-26. `#swap` Optional small build or the working sample Reader, followed by feedback and one revision. School-account blocks do not require personal-account workarounds.
-27. Press: “You just did what we ask students to do: try something, get feedback, revise.” → “Build first. Then revise.”
+27. Existing four featured prompts and classroom library link, unchanged.
+28. Existing optional colleague practice and Reader fallback, unchanged.
+29. Existing “Build first. Then revise.” slide, unchanged.
 
 **9 · Keep building**
-28. Press: “Start small. Keep changing it.” → one annoyance, one prompt, one colleague.
-29. “Everything in one place” in Claude's four-column layout, linking guide, classroom prompts, tools and contact information.
+30. Existing closing statement, unchanged.
+31. Existing resource hub, unchanged.
 
 Presenter controls: arrows, space, clicker, swipe; **Start over** button (and Home key) returns to the cover; Slides menu; F for full screen. Every slide has a link (`#15`) and some have names (`#reader`).
 
