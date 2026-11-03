@@ -199,60 +199,61 @@ But I wasn't trying to ship a product. I was trying to build smaller things. Wha
 
 ---
 
-## 6. Build it (since 2026-10-30; "Update your software" and the step-by-step slides are gone)
+## 6. Build it (first-pass restructure, November 3, 2026)
 
-> (Slide 17, revised 2026-11-02: eight handwritten-style question cards fan in, then stay.)
-> Where do my students get stuck? · What takes my attention away? · What do I keep forgetting? · What am I doing over and over? · What could work differently? · What would help one student? · What takes too much time? · What can I simplify?
->
-> What is one small thing worth fixing? (along the bottom)
->
-> The longer lists of questions are in the guide (`guide.html#questions`).
+**Slide 17 · Questions:** Eight questions in a two-column/four-row board. This layout was requested on November 2 and is preserved. Last line: “What is one small thing worth fixing?”
 
-> Every build has the same shape: Prototype → Store → Host. Buttons move. The shape doesn't.
+**Slide 18 · The choices**
+> There are a few ways to build it.
 
-> Three ways to do it: all in ChatGPT; inside Google Workspace (Gemini, Google Sheets and Drive, Apps Script); own it end to end (Google AI Studio, GitHub, Vercel). Each has "See the steps," which opens the guide (`site/guide.html`).
+Three paths: Gemini Canvas (start here), ChatGPT Sites (another way), AI coding tools with GitHub and Vercel (when you want more). The detailed steps remain in the guide.
 
-> A sheet you already keep can become a dashboard. (The Assessment Calendar, to open, download or copy.)
+**Slide 19 · The problem**
+> Start with something your students need.
+
+A learner benefits from hearing a text while reading it; the example is a small reading companion, a return to the reader story earlier in the deck.
+
+**Slide 20 · Gemini demonstration**
+> Describe it. Try it.
+
+Copyable prompt: a one-page reading companion with read-aloud controls, adjustable text, sample content and no personal data. Link to Gemini and the guide.
+
+**Slide 21 · Revision**
+> Then ask for one change.
+
+One focused revision adds text/spacing controls, keyboard focus and a distraction-reduced view. Check sharing as a visitor before giving students a link.
+
+**Slide 22 · Sheets**
+> You can build around information you already keep.
+
+The fictional assessment spreadsheet becomes the Assessment Calendar. Sheets canvas is an account-dependent option; Apps Script is more technical.
+
+**Slide 23 · Beyond the first build**
+> And when you are ready, you can go further.
+
+ChatGPT Sites and the optional coding route. GitHub and Vercel are named, not taught here.
 
 ---
 
 ## 7. Before you build
 
-**Spine**
 > Build boldly. Not carelessly.
 
-**Door: Checklist**
-- No student names, grades or work in a prompt or an app unless your school has approved the tool.
-- Check the content yourself. AI-built tools can be confidently wrong.
-- Name an owner. Who fixes it in June? If nobody, keep it small.
-- Leave your gradebook and LMS where they are. Build the small things around them.
-
-(Trimmed 2026-11-03 to match the slide; "Ask your tech lead before, not after" came off the slide. The "For your school" side says: a paid, school-managed account lets the school see the data, review it, and decide together. Four questions: Who owns the account? Where does the data live? Who reviews it? How do we decide what we keep?)
+Retain the current safety slide: student privacy, teacher fact-checking, stewardship, school account ownership and maintaining the LMS/gradebook as the source of record.
 
 ---
 
 ## 8. Your turn
 
-**Spine**
-> One small tool. Built in Gemini.
->
-> Everyone builds at once. You'll leave with a link that works on your phone.
+**Classroom examples:** Four featured starter prompts on the slide; the linked `site/prompt-library.html` has 20 filterable and copyable prompts from Pre-K–12, with reading-support adaptations. Broader disciplines appear in the library rather than extra slides.
 
-**Five steps**
-1. Go to gemini.google.com and sign in.
-2. In the prompt bar, choose Canvas.
-3. Pick a prompt, fill in the brackets, and send it.
-4. Try it in the preview. Ask for one change.
-5. Share, copy the link, and open it on your phone.
+**Optional short build or sample Reader**
+> Pick a small thing. Build a first version.
 
-**Notes under the five steps (2026-11-03):** A shared link is a snapshot: after you change it, share again. Anyone with the link can open it, so keep student information out. *(Claude's words, for David to change:)* If Gemini or sharing is blocked on your school account, use a personal account, or pair up with a neighbor who can.
+Participants can make one simple tool or examine a sample, suggest a change and test it. Do not require everyone to publish.
 
-**Pick a prompt** (four on the slide: flashcards, exit tickets, rubric check, your own idea; all seven, each with a copy button, are in `site/js/slides-b.js` and in the guide at `guide.html#prompts`): flashcards, an exit-ticket randomizer, a rubric check, a slider simulation, your own idea (the fill-in template), a sheet you keep (Apps Script), and changing an HTML file.
-
-**Swap:** send your link to a neighbor, use theirs like a student, suggest one fix, and they make it and share again.
-
-**Spine (after the swap)**
-> You just did what we ask students to do: try something, get feedback, revise.
+**Closing instruction**
+> Try it. Get feedback. Revise.
 >
 > Build first. Then revise.
 
@@ -260,23 +261,10 @@ But I wasn't trying to ship a product. I was trying to build smaller things. Wha
 
 ## 9. Keep building
 
-**Spine**
-> Start small. It lives with you.
+> Start small. Keep changing it.
 
-**Say**
-One annoyance. One prompt. One colleague to test it. Then revise it next month, and the month after that.
+One annoyance, one prompt, one colleague to test it; return next month to revise.
 
-**Door: Everything in one place**
-- Google AI Studio: https://aistudio.google.com
-- Google Gemini (Canvas): https://gemini.google.com
-- ChatGPT Sites: https://chatgpt.com/features/sites/
-- Google Apps Script: https://script.google.com
-- Apps Script web apps, Google's guide: https://developers.google.com/apps-script/guides/web
-- In the deck: the workshop prompts, Before you start, and each path
-- Links to David's tools (once he shares them)
-- Vercel: https://vercel.com
-- GitHub: https://github.com
-- The prompt template (repeated, with a copy button)
-- David Tran on LinkedIn: https://www.linkedin.com/in/david-t-04864734
+**Everything in one place:** the companion guide, classroom prompt library, example tools, Gemini, ChatGPT Sites, Google AI Studio, Apps Script, GitHub, Vercel and LinkedIn.
 
-**Photo:** an open door, or a desk by a window in morning light.
+**Editorial note:** The slide wording above is first-pass copy proposed by ChatGPT, not a transcript of David's own wording. Review and revise voice on the next pass. No unapproved personal or student information is included.
