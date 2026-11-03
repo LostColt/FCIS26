@@ -63,8 +63,8 @@ Each line: slide · what it says/does · how it moves. "Auto" means it plays by 
 **6 · Build it** (November 3 single-slide design revision)
 17. `#build` Existing eight-question board (2×4). Preserved.
 18. `#architecture` One continuous automatically staged slide: three matched heading tabs rise, three table rows appear, and the line “Today, we’ll build in Gemini Canvas” enters. About two seconds after that line has appeared, the **entire Gemini row highlights yellow automatically**. There is no additional presenter step; the next click advances to slide 19.
-19. `#gemini` ONE two-column, swipe-driven conversation (2 internal presentation steps). Left: a continuing chat; right: a synchronized explanation. Start with David's idea, first swipe adds his request for Gemini to write its own detailed prompt plus an explicitly illustrative Gemini reply; second swipe shows Canvas selected and adds “Use the prompt you created. Build it in Canvas.” with a small illustrative creating state; third swipe advances. No fake send button or extra build command.
-20. `#hud-result` Existing user-supplied interactive particle HUD in an on-demand iframe; not misrepresented as live Gemini output.
+19. `#gemini` ONE two-column slide, two internal presenter swipes. Left: a single unsent user-message bubble, progressively revealing three paragraphs (the ask → ask Gemini to expand its own instructions → use those instructions to build). Canvas shows SELECTED from the start, before the user message. No simulated Gemini response and no separate messages or Send interaction. Right: a synchronized explanation changes with each swipe; the third swipe advances to slide 20.
+20. `#hud-result` Working interactive HTML HUD (existing file, not generated live) with functional Copy code (fetches raw demo HTML to clipboard), Download HTML (local file), and Open app controls. Longer build instructions live exclusively in the companion `site/guide.html#gemini`, not on slide 20.
 21. `#publish` Export Canvas to a private Google Sites draft → publish → test.
 22. `#dashboard` Existing fictional Google Sheets to Assessment Calendar example; retained for later review.
 
