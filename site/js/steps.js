@@ -35,41 +35,36 @@
       { id: "build" });
 
 
-    /* Slide 18 — one self-contained animated transformation.
-       The architecture stays visible for ~3 seconds before becoming the grid header.
-       Different shapes illustrate three different kinds of building:
-       Gemini is a connected path, ChatGPT Sites one unified service, coding tools converging. */
-    add(6, 0,
-      '<div class="anatomy-scene">' +
-      '<div class="anatomy-opening"><p class="anatomy-overline">WHAT MAKES A TOOL WORK?</p>' +
-      '<h2>Three parts. <em>One idea.</em></h2></div>' +
-      '<div class="anatomy-headings" aria-label="Interface, storage, and hosting">' +
-      '<div class="anatomy-heading"><span>01 / THE FRONT</span><strong>Interface</strong><small>What people use</small></div>' +
-      '<div class="anatomy-heading"><span>02 / WHAT REMAINS</span><strong>Storage</strong><small>What gets kept</small></div>' +
-      '<div class="anatomy-heading"><span>03 / THE LINK</span><strong>Hosting</strong><small>Where people open it</small></div>' +
+    /* Slide 18 — one composed editorial slide.
+       Three sculpted headings hold for the spoken explanation, then move up as a single unit.
+       The comparison stays a table; on the presenter's NEXT press Gemini Canvas is marked
+       with the exact yellow marker sweep used earlier in this deck. */
+    add(6, 1,
+      '<div class="anatomy-scene anatomy-editorial">' +
+      '<header class="anatomy-intro"><span>WHAT MAKES A TOOL WORK?</span>' +
+      '<h2>Three parts. <em>One idea.</em></h2></header>' +
+      '<div class="anatomy-columns" role="group" aria-label="The three parts of a small tool">' +
+      '<div class="anatomy-column"><span class="anatomy-number">01 / THE FRONT</span><strong>Interface</strong><small>What people use</small></div>' +
+      '<div class="anatomy-column"><span class="anatomy-number">02 / WHAT REMAINS</span><strong>Storage</strong><small>What gets kept</small></div>' +
+      '<div class="anatomy-column"><span class="anatomy-number">03 / THE LINK</span><strong>Hosting</strong><small>Where people open it</small></div>' +
       '</div>' +
-      '<div class="anatomy-examples">' +
-      '<div class="anatomy-gemini"><span class="anatomy-row-label">A / GOOGLE GEMINI</span>' +
-      '<div class="anatomy-row anatomy-row--gemini" aria-label="Gemini Canvas, a Google Sites draft, and Google Sites publishing">' +
-      '<div class="anatomy-gemini-module"><span class="anatomy-gemini-dot"></span><strong>Gemini Canvas</strong></div>' +
-      '<div class="anatomy-gemini-module"><span class="anatomy-gemini-dot"></span><strong>Sites draft</strong><small>Exported project</small></div>' +
-      '<div class="anatomy-gemini-module"><span class="anatomy-gemini-dot"></span><strong>Google Sites</strong><small>Published address</small></div></div></div>' +
-      '<div class="anatomy-chatgpt"><span class="anatomy-row-label">B / CHATGPT SITES</span>' +
-      '<div class="anatomy-row anatomy-row--chatgpt" aria-label="ChatGPT Sites handles the interface, the project, and publication in one service">' +
-      '<div class="anatomy-chatgpt-cell"><strong>Build in Sites</strong></div>' +
-      '<div class="anatomy-chatgpt-cell"><strong>Kept in Sites</strong></div>' +
-      '<div class="anatomy-chatgpt-cell"><strong>Published by Sites</strong></div>' +
-      '</div><p class="anatomy-row-caption">One service, with an eligible subscription.</p></div>' +
-      '<div class="anatomy-advanced"><span class="anatomy-row-label">C / MORE CONTROL</span>' +
-      '<div class="anatomy-row anatomy-row--advanced" aria-label="Coding tools create the project, GitHub stores its code, and Vercel hosts it">' +
-      '<div class="anatomy-coding"><span>AI Studio</span><span>Claude Code</span><span>Codex</span><span>Antigravity</span></div>' +
-      '<div class="anatomy-destination"><strong>GitHub</strong><small>Source and version history</small></div>' +
-      '<div class="anatomy-destination"><strong>Vercel</strong><small>Web hosting</small></div></div>' +
-      '</div></div>' +
-      '<p class="anatomy-landing">Today, we’ll build in <strong>Gemini Canvas.</strong></p>' +
-      '<p class="visually-hidden">Some tools need separate data storage; these storage examples refer to the saved project or code. Gemini app data can use a different service.</p>' +
-      '</div>',
-      { id: "architecture" });
+      '<div class="anatomy-table" role="table" aria-label="Three ways to build and publish a tool">' +
+      '<div class="anatomy-table-row anatomy-table-row--gemini" role="row">' +
+      '<div role="cell"><small>01 / GEMINI</small><strong><span class="mark" data-at="1">Gemini Canvas</span></strong></div>' +
+      '<div role="cell"><strong>Google Sites draft</strong><span>Exported project</span></div>' +
+      '<div role="cell"><strong>Google Sites</strong><span>Published site</span></div></div>' +
+      '<div class="anatomy-table-row anatomy-table-row--chatgpt" role="row">' +
+      '<div role="cell"><small>02 / CHATGPT SITES</small><strong>ChatGPT Sites</strong></div>' +
+      '<div role="cell"><strong>Managed with the site</strong></div>' +
+      '<div role="cell"><strong>ChatGPT Sites</strong></div></div>' +
+      '<div class="anatomy-table-row anatomy-table-row--advanced" role="row">' +
+      '<div role="cell"><small>03 / MORE CONTROL</small><strong>AI Studio · Claude Code</strong><span>Codex · Antigravity</span></div>' +
+      '<div role="cell"><strong>GitHub</strong><span>Code and version history</span></div>' +
+      '<div role="cell"><strong>Vercel</strong><span>Web hosting</span></div></div>' +
+      '</div>' +
+      '<p class="anatomy-outro">Today, we’ll build in <strong>Gemini Canvas.</strong></p>' +
+      '<p class="visually-hidden">Storage here means saved projects or source code. Some apps store their user data separately, and some need no persistent storage.</p>' +
+      '</div>', { id:"architecture" });
 
     /* Slide 20: David's ordinary first request. We intentionally do not teach prompt templates. */
     add(6, 0,
