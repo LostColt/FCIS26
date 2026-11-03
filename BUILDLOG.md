@@ -6,6 +6,9 @@ Format: date · who · what happened · what's next
 
 ---
 
+**2026-11-03 · ChatGPT (slide 20 HUD entrance)** · The working HUD iframe now fills the viewport for the opening beat, then scales and slides into its original preview while the left-side text and export controls enter only afterward. Removed the 'Example built from an existing HTML file' caption from the slide, retaining provenance in the resource guide. Added `hud-intro.js` for viewport-responsive transform geometry; reduced-motion users see the final layout immediately. 28 slides; no changes to other slide content. Source checks passed; projector-scale visual review outstanding.
+
+
 **2026-11-03 · ChatGPT (slide 19 Canvas and smart-screen motion)** · Animated a visible Canvas press/selection before text types; each existing internal swipe now types its corresponding paragraph into the single original user prompt. Removed paragraph divider lines, used ordinary whitespace, and reworked the two-column scene for constrained heights. A new `conversation-type.js` controller measures completed prompt text and reduces its font when needed; the chat can scroll as a last resort instead of clipping. No changes to slide numbers or text of the prompt. Source audit passed; physical smart-screen review still recommended.
 
 

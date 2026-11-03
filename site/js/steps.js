@@ -98,17 +98,16 @@
       '<div class="conversation-takeaway">One message. <span>Shown a little at a time.</span></div>' +
       '</div></div>', { id:"gemini" });
 
-    /* Slide 23: the actual user-supplied HTML is shown, not a mock image or an invented Gemini output.
-       The preview starts only when this slide is active (see hud-preview.js). */
+    /* Slide 20: full viewport demo becomes its usual preview; explanatory text follows. */
     add(6, 0,
-      '<div class="hud-scene"><div class="hud-story"><p class="arch-eyebrow">04 / TRY THE RESULT</p>' +
+      '<div class="hud-scene hud-scene--cinematic"><div class="hud-story"><p class="arch-eyebrow">04 / TRY THE RESULT</p>' +
       '<h2 class="scene-heading">This is what an idea can become.</h2>' +
       '<p class="scene-quiet">An interactive particle HUD. Move the cursor. Click the core. Ask for a change.</p>' +
       '<div class="hud-actions hud-actions--practical"><button type="button" data-copy-hud>Copy code</button>' +
       '<a href="demos/jarvis-hud.html" download="jarvis-hud.html">Download HTML</a>' +
       '<a href="demos/jarvis-hud.html" target="_blank" rel="noopener">Open app</a></div>' +
       '<p class="hud-action-feedback" data-copy-hud-status role="status" aria-live="polite"></p>' +
-      '<small>Example built from an existing HTML file; not a live Gemini generation.</small></div>' +
+      '</div>' +
       '<div class="hud-frame-shell"><div class="hud-frame-header"><span>INTERACTIVE PREVIEW</span><span>JARVIS / DEMO</span></div>' +
       '<iframe class="hud-preview" title="Interactive particle HUD demo" data-hud-preview data-src="demos/jarvis-hud.html" loading="lazy"></iframe></div></div>',
       { id: "hud-result" });

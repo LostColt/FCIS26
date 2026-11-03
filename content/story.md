@@ -234,7 +234,7 @@ There are exactly two internal swipes. The third swipe advances to the existing 
 **Slide 20: A tangible outcome**
 > This is what an idea can become.
 
-The existing working JARVIS HUD remains interactive in its preview. The actions alongside it are **Copy code** (copies the actual checked-in HTML file), **Download HTML** (saves that file), and **Open app** (opens its working standalone view). These are practical fallbacks if attendees get different results. Do not suggest this is exactly what Gemini will generate from the illustrative prompt. The separate “How the build works” link was removed from the slide; instructions are in the resource guide.
+The existing working JARVIS HUD begins full-viewport as an immersive, interactive demo. After a short hold, the same iframe animates into its existing right-hand preview; only then does the heading and explanatory content animate into the left-hand column. No additional presenter swipe is required, and the motion replays on re-entry. The actions alongside it are **Copy code** (copies the actual checked-in HTML file), **Download HTML** (saves that file), and **Open app** (opens its working standalone view). These are practical fallbacks if attendees get different results. Do not suggest this is exactly what Gemini will generate from the illustrative prompt. The separate “How the build works” link and the small 'Example built from an existing HTML file' caption are absent from the slide; provenance and build instructions remain in the resource guide.
 
 **Slide 21: Make it available**
 > From Canvas to a published site.

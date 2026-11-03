@@ -1964,3 +1964,52 @@
   .conversation-scene--single-prompt .conversation-history {overflow:visible;}
   .conversation-scene--single-prompt .conversation-right {height:auto;}
 }
+
+
+/* Nov 3: the same live HUD iframe fills the viewport, holds, then settles back
+   into its usual right-hand preview. JS supplies the screen-to-frame geometry.
+   The title, description and real export controls do not arrive until it settles. */
+.hud-scene--cinematic .hud-frame-shell {
+  transform-origin:center center;
+  z-index:4;
+  backface-visibility:hidden;
+}
+.hud-scene--cinematic .hud-story {
+  position:relative;
+  z-index:1;
+}
+@media(prefers-reduced-motion:no-preference) {
+  .slide.is-active .hud-scene--cinematic.hud-intro-ready .hud-frame-shell {
+    animation:hud-fullscreen-home 3.9s cubic-bezier(.22,.75,.18,1) both;
+  }
+  .slide.is-active .hud-scene--cinematic.hud-intro-ready .hud-story > * {
+    animation:hud-story-after .7s ease-out both 3.95s;
+  }
+  .slide.is-active .hud-scene--cinematic.hud-intro-ready .hud-story > *:nth-child(2) {animation-delay:4.12s;}
+  .slide.is-active .hud-scene--cinematic.hud-intro-ready .hud-story > *:nth-child(3) {animation-delay:4.27s;}
+  .slide.is-active .hud-scene--cinematic.hud-intro-ready .hud-story > *:nth-child(4) {animation-delay:4.42s;}
+  .slide.is-active .hud-scene--cinematic.hud-intro-ready .hud-story > *:nth-child(5) {animation-delay:4.52s;}
+  .slide.is-active .hud-scene--cinematic:not(.hud-intro-ready) .hud-story {opacity:0;}
+}
+@keyframes hud-fullscreen-home {
+  0%,34% {
+    transform:translate(var(--hud-start-x,0px),var(--hud-start-y,0px))
+      scale(var(--hud-start-sx,1),var(--hud-start-sy,1));
+    border-color:transparent;
+    box-shadow:none;
+  }
+  100% {
+    transform:translate(0,0) scale(1,1);
+    border-color:#334756;
+    box-shadow:0 15px 48px rgba(15,29,40,.24);
+  }
+}
+@keyframes hud-story-after {
+  from{opacity:0;transform:translateX(-26px)}
+  to{opacity:1;transform:translateX(0)}
+}
+@media(prefers-reduced-motion:reduce) {
+  .hud-scene--cinematic .hud-story,.hud-scene--cinematic .hud-frame-shell {
+    opacity:1;transform:none;animation:none!important;
+  }
+}
