@@ -1717,3 +1717,8 @@
   .conversation-explanation h2 {font-size:2.1rem;}
   .conversation-takeaway {margin-top:15px;}
 }
+
+/* History remains scrollable while new messages accumulate; older turns move upward naturally. */
+.conversation-history {overflow-y:auto;scrollbar-width:thin;scrollbar-color:#bdc9c5 transparent;}
+.conversation-history>.conversation-message,.conversation-history>.conversation-canvas-choice {flex-shrink:0;}
+@media(prefers-reduced-motion:reduce){.conversation-history{scroll-behavior:auto}}
