@@ -6,6 +6,8 @@ Format: date · who · what happened · what's next
 
 ---
 
+**2026-11-03 · ChatGPT (Gemini conversation slide consolidation)** · Combined former slides 19–21 into one two-column slide with a persistent accumulated chat on the left and synchronized explanation on the right. Presenter click 1 adds the request for Gemini to prompt itself and an illustrative abbreviated response; click 2 selects Canvas and adds the build instruction and illustrative creating state; click 3 advances to the existing HUD demo. No fake Enter action or prompt-engineering template. Earlier slide 18 and later slides unchanged apart from numbering. New count: 28 slides.\n
+
 **2026-11-03 · ChatGPT (slide 18 automatic highlight)** · Removed the one-click Gemini Canvas word marker. The Gemini table row now receives a left-to-right full-row yellow highlighter sweep automatically about two seconds after the concluding line finishes appearing. Slide 18 now has zero extra presenter steps, so NEXT navigates directly to slide 19. Existing slides 1–17 and 19 onward unchanged.
 
 

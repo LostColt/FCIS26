@@ -66,37 +66,49 @@
       '<p class="visually-hidden">Storage here means saved projects or source code. Some apps store their user data separately, and some need no persistent storage.</p>' +
       '</div>', { id:"architecture" });
 
-    /* Slide 20: David's ordinary first request. We intentionally do not teach prompt templates. */
-    add(6, 0,
-      '<div class="gemini-scene gemini-scene--ask">' +
-      '<p class="arch-eyebrow">01 / SAY WHAT YOU WANT</p>' +
-      '<h2 class="scene-heading">Start with an idea.</h2>' +
-      '<div class="gemini-chat"><span class="gemini-speaker">You, to Gemini</span>' +
-      '<p class="gemini-user-words">“I want a futuristic interface with a moving particle shape in the middle. I want to move it with my mouse. Put some computer panels around it.”</p></div>' +
-      '<p class="scene-quiet">That is enough to start. No technical vocabulary required.</p></div>',
-      { id: "gemini-idea" });
-
-    /* Slide 21: explicitly ask Gemini to prompt itself. Model-generated example is labeled illustrative. */
-    add(6, 0,
-      '<div class="gemini-scene gemini-scene--prompt">' +
-      '<p class="arch-eyebrow">02 / ASK GEMINI TO WRITE THE PROMPT</p>' +
-      '<h2 class="scene-heading">Let it do the technical thinking.</h2>' +
-      '<div class="gemini-direct"><span class="gemini-speaker">You, to Gemini</span>' +
-      '<p>“Turn what I described into a detailed build prompt for yourself. Include the design, motion, interactions, and things I might have missed.”</p></div>' +
-      '<div class="gemini-draft" aria-label="Illustrative prompt Gemini might produce"><span class="gemini-speaker">Illustrative expanded prompt</span>' +
-      '<div class="draft-lines"><span>Full-screen, dark futuristic HUD</span><span>Animated interactive particle core</span><span>Mouse drag and click reactions</span><span>Readable status panels and responsive layout</span></div></div>' +
-      '</div>', { id: "gemini-self-prompt" });
-
-    /* Slide 22: activate Canvas; this is a staged illustration rather than an actual Gemini call. */
-    add(6, 0,
-      '<div class="gemini-scene gemini-scene--canvas">' +
-      '<p class="arch-eyebrow">03 / USE THE PROMPT IT WROTE</p>' +
-      '<h2 class="scene-heading">Now build it.</h2>' +
-      '<div class="canvas-workflow"><div class="canvas-chat"><span class="gemini-speaker">You, to Gemini</span><p>“Use the prompt you created. Build it in Canvas.”</p></div>' +
-      '<div class="canvas-arrow" aria-hidden="true">→</div>' +
-      '<div class="canvas-result"><div class="canvas-topline">Canvas <span>Preview</span></div><div class="canvas-wireframe"><span></span><div class="canvas-ring"></div><span></span></div><small>First version · try it, then ask for a change</small></div></div>' +
-      '<p class="scene-quiet">We are not writing code. We are describing, trying, and revising.</p></div>',
-      { id: "gemini" });
+    /* Slide 19: this is one evolving chat, not a three-slide prompting lesson.
+       Presenter swipes reveal additional messages in the same history.
+       The right column changes its explanation in sync with each swipe.
+       Canvas is selected before the last instruction asks Gemini to build. */
+    add(6, 2,
+      '<div class="conversation-scene">' +
+      '<div class="conversation-left">' +
+      '<div class="conversation-browser"><span class="conversation-eyebrow">AN EXAMPLE CONVERSATION</span>' +
+      '<span class="conversation-brand"><span class="conversation-sparkle" aria-hidden="true">✦</span> Gemini</span>' +
+      '<span class="conversation-progress">A conversation, not a formula</span></div>' +
+      '<div class="conversation-history" aria-label="A simulated Gemini conversation built up with presenter swipes">' +
+      '<div class="conversation-message conversation-user conversation-turn--idea"><span class="conversation-speaker">YOU</span>' +
+      '<p>I want a futuristic interface with a moving particle shape. I want to move it with my mouse and see computer panels around it.</p></div>' +
+      '<div class="conversation-message conversation-user conversation-turn--self" data-step="1"><span class="conversation-speaker">YOU</span>' +
+      '<p>Turn what I just described into a detailed prompt for yourself. Include the design, motion, interactions and anything I missed.</p></div>' +
+      '<div class="conversation-message conversation-gemini conversation-turn--response" data-step="1">' +
+      '<span class="conversation-speaker">GEMINI · ILLUSTRATIVE RESPONSE</span>' +
+      '<p>Here’s a build prompt based on your idea:</p>' +
+      '<div class="conversation-response-summary"><span>Interactive particle core</span><span>Mouse movement and click response</span><span>Futuristic information panels</span><span>Responsive layout</span></div></div>' +
+      '<div class="conversation-canvas-choice" data-step="2" aria-label="Canvas mode selected before building">' +
+      '<span class="conversation-canvas-icon" aria-hidden="true">▦</span> Canvas <span class="conversation-selected">SELECTED</span></div>' +
+      '<div class="conversation-message conversation-user conversation-turn--build" data-step="2"><span class="conversation-speaker">YOU</span>' +
+      '<p>Now use the prompt you created. Build it in Canvas.</p></div>' +
+      '<div class="conversation-message conversation-gemini conversation-turn--building" data-step="2"><span class="conversation-speaker">GEMINI / CANVAS</span>' +
+      '<p>Creating your first version…</p><span class="conversation-activity" aria-hidden="true"><i></i><i></i><i></i></span></div>' +
+      '</div><div class="conversation-footer"><span>ILLUSTRATIVE CHAT · NO LIVE MODEL CONNECTION</span><span>BUILDING TOGETHER</span></div></div>' +
+      '<div class="conversation-right">' +
+      '<p class="conversation-right-kicker">FROM IDEA TO A BUILD</p>' +
+      '<div class="conversation-explanation conversation-explanation--idea">' +
+      '<span class="conversation-section-number">01 / JUST ASK</span>' +
+      '<h2>Start with what you want.</h2>' +
+      '<p>Describe the idea in your own words. You do not need to know how to code or how to write a technical prompt.</p></div>' +
+      '<div class="conversation-explanation conversation-explanation--self">' +
+      '<span class="conversation-section-number">02 / LET IT WORK OUT THE DETAILS</span>' +
+      '<h2>Ask Gemini to prompt itself.</h2>' +
+      '<p>Gemini translates your idea into a more detailed build request. Read it, correct anything it misunderstood, and keep moving.</p></div>' +
+      '<div class="conversation-explanation conversation-explanation--build">' +
+      '<span class="conversation-section-number">03 / BUILD IN CANVAS</span>' +
+      '<h2>Select Canvas. Then build.</h2>' +
+      '<p>Use the prompt Gemini just wrote. It starts building the first version in Canvas. You can test it and ask for changes.</p></div>' +
+      '<div class="conversation-takeaway">You bring the idea. <span>AI helps work out the implementation.</span></div>' +
+      '</div></div>',
+      { id:"gemini" });
 
     /* Slide 23: the actual user-supplied HTML is shown, not a mock image or an invented Gemini output.
        The preview starts only when this slide is active (see hud-preview.js). */
