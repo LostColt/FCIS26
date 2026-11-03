@@ -45,3 +45,17 @@ Decision: finish the whole first pass, preserve findings, and revise on the next
 
 ## Editorial constraint
 Proposed slide language is the assistant's first-pass draft, not David's quoted voice. Do not present provisional content as his statements until he approves it. Leave the audit notes intact for the revision pass.
+
+
+## Audit-driven revision pass — 2026-11-03 (second commit set)
+
+**Fixes applied**
+- Phase 1/2: The optional practice slide now links to the existing offline sample Reader, giving the audience a fallback when Gemini generation or sharing is unavailable. The guide now links to this sample too.
+- Phase 3: The prompt library links to that example and explicitly says reading settings are individual choices, not universal dyslexia solutions; accommodations remain in force.
+- Phase 4: School-account copy clarified. Having a paid school account does not by itself guarantee administrators can see information; oversight depends on the service, account configuration and permissions. Google Sites URL embed and optional embed-code paths differentiated; Sheets canvas has an explicit fallback.
+- Phase 5: The guide now describes its interface instructions as documentation-based; real school-account operation is **still untested**. Removed ambiguous language that suggested the instructions had already been verified end to end.
+- Phase 6: Created `reviews/2026-11-03-claude-review-plan.md` for independent review and acceptance criteria, including visual and functional checks.
+
+**Source checks:** Google Gemini Canvas, Sheets canvas, Google Sites embed help, and OpenAI ChatGPT Sites documentation were rechecked on November 3. These confirm that provider availability, embed eligibility and publication permissions can vary. They do **not** verify conference account access.
+
+**Remaining blockers for production approval:** real-browser screenshots and overflow, prompt-filter/copy/print tests, current school-account Canvas and Sites sharing, timed rehearsal, and David's review of wording and density. Keep `main` untouched until those checks and explicit approval.
