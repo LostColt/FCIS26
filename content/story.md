@@ -203,19 +203,24 @@ But I wasn't trying to ship a product. I was trying to build smaller things. Wha
 
 **Slide 17:** The same eight reflection questions from the prior pass. Do not change.
 
-**Slide 18: Three parts become three routes — ONE continuous slide**
+**Slide 18: Three parts become three pathways — ONE continuous slide**
+
 > Three parts. One idea.
 > Interface — what people use.
 > Storage — what gets kept.
 > Hosting — where people open it.
 
-Begin with three large, open editorial title shapes that introduce the architecture. **Hold for roughly three seconds.** Those same headings then rise to the top without changing slides. Below, the examples assemble in three visibly different forms:
+The three headers share one strong **clipped paper-tab** shape and the same serif typography. They appear in the opening composition and hold for about three seconds. As the title fades, the *same three heading elements* rise together to the top. A restrained three-column comparison table appears underneath, one **complete row** at a time. There are no separate color-coded UI cards, decorative connectors, or competing row styles.
 
-- Gemini: connected, cut-corner modules — Gemini Canvas / Google Sites draft / Google Sites.
-- ChatGPT Sites: one continuous ribbon spanning the three columns — build, keep, and publish in the same integrated service (eligible subscription).
-- Advanced: four smaller coding tools (AI Studio, Claude Code, Codex, Antigravity) visually converge toward GitHub (code/version history) and Vercel (hosting).
+| Interface | Storage | Hosting |
+|---|---|---|
+| Gemini Canvas | Google Sites draft | Google Sites |
+| ChatGPT Sites | Managed with site | ChatGPT Sites |
+| AI Studio / Claude Code / Codex / Antigravity | GitHub | Vercel |
 
-Finish by emphasizing Gemini Canvas, which is the first live demonstration. Keep the distinction between **project storage** and optional persistent **app data**; a Google Sites draft is not the database for every Gemini-generated application. The arrangement should look more like the first 17 slides' varied editorial design than an ordinary three-column software dashboard.
+The line “Today, we’ll build in Gemini Canvas.” appears after the completed table. **One presenter click** sweeps the deck's existing yellow highlighter over the words **Gemini Canvas in the first table row**, not the whole row. This uses the existing `.mark` element and `data-at="1"` rather than a new special effect. The next click advances to the ordinary-language demonstration.
+
+Project storage is not necessarily application-data storage; Gemini apps that save user data may use a separate service. The table is a simple conceptual map, not a claim that every project requires a database.
 
 **Slide 19: My ordinary request**
 > Start with an idea.
