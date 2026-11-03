@@ -62,7 +62,7 @@ Each line: slide · what it says/does · how it moves. "Auto" means it plays by 
 
 **6 · Build it** (November 3 single-slide design revision)
 17. `#build` Existing eight-question board (2×4). Preserved.
-18. `#architecture` ONE continuous slide with a distinctive but consistent clipped-paper-tab shape for Interface, Storage and Hosting. Hold ~3s; same heading elements rise, title leaves, and three uniform table rows appear. Final sentence “Today, we’ll build in Gemini Canvas.” comes in. **One NEXT click triggers the original yellow `.mark` sweep over Gemini Canvas in the first table row (`data-at="1"`); next click advances to slide 19.** This is a 1-step slide. Other slides remain unchanged.
+18. `#architecture` One continuous automatically staged slide: three matched heading tabs rise, three table rows appear, and the line “Today, we’ll build in Gemini Canvas” enters. About two seconds after that line has appeared, the **entire Gemini row highlights yellow automatically**. There is no additional presenter step; the next click advances to slide 19.
 19. `#gemini-idea` David describes an interactive particle HUD in ordinary words.
 20. `#gemini-self-prompt` Gemini writes its own more detailed prompt (illustrative sample).
 21. `#gemini` Ask Gemini to use that prompt in Canvas; simulated preview.
