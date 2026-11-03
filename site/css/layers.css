@@ -975,3 +975,70 @@
   .build-prompt {padding:1rem;font-size:1rem;}
 }
 @media(prefers-reduced-motion:reduce) { .build-simple * {animation:none!important;transition:none!important;} }
+
+
+/* FCIS26 NOV 3 — Slides 18–24 use motion as explanation, not repeated cards.
+   These rules are scoped to their own scenes and leave slides 1–17 unchanged. */
+.architecture-scene,.path-scene,.gemini-scene,.hud-scene,.publish-scene {
+  width:min(1120px,100%);margin:0 auto;min-height:64vh;
+  display:flex;flex-direction:column;justify-content:center;gap:clamp(1rem,2.8vh,2rem);
+}
+.arch-eyebrow{font-family:var(--sans);font-size:clamp(.8rem,1.1vw,1rem);font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-soft);margin:0}
+.arch-heading,.path-heading,.scene-heading {font-family:var(--serif);font-weight:400;font-size:clamp(2.5rem,4.25vw,4.4rem);line-height:1.1;letter-spacing:-.035em;margin:0;max-width:20ch;}
+.architecture-lane{display:flex;align-items:center;justify-content:space-between;width:100%;margin:clamp(.5rem,2vh,1.5rem) 0;}
+.arch-part{display:flex;flex:1;flex-direction:column;justify-content:center;gap:.8rem;min-height:160px;max-width:290px;padding:1.4rem 1.2rem;border:1px solid var(--ink-soft);border-radius:2px;background:rgba(255,255,255,.3);}
+.arch-part b{font:400 clamp(1.7rem,2.5vw,2.55rem)/1.2 var(--serif);}
+.arch-part span{font:400 clamp(.95rem,1.4vw,1.16rem)/1.4 var(--sans);color:var(--ink-soft);}
+.arch-link{display:block;width:clamp(25px,5vw,105px);height:2px;flex:0 1 105px;background:var(--ink-soft);position:relative;margin:0 .65rem;transform-origin:left;}
+.arch-link:after{content:"";position:absolute;right:0;top:-4px;border-left:7px solid var(--ink-soft);border-top:5px solid transparent;border-bottom:5px solid transparent;}
+.arch-after{font:400 clamp(1.1rem,1.7vw,1.43rem)/1.5 var(--sans);color:var(--ink-soft);margin:0;}
+.path-map{display:flex;flex-direction:column;gap:clamp(.6rem,1.8vh,1.1rem);padding-top:clamp(.5rem,2vh,1rem);}
+.path-lane{display:grid;grid-template-columns:200px 1fr 245px;align-items:center;gap:1.25rem;border-top:1px solid var(--ink-soft);padding:clamp(.8rem,1.7vh,1.2rem) 0;}
+.path-lane b{font:400 clamp(1.4rem,2vw,1.85rem)/1.2 var(--serif);}
+.path-steps{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;font:500 clamp(.92rem,1.2vw,1.1rem)/1.4 var(--sans);}
+.path-steps span{padding:.42rem .7rem;border:1px solid currentColor;border-radius:2px;}
+.path-steps i{font-style:normal;color:var(--ink-soft);font-size:1.4rem;}
+.path-lane small{font:400 clamp(.8rem,1.07vw,.97rem)/1.35 var(--sans);color:var(--ink-soft);}
+.path-focus{align-self:flex-end;display:flex;gap:.75rem;align-items:baseline;font:400 clamp(1rem,1.45vw,1.25rem)/1.4 var(--sans);}
+.path-focus strong{font:400 clamp(1.5rem,2.3vw,2.1rem)/1.25 var(--serif);}
+@media (prefers-reduced-motion:no-preference) {
+ .slide.is-active .architecture-scene .arch-eyebrow{animation:arch-in .55s both .12s}
+ .slide.is-active .architecture-scene .arch-heading{animation:arch-in .6s both .4s}
+ .slide.is-active .arch-part{animation:arch-rise .7s cubic-bezier(.17,.67,.2,1.01) both}
+ .slide.is-active .arch-part:nth-of-type(1){animation-delay:.95s}
+ .slide.is-active .arch-part:nth-of-type(2){animation-delay:2s}
+ .slide.is-active .arch-part:nth-of-type(3){animation-delay:3.1s}
+ .slide.is-active .arch-link{animation:arch-grow .55s ease-out both}
+ .slide.is-active .arch-link:nth-of-type(1){animation-delay:1.75s}
+ .slide.is-active .arch-link:nth-of-type(2){animation-delay:2.85s}
+ .slide.is-active .arch-after{animation:arch-in .55s both 4s}
+ .slide.is-active .path-lane{animation:path-enter .75s cubic-bezier(.18,.8,.24,1) both}
+ .slide.is-active .path-lane--gemini{animation-delay:.65s}
+ .slide.is-active .path-lane--sites{animation-delay:1.5s}
+ .slide.is-active .path-lane--code{animation-delay:2.35s}
+ .slide.is-active .path-focus{animation:arch-in .55s both 3.5s}
+}
+@keyframes arch-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes arch-rise{from{opacity:0;transform:translateY(50px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes arch-grow{from{opacity:0;transform:scaleX(0)}to{opacity:1;transform:scaleX(1)}}
+@keyframes path-enter{from{opacity:0;transform:translateX(-90px)}to{opacity:1;transform:none}}
+@media(max-width:960px){
+ .path-lane{grid-template-columns:130px 1fr;gap:.6rem;}
+ .path-lane small{grid-column:2;}
+ .path-steps{gap:.4rem}
+ .arch-part{min-height:125px;padding:.8rem;}
+}
+@media(max-width:700px){
+ .architecture-scene,.path-scene,.gemini-scene,.hud-scene,.publish-scene{min-height:0;gap:1rem;padding:1rem 0 2.5rem;}
+ .architecture-lane{align-items:stretch;}
+ .arch-part{padding:.6rem;min-height:105px;}
+ .arch-part b{font-size:1.12rem;}
+ .arch-part span{font-size:.8rem;}
+ .arch-link{min-width:10px;margin:0 .2rem;}
+ .path-lane{grid-template-columns:1fr;padding:.55rem 0;gap:.5rem;}
+ .path-lane small{grid-column:1;}
+ .path-focus{align-self:flex-start;flex-wrap:wrap;}
+}
+@media(prefers-reduced-motion:reduce){
+ .architecture-scene *, .path-scene *, .gemini-scene *, .hud-scene *, .publish-scene *{animation:none!important;transition:none!important;}
+}
