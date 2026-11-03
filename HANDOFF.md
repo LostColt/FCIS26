@@ -1,6 +1,6 @@
 # Handoff: Stop Subscribing, Start Building
 
-**Read this first.** It's the front door for any assistant (Claude, ChatGPT, Antigravity/Gemini) picking up this project. It says how David works, what the deck is today, where everything lives, and what's still open. Last updated 2026-11-03 by Claude (slides 21–28 polished at laptop size; slide 17 description corrected).
+**Read this first.** It's the front door for any assistant (Claude, ChatGPT, Antigravity/Gemini) picking up this project. It says how David works, what the deck is today, where everything lives, and what's still open. Last updated 2026-11-03: integrated Claude's presentation polish and the revised practical build sequence.
 
 ---
 
@@ -28,7 +28,7 @@
 - **Shipping.** Claude has been pushing straight to `main` after each approved change because David reviews live. **Other assistants: work on a branch** (Vercel builds a preview link for every branch), and merge to `main` only when David approves or says "push to main." If he says push to main, push to main.
 - **Answer his questions directly.** He sometimes asks "is it static or can I type?" style questions; answer plainly first, then fix.
 
-## 3. The deck today: 28 slides
+## 3. The deck today: 29 slides
 
 Each line: slide · what it says/does · how it moves. "Auto" means it plays by itself when the slide opens; "press" means the presenter's next press reveals something.
 
@@ -60,25 +60,26 @@ Each line: slide · what it says/does · how it moves. "Auto" means it plays by 
 15. `#reader` Auto (~6s): "Helping students is what first drew me toward technology." is read aloud on screen, each word highlighted in turn like the reader, "technology" stays marked; the line rises → "I kept looking for different ways to help them learn." → the reader story (a friend's student who found listening easier than reading) → the Reader card. No "learning differences" (David, Nov 2).
 16. Auto (~9s): "I have my own shortcomings, too." / "Things I struggle to organize, keep up with, or remember." while five notification cards pile up on the right (Reminders, Mail, Calendar, Notes, Messages; mock text), then they clear → "I build small tools to help me work better, faster, and be more present." → "I'm not trying to ship or sell an app. These are tools for me and people in my orbit."
 
-**6 · Build it** (teaches the shape, not the clicks: tools change, the shape doesn't)
-17. `#build` Auto (~9s): no heading. Eight question cards fan in, two columns by four rows ("Where do my students get stuck?" … "What can I simplify?"), then stay; "What is one small thing worth fixing?" sits along the bottom. The questions are Claude's wording and the fuller lists are in `guide.html#questions`.
-18. Auto: "Every build has the same shape." Prototype → Store → Host, one line each. "Buttons move. The shape doesn't."
-19. `#ways` Auto (1s pause, rows over 2s): "Three ways to do it." Grid: All in ChatGPT / Inside Google Workspace / Own it end to end (AI Studio, GitHub, Vercel), by Prototype, Store, Host; each row has "See the steps" → `guide.html`.
-20. `#dashboard` Auto: "A sheet you already keep can become a dashboard." A mini Google Sheet fills in → arrow → Assessment Calendar card.
+**6 · Build it** (practical sequence agreed with David, integrated 2026-11-03)
+17. `#build` Eight question cards (2×4) ending “What is one small thing worth fixing?” — unchanged.
+18. `#ways` Three levels: Gemini Canvas; ChatGPT Sites; advanced coding tools → GitHub → Vercel. Short orientation.
+19. `#canvas-problem` One reading-support problem, connected to the Reader story.
+20. `#gemini` A first prompt to build a small reading companion in Gemini Canvas.
+21. `#revise` One focused improvement to reading controls, then test and share carefully; Google Sites notes in the guide.
+22. `#dashboard` Fictional assessment spreadsheet → sample Assessment Calendar, with Sheets canvas/Apps Script options explained in the guide.
+23. `#more-paths` ChatGPT Sites and AI Studio, Codex, Claude Code, Antigravity, GitHub and Vercel; details kept off-slide.
 
 **7 · Before you build**
-21. "Build boldly. Not ~~carelessly~~." For you (four-item checklist: no student data unless the school approved the tool; check the content; name an owner; leave the gradebook and LMS alone) and For your school (a paid, school-managed account lets the school see the data, review it, decide; four questions: who owns the account, where the data lives, who reviews it, how we decide what we keep).
+24. “Build boldly. Not carelessly.” Four concise teacher precautions and four school governance questions. Account oversight claims are conditional, not automatic.
 
-**8 · Your turn** (polished 2026-11-03; David hasn't reviewed it slide by slide yet)
-22. Press: "One small tool. Built in Gemini." → "Everyone builds at once. You'll leave with a link that works on your phone."
-23. `#gemini` Five steps in Gemini Canvas, share a link. Two plain notes under it: a shared link is a snapshot and public; if Gemini or sharing is blocked, use a personal account or pair with a neighbor (that fallback line is Claude's wording).
-24. `#prompts` Four copyable prompts on the slide (flashcards, exit tickets, rubric check, your own idea), fitting one screen. All seven (plus slider simulation, Apps Script from a sheet, change an HTML file) are in `guide.html#prompts`.
-25. Swap with a neighbor (four lines, speaking size, serif).
-26. Press: "You just did what we ask students to do: try something, get feedback, revise." → "Build first. Then revise."
+**8 · Your turn**
+25. `#prompts` Claude's four-prompt layout (flashcards, exit-ticket randomizer, rubric check, your own idea); 20 additional grade- and subject-filterable starters in `prompt-library.html`.
+26. `#swap` Optional small build or the working sample Reader, followed by feedback and one revision. School-account blocks do not require personal-account workarounds.
+27. Press: “You just did what we ask students to do: try something, get feedback, revise.” → “Build first. Then revise.”
 
-**9 · Keep building** (not yet reviewed)
-27. Press: "Start small. It lives with you." → "One annoyance. One prompt. One colleague…"
-28. Everything in one place: four columns (Build, The guide, The tools from the talk, Keep in touch), fits one laptop screen with no scrolling.
+**9 · Keep building**
+28. Press: “Start small. Keep changing it.” → one annoyance, one prompt, one colleague.
+29. “Everything in one place” in Claude's four-column layout, linking guide, classroom prompts, tools and contact information.
 
 Presenter controls: arrows, space, clicker, swipe; **Start over** button (and Home key) returns to the cover; Slides menu; F for full screen. Every slide has a link (`#15`) and some have names (`#reader`).
 
@@ -89,11 +90,11 @@ Presenter controls: arrows, space, clicker, swipe; **Start over** button (and Ho
 | `site/index.html` | The shell. Loads the scripts in order: slides-a, steps, slides-b, deck, tally, pull, typing, vendor/qrcode, qr. |
 | `site/js/slides-a.js` | Chapters list (`D.chapters`), helpers (`D.add`, `D.tool`, `D.TOOLS`), slides for chapters 0–5. |
 | `site/js/steps.js` | Chapter 6 (Build it), plus shared helpers `D.prompt`, `D.promptBox`, `D.ui`, `D.link`. |
-| `site/js/slides-b.js` | Chapters 7–9 (Before you build, Your turn, Keep building), including the seven workshop prompts. |
+| `site/js/slides-b.js` | Chapters 7–9 (safety, four featured copyable prompts, optional colleague practice, closing). |
 | `site/js/deck.js` | The engine: navigation, swipe, presses, copy buttons, and a `deckstep` event that `pull.js` and `typing.js` listen to. |
 | `site/css/layers.css` | Almost all slide styling and timing. New styles are appended in sections; later rules win. |
 | `site/demos/*.html` | The four tools, each **one self-contained file** (no libraries, works offline), with a `.png` picture beside it (1440×900 screenshot). |
-| `site/guide.html` | "Build it: the guide." Every detailed step, prompt and link; dated; Save as PDF. **When a tool's buttons change, update this page.** |
+| `site/guide.html` | Current take-home instructions for Gemini Canvas, Google Sites embedding, Sheets, ChatGPT Sites and the optional advanced workflow; dated and printable. **When a tool's buttons change, update this page.** |
 | `content/story.md` | The record of David's words, chapter by chapter, including cut material marked as removed. |
 | `BRIEF.md` | The original source of truth (thesis, rules, review rubric). Its chapter table and tool list are current; some history sections are older. |
 | `BUILDLOG.md` | One entry per working session, newest first. |
