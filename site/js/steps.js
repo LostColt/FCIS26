@@ -22,16 +22,12 @@
   };
 
   D.insertSteps = function (add) {
-    /* Eight questions in two columns and four rows; fan in, then stay. */
+    /* Slide 17: preserve the eight-question reflection from David's Nov 2 review. */
     var questions = [
-      "Where do my students get stuck?",
-      "What takes my attention away?",
-      "What do I keep forgetting?",
-      "What am I doing over and over?",
-      "What could work differently?",
-      "What would help one student?",
-      "What takes too much time?",
-      "What can I simplify?"
+      "Where do my students get stuck?", "What takes my attention away?",
+      "What do I keep forgetting?", "What am I doing over and over?",
+      "What could work differently?", "What would help one student?",
+      "What takes too much time?", "What can I simplify?"
     ];
     add(6, 0,
       '<div class="whiteboard"><div class="question-cards" aria-label="Questions to ask before building">' +
@@ -39,41 +35,47 @@
       '</div><p class="whiteboard-bottom">What is one small thing worth fixing?</p></div>',
       { id: "build" });
 
-    /* The shape that doesn't change */
+    /* Slide 18: show the choices, not a software lecture. */
     add(6, 0,
-      '<p class="said-line">Every build has the same shape.</p>' +
-      '<ol class="shape3" aria-label="Prototype, store, host">' +
-      '<li style="--i:0"><b>Prototype</b><span>Describe it, try it, ask for changes, until it works the way you work.</span></li>' +
-      '<li style="--i:1"><b>Store</b><span>Keep it somewhere safe, where you can change it again next month.</span></li>' +
-      '<li style="--i:2"><b>Host</b><span>Put it where people can use it, with a link.</span></li>' +
-      '</ol><p class="shape-note">Buttons move. The shape doesn’t.</p>');
+      '<div class="build-simple"><p class="said-line">There are a few ways to build it.</p>' +
+      '<div class="build-paths">' +
+      '<section><b>Start here</b><span>Gemini Canvas</span><small>Build, try, revise, share.</small></section>' +
+      '<section><b>Another way</b><span>ChatGPT Sites</span><small>Build and host in one place.</small></section>' +
+      '<section><b>When you want more</b><span>AI coding tools</span><small>GitHub keeps the code. Vercel hosts it.</small></section>' +
+      '</div><p class="build-quiet">We’ll start with the simplest one.</p></div>', { id: "ways" });
 
-    /* Three ways to do it: one glance, and the steps live in the guide */
-    var ways = [
-      ["All in ChatGPT", "ChatGPT", "ChatGPT", "ChatGPT Sites", "guide.html#chatgpt", "If you already live in ChatGPT."],
-      ["Inside Google Workspace", "Gemini", "Google Sheets, Drive", "Apps Script", "guide.html#google", "If your school runs on Google."],
-      ["Own it end to end", "Google AI Studio", "GitHub", "Vercel", "guide.html#own-it", "If you want it all in your own account. How this site was built."]
-    ];
+    /* Slides 19-21: one continuous Gemini Canvas demonstration. */
     add(6, 0,
-      '<p class="said-line">Three ways to do it.</p>' +
-      '<div class="ways" role="table" aria-label="Three ways to prototype, store and host">' +
-      '<div class="ways-head" role="row"><span role="columnheader"></span><span role="columnheader">Prototype</span><span role="columnheader">Store</span><span role="columnheader">Host</span><span role="columnheader"></span></div>' +
-      ways.map(function (w, k) {
-        return '<div class="ways-row" role="row" style="--i:' + k + '"><span role="rowheader"><b>' + w[0] + "</b><small>" + w[5] + "</small></span>" +
-          '<span role="cell">' + w[1] + '</span><span role="cell">' + w[2] + '</span><span role="cell">' + w[3] + "</span>" +
-          '<span role="cell"><a href="' + w[4] + '" target="_blank" rel="noopener">See the steps</a></span></div>';
-      }).join("") +
-      '</div><p class="ways-note">Every step, prompt and link is in <a href="guide.html" target="_blank" rel="noopener">one guide</a> that gets updated when the tools change. It saves as a PDF too.</p>',
-      { id: "ways" });
+      '<div class="build-simple"><p class="said-line">Start with something your students need.</p>' +
+      '<p class="build-problem">A student understands the story better when they can listen along.</p>' +
+      '<p class="build-quiet">What if I could build a small reading companion?</p></div>', { id: "canvas-problem" });
+    add(6, 0,
+      '<div class="build-simple"><p class="said-line">Describe it. Try it.</p>' +
+      '<div class="build-prompt">Build a one-page reading companion. Let me paste a short passage. Add read-aloud controls, large readable text and a clear place to start and pause. Use sample text. No login or student data.</div>' +
+      '<p class="build-quiet">Open Gemini Canvas. Paste the prompt. Test the result as a student would.</p>' +
+      '<p class="build-actions"><a href="https://gemini.google.com" target="_blank" rel="noopener">Open Gemini</a> · <a href="guide.html#gemini" target="_blank" rel="noopener">Steps to follow</a></p></div>', { id: "gemini" });
+    add(6, 0,
+      '<div class="build-simple"><p class="said-line">Then ask for one change.</p>' +
+      '<div class="build-prompt">Keep everything that works. Add a control for text size and spacing, visible keyboard focus, and an optional distraction-reduced view. Leave the original passage unchanged.</div>' +
+      '<p class="build-quiet">Try it again. Share only after you have checked what the link opens for someone else.</p>' +
+      '<p class="build-actions"><a href="guide.html#share" target="_blank" rel="noopener">Sharing and Google Sites notes</a></p></div>', { id: "revise" });
 
-    /* If your school runs on Google: a sheet you already keep becomes a dashboard */
-    var rows = [["Date", "Grade", "Course", "Type"], ["Nov 3", "10", "Geometry", "Test"], ["Nov 3", "10", "English 10", "Project"], ["Nov 4", "11", "Physics", "Test"], ["Nov 5", "9", "Biology", "Quiz"], ["Nov 6", "12", "AP Lit", "Essay"]];
+    /* Slide 22: extension, not another full tutorial. */
+    var rows = [["Date","Grade","Course","Type"],["Nov 3","10","Geometry","Test"],["Nov 3","10","English 10","Project"],["Nov 4","11","Physics","Test"]];
     add(6, 0,
-      '<p class="said-line">A sheet you already keep can become a dashboard.</p>' +
-      '<div class="sheet-to-dash"><div class="mini-sheet" aria-label="A Google Sheet of assessment dates"><div class="mini-sheet-bar">Assessments · Google Sheets</div><table>' +
-      rows.map(function (r, k) { return "<tr" + (k ? ' style="--i:' + k + '"' : "") + ">" + r.map(function (c) { return (k ? "<td>" : "<th>") + c + (k ? "</td>" : "</th>"); }).join("") + "</tr>"; }).join("") +
-      '</table></div><div class="to-arrow" aria-hidden="true">→</div><div class="late-card" style="--t:2.6s">' +
-      D.tool("dashboard", "For a department", "Assessment Calendar", "Each week at a glance, with crunch days flagged: two or more big assessments for one grade on one day. It runs inside your school’s Google Sheet, so everyone sees the same thing.") +
-      "</div></div>", { id: "dashboard" });
+      '<p class="said-line">You can build around information you already keep.</p>' +
+      '<div class="sheet-to-dash"><div class="mini-sheet" aria-label="Fictional assessment spreadsheet"><div class="mini-sheet-bar">Sample assessments · Google Sheets</div><table>' +
+      rows.map(function (r,k) { return "<tr>" + r.map(function(c){return (k?"<td>":"<th>")+c+(k?"</td>":"</th>");}).join("")+"</tr>";}).join("") +
+      '</table></div><div class="to-arrow" aria-hidden="true">→</div><div class="late-card" style="--t:2s">' +
+      D.tool("dashboard", "For a department", "Assessment Calendar", "The same information, easier to see. A Sheets canvas or a school-approved Apps Script can extend it.") +
+      '</div></div><p class="build-footnote"><a href="guide.html#sheets" target="_blank" rel="noopener">How Sheets canvas and Apps Script differ</a></p>', { id: "dashboard" });
+
+    /* Slide 23: optional paths remain optional. */
+    add(6, 0,
+      '<div class="build-simple"><p class="said-line">And when you are ready, you can go further.</p>' +
+      '<div class="build-paths build-paths-two">' +
+      '<section><b>ChatGPT Sites</b><span>Describe → preview → revise → publish</span><small>Build and host together. Check your sharing settings.</small></section>' +
+      '<section><b>More complex builds</b><span>AI Studio / Codex / Claude Code / Antigravity</span><small>Keep source in GitHub. Deploy a compatible project through Vercel.</small></section>' +
+      '</div><p class="build-quiet">The full instructions are in the guide, not on this slide.</p></div>', { id: "more-paths" });
   };
 })();

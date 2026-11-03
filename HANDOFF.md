@@ -1,6 +1,6 @@
 # Handoff: Stop Subscribing, Start Building
 
-**Read this first.** It's the front door for any assistant (Claude, ChatGPT, Antigravity/Gemini) picking up this project. It says how David works, what the deck is today, where everything lives, and what's still open. Last updated 2026-10-30 by Claude (network boundary clarified after COLLABORATION.md thread C-001).
+**Read this first.** It's the front door for any assistant (Claude, ChatGPT, Antigravity/Gemini) picking up this project. It says how David works, what the deck is today, where everything lives, and what's still open. Last updated 2026-11-03 by ChatGPT (first-pass branch); originally 2026-10-30 by Claude (network boundary clarified after COLLABORATION.md thread C-001).
 
 ---
 
@@ -28,7 +28,7 @@
 - **Shipping.** Claude has been pushing straight to `main` after each approved change because David reviews live. **Other assistants: work on a branch** (Vercel builds a preview link for every branch), and merge to `main` only when David approves or says "push to main." If he says push to main, push to main.
 - **Answer his questions directly.** He sometimes asks "is it static or can I type?" style questions; answer plainly first, then fix.
 
-## 3. The deck today: 28 slides
+## 3. The deck today: 29 slides (first-pass branch)
 
 Each line: slide · what it says/does · how it moves. "Auto" means it plays by itself when the slide opens; "press" means the presenter's next press reveals something.
 
@@ -60,28 +60,28 @@ Each line: slide · what it says/does · how it moves. "Auto" means it plays by 
 15. `#reader` Auto (~6s): "Helping students is what first drew me toward technology." is read aloud on screen, each word highlighted in turn like the reader, "technology" stays marked; the line rises → "I kept looking for different ways to help them learn." → the reader story (a friend's student who found listening easier than reading) → the Reader card. No "learning differences" (David, Nov 2).
 16. Auto (~9s): "I have my own shortcomings, too." / "Things I struggle to organize, keep up with, or remember." while five notification cards pile up on the right (Reminders, Mail, Calendar, Notes, Messages; mock text), then they clear → "I build small tools to help me work better, faster, and be more present." → "I'm not trying to ship or sell an app. These are tools for me and people in my orbit."
 
-**6 · Build it** (teaches the shape, not the clicks: tools change, the shape doesn't)
-17. `#build` Auto (~9s): no heading, no list. Six familiar teacher thoughts drift in, scattered ("There has to be a better way to do this." "I make this same thing every year." "If it just did this one thing…" "My students always get lost right here." "I spend more time on the platform than with the kids." "I'd use it if it worked the way I work."), fade back, then "There has to be a better way to do this." comes forward large → "That thought is where building starts." → small link to `guide.html#questions` (new tab). The thoughts and that last line are Claude's words, offered to David to change.
-18. Auto: "Every build has the same shape." Prototype → Store → Host, one line each. "Buttons move. The shape doesn't."
-19. `#ways` Auto (1s pause, rows over 2s): "Three ways to do it." Grid: All in ChatGPT / Inside Google Workspace / Own it end to end (AI Studio, GitHub, Vercel), by Prototype, Store, Host; each row has "See the steps" → `guide.html`.
-20. `#dashboard` Auto: "A sheet you already keep can become a dashboard." A mini Google Sheet fills in → arrow → Assessment Calendar card.
+**6 · Build it** (first pass, November 3, 2026)
+17. `#build` Eight teacher questions in a 2×4 grid, ending with one small thing worth fixing.
+18. `#ways` Three levels: Gemini Canvas, ChatGPT Sites, AI coding tools with GitHub and Vercel.
+19. `#canvas-problem` Reading-support problem linked to the earlier reader story.
+20. `#gemini` One simple Gemini Canvas build with a sample reading companion prompt.
+21. `#revise` One change, then test and check sharing.
+22. `#dashboard` Fictional Google Sheet to assessment dashboard; Sheets canvas and Apps Script in guide.
+23. `#more-paths` Brief alternative and advanced paths, detailed off-slide.
 
 **7 · Before you build**
-21. "Build boldly. Not ~~carelessly~~." For you (checklist) and For your school (paid school accounts let the school see data, review with committees, decide; four questions: who owns the account, where the data lives, who reviews it, how we decide what we keep).
+24. School-safety slide unchanged: student privacy, accuracy, and stewardship.
 
-**8 · Your turn** (not yet reviewed by David in this round)
-22. Press: "One small tool. Built in Gemini." → "Everyone builds at once. You'll leave with a link that works on your phone."
-23. `#gemini` Five steps in Gemini Canvas, share a link.
-24. `#prompts` Seven copyable prompts (flashcards, exit tickets, rubric check, slider simulation, your own idea, Apps Script from a sheet, change an HTML file).
-25. Swap with a neighbor.
-26. Press: "You just did what we ask students to do: try something, get feedback, revise." → "Build first. Then revise."
+**8 · Your turn**
+25. `#examples` Three classroom example categories, linked to 20 filterable prompts.
+26. `#prompts` Optional hands-on build or examine an example; prompt library link.
+27. Try it, get feedback, revise; build first then revise.
 
-**9 · Keep building** (not yet reviewed)
-27. Press: "Start small. It lives with you." → "One annoyance. One prompt. One colleague…"
-28. Everything in one place: links to the tools, the guide, the four tools from the talk, LinkedIn.
+**9 · Keep building**
+28. Start small. Keep changing it.
+29. Everything in one place: guide, prompts, samples and contact.
 
-Presenter controls: arrows, space, clicker, swipe; **Start over** button (and Home key) returns to the cover; Slides menu; F for full screen. Every slide has a link (`#15`) and some have names (`#reader`).
-
+All new copy is first-pass and awaits David's visual and voice review. Live-account demonstrations remain unverified. Branch: `fcis-final-section-first-pass`, not `main`.
 ## 4. Where things live
 
 | File | What it holds |

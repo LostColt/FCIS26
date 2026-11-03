@@ -38,6 +38,10 @@ Supporting ideas, in David's own words where possible:
 - Building can also mean building for others.
 - "Do you brush your teeth while you eat chocolate? No. You eat, then brush." Build first, then revise.
 
+## November 3, 2026 first-pass revision note (branch only)
+
+The original chapter timing and workflow table below record the previous plan; the **new first-pass section from slide 18 onward** is documented in `HANDOFF.md` section 3 and `reviews/2026-11-03-final-section-audits.md`. After the preserved eight-question slide, the updated plan is: three build choices briefly; a fuller Gemini Canvas reading-companion demonstration and one targeted revision; a Google Sheets dashboard example; a short ChatGPT Sites and advanced-build introduction; school-safety guidance; a searchable take-home library of 20 prompts across grade bands and subjects; an optional practice activity; and the existing conclusion. Detailed steps live in `site/guide.html`. These remain first-pass proposals until David reviews them. The target is still a 55-minute session. The old Prototype → Store → Host explanation remains useful in advanced documentation, but is no longer a full presentation slide.
+
 ## 4. The story structure
 
 The full text is in `content/story.md`. Use that text; do not rewrite David's voice.

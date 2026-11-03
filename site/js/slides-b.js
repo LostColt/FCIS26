@@ -6,7 +6,7 @@
   function add(ch, steps, html, opts) { D.add(ch, steps, html, opts); }
   var ui = D.ui, arrow = D.arrow, link = D.link, box = D.promptBox;
 
-  /* 6 · Build it: the invitation, the shape, three ways, the dashboard (steps.js) */
+  /* 6 · Build it: brief choices, one Gemini demo, Sheets and optional advanced routes (steps.js) */
   D.insertSteps(add);
 
   /* 7 · Before you build: for you, and for your school */
@@ -17,53 +17,33 @@
     "<li>Check the content yourself. AI-built tools can be confidently wrong.</li>" +
     "<li>Name an owner. Who fixes it in June? If nobody, keep it small.</li>" +
     "<li>Keep the systems of record (LMS, gradebook, student information system) where they are. Build the small things around them.</li>" +
-    '</ul></section><section><h3>For your school</h3><p class="care-lede">A school-managed, paid account means the school can see the data, review it with committees, and decide together.</p><ol class="questions">' +
+    '</ul></section><section><h3>For your school</h3><p class="care-lede">A school-managed account can provide oversight, but data access and protections depend on the provider, plan and school settings. Review them before sharing.</p><ol class="questions">' +
     "<li>Who owns the account?</li><li>Where does the data live?</li><li>Who reviews it?</li><li>How do we decide what we keep?</li>" +
     "</ol></section></div></div>", { scroll: true });
 
-  /* 8 · Your turn: everyone builds in Gemini, from a ready prompt, and leaves with a link */
-  var RULES = "Large, readable text. Works on a phone and a Chromebook.\nNo login, no AI or API calls, and don’t collect names or any student data.";
-  var PROMPTS = [
-    ["Flashcards", "Build a one-page flashcard app for [unit] vocabulary.\nShow the word; tap to flip to the definition. Add Shuffle and Next buttons.\n" + RULES + "\nStart with these words, one per line, as word – definition:\n[your words]"],
-    ["Exit-ticket randomizer", "Build a one-page exit-ticket randomizer.\nI paste my questions, one per line. A big button shows one at random, with no repeats until every question has come up.\nBig enough to read on a projector, with a full-screen button.\n" + RULES],
-    ["Rubric check", "Build a one-page checklist students use to check a draft against my rubric before they turn it in.\nEach criterion is a checkbox with one line on what it looks like. When everything is checked, show “Ready to turn in.” Nothing is saved or sent.\n" + RULES + "\nMy rubric:\n[paste your criteria]"],
-    ["Slider simulation", "Build a one-page simulation that shows [concept] in [subject].\nGive it sliders for [first variable] and [second variable], and a picture or chart that changes as they move, with one sentence saying what changed and why.\n" + RULES],
-    ["Your own idea", D.prompt],
-    ["A sheet you keep (Apps Script)", "I have a Google Sheet called [name] with these columns: [column names].\nWrite a Google Apps Script web app that shows it as [a board grouped by week / a sign-up list / a duty schedule].\nGive me two files, Code.gs and Index.html, and step-by-step instructions: where to paste each one under Extensions → Apps Script, and how to deploy it as a web app that only people in my school can open.\nDon’t ask me to paste any real data."],
-    ["Change an HTML file", "Here is an HTML file. Keep everything that works, and change it so [your change].\nGive me the whole file back, ready to open.\n[paste the HTML]"]
-  ];
-  D.PROMPTS = PROMPTS;
+  /* 8 · Your turn: examples first, one optional hands-on build, no repeated tutorial. */
+  add(8, 0,
+    '<div class="build-simple"><p class="said-line">What could you build for your classroom?</p>' +
+    '<div class="build-paths">' +
+    '<section><b>English and languages</b><span>Read-along companion</span><small>Listening, text controls and comprehension.</small></section>' +
+    '<section><b>Math and science</b><span>Explore a concept</span><small>Sliders, models and immediate feedback.</small></section>' +
+    '<section><b>Humanities and arts</b><span>Explore and organize</span><small>Timelines, comparisons and creative practice.</small></section>' +
+    '</div><p class="build-quiet">Adapt each example for your age group and your students.</p></div>', { id: "examples" });
+
+  add(8, 0,
+    '<div class="build-simple"><p class="said-line">Pick a small thing. Build a first version.</p>' +
+    '<p class="build-quiet">Choose a classroom prompt. Try the result. Ask for one change.</p>' +
+    '<p class="build-actions"><a href="prompt-library.html" target="_blank" rel="noopener">Open the copyable prompt library</a></p>' +
+    '<p class="build-quiet">Not building today? Open the sample Reader, try it, and decide on one change.</p>' +
+    '<p class="build-actions"><a href="demos/reader.html" target="_blank" rel="noopener">Try the sample Reader</a> · <a href="guide.html#gemini" target="_blank" rel="noopener">Follow the build steps</a></p></div>', { id: "prompts" });
 
   add(8, 1,
-    '<p class="big huge">One small tool. Built in&nbsp;Gemini.</p>' +
-    '<p class="kicker-line" data-step="1">Everyone builds at once. You’ll leave with a link that works on your phone.</p>');
-  add(8, 0,
-    '<div class="practical"><h2>Five steps</h2><p class="sub">Use a Google account, school or personal.</p><ol class="big-steps">' +
-    "<li>Go to " + link("https://gemini.google.com") + " and sign in.</li>" +
-    "<li>In the prompt bar, choose " + ui("Canvas") + ". It may sit under " + ui("Tools") + " or the " + ui("+") + " menu.</li>" +
-    "<li>Pick a prompt on the next slide. Copy it, fill in the brackets, and send it.</li>" +
-    "<li>Try it in the preview, like a student would. Ask for one change: “Make the buttons bigger.”</li>" +
-    "<li>Choose " + ui("Share") + ", copy the link, and open it on your phone.</li></ol>" +
-    '<p class="note">A shared link is a snapshot: after you change it, share again. Anyone with the link can open it, so keep student information out. If your school has turned sharing off, a personal account works for practice. On a school account you may also see ' + ui("Share to Classroom") + ".</p></div>",
-    { scroll: true, id: "gemini" });
-  add(8, 0,
-    '<div class="practical wide"><h2>Pick a prompt</h2><p class="sub">Copy one, fill in the brackets, paste it into Gemini with Canvas on.</p><div class="prompt-menu">' +
-    PROMPTS.map(function (p) { return "<section><h3>" + p[0] + "</h3>" + box(p[1]) + "</section>"; }).join("") +
-    '</div><p class="note">The Apps Script prompt gets you the code; the tool runs in your sheet. The guide shows how to paste and deploy it: <a href="guide.html#google" target="_blank" rel="noopener">Inside Google Workspace</a>.</p></div>',
-    { scroll: true, id: "prompts" });
-  add(8, 0,
-    '<div class="practical"><h2>Swap</h2><ol class="big-steps">' +
-    "<li>Send your link to a neighbor. Open theirs.</li>" +
-    "<li>Use it like a student. Try to break it.</li>" +
-    "<li>Tell them one thing that would make it work in a real class.</li>" +
-    "<li>They type that fix in, in one sentence, watch it change, and share again.</li></ol></div>", { scroll: true });
-  add(8, 1,
-    '<p class="big">You just did what we ask students to do: try something, get feedback, revise.</p>' +
+    '<p class="big">Try it. Get feedback. Revise.</p>' +
     '<p class="big soft" data-step="1">Build first. Then revise.</p>');
 
   /* 9 · Keep building */
   add(9, 1,
-    '<p class="big huge">Start small. It lives with&nbsp;you.</p>' +
+    '<p class="big huge">Start small. Keep changing it.</p>' +
     '<p class="kicker-line" data-step="1">One annoyance. One prompt. One colleague to test it. Then revise it next month, and the month after that.</p>');
   var mine = [["tracker", "The counseling tracker"], ["screenplay", "The screenplay tool"], ["reader", "The reader"]]
     .filter(function (t) { return D.SITES[t[0]]; })
@@ -77,7 +57,7 @@
     "<li>" + link("https://developers.google.com/apps-script/guides/web", "Apps Script web apps, Google’s guide") + "</li>" +
     "<li>" + link("https://github.com", "GitHub") + "</li><li>" + link("https://vercel.com", "Vercel") + "</li></ul>" +
     '<h3>The guide</h3><ul class="linklist"><li><a href="guide.html" target="_blank" rel="noopener">Build it: the guide</a></li><li><a href="guide.html#chatgpt" target="_blank" rel="noopener">All in ChatGPT</a></li>' +
-    '<li><a href="guide.html#google" target="_blank" rel="noopener">Inside Google Workspace</a></li><li><a href="guide.html#own-it" target="_blank" rel="noopener">Own it end to end</a></li><li><a href="#prompts">All the workshop prompts</a></li></ul>' +
+    '<li><a href="guide.html#sheets" target="_blank" rel="noopener">Inside Google Workspace</a></li><li><a href="guide.html#advanced" target="_blank" rel="noopener">Own it end to end</a></li><li><a href="prompt-library.html" target="_blank" rel="noopener">Classroom prompts by grade and subject</a></li></ul>' +
     '<h3>The tools from the talk</h3><ul class="linklist"><li><a href="demos/tracker.html" target="_blank" rel="noopener">Meeting tracker</a></li><li><a href="demos/screenplay.html" target="_blank" rel="noopener">Script Room</a></li>' +
     '<li><a href="demos/reader.html" target="_blank" rel="noopener">Reader</a></li><li><a href="demos/dashboard.html" target="_blank" rel="noopener">Assessment Calendar</a></li></ul>' +
     (mine ? '<h3>What I built</h3><ul class="linklist">' + mine + "</ul>" : "") +

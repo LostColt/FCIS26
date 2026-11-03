@@ -1,272 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Build it: the guide · Stop Subscribing, Start Building</title>
-<meta name="description" content="Step-by-step guide to building your own classroom tools: prototype, store, host. Three ways to do it, kept up to date.">
-<link rel="stylesheet" href="css/fonts.css">
-<style>
-  :root { --paper:#f6f7f4; --deep:#eceee8; --ink:#1d2430; --soft:#4b5563; --rule:#d6dad2; --blue:#2847a8; --red:#b8322a; --hi:#f5e663; --white:#fff;
-    --serif:"Literata", Georgia, serif; --sans:"IBM Plex Sans", system-ui, sans-serif; }
-  * { box-sizing: border-box; }
-  html { background: var(--paper); color: var(--ink); }
-  body { margin: 0; font: 17px/1.65 var(--sans); }
-  a { color: var(--blue); }
-  :focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
-  .top { position: sticky; top: 0; z-index: 3; background: color-mix(in srgb, var(--paper) 94%, transparent); border-bottom: 1px solid var(--rule); }
-  .top div { max-width: 52rem; margin: 0 auto; padding: 0.7rem 1.4rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: center; }
-  .top a.back { margin-right: auto; text-decoration: none; font-weight: 500; }
-  .btn { font: 500 0.95rem var(--sans); border: 1px solid var(--rule); background: var(--white); border-radius: 999px; padding: 0.4rem 0.9rem; cursor: pointer; color: var(--ink); text-decoration: none; }
-  .btn:hover { border-color: var(--ink); }
-  .btn.primary { background: var(--ink); color: var(--white); border-color: var(--ink); }
-  main { max-width: 52rem; margin: 0 auto; padding: 2.4rem 1.4rem 4rem; }
-  h1 { font: 600 clamp(2.2rem, 5vw, 3.4rem)/1.05 var(--serif); letter-spacing: -0.02em; margin: 0 0 0.8rem; }
-  .lede { font: 400 1.3rem/1.5 var(--serif); color: var(--soft); margin: 0 0 0.6rem; }
-  .checked { font-size: 0.9rem; color: var(--soft); }
-  nav.toc { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 1rem 1.2rem; margin: 1.8rem 0 2.4rem; }
-  nav.toc ol { margin: 0; padding-left: 1.2rem; columns: 2; column-gap: 2rem; }
-  section { border-top: 1px solid var(--rule); padding-top: 2rem; margin-top: 2.4rem; }
-  h2 { font: 600 clamp(1.6rem, 3.4vw, 2.2rem)/1.15 var(--serif); letter-spacing: -0.015em; margin: 0 0 0.5rem; }
-  h3 { font: 600 1.15rem/1.3 var(--sans); margin: 1.6rem 0 0.4rem; }
-  .why { font: 400 1.12rem/1.55 var(--serif); color: var(--soft); margin: 0 0 1rem; }
-  .shape { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin: 1rem 0; }
-  .shape div { background: var(--white); border: 1.5px solid var(--ink); border-radius: 10px; padding: 0.9rem 1rem; }
-  .shape b { display: block; font: 600 1.2rem var(--serif); }
-  .shape span { color: var(--soft); font-size: 0.95rem; }
-  table { width: 100%; border-collapse: collapse; background: var(--white); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; font-size: 0.95rem; }
-  th, td { text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
-  th { background: var(--deep); font-weight: 600; }
-  ol.steps { padding-left: 1.4rem; }
-  ol.steps > li { margin-bottom: 0.7rem; }
-  .ui { display: inline-block; font-weight: 600; font-size: 0.9em; line-height: 1.3; padding: 0 0.45em; border: 1px solid var(--ink); border-radius: 5px; background: var(--white); white-space: nowrap; }
-  .prompt { position: relative; background: var(--deep); border-radius: 8px; padding: 0.9rem 1rem 2.8rem; margin: 0.6rem 0 1rem; white-space: pre-wrap; font: 0.95rem/1.55 var(--sans); }
-  .prompt .btn { position: absolute; right: 0.6rem; bottom: 0.6rem; font-size: 0.85rem; padding: 0.25rem 0.7rem; }
-  .watch { border-left: 4px solid var(--red); background: #fbefee; padding: 0.6rem 0.9rem; border-radius: 6px; font-size: 0.95rem; }
-  .tip { border-left: 4px solid var(--blue); background: #eef1fa; padding: 0.6rem 0.9rem; border-radius: 6px; font-size: 0.95rem; }
-  dl.words { display: grid; grid-template-columns: 9rem 1fr; gap: 0; margin: 0; }
-  dl.words dt, dl.words dd { margin: 0; padding: 0.45rem 0; border-bottom: 1px solid var(--rule); }
-  dl.words dt { font-weight: 600; }
-  .tools { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
-  .tools div { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 0.9rem 1rem; }
-  .tools b { display: block; font: 600 1.1rem var(--serif); }
-  .tools p { margin: 0.2rem 0 0.6rem; color: var(--soft); font-size: 0.93rem; }
-  .tools a { margin-right: 0.8rem; font-size: 0.93rem; }
-  footer { max-width: 52rem; margin: 0 auto; padding: 0 1.4rem 3rem; color: var(--soft); font-size: 0.9rem; }
-  @media (max-width: 640px) { nav.toc ol { columns: 1; } .shape, .tools { grid-template-columns: 1fr; } dl.words { grid-template-columns: 1fr; } dl.words dt { border: 0; padding-bottom: 0; } table { font-size: 0.85rem; } }
-  @media print {
-    @page { margin: 0.8in; }
-    .top, .prompt .btn, nav.toc { display: none !important; }
-    body { font-size: 11.5pt; }
-    main { padding: 0; }
-    section { break-before: page; border: 0; margin-top: 0; }
-    section#shape { break-before: auto; }
-    a { color: inherit; text-decoration: none; }
-    a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; color: var(--soft); }
-    .prompt { break-inside: avoid; }
-  }
-</style>
-</head>
-<body>
-<div class="top"><div>
-  <a class="back" href="index.html#build">← Back to the talk</a>
-  <button class="btn primary" onclick="window.print()">Save as PDF</button>
-</div></div>
-
-<main>
-  <h1>Build it: the guide</h1>
-  <p class="lede">You're not bound by an app. Only by your imagination. This page holds the steps, so the talk didn't have to.</p>
-  <p class="checked">Checked October 2026. These tools change often; this page gets updated when they do. Your link stays the same. David Tran, Gulliver Prep, Miami, FL.</p>
-
-  <nav class="toc" aria-label="On this page"><ol>
-    <li><a href="#questions">Questions before you build</a></li>
-    <li><a href="#shape">The shape: prototype, store, host</a></li>
-    <li><a href="#start">Before you start</a></li>
-    <li><a href="#chatgpt">All in ChatGPT</a></li>
-    <li><a href="#google">Inside Google Workspace</a></li>
-    <li><a href="#own-it">Own it end to end</a></li>
-    <li><a href="#tools">The tools from the talk</a></li>
-    <li><a href="#school">For your school</a></li>
-  </ol></nav>
-
-  <section id="questions">
-    <h2>Questions before you build</h2>
-    <p class="why">Start with a need, not a product idea. Ask students what is difficult instead of assuming.</p>
-    <h3>Ask your students</h3>
-    <ul>
-      <li>What part of this activity is hardest to start?</li>
-      <li>Where do you lose track or get stuck?</li>
-      <li>What would help you work more independently?</li>
-      <li>Is something about our process getting in the way of learning?</li>
-    </ul>
-    <h3>Ask yourself</h3>
-    <ul>
-      <li>What takes my attention away from students?</li>
-      <li>What do I repeatedly struggle to organize, remember, or keep up with?</li>
-      <li>What do I wish the tools I already use did differently?</li>
-      <li>Where could a small change give me more time to be present?</li>
-    </ul>
-    <h3>Before building anything</h3>
-    <ul>
-      <li>Who needs this: me, a student, a class, or a colleague?</li>
-      <li>Could an existing tool or a simpler change solve it?</li>
-      <li>What is the smallest version worth trying?</li>
-      <li>Can I test it with invented data, without collecting sensitive student information?</li>
-      <li>How will I know it actually helped?</li>
-    </ul>
-    <p>You do not need to launch or sell an app. Build what helps you and those around you, and share how you worked through the problem.</p>
-  </section>
-
-  <section id="shape">
-    <h2>The shape: prototype, store, host</h2>
-    <p class="why">Buttons move. The shape doesn't. Every tool you build goes through the same three steps, whatever you build it with.</p>
-    <div class="shape">
-      <div><b>Prototype</b><span>Describe it, try it, ask for changes, until it works the way you work.</span></div>
-      <div><b>Store</b><span>Keep it somewhere safe, where you can find it and change it again next month.</span></div>
-      <div><b>Host</b><span>Put it where people can use it, with a link.</span></div>
-    </div>
-    <table>
-      <thead><tr><th>Way to build</th><th>Prototype</th><th>Store</th><th>Host</th></tr></thead>
-      <tbody>
-        <tr><td><b>All in ChatGPT</b></td><td>ChatGPT</td><td>ChatGPT</td><td>ChatGPT Sites</td></tr>
-        <tr><td><b>Inside Google Workspace</b></td><td>Gemini</td><td>Google Sheets and Drive</td><td>Apps Script, inside your school's account</td></tr>
-        <tr><td><b>Own it end to end</b></td><td>Google AI Studio</td><td>GitHub</td><td>Vercel</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section id="start">
-    <h2>Before you start</h2>
-    <p class="why">What you need, and the words you'll see.</p>
-    <h3>Accounts</h3>
-    <ul>
-      <li><b>A Google account,</b> school or personal. For Gemini, Google AI Studio and Sheets.</li>
-      <li><b>A paid ChatGPT plan,</b> only for <a href="#chatgpt">All in ChatGPT</a>.</li>
-      <li><b>GitHub and Vercel,</b> both free, only for <a href="#own-it">Own it end to end</a>: <a href="https://github.com/signup">github.com/signup</a>, then sign up at <a href="https://vercel.com/signup">vercel.com/signup</a> with GitHub.</li>
-    </ul>
-    <h3>Words you'll see</h3>
-    <dl class="words">
-      <dt>Prompt</dt><dd>What you type to describe the tool. Write it the way you'd explain it to a colleague.</dd>
-      <dt>Preview</dt><dd>The working version beside the chat. Try it there, the way a student would.</dd>
-      <dt>HTML</dt><dd>The file a web page is made of. One file can be a whole small tool.</dd>
-      <dt>Canvas</dt><dd>The panel where Gemini, or Google Sheets, builds and shows your tool.</dd>
-      <dt>Apps Script</dt><dd>Google's coding tool, built into Sheets, Docs and Forms (<span class="ui">Extensions</span> → <span class="ui">Apps Script</span>). It can turn a sheet into a small web app only your school can open.</dd>
-      <dt>Repository</dt><dd>A folder for your code on GitHub, with a history of every change.</dd>
-      <dt>Deploy, publish</dt><dd>Put it online so it has a link.</dd>
-    </dl>
-    <h3>A first prompt that works anywhere</h3>
-    <div class="prompt" data-prompt>I teach [grade and subject]. My students struggle with [the problem].
-Build a one-page app where they [what they do].
-It must work on a Chromebook, need no login, and use large, readable text.
-Make it work without any AI or API calls.
-Don't collect names or any student data.<button class="btn" data-copy>Copy</button></div>
-    <p class="tip">Start small, with no student information. Change one thing at a time. When it works, keep it; when it doesn't, say what's wrong in one sentence.</p>
-  </section>
-
-  <section id="chatgpt">
-    <h2>All in ChatGPT</h2>
-    <p class="why">If you already live in ChatGPT, you can stay there: build it, keep it and share it with a link, all in one place. Needs a paid plan.</p>
-    <ol class="steps">
-      <li>In ChatGPT, switch to <span class="ui">Work</span>. Sites lives there, not in regular chat.</li>
-      <li>Type <span class="ui">@Sites</span>, or just ask it to build a website. Say who it's for and what it should do. You can attach files.
-        <div class="prompt" data-prompt>Build a website for my 10th-grade biology class with this week's vocabulary as flip cards and a five-question self-check. Large, readable text. No logins.<button class="btn" data-copy>Copy</button></div></li>
-      <li>Try the preview. Ask for changes in plain language until it works the way you want.</li>
-      <li>Publish it when it's ready. A new site starts private.</li>
-      <li>Share it with specific people, or with anyone who has the link. More at <a href="https://chatgpt.com/features/sites/">chatgpt.com/features/sites</a>.</li>
-    </ol>
-    <p class="watch">Everything you put in it lives on OpenAI's servers. Keep student information out unless your school has an agreement that covers it.</p>
-  </section>
-
-  <section id="google">
-    <h2>Inside Google Workspace</h2>
-    <p class="why">If your school runs on Google, the data can stay where it already is. Two ways in: a quick tool in Gemini, or a dashboard on top of a Google Sheet you already keep.</p>
-
-    <h3>A quick tool in Gemini</h3>
-    <ol class="steps">
-      <li>Go to <a href="https://gemini.google.com">gemini.google.com</a> and sign in.</li>
-      <li>In the prompt bar, choose <span class="ui">Canvas</span> (it may sit under <span class="ui">Tools</span> or the <span class="ui">+</span> menu).</li>
-      <li>Paste the first prompt from <a href="#start">Before you start</a>, fill in the brackets, and send it.</li>
-      <li>Try it in the preview. Ask for one change at a time.</li>
-      <li>Choose <span class="ui">Share</span> to get a link. On a school account you may also see <span class="ui">Share to Classroom</span>.</li>
-    </ol>
-    <p class="watch">A shared Gemini link is a snapshot: after you change the tool, share again. Anyone with the link can open it. If your school has turned sharing off, ask your tech lead.</p>
-
-    <h3>A dashboard from a Google Sheet</h3>
-    <p>Start with a sheet your department already keeps: assessment dates, duties, hours, a sign-up list. The <b>Assessment Calendar</b> from the talk is a ready-made example: <a href="demos/dashboard.html">open it</a>, or <a href="demos/dashboard.html" download>download it</a>.</p>
-    <p><b>Option A, Sheets canvas</b> (if your school has Gemini in Sheets):</p>
-    <ol class="steps">
-      <li>Open the sheet in your school account. Make a copy to practice on.</li>
-      <li>Choose <span class="ui">Insert</span> → <span class="ui">Create a canvas</span>, or open the Gemini panel and choose <span class="ui">Create canvas</span>.</li>
-      <li>Describe the dashboard:
-        <div class="prompt" data-prompt>Make a board of our department's assessments grouped by week, so we can spot when three tests land on the same day for one grade.<button class="btn" data-copy>Copy</button></div></li>
-      <li>Use it. The canvas and the sheet stay in sync, and the canvas follows the sheet's sharing settings.</li>
-    </ol>
-    <p><b>Option B, Apps Script</b> (works on any Google account):</p>
-    <ol class="steps">
-      <li>Make a sheet with the headings <b>Date, Grade, Course, Teacher, Type</b> in row 1. To start from the sample, open the Assessment Calendar, choose <span class="ui">Download as a sheet (CSV)</span>, then in Google Sheets <span class="ui">File</span> → <span class="ui">Import</span> → <span class="ui">Upload</span>.</li>
-      <li>In the sheet, choose <span class="ui">Extensions</span> → <span class="ui">Apps Script</span>.</li>
-      <li>In the Assessment Calendar, choose <span class="ui">Use with Google Sheets</span>. Copy <b>Code.gs</b> into Apps Script. Then add an HTML file named <b>Index</b> and paste in the whole dashboard.</li>
-      <li>Choose <span class="ui">Deploy</span> → <span class="ui">New deployment</span> → <span class="ui">Web app</span>. Execute as: <b>Me</b>. Who has access: <b>only people in your school</b>. Click <span class="ui">Deploy</span> and approve the permissions.</li>
-      <li>Share the link with your department. New rows in the sheet show up the next time the dashboard opens.</li>
-    </ol>
-    <p class="tip">Google's own guide to Apps Script web apps: <a href="https://developers.google.com/apps-script/guides/web">developers.google.com/apps-script/guides/web</a>.</p>
-  </section>
-
-  <section id="own-it">
-    <h2>Own it end to end</h2>
-    <p class="why">The most hands-on way, and the most yours: the code lives in your own account, with a history of every change. It's how this site was built. Free to start.</p>
-    <ol class="steps">
-      <li><b>Prototype.</b> Go to <a href="https://aistudio.google.com">aistudio.google.com</a>, sign in, and choose <span class="ui">Build</span>. Describe the tool with the first prompt from <a href="#start">Before you start</a>. Try it in the preview and ask for changes.</li>
-      <li><b>Store.</b> In AI Studio, open <span class="ui">Settings</span> → <span class="ui">GitHub</span> and create a new repository.</li>
-      <li><b>Host.</b> At <a href="https://vercel.com">vercel.com</a>, choose <span class="ui">Add New</span> → <span class="ui">Project</span>, then <span class="ui">Import</span> next to your repository. If you don't see it, let Vercel see it when GitHub asks.</li>
-      <li>Click <span class="ui">Deploy</span>. You get a link like <b>your-tool.vercel.app</b>.</li>
-      <li><b>Change it any time:</b> ask AI Studio for an edit and save it to GitHub. Vercel updates your link on its own.</li>
-    </ol>
-    <p class="watch">If the deploy fails, ask AI Studio: "Make this a simple static site with no server, so it deploys on Vercel." Keep your first tool free of AI features; those need an API key and can cost money.</p>
-  </section>
-
-  <section id="tools">
-    <h2>The tools from the talk</h2>
-    <p class="why">Each one is a single file. Download it, open it in any browser, and make it yours. Or paste it into Gemini or ChatGPT and ask for a change.</p>
-    <div class="tools">
-      <div><b>Meeting tracker</b><p>Meetings, notes and next steps, with a prep card for each student. Can save to a Google Sheet.</p><a href="demos/tracker.html">Open</a><a href="demos/tracker.html" download>Download</a></div>
-      <div><b>Script Room</b><p>A screenplay writer for film and TV, with a home page for your scripts. Can save to Google Drive.</p><a href="demos/screenplay.html">Open</a><a href="demos/screenplay.html" download>Download</a></div>
-      <div><b>Reader</b><p>A library of texts, read aloud with each word highlighted. Bigger text, calmer colors.</p><a href="demos/reader.html">Open</a><a href="demos/reader.html" download>Download</a></div>
-      <div><b>Assessment Calendar</b><p>A dashboard for a department's assessment sheet that flags crunch days.</p><a href="demos/dashboard.html">Open</a><a href="demos/dashboard.html" download>Download</a></div>
-    </div>
-  </section>
-
-  <section id="school">
-    <h2>For your school</h2>
-    <p class="why">One teacher can build a tool in an afternoon. A school decides what it keeps. A school-managed, paid account (Google Workspace, ChatGPT for education) means the school can see the data, review it with committees and make decisions together.</p>
-    <h3>Four questions to ask</h3>
-    <ol class="steps">
-      <li><b>Who owns the account?</b> A person's personal account leaves when they do. A school account stays.</li>
-      <li><b>Where does the data live?</b> In the browser, in the school's Google account, or on a company's servers? Each answer has different rules.</li>
-      <li><b>Who reviews it?</b> Name the people, or the committee, who look at new tools before students use them.</li>
-      <li><b>How do we decide what we keep?</b> Some tools are for one unit. Some become how the school works. Decide on purpose.</li>
-    </ol>
-    <h3>Build boldly. Not carelessly.</h3>
-    <ul>
-      <li>No student names, grades or work in a prompt or an app unless your school has approved that tool for it.</li>
-      <li>Follow your school's policy. Ask your tech lead before, not after.</li>
-      <li>Check the content yourself. AI-built tools can be confidently wrong.</li>
-      <li>Name an owner. Who fixes it in June? If nobody, keep it small.</li>
-      <li>Keep the systems of record (your LMS, gradebook, student information system) where they are. Build the small, specific things around them.</li>
-    </ul>
-  </section>
-</main>
-
-<footer>Stop Subscribing, Start Building · FCIS · David Tran, AI Learning and Teaching Specialist, Gulliver Prep, Miami, FL · <a href="https://www.linkedin.com/in/david-t-04864734">LinkedIn</a></footer>
-
-<script>
-  document.addEventListener("click", function (e) {
-    var b = e.target.closest("[data-copy]"); if (!b) return;
-    var box = b.closest("[data-prompt]"), text = box.textContent.replace(b.textContent, "").trim();
-    function ok() { b.textContent = "Copied"; setTimeout(function () { b.textContent = "Copy"; }, 1600); }
-    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(ok, fb); else fb();
-    function fb() { var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); ok(); } catch (err) { b.textContent = "Select to copy"; } ta.remove(); }
-  });
-</script>
-</body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Build it · FCIS 2026 guide</title>
+<style>:root{--ink:#253344;--muted:#526273;--line:#d9dcdf;--link:#245e96}*{box-sizing:border-box}html{scroll-behavior:smooth}body{background:#fbfaf7;color:var(--ink);font:16px/1.65 system-ui,Arial,sans-serif;margin:0}main{max-width:900px;padding:2rem clamp(1.2rem,5vw,4rem);margin:auto}h1,h2,h3{font-family:Georgia,serif;font-weight:400;line-height:1.22}h1{font-size:clamp(2.5rem,5vw,4rem);margin:2rem 0 0}h2{font-size:2rem;margin:2.8rem 0 .8rem;border-top:1px solid var(--line);padding-top:2rem}h3{font-size:1.35rem}p,li{max-width:72ch}a{color:var(--link);text-underline-offset:3px}nav{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}nav ul{display:flex;flex-wrap:wrap;gap:.8rem 1.2rem;list-style:none;padding:0}ol li{padding:.3rem 0}code{background:#edf0f2;padding:.15rem .3rem;border-radius:3px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f1f1ee;padding:1.2rem;border-left:3px solid var(--link);font:inherit;font-size:.93rem;line-height:1.6}.prompt{position:relative}.copy{border:1px solid var(--link);background:white;color:var(--link);padding:.5rem .8rem;border-radius:4px;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #ad711d;outline-offset:3px}.note{border-left:3px solid #b58a47;padding:.35rem 1rem;background:#f8f3e8}.small{font-size:.9rem;color:var(--muted)}.steps{background:#fff;padding:1rem 1.4rem;border:1px solid var(--line);border-radius:4px}.toc{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:2rem 0;padding:1rem 0}.toc ul{margin:0;padding-left:1.2rem}footer{margin:4rem 0 0;border-top:1px solid var(--line);padding:1rem 0;color:var(--muted);font-size:.85rem}@media print{nav,.copy{display:none}main{max-width:none}h2{break-before:page}a{color:inherit}}</style></head><body><main>
+<nav><a href="index.html#ways">← Presentation</a><a href="prompt-library.html">Classroom prompt library</a><button class="copy" type="button" onclick="window.print()">Save as PDF</button></nav>
+<h1>Build one small thing.</h1><p class="small">FCIS 2026 · Working guide · documentation checked November 3, 2026 · live school-account steps not yet tested</p>
+<p>Start with something you or your students need. Make a first version. Try it. Ask for one change. You do not need to learn every tool on this page.</p>
+<div class="toc"><strong>Choose where to start</strong><ul><li><a href="#gemini">Gemini Canvas: easiest first build</a></li><li><a href="#share">Share it or try Google Sites</a></li><li><a href="#sheets">Build on a Google Sheet</a></li><li><a href="#chatgpt">ChatGPT Sites</a></li><li><a href="#advanced">Advanced: code, GitHub and Vercel</a></li><li><a href="#care">Classroom and student-data checks</a></li></ul></div>
+<section id="gemini"><h2>1. Build in Gemini Canvas</h2><p>A useful first project: a reading companion that lets the learner hear a short passage and adjust how it is shown. The presentation also includes a <a href="demos/reader.html" target="_blank" rel="noopener">working sample Reader</a> for practicing a revision even when live generation is unavailable. Use an original or public-domain sample passage, not real student work.</p>
+<ol class="steps"><li>On a computer, open <a href="https://gemini.google.com" target="_blank" rel="noopener">Gemini</a> and sign in with an account that permits Canvas.</li><li>Choose <strong>Canvas</strong> in the prompt tools. The location of this control may change.</li><li>Copy the starter prompt below, replace any bracketed details, and send it.</li><li>Use the preview. Try the buttons, tab through the controls, and check how it looks on a narrow screen.</li><li>Ask for one change. Try the changed version again before sharing.</li></ol>
+<div class="prompt"><pre id="starter">Build a one-page reading companion with a place to paste a short sample passage. Add optional read-aloud with start, pause and replay; adjustable text size and spacing; and a distraction-reduced reading view. Keep the original passage unchanged. Provide clear keyboard controls and an example passage clearly marked “Sample.” Make it usable on a Chromebook and phone. No logins, external AI/API calls, or student data collection.</pre><button class="copy" type="button" data-copy="starter">Copy prompt</button></div>
+<p>For another subject, browse the <a href="prompt-library.html">20 classroom starters</a> by grade and subject. A good modification prompt is: “Keep what works. Change just [one thing]. Show me how to test it.”</p>
+</section>
+<section id="share"><h2>2. Share it. Google Sites is optional.</h2>
+<ol class="steps"><li>In Gemini Canvas, open the available <strong>Share</strong> controls (labels can change) and review the audience and information shown before copying a link.</li><li>Open the link in a separate browser session to see what a visitor will see. Check whether a school account blocks sharing.</li><li>If you have a Google Site, open its editor, choose <strong>Insert → Embed</strong>, and try the app URL. Or select <strong>Embed code</strong> if you have code that is safe and permitted to embed. Some websites block embedding; if it fails, insert a clearly named link or button to the shared app instead.</li><li>Publish the Google Site and test both the Site link and the app link as a visitor.</li></ol>
+<p class="note"><strong>Important:</strong> Google Sites does not automatically host the code from a Gemini Canvas app just because you insert its shared link. An embedded URL may be blocked. A link that opens the app separately is a valid classroom solution. Google notes that some external pages cannot be embedded.</p>
+<p class="note"><strong>Sharing privacy:</strong> Canvas apps can have persistent or shared data. Google warns that anyone with a public link to a multi-user app can view or edit shared app data. Do not put student information in public demos or use them as a gradebook.</p>
+<p class="small">Sources: <a href="https://support.google.com/gemini/answer/16047321" target="_blank" rel="noopener">Gemini Canvas help</a> · <a href="https://support.google.com/gemini/answer/16419134" target="_blank" rel="noopener">Canvas safety</a> · <a href="https://support.google.com/sites/answer/90569" target="_blank" rel="noopener">Google Sites embedding</a></p>
+</section>
+<section id="sheets"><h2>3. Start with a Google Sheet</h2><p>If you already keep a schedule, inventory or assessment calendar in Sheets, the next tool may be a clearer view of what you already have. Use fictional rows for practice.</p>
+<h3>Option A — Sheets canvas, where available</h3>
+<ol class="steps"><li>Open a Google Sheet in a desktop browser. Use made-up column headings such as <strong>Date, Grade, Course, Type</strong>.</li><li>When your account has access to <strong>Sheets canvas</strong>, ask it to create a view of those rows. If you do not see that feature, use the sample dashboard without connecting school data. For example, “Show assessments by week. Flag days with more than one major assessment for the same grade.”</li><li>Try changing a sample row. Confirm that the view reflects the changes and that the sharing permissions are appropriate.</li></ol>
+<p class="note">Sheets canvas is not enabled for every account and may depend on your school’s Workspace plan or admin settings. Do not promise participants they will see it.</p>
+<h3>Option B — Google Apps Script</h3>
+<p>Apps Script can create a custom interface linked to a teacher's own Sheet. It is more technical and should be optional. The <a href="demos/dashboard.html" target="_blank" rel="noopener">sample Assessment Calendar</a> includes an offline demo and a “Use with Google Sheets” panel with Code.gs setup instructions. Test any deployment with fictional data and restrict access as school policy requires.</p>
+<p class="small">Sources: <a href="https://support.google.com/docs/answer/17035851" target="_blank" rel="noopener">Sheets canvas help</a> · <a href="https://developers.google.com/apps-script/guides/web" target="_blank" rel="noopener">Apps Script web apps</a>.</p>
+</section>
+<section id="chatgpt"><h2>4. Another starting point: ChatGPT Sites</h2><p>Sites can create and host an interactive website in one workflow. Availability, publishing and sharing depend on plan and school workspace settings.</p>
+<ol class="steps"><li>In ChatGPT on web, use Work and describe the website, or mention <strong>@Sites</strong> if available.</li><li>Describe the learner, the problem and the required interactions. Ask for fictional example content and no real student data.</li><li>Review the private preview. Check buttons and mobile layout. Ask for one revision.</li><li>Deploy only when ready, then explicitly review <strong>Share</strong> permissions before inviting others. New Sites are not necessarily public.</li></ol>
+<div class="prompt"><pre id="siteprompt">Build a simple interactive website for [grade/subject]. Students need to practice [one concept]. Include [two specific actions], clear directions and a sample exercise. The site should work on a Chromebook or phone and not collect student identities. Keep all examples fictional. Give me a preview to test before publishing.</pre><button class="copy" type="button" data-copy="siteprompt">Copy Sites prompt</button></div>
+<p class="small">Source: <a href="https://help.openai.com/en/articles/20001339-creating-and-using-chatgpt-sites" target="_blank" rel="noopener">ChatGPT Sites help</a>.</p>
+</section>
+<section id="advanced"><h2>5. When you want something more complex</h2><p>This is not required for the workshop. Use it if your tool needs multiple pages, complex interactions or ongoing code changes.</p>
+<ol class="steps"><li><strong>Choose a builder.</strong> Google AI Studio can help prototype. Codex, Claude Code and Antigravity are coding environments or agents that can work with project files. You only need one; the exact controls differ.</li><li><strong>Describe a small first version.</strong> Specify pages, interactions, devices, accessibility and where data should live. Ask the coding tool to explain its file structure.</li><li><strong>Test locally.</strong> Open the project, try the main tasks and fix errors. For simple HTML projects, a small local server may be sufficient. Do not add real student records.</li><li><strong>Store the source in GitHub.</strong> Create a private repository, upload or commit the project files, and review the changes. Do not commit passwords, API keys or sensitive files.</li><li><strong>Host a compatible project with Vercel.</strong> Import the GitHub repository in Vercel, choose the correct framework or root directory, review environment variables, and deploy a preview.</li><li><strong>Check the public experience.</strong> Test the live link on mobile and in a signed-out browser. Verify data permissions before making it available to others.</li></ol>
+<p>For a static HTML site like this FCIS deck, Vercel can serve the website directly. For a working sample, review the site and guide, then change one feature before attempting to deploy your own project. Apps needing databases or login require additional design and access controls. Hosting and limits vary by provider and plan; school use may have account-policy implications.</p>
+<p class="small">Starting points: <a href="https://aistudio.google.com" target="_blank" rel="noopener">Google AI Studio</a> · <a href="https://github.com" target="_blank" rel="noopener">GitHub</a> · <a href="https://vercel.com/docs" target="_blank" rel="noopener">Vercel documentation</a>.</p>
+</section>
+<section id="care"><h2>Before you share with students</h2><p>Use mock information during development. Check AI-generated explanations, answer keys and links. Never submit names, grades, essays or student records to unapproved services. Check who owns the account, where information is stored, who can see it, and who maintains the tool later. Keep your LMS and gradebook as the systems of record.</p><p>When building reading supports, give learners choices rather than assuming one setting helps everyone. Read-aloud, spacing, contrast and focus views can be useful options, but they do not replace structured literacy instruction or school accommodations.</p><p>Start small. Let one colleague try it. Keep what works, and revise the rest.</p><p class="note"><strong>Presentation rehearsal note:</strong> The steps are based on current provider documentation, but the presenters still need to verify Gemini sharing, Google Sites embedding, Sheets canvas availability, and ChatGPT Sites permissions with the actual accounts used at the conference.</p></section>
+<footer><a href="index.html">FCIS 2026 presentation</a> · <a href="prompt-library.html">Prompts to copy</a> · November 3, 2026</footer>
+</main><script>document.querySelectorAll("[data-copy]").forEach(button=>button.addEventListener("click",async()=>{const s=document.getElementById(button.dataset.copy).textContent;try{await navigator.clipboard.writeText(s);const t=button.textContent;button.textContent="Copied";setTimeout(()=>button.textContent=t,1600)}catch(e){button.textContent="Select prompt text to copy"}}));</script></body></html>
