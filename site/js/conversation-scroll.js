@@ -11,7 +11,7 @@
       requestAnimationFrame(function () {
         if (slide.classList.contains("is-active")) {
           history.scrollTo({ top: step === 0 ? 0 : history.scrollHeight,
-            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
         }
       });
     });
