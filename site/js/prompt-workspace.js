@@ -33,12 +33,8 @@
     {id:"teacher",name:"Teacher controls",detail:"Change examples without editing code",text:"Include a simple teacher setup area to change sample passages, problems, questions or data without editing code. Keep these controls out of the student activity. Provide a reset to the original example."},
     {id:"privacy",name:"Privacy & classroom use",detail:"No logins or identifiable student data",text:"Do not require student logins or collect names, grades, student work or identifying information. Use fictional examples, keep the initial build self-contained and identify any permissions, storage or external services before proposing them."}
   ];
-  var markers = {
-    start:function (id) {return "\n\n[ADDED: "+id+"]\n";},
-    end:function (id) {return "\n[/ADDED: "+id+"]";}
-  };
   function moduleText(item) {
-    return markers.start(item.id)+item.text+markers.end(item.id);
+    return "\n\n" + item.name + ":\n" + item.text;
   }
   function clearStatus() {status.textContent="";}
   function scrollTo(el) {
