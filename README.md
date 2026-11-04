@@ -2,7 +2,11 @@
 
 **Picking this up? Read [`HANDOFF.md`](HANDOFF.md) first.** It's the current front door for any assistant or collaborator.
 
-A website for an FCIS professional development session by David Tran, Gulliver Prep, Miami, FL. David presents from it; attendees keep it.
+A website for an FCIS professional development session by David Tran, Gulliver Prep, Miami, FL. David presents from it; attendees can open the tools, download the HTML, and use the original work for educational and other noncommercial purposes.
+
+**[Public resource hub](https://fcis2026.vercel.app/resources.html)** · [Classroom prompt builder](https://fcis2026.vercel.app/prompt-library.html) · [Reuse terms](LICENSE.md)
+
+Original software is source-available under the [PolyForm Noncommercial License 1.0.0](LICENSE.md), excluding third-party materials. Commercial rights are not granted.
 
 This repo also records how the site gets made: every prompt, every review, every revision.
 

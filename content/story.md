@@ -256,23 +256,27 @@ Keep this slide intentionally quiet. Large headline and a short invitation; thre
 
 ---
 
-## 7. Your turn (slide 23)
+## 7. Recap (slide 23)
 
-**Slide 23: Reflection**
-> You just did what we ask students to do: try something, get feedback, revise.
->
-> Build first. Then revise.
+**Slide 23: Start with something you need.**
 
-Former slides 23–25—the school/data safety checklist, Choose → Change → Copy → Build recap, and colleague activity—were removed November 4, 2026. The safety guidance still lives in `site/guide.html#care`. Slide 22 opens the standalone prompt-building website, so the additional workshop recap and colleague instructions were redundant.
+Three restrained columns: Notice (What's not working?), Build (Describe it; make a first version), and Revise (Try it; ask for a change). One concise closing line: “A useful tool doesn't have to begin as a subscription.” This replaces the former “Build first. Then revise” reflection.
 
 ---
 
-## 8. Keep building (slides 24–25)
+## 8. Share the work (slide 24)
 
-> Start small. Keep changing it.
+**Slide 24: Take what you need.**
 
-One annoyance, one prompt, one colleague to test it; return next month to revise.
+Use a restrained two-part composition: clear copy and three short resource categories on the left; one scannable QR to `site/resources.html` on the right. A direct link on the slide opens the page in a new tab. The page provides the classroom prompt workbench, the practical guide, live and downloadable code for the animated HUD plus Reader, Meeting Tracker, Script Room and the additional Assessment Calendar, the GitHub repo/ZIP, and contact. Educational and other noncommercial use, adaptation and sharing of David's original work are allowed; commercial rights are not included. Third-party materials retain their own licenses.
 
-**Everything in one place:** the companion guide, classroom prompt library, example tools, Gemini, ChatGPT Sites, Google AI Studio, Apps Script, GitHub, Vercel and LinkedIn.
+---
 
-**Editorial note:** The slide wording above is first-pass copy proposed by ChatGPT, not a transcript of David's own wording. Review and revise voice on the next pass. No unapproved personal or student information is included.
+## 9. Contact (slide 25)
+
+**Slide 25: Keep building.**
+
+Large spare headline, David Tran, Gulliver Prep, Miami, Florida, LinkedIn and a quiet secondary resource link. No invented or unconfirmed professional email.
+
+---
+

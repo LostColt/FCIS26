@@ -68,14 +68,14 @@ Each line: slide · what it says/does · how it moves. "Auto" means it plays by 
 21. `#publish` Three screenshot-informed CONTROL CLOSE-UPS in aligned columns: Gemini Export dropdown and Google Sites option; Sites editor Publish button; Sites Publish menu with Review changes and publish / View published site. Presenter steps: start focused on column 1 with click/dropdown animation; swipe pans to column 2 and highlights Publish; swipe pans to column 3 and opens the publish dropdown; final swipe pulls back to all three columns together. This is ONE slide with 3 internal steps, then next advances. Keep only a small Google Workspace / Download code note and resource link at bottom; the panels do not replicate entire applications.
 22. `#tool-ideas` Quiet presentation invitation: large “What would you build?”, three grade-level columns (Lower / Middle / High), subject line (Math / English / Science / History / Learning support), and one “Explore the tools” link opening `prompt-library.html` in a new tab. No tool matrix on this slide. The web app owns browsing and prompt composition.
 
-**7 · Your turn**
-23. Existing short “Build first. Then revise” reflection, formerly slide 26, now follows the slide 22 workshop invitation directly.
+**7 · Recap**
+23. “Start with something you need.” Notice → Build → Revise, with a spare closing line.
 
-**8 · Keep building**
-24. Existing “Start small. Keep changing it.” closing statement, formerly slide 27.
-25. Existing “Everything in one place” resource hub, formerly slide 28.
+**8 · Share and contact**
+24. “Take what you need.” Three resource categories, one link and QR to `site/resources.html`.
+25. “Keep building.” David Tran, Gulliver Prep, LinkedIn and resources link.
 
-Former slides 23–25 (safety checklist, workshop recap, colleague activity) removed November 4, 2026; no replacement slides. `#tool-ideas` remains slide 22. Safety instructions remain in `guide.html#care`. The chapter list and chapter indices were contracted so the slide menu has no empty chapter.
+`site/resources.html` is the public take-home hub: prompt builder, guide, live previews and direct HTML downloads (particle HUD, Reader, Meeting Tracker, Script Room, plus an extra Assessment Calendar), full GitHub source/ZIP, reuse terms and contact. `site/js/resource-qr.js` draws the QR for slide 24; the cover QR remains separate. The author permits educational and other noncommercial reuse of his original materials; `LICENSE.md` references the PolyForm Noncommercial 1.0.0 software license and separates original assets from third-party rights. No unverified email address has been published.
 
 Presenter controls: arrows, space, clicker, swipe; **Start over** button (and Home key) returns to the cover; Slides menu; F for full screen. Every slide has a link (`#15`) and some have names (`#reader`).
 
@@ -86,7 +86,7 @@ Presenter controls: arrows, space, clicker, swipe; **Start over** button (and Ho
 | `site/index.html` | The shell. Loads the scripts in order: slides-a, steps, slides-b, deck, tally, pull, typing, vendor/qrcode, qr. |
 | `site/js/slides-a.js` | Chapters list (`D.chapters`), helpers (`D.add`, `D.tool`, `D.TOOLS`), slides for chapters 0–5. |
 | `site/js/steps.js` | Chapter 6 (Build it), plus shared helpers `D.prompt`, `D.promptBox`, `D.ui`, `D.link`. |
-| `site/js/slides-b.js` | Chapters 7–8 (reflection and closing, including resource hub). |
+| `site/js/slides-b.js` | Chapters 7–8 (recap, resource invitation, contact). |
 | `site/js/deck.js` | The engine: navigation, swipe, presses, copy buttons, and a `deckstep` event that `pull.js` and `typing.js` listen to. |
 | `site/css/layers.css` | Almost all slide styling and timing. New styles are appended in sections; later rules win. |
 | `site/demos/*.html` | The four tools, each **one self-contained file** (no libraries, works offline), with a `.png` picture beside it (1440×900 screenshot). |
