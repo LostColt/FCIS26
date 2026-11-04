@@ -25,3 +25,6 @@ Produce a quiet three-slide ending: 23 recap, 24 one resource invitation plus QR
 
 ## Honest remaining constraints
 No graphical smartboard/browser screenshot verification was performed. The published contact is the already established LinkedIn profile, not an unverified personal or work email. Before any use outside education/noncommercial public use, confirm the separate license. Verify third-party fonts, marks, libraries and assets individually before repackaging.
+
+## Post-deployment refinement
+After PR #21 merged and Vercel confirmed the production alias, four additional **View source** links were added beside Reader, Meeting Tracker, Script Room and Assessment Calendar. The featured HUD already had a View source link. Every example now provides three direct actions: open, download HTML, inspect source. This prevents a GitHub visit from being required just to retrieve an example, while still allowing code inspection without a download. Production was reported READY by Vercel; the public site was not independently rendered in a browser through the available tool.
