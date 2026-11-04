@@ -280,3 +280,5 @@ Large spare headline, David Tran, Gulliver Prep, Miami, Florida, LinkedIn and a 
 
 ---
 
+
+2026-11-04 navigation and guide note: Slide 18 retains its three-row comparison and existing timed reveal; the Gemini row uses an irregular yellow marker-stroke animation rather than a solid highlighted block. Slides 12 and 16 remain as written. Upper-left now displays only chapter titles (not the zero-indexed chapter number); closing chapter names are Recap and Resources & contact. The companion guide holds detailed prototype → store → host instructions for ChatGPT Work/Sites, Gemini Canvas, Google AI Studio, Claude/Claude Code, Codex, Antigravity, GitHub and Vercel. The public resources page is unchanged.
