@@ -162,30 +162,20 @@
       '<a href="guide.html#share" target="_blank" rel="noopener">Instructions</a>' +
       '</div></div>', { id:"publish" });
 
-    /* Slide 22: turn the audience from the Gemini build into concrete, age-appropriate
-       classroom ideas. Full editable prompts live in the linked companion workspace. */
-    var catalog = window.FCIS_TOOLS.tools.filter(function (t) { return t.level !== "support"; });
-    var grades = [["lower","LOWER SCHOOL"],["middle","MIDDLE SCHOOL"],["high","HIGH SCHOOL"]];
-    var subjects = ["Math","English","Science","History"];
-    var cells = subjects.map(function (subject) {
-      return '<div class="toolboard-subject">' + subject + '</div>' +
-        grades.map(function (grade) {
-          var tool = catalog.find(function (t) { return t.subject === subject && t.level === grade[0]; });
-          return '<a class="toolboard-tile" href="prompt-library.html?tool=' + encodeURIComponent(tool.id) +
-            '#editor" target="_blank" rel="noopener" aria-label="Edit prompt for ' + tool.title + '">' +
-            '<strong>' + tool.title + '</strong><small>' + tool.need + '</small></a>';
-        }).join("");
-    }).join("");
+    /* Slide 22 is a presenter-facing invitation, not the interactive catalog.
+       One visible action opens the standalone workshop with the 12-tool matrix. */
     add(6, 0,
-      '<div class="toolboard-scene"><p class="arch-eyebrow">YOUR CLASSROOM / YOUR NEXT BUILD</p>' +
+      '<div class="workshop-invite">' +
+      '<p class="arch-eyebrow">YOUR CLASSROOM / YOUR NEXT BUILD</p>' +
       '<h2>What would you build?</h2>' +
-      '<div class="toolboard-grid">' +
-      '<div class="toolboard-corner">SUBJECT</div>' +
-      grades.map(function (g) { return '<div class="toolboard-grade">' + g[1] + '</div>'; }).join("") +
-      cells + '</div>' +
-      '<div class="toolboard-foot"><span>Choose a tool. Edit the idea. Copy it into Gemini Canvas.</span>' +
-      '<a href="prompt-library.html" target="_blank" rel="noopener">Open editable prompt workspace</a>' +
-      '<a href="prompt-library.html?tool=word-navigator#editor" target="_blank" rel="noopener">Learning supports</a></div>' +
+      '<p class="workshop-invite-sub">Start with your students. Find something worth making.</p>' +
+      '<div class="workshop-invite-grades">' +
+      '<div><span>01</span><strong>Lower School</strong><p>Explore and discover</p></div>' +
+      '<div><span>02</span><strong>Middle School</strong><p>Connect and explain</p></div>' +
+      '<div><span>03</span><strong>High School</strong><p>Analyze and evaluate</p></div>' +
+      '</div>' +
+      '<div class="workshop-invite-footer"><p>Math <span>·</span> English <span>·</span> Science <span>·</span> History <span>·</span> Learning support</p>' +
+      '<a href="prompt-library.html" target="_blank" rel="noopener">Explore the tools <span aria-hidden="true">↗</span></a></div>' +
       '</div>', { id: "tool-ideas" });
 
   };

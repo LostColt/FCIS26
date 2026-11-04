@@ -250,7 +250,9 @@ The only bottom copy: “School Google Workspace: Google Sites, when enabled. Ot
 
 **Slide 22: What would you build?**
 
-Replace the Sheets / Apps Script Assessment Calendar example with a classroom-tool matrix. Three columns for Lower, Middle, High School; four rows for Math, English, Science, History. Twelve examples are grounded in distinct instructional needs: place value, proportional reasoning, model fitting; sentence meaning, evidence to interpretation, argument revision; fair-test design, food-web systems, experimental uncertainty; then/now observation, source corroboration, historical interpretation. Each tile opens that tool in the editable prompt workspace. A compact footer includes Learning supports and Open editable prompt workspace. This slide does not teach implementation details.
+Keep this slide intentionally quiet. Large headline and a short invitation; three restrained columns labeled Lower School (Explore and discover), Middle School (Connect and explain), and High School (Analyze and evaluate). A small line names Math, English, Science, History and Learning support. One link, “Explore the tools,” opens the separate prompt-building website in a new tab. Do not show the full twelve-tool matrix on the slide.
+
+**Companion prompt-builder app:** On the website teachers choose from a twelve-tool grade × subject matrix, browse by learning need, choose a specialized support starter or begin with their own idea. Selection focuses the site on one editable prompt (no redundant two-column editor). Simple add/remove buttons insert reading, language, step-by-step, response, thoughtful age-appropriate graphic design/UI, teacher controls and privacy instructions. A permanent build paragraph asks Gemini to elaborate the teacher's idea and build in Canvas. One copy action copies the entire prompt. The app does not send edits to a server.
 
 ---
 
@@ -264,7 +266,7 @@ Retain the current safety slide: student privacy, teacher fact-checking, steward
 
 ## 8. Your turn (slides 24–26 unchanged this pass)
 
-**Classroom examples:** Slide 22 gives twelve purposeful subject/grade starters. The later `#prompts` slide shows the workflow: Choose → Change → Copy → Build. The linked `site/prompt-library.html` provides editable starter ideas, a full editable Canvas prompt, copying and a Gemini link, plus three targeted reading and accessibility tools and a Start from scratch option.
+**Classroom examples:** Slide 22 invites teachers into the separate web app, where twelve purposeful subject/grade starters live. The later `#prompts` slide shows the workflow: Choose → Change → Copy → Build. The linked `site/prompt-library.html` provides editable starter ideas, a full editable Canvas prompt, copying and a Gemini link, plus three targeted reading and accessibility tools and a Start from scratch option.
 
 **Optional short build or sample Reader**
 > Pick a small thing. Build a first version.
