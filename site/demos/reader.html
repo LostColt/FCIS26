@@ -261,7 +261,15 @@
       if (!p) return;
       var bits = seg ? Array.from(seg.segment(p), function(x){ return x.segment; }) :
         (p.match(/[\s\S]*?(?:[.!?]+["”’)]*(?=\s|$)|$)/g) || []);
-      bits.forEach(function (x) { if (x.trim()) out.push({t:x.trim(),p:pi}); });
+      bits.forEach(function (x) {
+        var t=x.trim();if(!t)return;
+        var prev=out.length?out[out.length-1]:null;
+        /* Intl.Segmenter still separates honorifics such as "Dr." from names.
+           Merge those fragments so the speech engine doesn't pause awkwardly. */
+        if(prev&&prev.p===pi&&/(?:^|\s)(?:Mr|Mrs|Ms|Dr|Prof|Sr|Jr|St|Mt|Gen|Capt|Rev)\.$/i.test(prev.t)){
+          prev.t+=" "+t;
+        }else out.push({t:t,p:pi});
+      });
     });
     return out;
   }
