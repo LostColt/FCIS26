@@ -282,3 +282,15 @@ Large spare headline, David Tran, Gulliver Prep, Miami, Florida, LinkedIn and a 
 
 
 2026-11-04 navigation and guide note: Slide 18 retains its three-row comparison and existing timed reveal; the Gemini row uses an irregular yellow marker-stroke animation rather than a solid highlighted block. Slides 12 and 16 remain as written. Upper-left now displays only chapter titles (not the zero-indexed chapter number); closing chapter names are Recap and Resources & contact. The companion guide holds detailed prototype → store → host instructions for ChatGPT Work/Sites, Gemini Canvas, Google AI Studio, Claude/Claude Code, Codex, Antigravity, GitHub and Vercel. The public resources page is unchanged.
+
+## November 4, 2026 — opening and closing bookend revision
+
+New slide 2 (`#questions`), following the title: “What are we exploring?” with three guiding questions: **Why build your own tools? What does building actually look like? Where can you go from here?** The existing speaker introduction moves to slide 3; following material shifts by one.
+
+Slide 24 (`#recap`) answers those same three questions after the live examples and classroom invitation:
+
+1. Why build your own tools? Because sometimes the tool you need doesn't exist—or doesn't fit the way you work.
+2. What does building actually look like? Describe an idea. Make a first version. Test it, then ask for a change.
+3. Where can you go from here? Start with your students. Adapt a prompt or take the code and keep building.
+
+The framing uses the same three-column restrained visual design in both places. Slide 25 remains the public resource QR; slide 26 remains the contact closing. Total: 26 slides. Numeric cross-page links were updated to reflect the insertion.
