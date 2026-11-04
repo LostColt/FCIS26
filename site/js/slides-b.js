@@ -1,23 +1,29 @@
-/* Final presentation chapter: three quiet closing slides and public take-home resources.
-   Slide 22 remains in steps.js and opens the prompt workbench. */
+/* Final presentation chapters: recap answers, open resources and contact.
+   The workshop invitation is in steps.js (now slide 23). */
 (function () {
   var D=window.DECK;
   function add(ch,steps,html,opts){D.add(ch,steps,html,opts);}
   D.insertSteps(add);
 
-  /* 23 — recap: the work, rather than a catalog of products. */
+  /* Slide 24: bookend to the exact three questions posed on slide 2.
+     The answers are drawn from the personal story, working demos, and take-home paths. */
   add(7,0,
-    '<div class="closing-recap">' +
-    '<p class="arch-eyebrow">WHAT WE DID / WHAT COMES NEXT</p>' +
-    '<h2>Start with something you need.</h2>' +
-    '<div class="closing-three">' +
-    '<section><span>01</span><h3>Notice</h3><p>What isn\'t working?</p></section>' +
-    '<section><span>02</span><h3>Build</h3><p>Describe it. Make a first version.</p></section>' +
-    '<section><span>03</span><h3>Revise</h3><p>Try it. Ask for a change.</p></section>' +
-    '</div><p class="closing-note">A useful tool doesn\'t have to begin as a subscription.</p>' +
-    '</div>', {id:"recap"});
+    '<div class="question-bookend question-bookend--answers">' +
+    '<p class="arch-eyebrow">TODAY / THREE ANSWERS</p>' +
+    '<h2>What did we learn?</h2>' +
+    '<div class="question-bookend-grid">' +
+    '<section><span class="question-bookend-number">01</span>' +
+    '<h3>Why build your own tools?</h3>' +
+    '<p>Because sometimes the tool you need doesn\'t exist—or doesn\'t fit the way you work.</p></section>' +
+    '<section><span class="question-bookend-number">02</span>' +
+    '<h3>What does building actually look like?</h3>' +
+    '<p>Describe an idea. Make a first version. Test it, then ask for a change.</p></section>' +
+    '<section><span class="question-bookend-number">03</span>' +
+    '<h3>Where can you go from here?</h3>' +
+    '<p>Start with your students. Adapt a prompt or take the code and keep building.</p></section>' +
+    '</div></div>', {id:"recap"});
 
-  /* 24 — a single public front door to code, demos, prompts and the guide. */
+  /* Slide 25 — a single public front door to code, demos, prompts and the guide. */
   add(8,0,
     '<div class="closing-resources">' +
     '<div class="closing-resources-copy">' +
@@ -35,7 +41,7 @@
     '<p>fcis2026.vercel.app/resources.html</p></div>' +
     '</div>', {id:"resources"});
 
-  /* 25 — contact: intentionally sparse, no unverified email. */
+  /* Slide 26 — contact: intentionally sparse, no unverified email. */
   add(8,0,
     '<div class="closing-contact">' +
     '<p class="arch-eyebrow">KEEP IN TOUCH</p>' +
