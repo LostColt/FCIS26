@@ -13,8 +13,8 @@
     { title: "So I had it build it", word: "build it" },
     { title: "Building for others", word: "others" },
     { title: "Build it", word: "imagine" },
-    { title: "Your turn", word: "your turn" },
-    { title: "Keep building", word: "keep" }
+    { title: "Recap", word: "recap" },
+    { title: "Resources & contact", word: "keep" }
   ];
 
   function add(ch, steps, html, opts) {
