@@ -1423,22 +1423,26 @@
   color:var(--ink);
 }
 
-/* Sweep the entire first table row, not just its title. Cells remain above ink. */
-.anatomy-editorial .anatomy-table-row--gemini { position:relative; isolation:isolate; overflow:hidden; }
+/* Slide 18: a physical marker stroke, echoing the original .mark treatment.
+   One uneven translucent band travels across the full Gemini row after it lands.
+   Not a solid cell-fill or a flashing background. */
+.anatomy-editorial .anatomy-table-row--gemini {position:relative;isolation:isolate;overflow:hidden;}
 .anatomy-editorial .anatomy-table-row--gemini::before {
-  content:""; position:absolute; z-index:0; inset:0;
-  background:var(--highlight); opacity:.68;
-  transform:scaleX(0); transform-origin:left center;
+  content:"";position:absolute;z-index:0;
+  left:0;right:0;top:13%;bottom:13%;pointer-events:none;
+  background:linear-gradient(180deg,rgba(245,230,99,.32),rgba(245,230,99,.82) 24%,rgba(245,230,99,.75) 77%,rgba(245,230,99,.27));
+  clip-path:polygon(0 11%,2% 7%,8% 9%,15% 4%,24% 7%,33% 3%,43% 9%,56% 5%,67% 7%,77% 3%,89% 7%,98% 4%,100% 11%,99.8% 91%,93% 96%,80% 92%,68% 98%,56% 93%,43% 97%,30% 93%,18% 98%,7% 93%,0 97%);
+  transform:scaleX(0);transform-origin:left center;
 }
-.anatomy-editorial .anatomy-table-row--gemini > div { z-index:1; }
+.anatomy-editorial .anatomy-table-row--gemini > div {z-index:1;}
 @media(prefers-reduced-motion:no-preference) {
   .slide.is-active .anatomy-editorial .anatomy-table-row--gemini::before {
-    animation:anatomy-yellow-row .8s cubic-bezier(.55,0,.2,1) both 9.3s;
+    animation:anatomy-yellow-row .95s cubic-bezier(.48,.02,.25,1) both 9.3s;
   }
 }
-@keyframes anatomy-yellow-row { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+@keyframes anatomy-yellow-row {from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @media(prefers-reduced-motion:reduce) {
-  .anatomy-editorial .anatomy-table-row--gemini::before { transform:scaleX(1); }
+  .anatomy-editorial .anatomy-table-row--gemini::before {transform:scaleX(1);}
 }
 /* The title and heading plaques settle for 3.1 seconds. The plaques then
    travel upwards as the ORIGINAL elements; rows enter as whole editorial lines.
@@ -2462,3 +2466,7 @@
   .closing-three p{font-size:.74rem}
   .closing-contact-resources{max-width:100%}
 }
+
+/* Chapter number in top-left was a zero-based chapter index, not a slide number.
+   Keep the descriptive chapter title; the true slide count remains below. */
+.chrome-top .where .num {display:none;}
