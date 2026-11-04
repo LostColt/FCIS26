@@ -8,6 +8,7 @@
   Reader: paste in text and hear it read aloud, line by line, with the words highlighted as they're read.
   One file with no app-server requests or AI API. Voices are supplied by your browser/device.
   Your texts and where you stopped are saved in this browser.
+  Browser-provided speech voices may use online processing; do not read confidential text aloud without checking device settings.
   Have a PDF? Open it, select all, copy, and paste it in.
   Change anything you like. Or paste this whole file into Gemini and ask for a change.
   The sample texts are invented.
@@ -439,12 +440,12 @@
     if(old&&voices.some(function(v){return v.voiceURI===old;}))select.value=old;
     else{select.value=voices[0].voiceURI;prefs.voice=select.value;savePrefs();}
     var chosen=voices.find(function(v){return v.voiceURI===select.value;});
-    $("voiceNote").textContent="Using "+chosen.name+". Voice quality and word highlighting depend on your device and browser.";
+    $("voiceNote").textContent="Using "+chosen.name+". Voice quality and word highlighting depend on the browser. Some voices may use online processing.";
   }
   $("voice").onchange=function(){
     prefs.voice=this.value;savePrefs();
     var v=voices.find(function(x){return x.voiceURI===prefs.voice;});
-    $("voiceNote").textContent=(v?"Using "+v.name+". ":"")+"Voice quality and word highlighting depend on your device and browser.";
+    $("voiceNote").textContent=(v?"Using "+v.name+". ":"")+"Voice quality and word highlighting depend on the browser. Some voices may use online processing.";
     if(playing)restart();
   };
   if(synth){loadVoices();synth.onvoiceschanged=loadVoices;}
