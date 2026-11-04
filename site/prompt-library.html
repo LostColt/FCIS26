@@ -18,11 +18,20 @@
 <section id="editor" class="workspace" aria-labelledby="editor-title" hidden>
 <div class="editor-nav"><button type="button" id="back" class="textbutton">← Choose another tool</button><span>STEP 02 / CUSTOMIZE</span></div>
 <div class="workspace-top"><div><h2 id="editor-title">Make it yours.</h2><p id="selectedmeta" class="meta"></p></div><button type="button" id="reset" class="outline">Reset prompt</button></div>
-<p class="editor-intro">This is your complete prompt. Edit anything you want, or add focused instructions below. Everything copies together.</p>
-<div class="prompt-controls"><h3>Add to your prompt</h3><p>Each option adds a specific instruction. Select only what this activity needs.</p><div id="addons" class="addon-grid"></div></div>
-<div class="prompt-editor-header"><label for="prompt">Your prompt — ready for Gemini Canvas</label><span id="prompt-count" aria-live="polite"></span></div>
-<textarea id="prompt" rows="15" spellcheck="true"></textarea>
-<div class="actions"><button type="button" id="copy" class="primary">Copy complete prompt</button><a href="https://gemini.google.com" target="_blank" rel="noopener" class="open">Open Gemini ↗</a><span id="status" role="status" aria-live="polite"></span></div>
+<p class="editor-intro">Choose a learning support on the left and watch the prompt update on the right. Copy everything from one place.</p>
+<div class="builder-layout">
+<aside class="prompt-controls" aria-labelledby="improve-title">
+<div class="assistant-head"><p class="eyebrow">YOUR LEARNING ASSISTANT</p><h3 id="improve-title">Improve your tool</h3><p>Select a support to add it directly to your prompt. Click again to remove it.</p></div>
+<div id="addons" class="addon-grid" aria-label="Optional prompt improvements"></div>
+</aside>
+<div class="prompt-main">
+<div class="prompt-editor-header"><label for="prompt">Your complete prompt</label><span id="prompt-count" aria-live="polite"></span></div>
+<p class="prompt-editor-hint">Edit any wording here. Added instructions appear inside this prompt immediately.</p>
+<textarea id="prompt" rows="19" spellcheck="true"></textarea>
+<div class="actions"><button type="button" id="copy" class="primary">Copy complete prompt</button><a href="https://gemini.google.com" target="_blank" rel="noopener" class="open">Open Gemini ↗</a></div>
+<p id="status" class="prompt-status" role="status" aria-live="polite"></p>
+</div>
+</div>
 <p class="fineprint">In Gemini, select Canvas before pasting. Your prompt asks Gemini to expand the idea and build a first version. Review accuracy, accessibility and design yourself. Don't include identifiable student data.</p>
 </section>
 <footer><a href="guide.html#gemini">How to build in Canvas</a><a href="guide.html#care">School and student-data checks</a><span>No account required · Edits remain in this browser tab</span></footer>

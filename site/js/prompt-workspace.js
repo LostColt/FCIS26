@@ -79,14 +79,35 @@
     });
   }
   function renderAddons() {
-    addons.forEach(function(item){
+    var groups=[
+      {title:"Learning access",ids:["reading","language","steps","responses"]},
+      {title:"Visual design",ids:["design"]},
+      {title:"For the classroom",ids:["teacher","privacy"]}
+    ];
+    groups.forEach(function(group) {
+      var heading=document.createElement("h4");
+      heading.className="addon-group-label";
+      heading.textContent=group.title;
+      addonHost.append(heading);
+      group.ids.forEach(function(id) {
+      var item=addons.find(function(x){return x.id===id;});
       var button=document.createElement("button");
       button.type="button";button.className="addon";button.dataset.addon=item.id;button.setAttribute("aria-pressed","false");
       var title=document.createElement("strong");title.textContent=item.name;
       var detail=document.createElement("small");detail.textContent=item.detail;
       var action=document.createElement("span");action.className="addon-action";action.textContent="Add +";
       button.append(title,detail,action);addonHost.append(button);
+      });
     });
+  }
+  function addDefaultDesign() {
+    var design=addons.find(function(x){return x.id==="design";});
+    var standard=data.shared.trim();
+    var at=prompt.value.lastIndexOf(standard);
+    var block=moduleText(design);
+    if(at>=0)prompt.value=prompt.value.slice(0,at).trimEnd()+block+"\n\n"+prompt.value.slice(at);
+    else prompt.value=prompt.value.trimEnd()+block;
+    active.add("design");
   }
   function setTool(id, move) {
     chosen=all.find(function(t){return t.id===id;})||null;
@@ -94,6 +115,7 @@
     active.clear();
     initialText=chosen.prompt.trim()+"\n\n"+data.shared.trim();
     prompt.value=initialText;
+    addDefaultDesign();
     meta.textContent=chosen.grade+" · "+chosen.subject+" · "+chosen.need;
     explore.hidden=true;editor.hidden=false;
     refreshAddonButtons();updateCount();clearStatus();
@@ -102,7 +124,7 @@
   function startBlank() {
     chosen=null;active.clear();
     initialText="I teach [grade and subject]. My students need help with [specific learning challenge]. I want a tool where students [action they perform], so they can practice [learning objective]. Keep the task age appropriate without giving away the answer.\n\n"+data.shared.trim();
-    prompt.value=initialText;meta.textContent="Your own idea · Replace the brackets";
+    prompt.value=initialText;addDefaultDesign();meta.textContent="Your own idea · Replace the brackets";
     explore.hidden=true;editor.hidden=false;
     refreshAddonButtons();updateCount();clearStatus();scrollTo(editor);
   }
@@ -125,9 +147,24 @@
       // when that untouched paragraph is still present. Otherwise append without rewriting edits.
       var standard=data.shared.trim();
       var at=prompt.value.lastIndexOf(standard);
-      if(at>=0)prompt.value=prompt.value.slice(0,at).trimEnd()+block+"\n\n"+prompt.value.slice(at);
-      else prompt.value=prompt.value.trimEnd()+block;
+      var start;
+      if(at>=0){
+        var before=prompt.value.slice(0,at).trimEnd();
+        start=before.length;
+        prompt.value=before+block+"\n\n"+prompt.value.slice(at);
+      } else {
+        var prior=prompt.value.trimEnd();
+        start=prior.length;
+        prompt.value=prior+block;
+      }
       active.add(item.id);
+      // Highlight precisely what was inserted so teachers see the language
+      // that changed, rather than searching a long prompt.
+      prompt.focus({preventScroll:true});
+      prompt.setSelectionRange(start,start+block.length);
+      prompt.classList.remove("prompt-just-updated");
+      void prompt.offsetWidth;
+      prompt.classList.add("prompt-just-updated");
       status.textContent=item.name+" added to your prompt.";
     }
     refreshAddonButtons();updateCount();
@@ -153,7 +190,7 @@
   document.getElementById("back").addEventListener("click",showPicker);
   document.getElementById("reset").addEventListener("click",function() {
     if(chosen)setTool(chosen.id,false);
-    else {prompt.value=initialText;active.clear();refreshAddonButtons();updateCount();clearStatus();}
+    else {prompt.value=initialText;active.clear();addDefaultDesign();refreshAddonButtons();updateCount();clearStatus();}
     status.textContent="Prompt reset.";
   });
   needs.addEventListener("change",renderNeeds);
