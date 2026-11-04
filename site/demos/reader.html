@@ -6,8 +6,9 @@
 <title>Reader</title>
 <!--
   Reader: paste in text and hear it read aloud, line by line, with the words highlighted as they're read.
-  One file, no internet needed, no accounts, no AI. It uses the voice built into your browser.
+  One file with no app-server requests or AI API. Voices are supplied by your browser/device.
   Your texts and where you stopped are saved in this browser.
+  Browser-provided speech voices may use online processing; do not read confidential text aloud without checking device settings.
   Have a PDF? Open it, select all, copy, and paste it in.
   Change anything you like. Or paste this whole file into Gemini and ask for a change.
   The sample texts are invented.
@@ -67,6 +68,7 @@
   .ctl select { border: 1px solid var(--rule); border-radius: 8px; padding: 0.3rem 0.4rem; background: var(--white); max-width: 14rem; }
   .ctl input[type=range] { width: 7rem; }
   .where { color: var(--soft); font-size: 0.85rem; min-width: 8rem; text-align: center; }
+  .voice-note { flex-basis:100%; margin:-.3rem 0 0; color:var(--soft); font-size:.78rem; text-align:center; }
 
   dialog { border: 1px solid var(--rule); border-radius: 12px; padding: 1.3rem 1.5rem; max-width: 40rem; width: calc(100% - 2rem); }
   dialog::backdrop { background: rgba(29, 36, 48, 0.35); }
@@ -121,7 +123,8 @@
   <button class="btn" id="fwd" aria-label="Forward one sentence">⏭</button>
   <span class="where" id="where"></span>
   <label class="ctl">Speed <input type="range" id="rate" min="0.6" max="1.6" step="0.1" value="1"> <span id="rateOut">1×</span></label>
-  <label class="ctl">Voice <select id="voice"></select></label>
+  <label class="ctl">Voice <select id="voice" aria-describedby="voiceNote"></select></label>
+  <p class="voice-note" id="voiceNote" role="status">Voices vary by browser and device.</p>
 </div>
 </div>
 
@@ -159,6 +162,7 @@
   var $ = function (id) { return document.getElementById(id); };
   var synth = window.speechSynthesis;
   var store, cur = null, sentences = [], idx = 0, playing = false, voices = [], toDelete = null;
+  var generation = 0, chunks = [], partIndex = 0, resumeTimer = null;
   var prefs = { size: "22px", lh: "1.75", face: 'Georgia, "Times New Roman", serif', page: "#ffffff", focus: "off", rate: "1", voice: "" };
 
   function uid() { return Math.random().toString(36).slice(2, 10); }
@@ -246,14 +250,42 @@
     this.value = "";
   };
 
-  /* ---------- Splitting text into sentences ---------- */
+  /* Keep all original words. Prefer the browser's sentence segmenter, which
+     is more reliable than a punctuation-only regex with abbreviations. */
   function split(text) {
-    var out = [];
-    text.replace(/\r/g, "").split(/\n\s*\n/).forEach(function (para, pi) {
-      var parts = para.replace(/\s*\n\s*/g, " ").match(/[^.!?]+(?:[.!?]+["”’)]*|$)\s*/g) || [];
-      parts.forEach(function (s) { if (s.trim()) out.push({ t: s.trim(), p: pi }); });
+    var out = [], seg = null;
+    if (typeof Intl !== "undefined" && typeof Intl.Segmenter === "function") {
+      try { seg = new Intl.Segmenter("en", { granularity:"sentence" }); } catch (e) {}
+    }
+    String(text || "").replace(/\r\n?/g,"\n").split(/\n\s*\n/).forEach(function (paragraph, pi) {
+      var p = paragraph.replace(/[ \t]*\n[ \t]*/g," ").trim();
+      if (!p) return;
+      var bits = seg ? Array.from(seg.segment(p), function(x){ return x.segment; }) :
+        (p.match(/[\s\S]*?(?:[.!?]+["”’)]*(?=\s|$)|$)/g) || []);
+      bits.forEach(function (x) {
+        var t=x.trim();if(!t)return;
+        var prev=out.length?out[out.length-1]:null;
+        /* Intl.Segmenter still separates honorifics such as "Dr." from names.
+           Merge those fragments so the speech engine doesn't pause awkwardly. */
+        if(prev&&prev.p===pi&&/(?:^|\s)(?:Mr|Mrs|Ms|Dr|Prof|Sr|Jr|St|Mt|Gen|Capt|Rev)\.$/i.test(prev.t)){
+          prev.t+=" "+t;
+        }else out.push({t:t,p:pi});
+      });
     });
     return out;
+  }
+  /* Browser speech synthesis can cut off very long utterances. */
+  function pieces(t) {
+    var result=[], i=0;
+    while(i<t.length) {
+      var end=Math.min(i+190,t.length), n=end;
+      if(end<t.length) {
+        while(n>i+80 && !/\s/.test(t.charAt(n))) n--;
+        if(n>i+80)end=n+1;
+      }
+      result.push({t:t.slice(i,end),offset:i});i=end;
+    }
+    return result;
   }
 
   function open(id) {
@@ -292,30 +324,75 @@
   }
 
   /* ---------- Reading aloud ---------- */
-  function speak() {
-    if (!playing) return;
-    if (idx >= sentences.length) { playing = false; idx = 0; cur.pos = sentences.length; cur.updated = Date.now(); save(); button(); mark(-1); $("where").textContent = "Finished. Press Read aloud to start again."; return; }
-    mark(idx, true);
-    var u = new SpeechSynthesisUtterance(sentences[idx].t);
-    u.rate = +prefs.rate;
-    var v = voices.find(function (x) { return x.voiceURI === prefs.voice; }); if (v) { u.voice = v; u.lang = v.lang; }
-    var mine = idx;
-    u.onboundary = function (e) { if (e.name === "word" || e.name === undefined) word(mine, e.charIndex, e.charLength); };
-    u.onend = function () { if (!playing || mine !== idx) return; idx++; cur.pos = idx; cur.updated = Date.now(); save(); speak(); };
-    u.onerror = function (e) { if (e.error === "interrupted" || e.error === "canceled") return; playing = false; button(); };
+  function cancelSpeech() {
+    generation++; // stale speech callbacks must not advance another session
+    if(resumeTimer!==null){clearTimeout(resumeTimer);resumeTimer=null;}
+    if(synth)synth.cancel();
+  }
+  function button(){ $("play").textContent=playing?"❚❚ Pause":"▶ Read aloud"; }
+  function stop(){
+    var wasPlaying=playing;
+    playing=false;cancelSpeech();chunks=[];partIndex=0;
+    /* A finished item stays finished when returning to the library. */
+    if(cur&&wasPlaying){cur.pos=idx;save();}
+    button();
+  }
+  function finished(){
+    playing=false;idx=0;chunks=[];partIndex=0;
+    if(cur){cur.pos=sentences.length;cur.updated=Date.now();save();}
+    button();mark(-1);
+    $("where").textContent="Finished. Press Read aloud to start again.";
+  }
+  function speak(){
+    if(!playing||!synth||!cur)return;
+    if(idx>=sentences.length){finished();return;}
+    if(!chunks.length){chunks=pieces(sentences[idx].t);partIndex=0;}
+    if(partIndex>=chunks.length){
+      idx++;chunks=[];partIndex=0;
+      cur.pos=idx;cur.updated=Date.now();save();speak();return;
+    }
+    var mine=idx,part=chunks[partIndex],piece=partIndex,token=++generation;
+    if(piece===0)mark(idx,true);
+    var u=new SpeechSynthesisUtterance(part.t);
+    u.rate=+prefs.rate||1;
+    var v=voices.find(function(x){return x.voiceURI===prefs.voice;});
+    if(v){u.voice=v;u.lang=v.lang;}else u.lang="en-US";
+    u.onboundary=function(e){
+      if(!playing||token!==generation||mine!==idx||piece!==partIndex)return;
+      if(e.name&&e.name!=="word")return;
+      if(!Number.isFinite(e.charIndex)||e.charIndex<0||e.charIndex>=part.t.length)return;
+      var pos=part.offset+e.charIndex;
+      var match=sentences[mine].t.slice(pos).match(/^\s*([^\s]+)/);
+      if(match)word(mine,pos+(match[0].length-match[1].length),match[1].length);
+    };
+    u.onend=function(){
+      if(!playing||token!==generation||mine!==idx||piece!==partIndex)return;
+      partIndex++;speak();
+    };
+    u.onerror=function(e){
+      if(!playing||token!==generation)return;
+      if(e.error==="canceled"||e.error==="interrupted")return;
+      playing=false;button();
+      $("where").textContent="Speech stopped ("+(e.error||"voice error")+"). Try another voice.";
+    };
     synth.speak(u);
   }
-  function play() {
-    if (!synth) { $("where").textContent = "This browser can't read aloud. Try Chrome, Edge or Safari."; return; }
-    if (!cur || !sentences.length) return;
-    playing = true; button(); synth.cancel(); speak();
+  function restart(){
+    if(!playing)return;
+    cancelSpeech();chunks=[];partIndex=0;
+    resumeTimer=setTimeout(function(){resumeTimer=null;if(playing)speak();},85);
   }
-  function stop() { playing = false; if (synth) synth.cancel(); button(); }
-  function button() { $("play").textContent = playing ? "❚❚ Pause" : "▶ Read aloud"; }
-  function jump(i) {
-    idx = Math.max(0, Math.min(sentences.length - 1, i));
-    if (cur) { cur.pos = idx; save(); }
-    if (playing) { synth.cancel(); setTimeout(speak, 60); } else mark(idx, true);
+  function play(){
+    if(!synth){$("where").textContent="Speech is unavailable. Try another browser.";return;}
+    if(!cur||!sentences.length)return;
+    playing=true;button();restart();
+  }
+  function jump(i){
+    if(!sentences.length)return;
+    idx=Math.max(0,Math.min(sentences.length-1,i));
+    chunks=[];partIndex=0;
+    if(cur){cur.pos=idx;save();}
+    if(playing)restart();else mark(idx,true);
   }
 
   $("play").onclick = function () { playing ? stop() : play(); };
@@ -333,16 +410,46 @@
     else if (e.key === "ArrowLeft") $("back").click();
   });
 
-  $("rate").oninput = function () { prefs.rate = this.value; $("rateOut").textContent = (+this.value).toFixed(1).replace(/\.0$/, "") + "×"; savePrefs(); if (playing) jump(idx); };
-  function loadVoices() {
-    if (!synth) return;
-    voices = synth.getVoices().filter(function (v) { return /^en/i.test(v.lang); });
-    if (!voices.length) voices = synth.getVoices();
-    $("voice").innerHTML = voices.map(function (v) { return '<option value="' + esc(v.voiceURI) + '">' + esc(v.name.replace(/^(Microsoft|Google)\s+/, "")) + "</option>"; }).join("") || "<option>Default voice</option>";
-    if (prefs.voice) $("voice").value = prefs.voice;
+  $("rate").oninput = function () { prefs.rate = this.value; $("rateOut").textContent = (+this.value).toFixed(1).replace(/\.0$/, "") + "×"; savePrefs(); if (playing) restart(); };
+  /* Prefer quality-labelled system voices while allowing manual override.
+     The available voices and word-boundary events are browser-dependent. */
+  function voiceScore(v) {
+    var n=(v.name+" "+v.voiceURI).toLowerCase(), score=/^en(?:-|_|$)/i.test(v.lang)?20:0;
+    if(/premium|enhanced|neural|natural|high.quality/.test(n))score+=100;
+    if(/siri|jenny|aria|guy|ava|allison|sonia|ryan|samantha/.test(n))score+=35;
+    if(/google|microsoft|apple/.test(n))score+=8;
+    if(/compact|espeak|festival|robot/.test(n))score-=45;
+    if(v.default)score+=4;
+    return score;
   }
-  $("voice").onchange = function () { prefs.voice = this.value; savePrefs(); if (playing) jump(idx); };
-  if (synth) { loadVoices(); synth.onvoiceschanged = loadVoices; }
+  function loadVoices(){
+    if(!synth)return;
+    var available=synth.getVoices();
+    voices=available.filter(function(v){return /^en(?:-|_|$)/i.test(v.lang);});
+    if(!voices.length)voices=available;
+    voices.sort(function(a,b){return voiceScore(b)-voiceScore(a)||a.name.localeCompare(b.name);});
+    var select=$("voice"), old=prefs.voice;select.innerHTML="";
+    voices.forEach(function(v){
+      var o=document.createElement("option");o.value=v.voiceURI;
+      o.textContent=v.name+" ("+v.lang+")";select.appendChild(o);
+    });
+    if(!voices.length){
+      var o=document.createElement("option");o.value="";o.textContent="Browser default";select.appendChild(o);
+      $("voiceNote").textContent="Voice list unavailable; try reopening the Reader.";return;
+    }
+    if(old&&voices.some(function(v){return v.voiceURI===old;}))select.value=old;
+    else{select.value=voices[0].voiceURI;prefs.voice=select.value;savePrefs();}
+    var chosen=voices.find(function(v){return v.voiceURI===select.value;});
+    $("voiceNote").textContent="Using "+chosen.name+". Voice quality and word highlighting depend on the browser. Some voices may use online processing.";
+  }
+  $("voice").onchange=function(){
+    prefs.voice=this.value;savePrefs();
+    var v=voices.find(function(x){return x.voiceURI===prefs.voice;});
+    $("voiceNote").textContent=(v?"Using "+v.name+". ":"")+"Voice quality and word highlighting depend on the browser. Some voices may use online processing.";
+    if(playing)restart();
+  };
+  if(synth){loadVoices();synth.onvoiceschanged=loadVoices;}
+  else $("voiceNote").textContent="Speech is unavailable in this browser.";
 
   /* ---------- Adding texts ---------- */
   function add(title, text) {
