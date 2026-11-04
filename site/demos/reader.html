@@ -357,7 +357,10 @@
     if(!chunks.length){chunks=pieces(sentences[idx].t);partIndex=0;}
     if(partIndex>=chunks.length){
       idx++;chunks=[];partIndex=0;
-      cur.pos=idx;cur.updated=Date.now();save();speak();return;
+      cur.pos=idx;cur.updated=Date.now();save();
+      /* Preserve the pause between sentences as well as between chunks. */
+      resumeTimer=setTimeout(function(){resumeTimer=null;if(playing)speak();},180);
+      return;
     }
     var mine=idx,part=chunks[partIndex],piece=partIndex,token=++generation;
     if(piece===0)mark(idx,true);
@@ -376,7 +379,13 @@
     u.onend=function(){
       if(!playing||token!==generation||mine!==idx||piece!==partIndex)return;
       if(speechWatchdog!==null){clearTimeout(speechWatchdog);speechWatchdog=null;}
-      partIndex++;speak();
+      partIndex++;
+      /* Give Chrome/Edge voices time to release the previous utterance.
+         Immediate back-to-back speak() can clip opening words. */
+      resumeTimer=setTimeout(function(){
+        resumeTimer=null;
+        if(playing&&token===generation) speak();
+      },180);
     };
     u.onerror=function(e){
       if(!playing||token!==generation)return;
@@ -397,7 +406,7 @@
   function restart(){
     if(!playing)return;
     cancelSpeech();chunks=[];partIndex=0;
-    resumeTimer=setTimeout(function(){resumeTimer=null;if(playing)speak();},120);
+    resumeTimer=setTimeout(function(){resumeTimer=null;if(playing)speak();},350);
   }
   function play(){
     if(!synth){$("where").textContent="Speech is unavailable. Try another browser.";return;}
