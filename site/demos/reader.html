@@ -330,8 +330,11 @@
   }
   function button(){ $("play").textContent=playing?"❚❚ Pause":"▶ Read aloud"; }
   function stop(){
+    var wasPlaying=playing;
     playing=false;cancelSpeech();chunks=[];partIndex=0;
-    if(cur){cur.pos=idx;save();}button();
+    /* A finished item stays finished when returning to the library. */
+    if(cur&&wasPlaying){cur.pos=idx;save();}
+    button();
   }
   function finished(){
     playing=false;idx=0;chunks=[];partIndex=0;
