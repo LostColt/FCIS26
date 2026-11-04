@@ -9,50 +9,22 @@
   /* 6 · Build it: orientation, Gemini walkthrough, Sheets extension and other routes (steps.js) */
   D.insertSteps(add);
 
-  /* 7 · Before you build: for you, and for your school */
-  add(7, 0,
-    '<div class="practical wide care-slide"><p class="big" style="font-size:clamp(2rem,4.4vw,3.8rem);max-width:none">Build boldly. Not <span class="strike auto">carelessly</span>.</p>' +
-    '<div class="care"><section><h3>For you</h3><ul class="checklist">' +
-    "<li>No student names, grades or work in a prompt or an app unless your school has approved the tool.</li>" +
-    "<li>Check the content yourself. AI-built tools can be confidently wrong.</li>" +
-    "<li>Name an owner. Who fixes it in June? If nobody, keep it small.</li>" +
-    "<li>Leave your gradebook and LMS where they are. Build the small things around them.</li>" +
-    '</ul></section><section><h3>For your school</h3><p class="care-lede">School oversight depends on the provider, plan and settings. Review them before sharing.</p><ol class="questions">' +
-    "<li>Who owns the account?</li><li>Where does the data live?</li><li>Who reviews it?</li><li>How do we decide what we keep?</li>" +
-    "</ol></section></div></div>", { scroll: true });
+  /* The former slides 23–25 (safety checklist, prompt recap, colleague exercise)
+     were removed at the presenter's request. The reflection now follows the
+     slide 22 workshop invitation directly. */
 
-  /* 8 · Your turn: a working editable prompt workspace, not generic flashcards. */
-  add(8, 0,
-    '<div class="prompt-workshop-slide"><p class="arch-eyebrow">YOUR TURN / MAKE IT YOURS</p>' +
-    '<h2>Choose. Change. Copy. Build.</h2>' +
-    '<div class="prompt-workshop-steps"><div><span>01</span><strong>Choose</strong><p>Find a tool for your students.</p></div>' +
-    '<div><span>02</span><strong>Change</strong><p>Rewrite the idea for your class.</p></div>' +
-    '<div><span>03</span><strong>Copy</strong><p>Take the full prompt into Canvas.</p></div></div>' +
-    '<div class="prompt-workshop-links"><a href="prompt-library.html" target="_blank" rel="noopener">Open editable prompt workspace</a>' +
-    '<a href="prompt-library.html?tool=word-navigator#editor" target="_blank" rel="noopener">Reading and accessibility supports</a>' +
-    '<a href="prompt-library.html?tool=scratch#editor" target="_blank" rel="noopener">Start with your own idea</a></div>' +
-    '</div>', { id: "prompts" });
-
-  add(8, 0,
-    '<div class="practical swap"><h2>Try it with a colleague</h2><ol class="big-steps">' +
-    '<li>Choose and edit a prompt, or open the <a href="demos/reader.html" target="_blank" rel="noopener">sample Reader</a>.</li>' +
-    '<li>Use the tool as a student would.</li>' +
-    '<li>Tell a neighbor one thing you would change.</li>' +
-    '<li>Ask the builder for that change, then test it again.</li></ol>' +
-    '<p class="slide-note">If access is blocked, try the sample together. Nobody has to publish a tool today.</p></div>', { scroll: true, id: "swap" });
-
-  add(8, 1,
+  add(7, 1,
     '<p class="big">You just did what we ask students to do: try something, get feedback, revise.</p>' +
     '<p class="big soft" data-step="1">Build first. Then revise.</p>');
 
-  /* 9 · Keep building */
-  add(9, 1,
+  /* 8 · Keep building */
+  add(8, 1,
     '<p class="big huge">Start small. Keep changing it.</p>' +
     '<p class="kicker-line" data-step="1">One annoyance. One prompt. One colleague to test it. Then revise it next month, and the month after that.</p>');
   var mine = [["tracker", "The counseling tracker"], ["screenplay", "The screenplay tool"], ["reader", "The reader"]]
     .filter(function (t) { return D.SITES[t[0]]; })
     .map(function (t) { return "<li>" + link(D.SITES[t[0]], t[1]) + "</li>"; }).join("");
-  add(9, 0,
+  add(8, 0,
     '<div class="practical wide"><h2>Everything in one place</h2><div class="place-grid"><section><h3>Build</h3><ul class="linklist">' +
     "<li>" + link("https://gemini.google.com", "Google Gemini (Canvas)") + "</li>" +
     "<li>" + link("https://aistudio.google.com", "Google AI Studio") + "</li>" +

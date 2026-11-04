@@ -256,31 +256,18 @@ Keep this slide intentionally quiet. Large headline and a short invitation; thre
 
 ---
 
-## 7. Before you build
+## 7. Your turn (slide 23)
 
-> Build boldly. Not carelessly.
-
-Retain the current safety slide: student privacy, teacher fact-checking, stewardship, school account ownership and maintaining the LMS/gradebook as the source of record.
-
----
-
-## 8. Your turn (slides 24–26 unchanged this pass)
-
-**Classroom examples:** Slide 22 invites teachers into the separate web app, where twelve purposeful subject/grade starters live. The later `#prompts` slide shows the workflow: Choose → Change → Copy → Build. The linked `site/prompt-library.html` provides editable starter ideas, a full editable Canvas prompt, copying and a Gemini link, plus three targeted reading and accessibility tools and a Start from scratch option.
-
-**Optional short build or sample Reader**
-> Pick a small thing. Build a first version.
-
-Participants can make one simple tool or examine a sample, suggest a change and test it. Do not require everyone to publish.
-
-**Closing instruction**
-> Try it. Get feedback. Revise.
+**Slide 23: Reflection**
+> You just did what we ask students to do: try something, get feedback, revise.
 >
 > Build first. Then revise.
 
+Former slides 23–25—the school/data safety checklist, Choose → Change → Copy → Build recap, and colleague activity—were removed November 4, 2026. The safety guidance still lives in `site/guide.html#care`. Slide 22 opens the standalone prompt-building website, so the additional workshop recap and colleague instructions were redundant.
+
 ---
 
-## 9. Keep building (slides 27–28 unchanged this pass)
+## 8. Keep building (slides 24–25)
 
 > Start small. Keep changing it.
 

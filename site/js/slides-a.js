@@ -13,7 +13,6 @@
     { title: "So I had it build it", word: "build it" },
     { title: "Building for others", word: "others" },
     { title: "Build it", word: "imagine" },
-    { title: "Before you build", word: "care" },
     { title: "Your turn", word: "your turn" },
     { title: "Keep building", word: "keep" }
   ];
