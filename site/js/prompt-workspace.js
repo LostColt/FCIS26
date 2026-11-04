@@ -1,212 +1,154 @@
-/* FCIS 2026 classroom prompt builder.
-   One editable prompt, optional instruction modules and no server storage. */
+/* FCIS26 · one-screen classroom prompt workbench.
+   All changes stay in this tab. No network requests or student records. */
 (function () {
   "use strict";
-  var data = window.FCIS_TOOLS;
-  if (!data) return;
-  var all = data.tools;
-  var core = all.filter(function (x) { return x.level !== "support"; });
-  var support = all.filter(function (x) { return x.level === "support"; });
-  var levels = [["lower","Lower School"],["middle","Middle School"],["high","High School"]];
-  var subjects = ["Math","English","Science","History"];
-  var matrix = document.getElementById("matrix");
-  var needs = document.getElementById("needs");
-  var needview = document.getElementById("needview");
-  var needlist = document.getElementById("needlist");
-  var supportlist = document.getElementById("supportlist");
-  var explore = document.getElementById("explore");
-  var editor = document.getElementById("editor");
-  var prompt = document.getElementById("prompt");
-  var meta = document.getElementById("selectedmeta");
-  var status = document.getElementById("status");
-  var addonHost = document.getElementById("addons");
-  var chosen = null;
-  var initialText = "";
-  var active = new Set();
-
-  var addons = [
-    {id:"reading",name:"Reading access",detail:"Listen, reread, focus on one line",text:"Include optional read-aloud with pause and replay where supported, line focus, adjustable text size and spacing, and written directions alongside audio. Keep the underlying learning goal unchanged. Do not replace decoding work with audio when decoding is the lesson goal."},
-    {id:"language",name:"Language support",detail:"Vocabulary, plain instructions and diagrams",text:"Write clear, concise student instructions. Define necessary academic vocabulary in context and add diagrams when they help understanding. Avoid simplifying the disciplinary thinking or giving away the answer."},
-    {id:"steps",name:"One step at a time",detail:"Reduce distractions and support focus",text:"Organize the activity into a small number of predictable steps. Show one primary task at a time with clear progress, back, next and restart controls. Avoid needless animations and competing panels."},
-    {id:"responses",name:"Response choices",detail:"Type, select or explain orally",text:"Where appropriate to the learning objective, let students type, select or arrange evidence visually, or prepare an oral explanation. Provide equivalent keyboard access and do not require speech recognition or accounts."},
-    {id:"design",name:"Thoughtful visual design",detail:"Expert UI direction, age appropriate, no AI slop",text:"Act as an experienced graphic designer, educational product designer and UI/UX expert. Design for the specified age group, subject and learning activity. Avoid generic AI dashboard aesthetics, gratuitous gradients, oversized cards, excessive icons, visual noise and unnecessary information. Use purposeful color, strong typography, intuitive spacing and only essential controls. Separate teacher settings from the student activity. For lower school use concrete visuals, limited choices and large targets; for middle school use mature but approachable layouts; for high school use restrained design and richer information only when the task requires it. Prioritize clarity over decoration."},
-    {id:"teacher",name:"Teacher controls",detail:"Change examples without editing code",text:"Include a simple teacher setup area to change sample passages, problems, questions or data without editing code. Keep these controls out of the student activity. Provide a reset to the original example."},
-    {id:"privacy",name:"Privacy & classroom use",detail:"No logins or identifiable student data",text:"Do not require student logins or collect names, grades, student work or identifying information. Use fictional examples, keep the initial build self-contained and identify any permissions, storage or external services before proposing them."}
+  var data=window.FCIS_TOOLS;
+  if(!data)return;
+  var all=data.tools, core=all.filter(function(t){return t.level!=="support";});
+  var grade=document.getElementById("grade"),subject=document.getElementById("subject");
+  var title=document.getElementById("tool-title"),detail=document.getElementById("tool-detail");
+  var context=document.getElementById("prompt-context"),prompt=document.getElementById("prompt");
+  var status=document.getElementById("status"),count=document.getElementById("prompt-count");
+  var primary=document.getElementById("primary-addons"),extra=document.getElementById("more-addons");
+  var more=document.getElementById("more-toggle");
+  var current="";var active=new Set();var drafts=new Map();var base="";
+  var addons=[
+    {id:"reading",label:"Reading support",text:"Include optional read-aloud with pause and replay, line focus, and adjustable text size and spacing when relevant. Keep the learning objective unchanged. When students are practicing decoding, do not substitute read-aloud for decoding."},
+    {id:"language",label:"Language support",text:"Use concise directions, explain essential academic vocabulary, and include helpful visual cues. Do not simplify the underlying academic reasoning or provide the student's answer."},
+    {id:"steps",label:"One step at a time",text:"Present one primary task at a time with predictable navigation, a clear restart and minimal distractions. Let students see where they are without adding needless animations."},
+    {id:"design",label:"Thoughtful visual design",text:"Act as an expert graphic designer and educational UI/UX designer. Build for the selected grade and learning task; avoid traditional AI slop: decorative gradients, cluttered dashboards, excess cards and icons, and crowded layouts. Use clear typography and purposeful visuals. Make lower-school interactions concrete and spacious, middle-school interfaces mature and approachable, and high-school interfaces restrained with richer data only when needed. Keep teacher controls separate."},
+    {id:"responses",label:"Response choices",text:"Where appropriate to the learning goal, allow students to respond by typing, selecting, arranging evidence or preparing an oral explanation. Keep equivalent keyboard access and avoid requiring speech recognition."},
+    {id:"teacher",label:"Teacher controls",text:"Provide a small teacher-only setup to change passages, problems, prompts or examples without modifying the code. Keep teacher settings out of the student view."}
   ];
-  function moduleText(item) {
-    return "\n\n" + item.name + ":\n" + item.text;
+  function entry(id){return all.find(function(t){return t.id===id;});}
+  function addon(id){return addons.find(function(a){return a.id===id;});}
+  function segment(a){return "\n\n"+a.label+":\n"+a.text;}
+  function baseFor(t){
+    var original=t?t.prompt.trim():"I teach [grade and subject]. My students need help with [specific challenge]. I want a simple tool where students [meaningful action] so they practice [learning objective].";
+    return original+"\n\n"+data.shared.trim();
   }
-  function clearStatus() {status.textContent="";}
-  function scrollTo(el) {
-    el.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});
+  function composed(t){
+    var original=baseFor(t);
+    var closing=data.shared.trim(),pos=original.lastIndexOf(closing);
+    return original.slice(0,pos).trimEnd()+segment(addon("design"))+"\n\n"+original.slice(pos);
   }
-  function buttonFor(tool, className) {
-    var button=document.createElement("button");
-    button.type="button";button.className=className;button.dataset.tool=tool.id;
-    button.setAttribute("aria-label",tool.grade+" "+tool.subject+": "+tool.title+". Edit prompt");
-    var title=document.createElement("strong");title.textContent=tool.title;
-    var need=document.createElement("small");need.textContent=tool.need;
-    button.append(title,need);return button;
-  }
-  function renderMatrix() {
-    var corner=document.createElement("div");corner.className="matrixcorner";corner.textContent="SUBJECT";matrix.append(corner);
-    levels.forEach(function (pair) {
-      var el=document.createElement("div");el.className="matrixhead";el.textContent=pair[1];matrix.append(el);
-    });
-    subjects.forEach(function (subject) {
-      var label=document.createElement("div");label.className="matrixsubject";label.textContent=subject;matrix.append(label);
-      levels.forEach(function (pair) {
-        var tool=core.find(function (x) {return x.level===pair[0]&&x.subject===subject;});
-        matrix.append(buttonFor(tool,"tooltile"));
-      });
+  function updateCount(){count.textContent=prompt.value.trim()?prompt.value.trim().split(/\s+/).length+" words":"0 words";}
+  function notify(message){status.textContent=message;}
+  function refreshButtons(){
+    document.querySelectorAll("[data-addon]").forEach(function(button){
+      var selected=active.has(button.dataset.addon);
+      button.setAttribute("aria-pressed",String(selected));
+      button.classList.toggle("selected",selected);
+      button.querySelector(".mark").textContent=selected?"✓":"+";
     });
   }
-  function renderSupports() {support.forEach(function (x) {supportlist.append(buttonFor(x,"supporttile"));});}
-  function renderNeeds() {
-    var value=needs.value;
-    needlist.replaceChildren();
-    all.filter(function(x){return value==="all"||x.tags.includes(value);}).forEach(function(x){needlist.append(buttonFor(x,"needtile"));});
-  }
-  function updateCount() {
-    document.getElementById("prompt-count").textContent=prompt.value.trim().split(/\s+/).filter(Boolean).length+" words";
-  }
-  function refreshAddonButtons() {
-    addonHost.querySelectorAll("[data-addon]").forEach(function(button) {
-      var enabled=active.has(button.dataset.addon);
-      button.setAttribute("aria-pressed",String(enabled));
-      button.classList.toggle("selected",enabled);
-      button.querySelector(".addon-action").textContent=enabled?"Added ✓":"Add +";
-    });
-  }
-  function renderAddons() {
-    var groups=[
-      {title:"Learning access",ids:["reading","language","steps","responses"]},
-      {title:"Visual design",ids:["design"]},
-      {title:"For the classroom",ids:["teacher","privacy"]}
-    ];
-    groups.forEach(function(group) {
-      var heading=document.createElement("h4");
-      heading.className="addon-group-label";
-      heading.textContent=group.title;
-      addonHost.append(heading);
-      group.ids.forEach(function(id) {
-      var item=addons.find(function(x){return x.id===id;});
+  function renderButtons(){
+    addons.forEach(function(a,i){
       var button=document.createElement("button");
-      button.type="button";button.className="addon";button.dataset.addon=item.id;button.setAttribute("aria-pressed","false");
-      var title=document.createElement("strong");title.textContent=item.name;
-      var detail=document.createElement("small");detail.textContent=item.detail;
-      var action=document.createElement("span");action.className="addon-action";action.textContent="Add +";
-      button.append(title,detail,action);addonHost.append(button);
-      });
+      button.type="button";button.className="option";button.dataset.addon=a.id;button.setAttribute("aria-pressed","false");
+      var label=document.createElement("span");label.textContent=a.label;
+      var mark=document.createElement("span");mark.className="mark";mark.setAttribute("aria-hidden","true");mark.textContent="+";
+      button.append(label,mark);(i<4?primary:extra).append(button);
     });
   }
-  function addDefaultDesign() {
-    var design=addons.find(function(x){return x.id==="design";});
-    var standard=data.shared.trim();
-    var at=prompt.value.lastIndexOf(standard);
-    var block=moduleText(design);
-    if(at>=0)prompt.value=prompt.value.slice(0,at).trimEnd()+block+"\n\n"+prompt.value.slice(at);
-    else prompt.value=prompt.value.trimEnd()+block;
-    active.add("design");
+  function saveDraft(){
+    if(current)drafts.set(current,{text:prompt.value,active:Array.from(active)});
   }
-  function setTool(id, move) {
-    chosen=all.find(function(t){return t.id===id;})||null;
-    if(!chosen)return;
-    active.clear();
-    initialText=chosen.prompt.trim()+"\n\n"+data.shared.trim();
-    prompt.value=initialText;
-    addDefaultDesign();
-    meta.textContent=chosen.grade+" · "+chosen.subject+" · "+chosen.need;
-    explore.hidden=true;editor.hidden=false;
-    refreshAddonButtons();updateCount();clearStatus();
-    if(move)scrollTo(editor);
+  function load(id){
+    if(current===id)return;
+    saveDraft();
+    current=id;
+    var t=entry(id),draft=drafts.get(id);
+    active=new Set(draft?draft.active:["design"]);
+    base=baseFor(t);
+    prompt.value=draft?draft.text:composed(t);
+    title.textContent=t?t.title:"Your own idea";
+    detail.textContent=t?t.need:"Describe the learning need in your own words.";
+    context.textContent=t?t.grade+" · "+t.subject:"Start from scratch";
+    refreshButtons();updateCount();notify("");
+    if(id==="scratch"){grade.value="lower";subject.value="scratch";}
+    else if(t){grade.value=t.level;fillSubjects(t.subject,t.id);}
   }
-  function startBlank() {
-    chosen=null;active.clear();
-    initialText="I teach [grade and subject]. My students need help with [specific learning challenge]. I want a tool where students [action they perform], so they can practice [learning objective]. Keep the task age appropriate without giving away the answer.\n\n"+data.shared.trim();
-    prompt.value=initialText;addDefaultDesign();meta.textContent="Your own idea · Replace the brackets";
-    explore.hidden=true;editor.hidden=false;
-    refreshAddonButtons();updateCount();clearStatus();scrollTo(editor);
+  function fillSubjects(wanted,wantedId){
+    var level=grade.value;
+    var tools=level==="support"?all.filter(function(t){return t.level==="support";}):core.filter(function(t){return t.level===level;});
+    subject.replaceChildren();
+    tools.forEach(function(t){
+      var opt=document.createElement("option");
+      opt.value=t.id;opt.textContent=level==="support"?t.title:t.subject;
+      subject.append(opt);
+    });
+    var match=tools.find(function(t){return t.id===wantedId;})||tools.find(function(t){return t.subject===wanted;});
+    if(match)subject.value=match.id;
   }
-  function showPicker() {
-    editor.hidden=true;explore.hidden=false;clearStatus();
-    scrollTo(explore);
+  function selectGrade(){
+    if(grade.value==="support"){fillSubjects();load(subject.value);return;}
+    fillSubjects("Math");load(subject.value);
   }
-  function addOrRemove(item) {
-    var block=moduleText(item);
-    if(active.has(item.id)) {
-      if(prompt.value.includes(block)) {
-        prompt.value=prompt.value.replace(block,"");
-        active.delete(item.id);
-        status.textContent=item.name+" removed.";
-      } else {
-        status.textContent="You edited this instruction. To protect your changes, remove it directly in the prompt.";
+  function addOrRemove(a){
+    var s=segment(a);
+    if(active.has(a.id)){
+      if(prompt.value.includes(s)){
+        prompt.value=prompt.value.replace(s,"");
+        active.delete(a.id);
+        notify(a.label+" removed.");
+      }else{
+        notify("This section was edited. To keep your changes safe, remove its wording directly in the prompt.");
       }
-    } else {
-      // Insert modular direction immediately before the standard Canvas build instructions
-      // when that untouched paragraph is still present. Otherwise append without rewriting edits.
-      var standard=data.shared.trim();
-      var at=prompt.value.lastIndexOf(standard);
-      var start;
-      if(at>=0){
-        var before=prompt.value.slice(0,at).trimEnd();
-        start=before.length;
-        prompt.value=before+block+"\n\n"+prompt.value.slice(at);
-      } else {
-        var prior=prompt.value.trimEnd();
-        start=prior.length;
-        prompt.value=prior+block;
-      }
-      active.add(item.id);
-      // Highlight precisely what was inserted so teachers see the language
-      // that changed, rather than searching a long prompt.
-      prompt.focus({preventScroll:true});
-      prompt.setSelectionRange(start,start+block.length);
-      prompt.classList.remove("prompt-just-updated");
-      void prompt.offsetWidth;
-      prompt.classList.add("prompt-just-updated");
-      status.textContent=item.name+" added to your prompt.";
+    }else{
+      var closing=data.shared.trim();
+      var point=prompt.value.lastIndexOf(closing);
+      if(point!==-1)prompt.value=prompt.value.slice(0,point).trimEnd()+s+"\n\n"+prompt.value.slice(point);
+      else prompt.value=prompt.value.trimEnd()+s;
+      active.add(a.id);
+      notify(a.label+" added.");
     }
-    refreshAddonButtons();updateCount();
+    refreshButtons();updateCount();
+    // Do not move focus or automatically select text: the prompt remains stationary.
   }
-  function switchView(name) {
-    document.querySelectorAll("[data-view]").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.view===name));});
-    matrix.hidden=name!=="grades";needview.hidden=name!=="needs";
-  }
-  addonHost.addEventListener("click",function(event) {
-    var button=event.target.closest("[data-addon]");
-    if(!button)return;
-    var item=addons.find(function(x){return x.id===button.dataset.addon;});
-    if(item)addOrRemove(item);
+  grade.addEventListener("change",selectGrade);
+  subject.addEventListener("change",function(){load(subject.value);});
+  document.getElementById("scratch").addEventListener("click",function(){
+    saveDraft();current="";
+    var draft=drafts.get("scratch");
+    current="scratch";
+    active=new Set(draft?draft.active:["design"]);
+    prompt.value=draft?draft.text:composed(null);
+    base=baseFor(null);
+    title.textContent="Your own idea";detail.textContent="Describe the learning need in your own words.";
+    context.textContent="Start from scratch";
+    refreshButtons();updateCount();notify("You can edit the example directly.");
+    // Keep grade/subject selections available for a quick return to a curated tool.
   });
-  document.addEventListener("click",function(event){
-    var button=event.target.closest("[data-tool]");
-    if(button)setTool(button.dataset.tool,true);
+  document.getElementById("reset").addEventListener("click",function(){
+    var t=entry(current);
+    active=new Set(["design"]);
+    base=baseFor(t);
+    prompt.value=composed(t);drafts.delete(current);
+    refreshButtons();updateCount();notify("Prompt reset.");
   });
-  document.querySelectorAll("[data-view]").forEach(function(button){
-    button.addEventListener("click",function(){switchView(button.dataset.view);});
-  });
-  document.getElementById("scratch").addEventListener("click",startBlank);
-  document.getElementById("back").addEventListener("click",showPicker);
-  document.getElementById("reset").addEventListener("click",function() {
-    if(chosen)setTool(chosen.id,false);
-    else {prompt.value=initialText;active.clear();addDefaultDesign();refreshAddonButtons();updateCount();clearStatus();}
-    status.textContent="Prompt reset.";
-  });
-  needs.addEventListener("change",renderNeeds);
-  prompt.addEventListener("input",function(){updateCount();clearStatus();});
   document.getElementById("copy").addEventListener("click",async function(){
-    if(!prompt.value.trim()){status.textContent="Write a prompt before copying.";return;}
-    try {
-      await navigator.clipboard.writeText(prompt.value);
-      status.textContent="Copied. Select Canvas in Gemini, then paste.";
-    } catch(e) {
-      prompt.focus();prompt.select();
-      status.textContent="Prompt selected. Use your device's copy command.";
-    }
+    if(!prompt.value.trim()){notify("Add a prompt first.");return;}
+    try{await navigator.clipboard.writeText(prompt.value);notify("Copied. Select Canvas in Gemini, then paste.");}
+    catch(e){prompt.focus();prompt.select();notify("Select and copy this prompt using your device's copy command.");}
   });
-  renderMatrix();renderSupports();renderNeeds();renderAddons();
+  more.addEventListener("click",function(){
+    var open=more.getAttribute("aria-expanded")!=="true";
+    more.setAttribute("aria-expanded",String(open));extra.hidden=!open;
+    more.querySelector("span").textContent=open?"−":"+";
+  });
+  [primary,extra].forEach(function(host){
+    host.addEventListener("click",function(e){
+      var button=e.target.closest("[data-addon]");
+      if(button)addOrRemove(addon(button.dataset.addon));
+    });
+  });
+  prompt.addEventListener("input",function(){updateCount();notify("");});
+  renderButtons();
   var requested=new URLSearchParams(location.search).get("tool");
-  if(requested==="scratch")startBlank();
-  else if(requested&&all.some(function(x){return x.id===requested;}))setTool(requested,false);
+  var first=entry(requested)||entry("evidence-interpretation")||core[0];
+  grade.value=first.level;
+  fillSubjects(first.subject,first.id);
+  load(first.id);
+  if(requested==="scratch")document.getElementById("scratch").click();
 })();
