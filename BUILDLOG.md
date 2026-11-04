@@ -118,3 +118,5 @@ Format: date · who · what happened · what's next
 **2026-10-25 · David, with Claude** · Decided all student information is mock data: every screenshot and example uses invented students, never real or blurred data. Updated the brief (section 8), the story and the assets list. · Next: unchanged.
 
 **2026-10-25 · David, with Claude** · Set up the repo. Wrote the brief, the story draft and prompt 001. Nothing built yet. · Next: Antigravity runs prompt 001 on branch `build/001`.
+
+**2026-11-04 · ChatGPT (single-screen workbench)** · Replaced the dense picker/editor two-view workflow with a calm, single-page grade and subject selector alongside a persistent editable prompt. Twelve grade/subject tools plus three specialized learning-support tools retained; one default example, optional from-scratch, compact learning toggles, more-options reveal, thoughtful design by default and existing privacy/Canvas build instructions. Edit drafts persist across tool switches within the tab. No focus-jumping animation. Source and simulated interaction checks passed; slide 22 untouched. Manual browser/smartboard visual check remains useful.
