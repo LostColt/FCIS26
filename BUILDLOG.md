@@ -1,3 +1,5 @@
+
+**2026-11-04 · ChatGPT (quiet slide 22 and one-prompt builder)** · Revised slide 22 into a large invitation with Lower/Middle/High grade columns, a subject line and one external link. Moved the full matrix solely into the web app. Web app now transitions from browsing to one editable prompt with seven instructional/design/support controls, preservation of edited instructions, Reset, Back to choices, and one Copy complete prompt action. The visual design module tells Gemini to act as an expert designer, avoid formulaic AI dashboard styling and calibrate information density to age group. The original 12 + 3 catalog and Canvas self-prompting build method remain. Full browser/projector QA still required.
 # Build log
 
 One entry per round, newest first. Git keeps the exact timestamps; this keeps the story.
