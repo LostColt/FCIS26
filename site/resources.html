@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Take what you need · FCIS 2026 resources</title>
+<meta name="description" content="Working classroom tools, editable prompts, downloadable HTML code, and a build guide from Stop Subscribing, Start Building at FCIS 2026.">
+<style>
+@font-face{font-family:Plex;src:url("assets/fonts/IBMPlexSans-Regular.woff2") format("woff2");font-display:swap}
+:root{--paper:#f6f7f4;--ink:#1d2430;--soft:#54616c;--line:#d6dad2;--blue:#28536c;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 Plex,"IBM Plex Sans",system-ui,sans-serif}
+main{max-width:1120px;margin:0 auto;padding:clamp(18px,4vw,50px)}
+a{color:var(--blue);text-underline-offset:3px}a:focus-visible,button:focus-visible{outline:3px solid #bf8e45;outline-offset:3px}
+nav,footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--soft);font-size:.85rem}nav a{text-decoration:none}
+h1,h2,h3,p{margin:0}h1,h2,h3{font-family:Georgia,serif;font-weight:400;letter-spacing:-.035em}
+.hero{padding:70px 0 54px;border-bottom:1px solid var(--line)}
+.eyebrow{color:var(--soft);letter-spacing:.14em;text-transform:uppercase;font-size:.73rem;font-weight:700;margin-bottom:12px}
+h1{font-size:clamp(3.1rem,7vw,6.4rem);line-height:1.03}
+.hero>p:last-child{font-size:clamp(1.05rem,1.7vw,1.35rem);max-width:700px;color:var(--soft);margin-top:19px}
+.quick{display:flex;gap:9px 22px;flex-wrap:wrap;margin-top:27px;font-size:.9rem}
+section.group{padding:37px 0;border-bottom:1px solid var(--line)}
+.section-head{display:flex;justify-content:space-between;gap:18px;align-items:baseline;flex-wrap:wrap;margin-bottom:21px}
+h2{font-size:clamp(1.9rem,3.3vw,2.75rem);line-height:1.14}
+.section-head p{color:var(--soft);font-size:.9rem;max-width:38rem}
+.feature{background:var(--white);border:1px solid var(--line);border-left:4px solid #526f77;padding:23px;display:grid;grid-template-columns:minmax(0,1.7fr) minmax(225px,1fr);gap:24px;align-items:start}
+.feature h3{font-size:1.75rem;line-height:1.14;margin-bottom:9px}
+.feature p,.item p{color:var(--soft);font-size:.91rem;margin-bottom:15px}
+.actions{display:flex;flex-wrap:wrap;gap:9px 17px;align-items:center}
+.actions a{font-size:.9rem;font-weight:600}
+.action-primary{background:#2a4c60;color:white;border-radius:3px;text-decoration:none;padding:11px 17px;display:inline-block}
+.feature aside{background:#f3f5f2;padding:17px 20px}
+.feature aside strong{display:block;margin-bottom:5px}
+.feature aside p{font-size:.86rem;margin:0;color:var(--soft)}
+.tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.item{background:#fff;border:1px solid var(--line);padding:20px;min-width:0}
+.item h3{font-size:1.45rem;margin-bottom:8px}
+.item p{min-height:2.8em}
+.resources-info{max-width:780px}
+.resources-info p{margin-bottom:13px;color:var(--soft)}
+.permission{padding:22px;background:#eff1ed;border-top:2px solid #70828a;margin-top:26px}
+.permission h3{font-size:1.3rem;margin-bottom:9px}
+.permission p{color:var(--soft);font-size:.9rem;margin-top:8px}
+.contact{display:flex;justify-content:space-between;gap:22px;flex-wrap:wrap;align-items:start}
+.contact h3{font-size:1.8rem;margin-bottom:7px}
+.contact p{color:var(--soft);margin-bottom:8px}
+footer{padding:30px 0}
+@media(max-width:760px){.hero{padding:40px 0}.feature{grid-template-columns:1fr}.tools{grid-template-columns:1fr}.item p{min-height:0}section.group{padding:30px 0}}
+@media print{nav,.quick,.actions,footer{display:none}.feature,.item{break-inside:avoid}body{background:#fff}}
+</style></head><body><main>
+<nav><a href="index.html#24">← Presentation</a><span>FCIS 2026 · Stop Subscribing, Start Building</span><a href="#contact">Contact</a></nav>
+<header class="hero"><p class="eyebrow">A TAKE-HOME WORKSPACE</p><h1>Take what you need.</h1>
+<p>These are working examples, not a sales pitch. Try them, download the code, change what you need, and use them with your students.</p>
+<div class="quick"><a href="#build">Build a tool</a><a href="#examples">Working examples</a><a href="#code">Source code</a><a href="#contact">Contact</a></div>
+</header>
+<section class="group" id="build"><div class="section-head"><h2>Start with your own idea.</h2><p>The classroom tool prompt builder and the walkthrough from today's session.</p></div>
+<div class="feature"><div><h3>Classroom prompt workbench</h3><p>Choose a grade and subject, add learning supports, edit the prompt, and bring the complete instructions into Gemini Canvas.</p>
+<div class="actions"><a class="action-primary" href="prompt-library.html">Open the workbench ↗</a><a href="guide.html">Read the build guide</a></div></div>
+<aside><strong>Don't know where to start?</strong><p>Pick something that frustrates you, or something students need more practice doing. Build one small version, then revise it.</p></aside></div></section>
+<section class="group" id="examples"><div class="section-head"><h2>Try it. Take the code.</h2><p>Each example opens in your browser. Each download gives you the actual HTML file, not a screenshot.</p></div>
+<div class="feature"><div><p class="eyebrow">FEATURED FROM THE PRESENTATION</p><h3>Interactive particle HUD</h3>
+<p>The animated visual built around the prompt demonstrated in the talk. Explore the live interface or download the standalone HTML to adapt it.</p>
+<div class="actions"><a class="action-primary" href="demos/jarvis-hud.html" target="_blank" rel="noopener">Try the HUD ↗</a><a href="demos/jarvis-hud.html" download="fcis-particle-hud.html">Download HTML</a><a href="https://github.com/LostColt/FCIS26/blob/main/site/demos/jarvis-hud.html" target="_blank" rel="noopener">View source</a></div></div>
+<aside><strong>Make it yours.</strong><p>Open the HTML with a text editor or give it to your preferred AI builder and describe the change you'd like to make.</p></aside></div>
+<div class="tools" style="margin-top:13px">
+<article class="item"><h3>Reader</h3><p>Paste text, listen along, and change how a passage is displayed.</p><div class="actions"><a href="demos/reader.html" target="_blank" rel="noopener">Open example ↗</a><a href="demos/reader.html" download="reader.html">Download HTML</a></div></article>
+<article class="item"><h3>Meeting tracker</h3><p>Organize meetings, follow-ups and notes with fictional sample information.</p><div class="actions"><a href="demos/tracker.html" target="_blank" rel="noopener">Open example ↗</a><a href="demos/tracker.html" download="meeting-tracker.html">Download HTML</a></div></article>
+<article class="item"><h3>Script Room</h3><p>A simple writing space for screenplays, scenes and revisions.</p><div class="actions"><a href="demos/screenplay.html" target="_blank" rel="noopener">Open example ↗</a><a href="demos/screenplay.html" download="script-room.html">Download HTML</a></div></article>
+<article class="item"><h3>Assessment calendar</h3><p>An additional planning example from the project, not part of the final live walkthrough.</p><div class="actions"><a href="demos/dashboard.html" target="_blank" rel="noopener">Open example ↗</a><a href="demos/dashboard.html" download="assessment-calendar.html">Download HTML</a></div></article>
+</div></section>
+<section class="group" id="code"><div class="section-head"><h2>All the source, in one place.</h2><p>For anyone who wants to inspect, adapt or learn from how the presentation and tools were made.</p></div>
+<div class="resources-info"><p>The GitHub repository contains the presentation site, the examples, the prompt builder, and documentation. You don't need GitHub to use the individual HTML downloads above.</p>
+<div class="actions"><a class="action-primary" href="https://github.com/LostColt/FCIS26" target="_blank" rel="noopener">View the GitHub repository ↗</a><a href="https://github.com/LostColt/FCIS26/archive/refs/heads/main.zip">Download the whole project (.zip)</a><a href="guide.html#advanced">Using the code</a></div></div>
+<div class="permission"><h3>Educational and public reuse is welcome.</h3><p>You can use, modify and share my original software for educational and other noncommercial purposes. No sign-up or permission request. Please keep the licensing notice with redistributed code.</p>
+<p>Commercial reuse is not granted here. Third-party fonts, libraries, images and other materials remain subject to their own licenses. See the <a href="https://github.com/LostColt/FCIS26/blob/main/LICENSE.md" target="_blank" rel="noopener">reuse and licensing details</a>. Review examples before using them with students, and do not enter identifiable student data.</p></div></section>
+<section class="group" id="contact"><div class="contact"><div><p class="eyebrow">KEEP IN TOUCH</p><h3>David Tran</h3><p>Gulliver Prep · Miami, Florida</p><a href="https://www.linkedin.com/in/david-t-04864734" target="_blank" rel="noopener">Connect on LinkedIn ↗</a></div><div><p>Take an example, make it useful, and keep improving it.</p></div></div></section>
+<footer><span>FCIS 2026 · Stop Subscribing, Start Building</span><a href="index.html#25">Back to the presentation</a></footer>
+</main></body></html>
