@@ -1,6 +1,6 @@
-/* The QR code on the cover. It's drawn from the address the deck is open at,
-   so it is always right, whatever the site's link ends up being.
-   Opened from a file on your computer, there's no address to share, so it says so. */
+/* The cover QR always points to the canonical production presentation.
+   Do not derive it from location: preview and immutable deployment URLs can
+   remain accessible after newer versions have been published. */
 
 (function () {
   "use strict";
@@ -13,7 +13,7 @@
     return;
   }
 
-  var url = location.origin + location.pathname.replace(/index\.html$/, "");
+  var url = "https://fcis2026.vercel.app/#1";
   var qr = qrcode(0, "M");
   qr.addData(url);
   qr.make();
