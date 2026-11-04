@@ -294,3 +294,7 @@ Slide 24 (`#recap`) answers those same three questions after the live examples a
 3. Where can you go from here? Start with your students. Adapt a prompt or take the code and keep building.
 
 The framing uses the same three-column restrained visual design in both places. Slide 25 remains the public resource QR; slide 26 remains the contact closing. Total: 26 slides. Numeric cross-page links were updated to reflect the insertion.
+
+## November 4, 2026 — consolidated finale
+
+The last slide is now **25**, not 26. The two earlier screens “Take what you need” (resources) and “Keep building” (contact) became one balanced slide, **Keep building.** It contains Build (classroom prompt workbench), Try (working examples), Keep (HTML downloads and companion guide), a scannable QR and direct link to the public resource site, and a compact David Tran / Gulliver Prep / LinkedIn footer. Slide 24's three-question recap is unchanged. The resource site's return link targets slide 25. The private FCIS26 source repository is not promoted on the public resource page.
