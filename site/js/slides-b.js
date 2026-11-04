@@ -1,4 +1,4 @@
-/* Final presentation chapters: recap answers, open resources and contact.
+/* Final presentation chapters: recap answers and one combined resource/contact finale.
    The workshop invitation is in steps.js (now slide 23). */
 (function () {
   var D=window.DECK;
@@ -23,33 +23,29 @@
     '<p>Start with your students. Adapt a prompt or take the code and keep building.</p></section>' +
     '</div></div>', {id:"recap"});
 
-  /* Slide 25 — a single public front door to code, demos, prompts and the guide. */
+  /* Slide 25 — single resource handoff and contact finale. Keep the working QR,
+     the direct resource link and LinkedIn; no private-repository links. */
   add(8,0,
-    '<div class="closing-resources">' +
+    '<div class="closing-resources closing-resources--final">' +
+    '<div class="closing-final-main">' +
     '<div class="closing-resources-copy">' +
     '<p class="arch-eyebrow">EVERYTHING FROM THE SESSION</p>' +
-    '<h2>Take what you need.</h2>' +
-    '<p class="closing-lede">The examples, the prompts, and the code. Use them, change them, and share them for educational and noncommercial purposes.</p>' +
+    '<h2>Keep building.</h2>' +
+    '<p class="closing-lede">The examples, prompts, and HTML downloads are yours to explore, adapt, and use for educational and other noncommercial purposes.</p>' +
     '<div class="closing-resource-items">' +
-    '<div><strong>Build</strong><span>The classroom prompt workbench</span></div>' +
+    '<div><strong>Build</strong><span>Classroom prompt workbench</span></div>' +
     '<div><strong>Try</strong><span>Working tools, including the particle HUD</span></div>' +
-    '<div><strong>Keep</strong><span>Downloadable HTML and a practical guide</span></div>' +
+    '<div><strong>Keep</strong><span>HTML downloads and companion guide</span></div>' +
     '</div>' +
     '<a class="closing-primary-link" href="resources.html" target="_blank" rel="noopener">Open all resources <span aria-hidden="true">↗</span></a>' +
     '</div><div class="closing-resources-qr">' +
-    '<div data-resource-qr aria-label="QR code to the free resource page"></div>' +
+    '<div data-resource-qr aria-label="QR code to the public resource page"></div>' +
     '<p>fcis2026.vercel.app/resources.html</p></div>' +
+    '</div>' +
+    '<footer class="closing-final-contact">' +
+    '<div><strong>David Tran</strong><span>Gulliver Prep · Miami, Florida</span></div>' +
+    '<a href="https://www.linkedin.com/in/david-t-04864734" target="_blank" rel="noopener">Connect on LinkedIn <span aria-hidden="true">↗</span></a>' +
+    '</footer>' +
     '</div>', {id:"resources"});
 
-  /* Slide 26 — contact: intentionally sparse, no unverified email. */
-  add(8,0,
-    '<div class="closing-contact">' +
-    '<p class="arch-eyebrow">KEEP IN TOUCH</p>' +
-    '<h2>Keep building.</h2>' +
-    '<div class="closing-contact-bottom">' +
-    '<div><h3>David Tran</h3><p>Gulliver Prep · Miami, Florida</p>' +
-    '<a href="https://www.linkedin.com/in/david-t-04864734" target="_blank" rel="noopener">Connect on LinkedIn <span aria-hidden="true">↗</span></a></div>' +
-    '<div class="closing-contact-resources"><p>Everything from today is yours to explore.</p>' +
-    '<a href="resources.html" target="_blank" rel="noopener">Resources and code ↗</a></div>' +
-    '</div></div>', {id:"contact"});
 })();
