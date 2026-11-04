@@ -1,38 +1,42 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>What would you build? · FCIS 2026</title>
 <link rel="stylesheet" href="css/prompt-workspace.css">
-</head>
-<body><main>
-<nav class="topnav"><a href="index.html#22">← Presentation</a><span>FCIS 2026 / Classroom builders</span><a href="guide.html#gemini">Gemini Canvas guide</a></nav>
-<header class="intro"><p class="eyebrow">YOUR TURN / DESIGN A TOOL</p><h1>What would you build?</h1><p>Choose a classroom need, make it your own, and take one prompt into Canvas.</p></header>
-<section class="explore" id="explore" aria-labelledby="browse-title">
-<div class="sectiontop"><div><p class="eyebrow">STEP 01 / CHOOSE</p><h2 id="browse-title">Find a starting point.</h2></div><button type="button" id="scratch" class="outline">+ Start with my own idea</button></div>
-<div class="browse-switch" aria-label="Browse tools by"><button type="button" data-view="grades" aria-pressed="true">Grade &amp; subject</button><button type="button" data-view="needs" aria-pressed="false">Learning need</button></div>
-<div id="matrix" class="matrix" aria-label="Tools by grade level and subject"></div>
-<div id="needview" class="needview" hidden><label for="needs">Find a learning need</label><select id="needs"><option value="all">All needs</option><option value="literacy access">Reading and accessibility</option><option value="math reasoning">Mathematical reasoning</option><option value="evidence">Using evidence</option><option value="investigation">Scientific investigation</option><option value="writing">Writing and revision</option><option value="data interpretation">Understanding data</option><option value="visual learning">Visual representations</option></select><div class="needlist" id="needlist"></div></div>
-<div class="additional"><div><strong>Specialized learning-support tools</strong><p>Tools focused on accessing math, science and word structure, including for students with dyslexia.</p></div><div id="supportlist" class="supportlist"></div></div>
+</head><body><main>
+<nav class="topnav"><a href="index.html#22">← Presentation</a><span>FCIS 2026</span><a href="guide.html#gemini">Canvas guide</a></nav>
+<header class="intro"><h1>What would you build?</h1><p>Choose. Adjust. Build.</p></header>
+<section class="workbench" aria-label="Classroom prompt builder">
+  <aside class="builder-rail" aria-label="Choose a tool and learning supports">
+    <div class="choose-area">
+      <h2>Choose a tool</h2>
+      <div class="selectors">
+        <div><label for="grade">Grade</label><select id="grade"><option value="lower">Lower School</option><option value="middle">Middle School</option><option value="high">High School</option><option value="support">Learning support</option></select></div>
+        <div><label for="subject">Subject</label><select id="subject"></select></div>
+      </div>
+      <div class="tool-summary"><strong id="tool-title"></strong><span id="tool-detail"></span></div>
+      <button id="scratch" type="button" class="quiet-link">Start with my own idea</button>
+    </div>
+    <div class="improve-area">
+      <h2>Improve it</h2>
+      <p class="short-hint">Add only what students need.</p>
+      <div id="primary-addons" class="control-list"></div>
+      <button id="more-toggle" type="button" class="quiet-link more-toggle" aria-expanded="false" aria-controls="more-addons">More options <span aria-hidden="true">+</span></button>
+      <div id="more-addons" class="control-list" hidden></div>
+    </div>
+  </aside>
+  <section class="prompt-main" aria-label="Edit the complete prompt">
+    <div class="prompt-heading"><div><h2>Your prompt</h2><p id="prompt-context"></p></div><button id="reset" type="button" class="quiet-link">Reset</button></div>
+    <label class="sr-only" for="prompt">Edit your complete Gemini Canvas prompt</label>
+    <textarea id="prompt" rows="18" spellcheck="true"></textarea>
+    <div class="prompt-footer">
+      <button id="copy" type="button" class="primary">Copy prompt</button>
+      <a class="open" href="https://gemini.google.com" target="_blank" rel="noopener">Open Gemini ↗</a>
+      <span id="prompt-count" aria-live="polite"></span>
+    </div>
+    <p id="status" role="status" aria-live="polite"></p>
+    <p class="small-print">Select Canvas before pasting. Use fictional examples and review AI-generated content before sharing with students.</p>
+  </section>
 </section>
-<section id="editor" class="workspace" aria-labelledby="editor-title" hidden>
-<div class="editor-nav"><button type="button" id="back" class="textbutton">← Choose another tool</button><span>STEP 02 / CUSTOMIZE</span></div>
-<div class="workspace-top"><div><h2 id="editor-title">Make it yours.</h2><p id="selectedmeta" class="meta"></p></div><button type="button" id="reset" class="outline">Reset prompt</button></div>
-<p class="editor-intro">Choose a learning support on the left and watch the prompt update on the right. Copy everything from one place.</p>
-<div class="builder-layout">
-<aside class="prompt-controls" aria-labelledby="improve-title">
-<div class="assistant-head"><p class="eyebrow">YOUR LEARNING ASSISTANT</p><h3 id="improve-title">Improve your tool</h3><p>Select a support to add it directly to your prompt. Click again to remove it.</p></div>
-<div id="addons" class="addon-grid" aria-label="Optional prompt improvements"></div>
-</aside>
-<div class="prompt-main">
-<div class="prompt-editor-header"><label for="prompt">Your complete prompt</label><span id="prompt-count" aria-live="polite"></span></div>
-<p class="prompt-editor-hint">Edit any wording here. Added instructions appear inside this prompt immediately.</p>
-<textarea id="prompt" rows="19" spellcheck="true"></textarea>
-<div class="actions"><button type="button" id="copy" class="primary">Copy complete prompt</button><a href="https://gemini.google.com" target="_blank" rel="noopener" class="open">Open Gemini ↗</a></div>
-<p id="status" class="prompt-status" role="status" aria-live="polite"></p>
-</div>
-</div>
-<p class="fineprint">In Gemini, select Canvas before pasting. Your prompt asks Gemini to expand the idea and build a first version. Review accuracy, accessibility and design yourself. Don't include identifiable student data.</p>
-</section>
-<footer><a href="guide.html#gemini">How to build in Canvas</a><a href="guide.html#care">School and student-data checks</a><span>No account required · Edits remain in this browser tab</span></footer>
+<footer><a href="guide.html#care">Student-data checks</a><span>No login or student data required</span></footer>
 </main><script src="js/tool-catalog.js"></script><script src="js/prompt-workspace.js"></script></body></html>
