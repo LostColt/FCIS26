@@ -69,6 +69,17 @@
     '<p class="cover-hint">Swipe, or use the arrow keys.</p>' +
     '</div><figure class="cover-qr"><div data-qr></div><figcaption>Scan to follow along, and keep it.</figcaption></figure></div>');
 
+  /* Slide 2: guiding questions. Answers return on the mirrored recap slide. */
+  add(0, 0,
+    '<div class="question-bookend question-bookend--opening">' +
+    '<p class="arch-eyebrow">TODAY / THREE QUESTIONS</p>' +
+    '<h2>What are we exploring?</h2>' +
+    '<div class="question-bookend-grid">' +
+    '<section><span class="question-bookend-number">01</span><h3>Why build your own tools?</h3></section>' +
+    '<section><span class="question-bookend-number">02</span><h3>What does building actually look like?</h3></section>' +
+    '<section><span class="question-bookend-number">03</span><h3>Where can you go from here?</h3></section>' +
+    '</div></div>', { id: "questions" });
+
   /* 0 · Who I am: a short introduction, then where I've lived drawn as one line */
   var places = ["Cleveland, OH", "San Diego, CA", "Ho Chi Minh, VN", "Oxford, MS", "Bradenton, FL", "Miami, FL"];
   add(0, 0,
