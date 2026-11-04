@@ -1,40 +1,49 @@
-/* Slides for chapters 6–9. Words come from content/story.md; change them there first.
-   Loads after steps.js, which provides D.promptBox, D.ui, D.arrow and D.link. */
-
+/* Final presentation chapter: three quiet closing slides and public take-home resources.
+   Slide 22 remains in steps.js and opens the prompt workbench. */
 (function () {
-  var D = window.DECK;
-  function add(ch, steps, html, opts) { D.add(ch, steps, html, opts); }
-  var ui = D.ui, arrow = D.arrow, link = D.link, box = D.promptBox;
-
-  /* 6 · Build it: orientation, Gemini walkthrough, Sheets extension and other routes (steps.js) */
+  var D=window.DECK;
+  function add(ch,steps,html,opts){D.add(ch,steps,html,opts);}
   D.insertSteps(add);
 
-  /* The former slides 23–25 (safety checklist, prompt recap, colleague exercise)
-     were removed at the presenter's request. The reflection now follows the
-     slide 22 workshop invitation directly. */
+  /* 23 — recap: the work, rather than a catalog of products. */
+  add(7,0,
+    '<div class="closing-recap">' +
+    '<p class="arch-eyebrow">WHAT WE DID / WHAT COMES NEXT</p>' +
+    '<h2>Start with something you need.</h2>' +
+    '<div class="closing-three">' +
+    '<section><span>01</span><h3>Notice</h3><p>What isn\'t working?</p></section>' +
+    '<section><span>02</span><h3>Build</h3><p>Describe it. Make a first version.</p></section>' +
+    '<section><span>03</span><h3>Revise</h3><p>Try it. Ask for a change.</p></section>' +
+    '</div><p class="closing-note">A useful tool doesn\'t have to begin as a subscription.</p>' +
+    '</div>', {id:"recap"});
 
-  add(7, 1,
-    '<p class="big">You just did what we ask students to do: try something, get feedback, revise.</p>' +
-    '<p class="big soft" data-step="1">Build first. Then revise.</p>');
+  /* 24 — a single public front door to code, demos, prompts and the guide. */
+  add(8,0,
+    '<div class="closing-resources">' +
+    '<div class="closing-resources-copy">' +
+    '<p class="arch-eyebrow">EVERYTHING FROM THE SESSION</p>' +
+    '<h2>Take what you need.</h2>' +
+    '<p class="closing-lede">The examples, the prompts, and the code. Use them, change them, and share them for educational and noncommercial purposes.</p>' +
+    '<div class="closing-resource-items">' +
+    '<div><strong>Build</strong><span>The classroom prompt workbench</span></div>' +
+    '<div><strong>Try</strong><span>Working tools, including the particle HUD</span></div>' +
+    '<div><strong>Keep</strong><span>Downloadable HTML and a practical guide</span></div>' +
+    '</div>' +
+    '<a class="closing-primary-link" href="resources.html" target="_blank" rel="noopener">Open all resources <span aria-hidden="true">↗</span></a>' +
+    '</div><div class="closing-resources-qr">' +
+    '<div data-resource-qr aria-label="QR code to the free resource page"></div>' +
+    '<p>fcis2026.vercel.app/resources.html</p></div>' +
+    '</div>', {id:"resources"});
 
-  /* 8 · Keep building */
-  add(8, 1,
-    '<p class="big huge">Start small. Keep changing it.</p>' +
-    '<p class="kicker-line" data-step="1">One annoyance. One prompt. One colleague to test it. Then revise it next month, and the month after that.</p>');
-  var mine = [["tracker", "The counseling tracker"], ["screenplay", "The screenplay tool"], ["reader", "The reader"]]
-    .filter(function (t) { return D.SITES[t[0]]; })
-    .map(function (t) { return "<li>" + link(D.SITES[t[0]], t[1]) + "</li>"; }).join("");
-  add(8, 0,
-    '<div class="practical wide"><h2>Everything in one place</h2><div class="place-grid"><section><h3>Build</h3><ul class="linklist">' +
-    "<li>" + link("https://gemini.google.com", "Google Gemini (Canvas)") + "</li>" +
-    "<li>" + link("https://aistudio.google.com", "Google AI Studio") + "</li>" +
-    "<li>" + link("https://chatgpt.com/features/sites/", "ChatGPT Sites") + "</li>" +
-    "<li>" + link("https://github.com", "GitHub") + "</li><li>" + link("https://vercel.com", "Vercel") + "</li></ul></section>" +
-    '<section><h3>The guide</h3><ul class="linklist"><li><a href="guide.html" target="_blank" rel="noopener">Build it: the guide</a></li><li><a href="guide.html#chatgpt" target="_blank" rel="noopener">All in ChatGPT</a></li>' +
-    '<li><a href="guide.html#advanced" target="_blank" rel="noopener">Own it end to end</a></li><li><a href="prompt-library.html" target="_blank" rel="noopener">Classroom prompts by grade and subject</a></li></ul></section>' +
-    '<section><h3>The tools from the talk</h3><ul class="linklist"><li><a href="demos/tracker.html" target="_blank" rel="noopener">Meeting tracker</a></li><li><a href="demos/screenplay.html" target="_blank" rel="noopener">Script Room</a></li>' +
-    '<li><a href="demos/reader.html" target="_blank" rel="noopener">Reader</a></li></ul>' +
-    (mine ? '<h3>What I built</h3><ul class="linklist">' + mine + "</ul>" : "") + "</section>" +
-    '<section><h3>Keep in touch</h3><p>David Tran<br>AI Learning and Teaching Specialist<br>Gulliver Prep, Miami, FL</p><p>' + link("https://www.linkedin.com/in/david-t-04864734", "Connect with me on LinkedIn") + "</p></section></div></div>",
-    { scroll: true });
+  /* 25 — contact: intentionally sparse, no unverified email. */
+  add(8,0,
+    '<div class="closing-contact">' +
+    '<p class="arch-eyebrow">KEEP IN TOUCH</p>' +
+    '<h2>Keep building.</h2>' +
+    '<div class="closing-contact-bottom">' +
+    '<div><h3>David Tran</h3><p>Gulliver Prep · Miami, Florida</p>' +
+    '<a href="https://www.linkedin.com/in/david-t-04864734" target="_blank" rel="noopener">Connect on LinkedIn <span aria-hidden="true">↗</span></a></div>' +
+    '<div class="closing-contact-resources"><p>Everything from today is yours to explore.</p>' +
+    '<a href="resources.html" target="_blank" rel="noopener">Resources and code ↗</a></div>' +
+    '</div></div>', {id:"contact"});
 })();
