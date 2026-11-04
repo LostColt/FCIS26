@@ -2470,3 +2470,77 @@
 /* Chapter number in top-left was a zero-based chapter index, not a slide number.
    Keep the descriptive chapter title; the true slide count remains below. */
 .chrome-top .where .num {display:none;}
+
+
+/* FCIS guiding-question bookends — slide 2 opens the inquiry, slide 24 answers it.
+   Quiet editorial three-column composition using the same paper, serif and thin
+   rules as the final sequence; no staged animation or extra presenter presses. */
+.question-bookend{
+  width:min(1150px,100%);
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:clamp(16px,3.4vh,38px);
+}
+.question-bookend .arch-eyebrow{margin:0;}
+.question-bookend h2{
+  font:400 clamp(3.1rem,6.25vw,6.3rem)/1.04 var(--serif);
+  letter-spacing:-.052em;
+  margin:0;
+}
+.question-bookend-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(15px,2.7vw,35px);
+  margin-top:clamp(18px,4vh,42px);
+}
+.question-bookend-grid section{
+  min-width:0;
+  border-top:3px solid #627980;
+  padding:clamp(14px,2.1vh,22px) 2px 8px;
+}
+.question-bookend-number{
+  display:block;
+  color:var(--ink-soft);
+  font:600 clamp(.77rem,.9vw,.87rem)/1.25 var(--sans);
+  letter-spacing:.1em;
+}
+.question-bookend-grid h3{
+  font:400 clamp(1.8rem,2.55vw,2.6rem)/1.18 var(--serif);
+  letter-spacing:-.028em;
+  margin:clamp(14px,2.3vh,24px) 0 0;
+  max-width:17ch;
+}
+.question-bookend--answers .question-bookend-grid h3{
+  font-size:clamp(1.55rem,2.13vw,2.1rem);
+  margin-top:clamp(11px,1.7vh,17px);
+}
+.question-bookend-grid p{
+  font:400 clamp(.95rem,1.24vw,1.18rem)/1.4 var(--sans);
+  color:var(--ink-soft);
+  margin:clamp(13px,2vh,22px) 0 0;
+  max-width:30ch;
+}
+@media(max-height:760px) and (min-width:761px){
+  .question-bookend{gap:12px;}
+  .question-bookend h2{font-size:clamp(2.7rem,4.9vw,4.7rem);}
+  .question-bookend-grid{margin-top:18px;}
+  .question-bookend-grid h3{font-size:clamp(1.6rem,2.28vw,2.25rem);}
+  .question-bookend--answers .question-bookend-grid h3{font-size:clamp(1.42rem,1.95vw,1.95rem);}
+  .question-bookend-grid p{font-size:clamp(.88rem,1.1vw,1.07rem);}
+}
+@media(max-width:760px){
+  .question-bookend h2{font-size:clamp(2.5rem,6.8vw,4rem);}
+  .question-bookend-grid{gap:12px;}
+  .question-bookend-grid section{padding-top:11px;}
+  .question-bookend-grid h3{font-size:clamp(1.05rem,3.4vw,1.8rem);margin-top:12px;}
+  .question-bookend--answers .question-bookend-grid h3{font-size:clamp(1rem,3.15vw,1.65rem);}
+  .question-bookend-grid p{font-size:clamp(.76rem,2.1vw,.96rem);line-height:1.34;margin-top:12px;}
+}
+@media(max-width:500px){
+  .question-bookend h2{font-size:clamp(2.1rem,8vw,2.8rem);}
+  .question-bookend-grid{gap:8px;margin-top:12px;}
+  .question-bookend-grid h3,.question-bookend--answers .question-bookend-grid h3{font-size:clamp(.97rem,3.4vw,1.25rem);}
+  .question-bookend-number{font-size:.68rem;}
+  .question-bookend-grid p{font-size:clamp(.68rem,2.4vw,.83rem);}
+}
