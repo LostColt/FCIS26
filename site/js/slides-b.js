@@ -43,7 +43,7 @@
     '<p>fcis2026.vercel.app/resources.html</p></div>' +
     '</div>' +
     '<footer class="closing-final-contact">' +
-    '<div><strong>David Tran</strong><span>Gulliver Prep · Miami, Florida</span></div>' +
+    '<div><strong>David Tran</strong><span>Gulliver Prep · Miami, Florida</span><a href="mailto:dtran@gulliverprep.org">dtran@gulliverprep.org</a></div>' +
     '<a href="https://www.linkedin.com/in/david-t-04864734" target="_blank" rel="noopener">Connect on LinkedIn <span aria-hidden="true">↗</span></a>' +
     '</footer>' +
     '</div>', {id:"resources"});
