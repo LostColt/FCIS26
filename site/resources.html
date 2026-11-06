@@ -41,18 +41,33 @@ h2{font-size:clamp(1.9rem,3.3vw,2.75rem);line-height:1.14}
 .contact h3{font-size:1.8rem;margin-bottom:7px}
 .contact p{color:var(--soft);margin-bottom:8px}
 footer{padding:30px 0}
-@media(max-width:760px){.hero{padding:40px 0}.feature{grid-template-columns:1fr}.tools{grid-template-columns:1fr}.item p{min-height:0}section.group{padding:30px 0}}
+.path-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.path-card{display:block;background:#fff;border:1px solid var(--line);padding:20px;text-decoration:none;color:var(--ink);transition:border-color .2s,transform .2s}.path-card:hover{border-color:var(--blue);transform:translateY(-2px)}.path-card strong{display:block;font-size:1.1rem;margin-bottom:7px}.path-card span{display:block;color:var(--soft);font-size:.9rem}.path-steps{display:flex;align-items:stretch;gap:10px;margin:18px 0}.path-step{flex:1;min-width:0}.path-arrow{align-self:center;color:var(--soft);font-size:1.3rem}.path-note{color:var(--soft);font-size:.92rem;max-width:780px}.path-links{display:flex;flex-wrap:wrap;gap:9px 20px;margin-top:18px;font-size:.9rem}@media(max-width:760px){.path-grid{grid-template-columns:1fr}.path-steps{flex-direction:column}.path-arrow{transform:rotate(90deg);align-self:center}}@media(max-width:760px){.hero{padding:40px 0}.feature{grid-template-columns:1fr}.tools{grid-template-columns:1fr}.item p{min-height:0}section.group{padding:30px 0}}
 @media print{nav,.quick,.actions,footer{display:none}.feature,.item{break-inside:avoid}body{background:#fff}}
 </style></head><body><main>
 <nav><a href="index.html#25">← Presentation</a><span>FCIS 2026 · Stop Subscribing, Start Building</span><a href="#contact">Contact</a></nav>
 <header class="hero"><p class="eyebrow">A TAKE-HOME WORKSPACE</p><h1>Take what you need.</h1>
 <p>The tools and code from this session are here. Open an example, download its HTML, or adapt a prompt for your classroom.</p>
-<div class="quick"><a href="#build">Build a tool</a><a href="#examples">Working examples</a><a href="#downloads">Download HTML</a><a href="#contact">Contact</a></div>
+<div class="quick"><a href="#build">Build a tool</a><a href="#pathways">More ways to build</a><a href="#examples">Working examples</a><a href="#downloads">Download HTML</a><a href="#contact">Contact</a></div>
 </header>
 <section class="group" id="build"><div class="section-head"><h2>Start with your own idea.</h2><p>The classroom tool prompt builder and the walkthrough from today's session.</p></div>
 <div class="feature"><div><h3>Classroom prompt workbench</h3><p>Choose a grade and subject, add learning supports, edit the prompt, and bring the complete instructions into Gemini Canvas.</p>
 <div class="actions"><a class="action-primary" href="prompt-library.html">Open the workbench ↗</a><a href="guide.html">Read the build guide</a></div></div>
 <aside><strong>Don't know where to start?</strong><p>Pick something that frustrates you, or something students need more practice doing. Build one small version, then revise it.</p></aside></div></section>
+<section class="group" id="pathways"><div class="section-head"><h2>Want to take your app further?</h2><p>Choose a starting point. You don't have to learn every tool or follow every step.</p></div>
+<div class="path-grid">
+<a class="path-card" href="https://chatgpt.com/" target="_blank" rel="noopener"><strong>ChatGPT ↗</strong><span>Prompt, build and revise in ChatGPT. Explore Sites where available to share or publish your work.</span></a>
+<a class="path-card" href="https://gemini.google.com/" target="_blank" rel="noopener"><strong>Gemini Canvas ↗</strong><span>Start with a prompt, make a working prototype, and explore export or sharing options.</span></a>
+<a class="path-card" href="https://aistudio.google.com/" target="_blank" rel="noopener"><strong>Google AI Studio ↗</strong><span>Experiment with app building and code. Some projects can move into a separate deployment workflow.</span></a>
+</div>
+<p class="eyebrow" style="margin-top:28px">A simple route to a live website</p>
+<div class="path-steps" aria-label="Build, store and publish workflow">
+<a class="path-card path-step" href="guide.html#advanced"><strong>1. Build ↗</strong><span>Use an AI coding tool such as Codex, Claude Code or Antigravity to create your project.</span></a><span class="path-arrow" aria-hidden="true">→</span>
+<a class="path-card path-step" href="https://github.com/signup" target="_blank" rel="noopener"><strong>2. Store · GitHub ↗</strong><span>Create a free account and put your project code in a repository.</span></a><span class="path-arrow" aria-hidden="true">→</span>
+<a class="path-card path-step" href="https://vercel.com/signup" target="_blank" rel="noopener"><strong>3. Publish · Vercel ↗</strong><span>Create an account, connect GitHub, import your repository and deploy a supported web app.</span></a>
+</div>
+<p class="path-note">GitHub and Vercel offer free starting tiers, with limits. This is one common route, not a requirement for every project. For setup details, see the companion guide; if you want help going further, reach out.</p>
+<div class="path-links"><a href="https://chatgpt.com/" target="_blank" rel="noopener">ChatGPT ↗</a><a href="https://gemini.google.com/" target="_blank" rel="noopener">Gemini ↗</a><a href="https://aistudio.google.com/" target="_blank" rel="noopener">AI Studio ↗</a><a href="https://github.com/signup" target="_blank" rel="noopener">GitHub signup ↗</a><a href="https://vercel.com/signup" target="_blank" rel="noopener">Vercel signup ↗</a><a href="guide.html#paths">Companion guide ↗</a><a href="#contact">Ask me a question ↓</a></div>
+</section>
 <section class="group" id="examples"><div class="section-head"><h2>Try it. Take the code.</h2><p>Each example opens in your browser. Each download gives you the actual HTML file, not a screenshot.</p></div>
 <div class="feature"><div><p class="eyebrow">FEATURED FROM THE PRESENTATION</p><h3>Interactive particle HUD</h3>
 <p>The animated visual from the Canvas demonstration. Open it, explore it, or download its HTML to adapt it.</p>
